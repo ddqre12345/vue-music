@@ -11,9 +11,12 @@
   "dependencies": {
     "axios": "^0.15.3",
     "node-sass": "^4.5.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "vue": "^2.2.2",
     "vue-axios": "^2.0.1",
     "vue-router": "^2.2.0",
+    "vue-style-loader": "^2.0.5",
     "vuex": "^2.2.1"
   },
   "devDependencies": {

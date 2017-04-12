@@ -6,15 +6,7 @@
  * component : 路由的组件路径
  */
 
-const routers = [{
-    path: '/',
-    name: '/',
-    component(resolve) {
-      require.ensure(['./App.vue'], () => {
-        resolve(require('./App.vue'));
-      });
-    }
-  },
+const routers = [
   {
     path: '/music-list',
     name: 'MusicList',

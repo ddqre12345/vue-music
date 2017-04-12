@@ -1,0 +1,55 @@
+.header
+    background-color #B72712
+    color #FFF
+    flex 1
+    width 100%
+    .name
+      display flex
+      flex-direction: row
+      align-items: center
+      justify-content space-between
+      text-align center
+      span.func
+        flex 1
+        i
+          background url(./func.svg) no-repeat
+          background-size: contain
+      span.search
+        flex: 1
+        i
+          background url(./search.svg) no-repeat
+          background-size: contain
+      .item
+        display inline-block
+        flex 1
+        text-align center
+        padding-top 10px
+        padding-bottom 10px
+        span.music
+          flex: 1
+          i
+            background url(./music.svg) no-repeat
+            background-size: contain
+        span.personal
+          flex: 1
+          i
+            background url(./personal.svg) no-repeat
+            background-size: contain
+      .item.active
+        span.music
+          i
+            background url(./music-active.svg) no-repeat
+            background-size: contain
+        span.personal
+          i
+            background url(./personal-active.svg) no-repeat
+            background-size: contain
+      i
+        display inline-block
+        width 30px
+        height 30px
+        right 15px
+        bottom 0
+        cursor pointer
+
+

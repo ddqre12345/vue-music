@@ -8,6 +8,7 @@ import routes from './routers'; // 引入路由配置
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Vuex from 'vuex'
+import {loadFromlLocal} from './common/js/store';  // 公共方法：本地缓存
 
 
 Vue.config.productionTip = false
@@ -24,10 +25,20 @@ const router = new VueRouter({
 });
 
 /* eslint-disable no-new */
-new Vue({
+const routerApp = new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
   components: { App }
 })
+
+/**
+ * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
+ *
+ *
+ */
+if (!loadFromlLocal('music', 'music-list', false)) {
+  router.push('/music-list');
+}
+export default routerApp;
