@@ -9,28 +9,26 @@
       justify-content space-between
       text-align center
       span.func
-        flex 1
+        flex 3
         i
           background url(./func.svg) no-repeat
           background-size: contain
       span.search
-        flex: 1
+        flex: 3
         i
           background url(./search.svg) no-repeat
           background-size: contain
       .item
         display inline-block
-        flex 1
+        flex 7
         text-align center
         padding-top 10px
         padding-bottom 10px
         span.music
-          flex: 1
           i
             background url(./music.svg) no-repeat
             background-size: contain
         span.personal
-          flex: 1
           i
             background url(./personal.svg) no-repeat
             background-size: contain
@@ -51,4 +49,15 @@
         bottom 0
         cursor pointer
 
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ffbeb7;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ffbeb7;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ffbeb7;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ffbeb7;
+}

@@ -1,13 +1,11 @@
 <template lang="html">
   <transition name="showRouter">
     <div class="find">
-      <div class='header-ohter'>
+      <div class='header-other'>
         <span @click="goBack" class="back"><i class="back-icon"></i></span>
         <div class="input">
-          <i class="icon-search"></i>
           <input v-model="keywords" @keyup.enter="toSearch(keywords)" @focus="inputFocus" v-bind:class="{'input-focus': !isShowHot}" type="text"  placeholder='搜素音乐、歌手、歌词、用户'>
           <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
-          <div v-show="!isShowHot" @click="isShowHot=true" class="cancel-btn">取消</div>
         </div>
       </div>
       <!-- 热门搜索 -->
