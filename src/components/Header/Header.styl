@@ -1,7 +1,10 @@
 .header
+    position fixed
+    top: 0
     background-color #B72712
-    color #FFF
+    color #fff
     width 100%
+    z-index: 20
     .name
       display flex
       flex-direction: row
@@ -9,30 +12,32 @@
       justify-content space-between
       text-align center
       span.func
-        flex 3
+        flex 1
         i
           background url(./func.svg) no-repeat
           background-size: contain
       span.search
-        flex: 3
+        flex: 1
         i
           background url(./search.svg) no-repeat
           background-size: contain
       .item
         display inline-block
-        flex 7
+        flex 1
         text-align center
         padding-top 10px
         padding-bottom 10px
         span.music
+          flex: 1
           i
             background url(./music.svg) no-repeat
             background-size: contain
         span.personal
+          flex: 1
           i
             background url(./personal.svg) no-repeat
             background-size: contain
-      .item.active
+      .item.router-link-active
         span.music
           i
             background url(./music-active.svg) no-repeat
@@ -49,15 +54,4 @@
         bottom 0
         cursor pointer
 
-input::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #ffbeb7;
-}
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #ffbeb7;
-}
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #ffbeb7;
-}
-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #ffbeb7;
-}
+

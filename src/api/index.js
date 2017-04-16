@@ -1,45 +1,22 @@
-import axios from 'axios';
-
-import {
-    RecommendActicleListResource,
-    ColumnArticleListResource,
-    ColumnListResource,
-    ArticleDetailResource,
-    RecommendColumnsResource
-} from './resource';
-
+const _baseUrl = 'http://musicapi.duapp.com/api.php'
+const _baseUrl2 = 'https://api.imjad.cn/cloudmusic/'
 export default {
-    getRecommendActicleList(size, offset) {
-        return axios.get(RecommendActicleListResource, {
-            params: {
-                limit: size || 6,
-                offset: offset || 0
-            }
-        });
-    },
-
-    getPersonalInfo(columnId) {
-        return axios.get(ColumnArticleListResource + columnId);
-    },
-
-    getColumnArticleList(columnId, size, offset) {
-        return axios.get(ColumnArticleListResource + columnId + '/posts?limit=' + size + '&offset=' + offset);
-    },
-
-    getColumnList(columnId, size, offset) {
-        return axios.get(ColumnListResource + columnId + '/posts?limit=' + size + '&offset=' + offset);
-    },
-
-    getArticleDetail(articleId) {
-        return axios.get(ArticleDetailResource + articleId);
-    },
-
-    getRecommendationsColumns(size, offset) {
-        return axios.get(RecommendColumnsResource, {
-            params: {
-                limit: size || 6,
-                offset: offset || 0
-            }
-        });
-    }
-};
+  getPlayListByWhere (cat, order, offset, total, limit) {
+    return _baseUrl + '?type=topPlayList&cat=' + cat + '&offset=' + offset + '&limit=' + limit
+  },
+  getLrc (id) {
+    return _baseUrl2 + '?type=lyric&id=' + id
+  },
+  getSong (id) {
+    return _baseUrl + '?type=url&id=' + id
+  },
+  getPlayListDetail (id) {
+    return _baseUrl2 + '?type=playlist&id=' + id
+  },
+  getMv (id) {
+    return _baseUrl2 + '?type=mv&id=' + id
+  },
+  search (words) {
+    return _baseUrl2 + '?type=search&s=' + words
+  }
+}

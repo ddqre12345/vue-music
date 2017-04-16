@@ -2,10 +2,10 @@
   <div :style="{backgroundColor: skinColor}" class="header">
     <div class="name">
       <span @click="showAsideMenu(true)" class="func"><i class="func-icon"></i></span>
-      <router-link to="/music-list" class="item">
+      <router-link to="/index" class="item">
         <span class="music"><i class="music-icon"></i></span>
       </router-link>
-      <router-link to="/find" class="item">
+      <router-link to="/search" class="item">
         <span class="personal"><i class="personal-icon"></i></span>
       </router-link>
       <span class="search"><i @click="toSearch" class="search-icon"></i></span>
@@ -14,34 +14,31 @@
 </template>
 
 <script>
-
 export default {
   name: 'header',
-
-  data() {
+  data () {
     return {
       index: ''
-    };
+    }
   },
   computed: {
-    linkBorderIndex() {
-      return this.$store.state.linkBorderIndex;
+    linkBorderIndex () {
+      return this.$store.state.linkBorderIndex
     },
-    skinColor() {
-      return this.$store.state.skinColor;
+    skinColor () {
+      return this.$store.state.skinColor
     }
   },
   methods: {
-    toSearch() {
-      this.$router.push('/find');
+    toSearch () {
+      this.$router.push('/search')
     },
-    showAsideMenu(flag) {
-      this.$store.commit('showAsideMenu', flag);
+    showAsideMenu (flag) {
+      this.$store.commit('showAsideMenu', flag)
     }
   }
 }
 </script>
-
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "Header.styl";
+  @import "header.styl";
 </style>
