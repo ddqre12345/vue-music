@@ -4,7 +4,7 @@
       <div class='header-other'>
         <span @click="goBack" class="back"><i class="back-icon"></i></span>
         <div class="input">
-          <input v-model="keywords" @keyup.enter="toSearch(keywords)" @focus="inputFocus" v-bind:class="{'input-focus': !isShowHot}" type="text"  placeholder='搜素音乐、歌手、歌词、用户'>
+          <input v-model="keywords" @keyup.enter="toSearch(keywords)" v-bind:class="{'input-focus': !isShowHot}" type="text"  placeholder='搜素音乐、歌手、歌词、用户'>
           <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
         </div>
       </div>
