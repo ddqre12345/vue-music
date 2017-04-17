@@ -18,11 +18,11 @@
     "sinon": "^2.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "vue": "^2.1.0",
+    "vue": "^2.2.1",
     "vue-awesome-swiper": "^2.3.0",
-    "vue-router": "^2.1.1",
+    "vue-router": "^2.2.0",
     "vue-style-loader": "^1.0.0",
-    "vuex": "^2.1.1"
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

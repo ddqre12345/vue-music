@@ -9,14 +9,14 @@
         </div>
       </div>
       <!-- 热门搜索 -->
-      <div v-if="false" class="hot">
-        热门搜索
-        <div class="keywords">
-          <div v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></div>
-        </div>
-      </div>
+      <!--<div class="hot">-->
+        <!--热门搜索-->
+        <!--<div class="keywords">-->
+          <!--<div v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div v-else class="search-list" @touchmove="$store.commit('showMiniMusic', false)">
+      <!--<div class="search-list">
         <div class="fixed-bar">
           <mu-tabs :value="activeTab" @change="handleTabChange" class="view-tabs">
             <mu-tab value="singleList" title="单曲"/>
@@ -32,7 +32,7 @@
             <router-view></router-view>
           </keep-alive>
         </div>
-      </div>
+      </div>-->
     </div>
   </transition>
 
@@ -42,64 +42,22 @@
 export default {
   name: 'find',
   created () {
-    this.axios.get('/api/hot')
-      .then(res => {
-        this.hotKeywords = res.data
-      })
-      // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-    var tmpArr = this.$route.path.split('/')
-    if (tmpArr[1] === 'index') {
-      this.handleTabChange(tmpArr[2])
-    }
   },
   mounted () {
-    this.$store.commit('changeLinkBorderIndex', 2)
   },
   computed: {
-    musicData () {
-      return this.$store.state.musicData
-    }
   },
   data () {
-    return {
-      activeTab: 'singleList'
-    }
+
   },
   watch: {
-    musicData: {
-      deep: true
-    },
-    searchHistory: {
-      deep: true
-    },
-    '$route' (to, from) {
-      const path = to.path
-      var tmpArr = path.split('/')
-      if (tmpArr[1] === 'search') {
-        this.handleTabChange(tmpArr[2])
-      }
-    }
+
   },
   methods: {
     toSearch (keywords) {
       if (keywords.trim()) {
-        this.isShowHistory = false
-        this.isShowHot = false
-        this.playIndex = null
-        this.isLoading = true
-        this.keywords = keywords
-        this.axios.get('/api//search/100/' + keywords)
-          .then(res => res.data.data.song)
-          .then(song => {
-            this.musicList = song.list
-            this.isLoading = false
-            this.searchHistory.unshift(keywords)
-          })
+
       }
-    },
-    handleTabChange (val) {
-      this.activeTab = val
-      this.$router.push({ path: '/search/' + val })
     }
   }
 }
