@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Axios from 'axios'
-import api from '../api'
-Vue.use(Vuex)
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Axios from 'axios';
+import api from '../api';
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
@@ -39,36 +39,36 @@ const store = new Vuex.Store({
     change: state => state.change,
     currentTime: state => state.currentTime,
     prCurrentTime: state => {
-      return state.currentTime / state.durationTime * 100
+      return state.currentTime / state.durationTime * 100;
     },
     prBufferedTime: state => {
-      return state.bufferedTime / state.durationTime * 100
+      return state.bufferedTime / state.durationTime * 100;
     }
   },
   mutations: {
     play (state) {
-      state.playing = true
+      state.playing = true;
     },
     pause (state) {
-      state.playing = false
+      state.playing = false;
     },
     toggleDetail (state) {
-      state.showDetail = !state.showDetail
+      state.showDetail = !state.showDetail;
     },
     setAudio (state) {
-      state.audio = state.songList[state.currentIndex - 1]
+      state.audio = state.songList[state.currentIndex - 1];
     },
     setAudioIndex (state, index) {
-      state.audio = state.songList[index]
-      state.currentIndex = index + 1
+      state.audio = state.songList[index];
+      state.currentIndex = index + 1;
     },
     removeAudio (state, index) {
-      state.songList.splice(index, 1)
+      state.songList.splice(index, 1);
       if (index === state.songList.length) {
-        index--
+        index--;
       }
-      state.audio = state.songList[index]
-      state.currentIndex = index + 1
+      state.audio = state.songList[index];
+      state.currentIndex = index + 1;
       if (state.songList.length === 0) {
         state.audio = {
           'id': 0,
@@ -77,86 +77,86 @@ const store = new Vuex.Store({
           'albumPic': '/static/player-bar.png',
           'location': '',
           'album': ''
-        }
-        state.playing = false
+        };
+        state.playing = false;
       }
     },
     setChange (state, flag) {
-      state.change = flag
+      state.change = flag;
     },
     setLocation (state, location) {
-      state.audio.location = location
+      state.audio.location = location;
     },
     updateCurrentTime (state, time) {
-      state.currentTime = time
+      state.currentTime = time;
     },
     updateDurationTime (state, time) {
-      state.durationTime = time
+      state.durationTime = time;
     },
     updateBufferedTime (state, time) {
-      state.bufferedTime = time
+      state.bufferedTime = time;
     },
     changeTime (state, time) {
-      state.tmpCurrentTime = time
+      state.tmpCurrentTime = time;
     },
     openLoading (state) {
-      state.loading = true
+      state.loading = true;
     },
     closeLoading (state) {
-      state.loading = false
+      state.loading = false;
     },
     resetAudio (state) {
-      state.currentTime = 0
+      state.currentTime = 0;
     },
     playNext (state) { // 播放下一曲
-      state.currentIndex++
+      state.currentIndex++;
       if (state.currentIndex > state.songList.length) {
-        state.currentIndex = 1
+        state.currentIndex = 1;
       }
-      state.audio = state.songList[state.currentIndex - 1]
+      state.audio = state.songList[state.currentIndex - 1];
     },
     playPrev (state) { // 播放上一曲
-      state.currentIndex--
+      state.currentIndex--;
       if (state.currentIndex < 1) {
-        state.currentIndex = state.songList.length
+        state.currentIndex = state.songList.length;
       }
-      state.audio = state.songList[state.currentIndex - 1]
+      state.audio = state.songList[state.currentIndex - 1];
     },
     addToList (state, songs) {
-      var items = Array.prototype.concat.call(songs)
+      var items = Array.prototype.concat.call(songs);
       items.forEach(item => {
-        var flag = false
+        var flag = false;
         state.songList.forEach(function (element, index) { // 检测歌曲重复
           if (element.id === item.id) {
-            flag = true
-            state.currentIndex = index + 1
+            flag = true;
+            state.currentIndex = index + 1;
           }
-        })
+        });
         if (!flag) {
-          state.songList.push(item)
-          state.currentIndex = state.songList.length
+          state.songList.push(item);
+          state.currentIndex = state.songList.length;
         }
-      })
+      });
     },
     setLrc (state, lrc) {
-      state.lyric = lrc
+      state.lyric = lrc;
     }
   },
   // 异步的数据操作
   actions: {
     getSong ({commit, state}, id) {
-      commit('openLoading')
+      commit('openLoading');
       Axios.get(api.getSong(id)).then(res => {
         // 统一数据模型，方便后台接口的改变
-        var url = res.data.data[0].url
-        commit('setAudio')
-        commit('setLocation', url)
+        var url = res.data.data[0].url;
+        commit('setAudio');
+        commit('setLocation', url);
       })
       .catch((error) => {     // 错误处理
-        console.log(error)
-        window.alert('获取歌曲信息出错！')
-      })
+        console.log(error);
+        window.alert('获取歌曲信息出错！');
+      });
     }
   }
-})
-export default store
+});
+export default store;

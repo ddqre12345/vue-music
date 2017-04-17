@@ -26,15 +26,15 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
-import Toast from '../components/toast'
-import BottomSheet from '../components/list'
+import { mapMutations, mapGetters } from 'vuex';
+import Toast from '../components/toast';
+import BottomSheet from '../components/list';
 export default {
   data () {
     return {
       loadedTime: 0,
       playerTime: 0
-    }
+    };
   },
   components: {
     Toast,
@@ -42,11 +42,11 @@ export default {
   },
   methods: {
     showDetail () {
-      this.$router.push({name: 'playerDetail', params: {id: this.audio.id}})
-      this.$store.commit('toggleDetail')
+      this.$router.push({name: 'playerDetail', params: {id: this.audio.id}});
+      this.$store.commit('toggleDetail');
     },
     showList () {
-      this.$refs.bottomSheet.show()
+      this.$refs.bottomSheet.show();
     },
     ...mapMutations([
       'play',
@@ -54,55 +54,55 @@ export default {
       'playNext'
     ]),
     canPlaySong () {
-      this.$store.commit('closeLoading')
-      this.$store.commit('play')
-      document.getElementById('audioPlay').play()
+      this.$store.commit('closeLoading');
+      this.$store.commit('play');
+      document.getElementById('audioPlay').play();
     },
     toggleStatus () {
       if (this.playing) {
-        document.getElementById('audioPlay').pause()
-        this.$store.commit('pause')
+        document.getElementById('audioPlay').pause();
+        this.$store.commit('pause');
       } else {
-        document.getElementById('audioPlay').play()
-        this.$store.commit('play')
+        document.getElementById('audioPlay').play();
+        this.$store.commit('play');
       }
     },
     // 文件加载出错
     loadError () {
       // 判断是第一次打开程序还是后来程序加载的路径有错根据src是否为空
       if (document.getElementById('audioPlay').currentSrc) {
-        this.$refs.toast.show('歌曲路径加载出错')
-        this.loading = false
-        this.$store.commit('closeLoading')
+        this.$refs.toast.show('歌曲路径加载出错');
+        this.loading = false;
+        this.$store.commit('closeLoading');
         // 还要把playbar重置下 TODO
       } else {
-        console.log('APP 程序第一次加载')
+        console.log('APP 程序第一次加载');
       }
     },
     next () {
-      this.toggleStatus()
-      this.$store.commit('playNext')
+      this.toggleStatus();
+      this.$store.commit('playNext');
     },
     // 更新进度条事件
     updateTime () {
-      var vm = this
-      var myaudio = document.getElementById('audioPlay')
-      var time = parseInt(myaudio.currentTime)
+      var vm = this;
+      var myaudio = document.getElementById('audioPlay');
+      var time = parseInt(myaudio.currentTime);
       // 防止在未加载完成时，切歌出现的错误
       // Failed to execute 'end' on 'TimeRanges':
       // 由onprogress 更改为 onsuspend事件。参考：http://www.cnblogs.com/tianma3798/p/6038908.html
       myaudio.onsuspend = function () {
-        var timeRange = myaudio.buffered
+        var timeRange = myaudio.buffered;
         if (timeRange.length > 0 && myaudio.duration > 0) {
-          vm.$store.commit('updateBufferedTime', parseInt(myaudio.buffered.end(0)))
+          vm.$store.commit('updateBufferedTime', parseInt(myaudio.buffered.end(0)));
         }
-      }
-      vm.$store.commit('updateDurationTime', parseInt(myaudio.duration))
+      };
+      vm.$store.commit('updateDurationTime', parseInt(myaudio.duration));
       if (this.change) {
-        myaudio.currentTime = this.tmpCurrentTime
-        this.$store.commit('setChange', false)
+        myaudio.currentTime = this.tmpCurrentTime;
+        this.$store.commit('setChange', false);
       } else {
-        this.$store.commit('updateCurrentTime', time)
+        this.$store.commit('updateCurrentTime', time);
       }
     }
   },
@@ -118,7 +118,7 @@ export default {
       'prCurrentTime'
     ])
   }
-}
+};
 </script>
 <style lang="less" scopoed>
   @import "../assets/theme.less";

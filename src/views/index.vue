@@ -49,34 +49,34 @@
   }
 </style>
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex';
   export default {
     data () {
       return {
         activeTab: 'rage'
-      }
+      };
     },
     created () {
       // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-      var tmpArr = this.$route.path.split('/')
+      var tmpArr = this.$route.path.split('/');
       if (tmpArr[1] === 'index') {
-        this.handleTabChange(tmpArr[2])
+        this.handleTabChange(tmpArr[2]);
       }
     },
     // watch函数监测路由的变化,保持tab面板的高亮位置正确
     watch: {
       '$route' (to, from) {
-        const path = to.path
-        var tmpArr = path.split('/')
+        const path = to.path;
+        var tmpArr = path.split('/');
         if (tmpArr[1] === 'index') {
-          this.handleTabChange(tmpArr[2])
+          this.handleTabChange(tmpArr[2]);
         }
       }
     },
     methods: {
       handleTabChange (val) {
-        this.activeTab = val
-        this.$router.push({ path: '/index/' + val })
+        this.activeTab = val;
+        this.$router.push({ path: '/index/' + val });
       }
     },
     computed: {
@@ -84,5 +84,5 @@
         'songList'
       ])
     }
-  }
+  };
 </script>

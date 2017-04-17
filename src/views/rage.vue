@@ -176,8 +176,8 @@
   }
 </style>
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import api from '../api'
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import api from '../api';
 export default {
   data () {
     return {
@@ -188,31 +188,31 @@ export default {
       isloading: true,
       playList: [],
       mvList: []
-    }
+    };
   },
   components: {
     swiper,
     swiperSlide
   },
   created () {
-    this.get()
+    this.get();
   },
   methods: {
     get () {
       this.$http.get(api.getPlayListByWhere('全部', 'hot', 0, true, 6)).then((res) => {
-        this.isloading = false
-        this.playList = res.data.playlists
-      })
+        this.isloading = false;
+        this.playList = res.data.playlists;
+      });
     }
   },
   filters: {
     formatCount (v) {
       if (v < 9999) {
-        return v
+        return v;
       } else {
-        return (v / 10000).toFixed(0) + '万'
+        return (v / 10000).toFixed(0) + '万';
       }
     }
   }
-}
+};
 </script>

@@ -42,9 +42,9 @@ export default {
   name: 'find',
   created () {
     // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-    let tmpArr = this.$route.path.split('/')
+    let tmpArr = this.$route.path.split('/');
     if (tmpArr[1] === 'index') {
-      this.handleTabChange(tmpArr[2])
+      this.handleTabChange(tmpArr[2]);
     }
   },
   mounted () {
@@ -56,56 +56,44 @@ export default {
       keywords: '',
       isShowHot: true,
       activeTab: 'singleList'
-    }
+    };
   },
   watch: {
     '$route' (to, from) {
-      let path = to.path
-      let tmpArr = path.split('/')
+      let path = to.path;
+      let tmpArr = path.split('/');
       if (tmpArr[1] === 'search') {
-        this.handleTabChange(tmpArr[2])
+        this.handleTabChange(tmpArr[2]);
       }
     }
   },
   methods: {
     goBack () {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     toSearch (keywords) {
       if (this.keywords.trim()) {
-        console.log(this.keywords)
-        this.isShowHot = false
+        console.log(this.keywords);
+        this.isShowHot = false;
         this.$router.push({
           path: '/search/singleList',
           query: {
             keywords: keywords
           }
-        })
-      }
-    },
-    inputFocus () {
-      if (this.keywords.trim()) {
-        console.log(this.keywords)
-        this.isShowHot = false
-        this.$router.push({
-          path: '/search/singleList',
-          query: {
-            keywords: this.keywords
-          }
-        })
+        });
       }
     },
     handleTabChange (val) {
-      this.activeTab = val
+      this.activeTab = val;
       this.$router.push({
         path: '/search/' + val,
         query: {
           keywords: this.keywords
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "find.styl";

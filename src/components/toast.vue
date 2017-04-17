@@ -4,7 +4,7 @@
     </transition>
 </template>
 <script>
-const DEFAULT_DURATION = 2000
+const DEFAULT_DURATION = 2000;
 export default {
   name: 'toast',
   data () {
@@ -12,21 +12,21 @@ export default {
       text: '',
       showing: false,
       timer: null
-    }
+    };
   },
   methods: {
     show (text, duration) {
-      this.text = text
-      this.showing = true
+      this.text = text;
+      this.showing = true;
       if (this.timer) {
-        clearInterval(this.timer)
+        clearInterval(this.timer);
       }
       this.timer = setTimeout(() => {
-        this.showing = false
-      }, duration || DEFAULT_DURATION)
+        this.showing = false;
+      }, duration || DEFAULT_DURATION);
     }
   }
-}
+};
 </script>
 
 <style scoped>

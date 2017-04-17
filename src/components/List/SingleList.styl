@@ -1,0 +1,47 @@
+.singleList
+  position: fixed;
+  top 0
+  left 0
+  right 0
+  background-color #fff
+  z-index 100
+  width 100%
+  height 100%
+  overflow auto
+  &.fade-enter-active, &.fade-leave-active {
+    transition: all 0.2s linear
+    transform translate3d(0, 0, 0)
+  }
+  &.fade-enter, &.fade-leave-active {
+    opacity: 0
+    transform translate3d(100%, 0, 0)
+  }
+  .column-info
+    padding 10px 15px
+    font-size 14px
+    color gray
+    overflow hidden
+    margin-top 49px
+    margin-bottom 5px
+    -moz-box-shadow 2px 2px 11px #ced7dc
+    -webkit-box-shadow 2px 2px 11px #ced7dc
+    box-shadow 2px 2px 11px #ced7dc
+    .author-image
+      float left
+      img
+        width 45px
+        height 45px
+        border-radius 50%
+        margin-right 10px
+    .column-detail
+      float left
+      .column-name
+        color #545454
+        font-size 16px
+      .column-hot
+        margin-top 10px
+    .column-description
+      clear both
+      margin-top: 10px;
+      float: left;
+

@@ -16,10 +16,10 @@
   </div>
 </template>
 <script>
-  import VHeader from './components/header/header.vue'
-  import AsideMenu from './components/asideMenu/asideMenu.vue'
-  import Player from './components/playerBar'
-  import { mapGetters } from 'vuex'
+  import VHeader from './components/header/header.vue';
+  import AsideMenu from './components/asideMenu/asideMenu.vue';
+  import Player from './components/playerBar';
+  import { mapGetters } from 'vuex';
 
   export default {
     components: {
@@ -33,5 +33,5 @@
         'showDetail'
       ])
     }
-  }
+  };
 </script>

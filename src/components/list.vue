@@ -18,33 +18,33 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
   name: 'list',
   data () {
     return {
       bottomSheet: false
-    }
+    };
   },
   methods: {
     closeBottomSheet () {
-      this.bottomSheet = false
+      this.bottomSheet = false;
       if (document.querySelector('.playList')) {
-        document.querySelector('.playList').style.position = 'static'
+        document.querySelector('.playList').style.position = 'static';
       }
     },
     show () {
-      this.bottomSheet = true
+      this.bottomSheet = true;
       if (document.querySelector('.playList')) {
-        document.querySelector('.playList').style.position = 'fixed'
+        document.querySelector('.playList').style.position = 'fixed';
       }
     },
     play (index) {
-      this.$store.commit('setAudioIndex', index)
+      this.$store.commit('setAudioIndex', index);
     },
     remove (index) {
-      console.log(index)
-      this.$store.commit('removeAudio', index)
+      console.log(index);
+      this.$store.commit('removeAudio', index);
     }
   },
   computed: {
@@ -53,7 +53,7 @@ export default {
       'audio'
     ])
   }
-}
+};
 </script>
 <style lang="less" scoped>
 @import "../assets/theme.less";

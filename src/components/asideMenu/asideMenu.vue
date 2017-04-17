@@ -52,23 +52,23 @@ export default {
   name: 'AsideMenu',
   computed: {
     skinColor () {
-      return this.$store.state.skinColor
+      return this.$store.state.skinColor;
     }
   },
   data () {
     return {
       isSignIn: false
-    }
+    };
   },
   methods: {
     showAsideMenu () {
-      this.$store.commit('showAsideMenu', false)
+      this.$store.commit('showAsideMenu', false);
     },
     showAbout () {
-      this.$store.commit('showAbout', true)
+      this.$store.commit('showAbout', true);
     }
   }
-}
+};
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "asideMenu.styl";

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 import {
   LoginCellphoneResource,
   UserPlaylistResource,
@@ -15,7 +15,7 @@ import {
   LikeMusicResource,
   FmTrashResource,
   TopListResource
-} from './resource'
+} from './resource';
 
 export default {
   // 获取个人信息，注入cookies
@@ -25,7 +25,7 @@ export default {
         phone: mobile || '',
         password: password || ''
       }
-    })
+    });
   },
 
   // 获取用户歌单, uid为用户id，登陆接口处获取
@@ -34,7 +34,7 @@ export default {
       params: {
         uid: id
       }
-    })
+    });
   },
 
   // 获取歌单详情, id 为歌单id
@@ -43,7 +43,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   // 获取音乐url， id为单曲id
@@ -52,7 +52,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   /**
@@ -71,7 +71,7 @@ export default {
         offset: offset || 0,
         limit: limit
       }
-    })
+    });
   },
 
   // 获取歌词， id为单曲id
@@ -80,7 +80,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   // 获取评论， id为单曲id
@@ -89,7 +89,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   // 获取歌手专辑列表， id为歌手id
@@ -98,22 +98,22 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   // 获取每日推荐歌曲
   getRecommendResource () {
-    return axios.get(RecommendResource)
+    return axios.get(RecommendResource);
   },
 
   // 获取每日推荐歌单
   getRecommendSongsResource () {
-    return axios.get(RecommendSongsResource)
+    return axios.get(RecommendSongsResource);
   },
 
   // 获取私人FM， id为歌曲id
   getPersonalFmResource () {
-    return axios.get(PersonalFmResource)
+    return axios.get(PersonalFmResource);
   },
 
   /**
@@ -125,7 +125,7 @@ export default {
       params: {
         type: type
       }
-    })
+    });
   },
 
   // 添加喜欢歌曲， id为单曲id
@@ -134,7 +134,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   // 将单曲从私人FM中移除至垃圾桶， id为单曲id
@@ -143,7 +143,7 @@ export default {
       params: {
         id: id
       }
-    })
+    });
   },
 
   /**
@@ -161,6 +161,6 @@ export default {
       params: {
         idx: idx
       }
-    })
+    });
   }
-}
+};

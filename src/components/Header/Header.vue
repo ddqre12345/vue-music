@@ -19,25 +19,25 @@ export default {
   data () {
     return {
       index: ''
-    }
+    };
   },
   computed: {
     linkBorderIndex () {
-      return this.$store.state.linkBorderIndex
+      return this.$store.state.linkBorderIndex;
     },
     skinColor () {
-      return this.$store.state.skinColor
+      return this.$store.state.skinColor;
     }
   },
   methods: {
     toSearch () {
-      this.$router.push('/search')
+      this.$router.push('/search');
     },
     showAsideMenu (flag) {
-      this.$store.commit('showAsideMenu', flag)
+      this.$store.commit('showAsideMenu', flag);
     }
   }
-}
+};
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "header.styl";

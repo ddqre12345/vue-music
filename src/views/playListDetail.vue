@@ -41,14 +41,12 @@
                 </div>
                 </mu-list>
             </div>
-            </mu-list>
             </div>
         </div>
-    </div>
 </template>
 <script>
-import api from '../api'
-import { mapGetters } from 'vuex'
+import api from '../api';
+import { mapGetters } from 'vuex';
 export default {
   data () {
     return {
@@ -66,83 +64,83 @@ export default {
       opacity: 0,
       value: 0,
       isloading: false
-    }
+    };
   },
   // 解除keep-alive的缓存
   beforeRouteEnter: (to, from, next) => {
     next(vm => {
       // 根据传过来的ID是否一样，判断加载
       if (parseInt(to.params.id) !== parseInt(vm.id)) {
-        vm.get()
+        vm.get();
       }
       // 判断过来的路由是否带有对应的参数信息
       if (to.params.coverImg) {
          // 获取songList传入的数据
-        vm.coverImgUrl = vm.$route.params.coverImg
-        vm.name = vm.$route.params.name
-        vm.description = vm.$route.params.desc
-        vm.playCount = vm.$route.params.count
-        vm.creator = vm.$route.params.creator
-        vm.id = vm.$route.params.id
+        vm.coverImgUrl = vm.$route.params.coverImg;
+        vm.name = vm.$route.params.name;
+        vm.description = vm.$route.params.desc;
+        vm.playCount = vm.$route.params.count;
+        vm.creator = vm.$route.params.creator;
+        vm.id = vm.$route.params.id;
       }
       window.onscroll = () => {
-        var opa = window.pageYOffset / 150
+        var opa = window.pageYOffset / 150;
         if (opa > 0.5) {
-          vm.fname = vm.name
+          vm.fname = vm.name;
         } else {
-          vm.fname = '歌单'
+          vm.fname = '歌单';
         }
-        vm.opacity = window.pageYOffset / 150
-      }
-    })
+        vm.opacity = window.pageYOffset / 150;
+      };
+    });
   },
   // 路由离开时清除onscroll事件
   beforeRouteLeave: (to, from, next) => {
-    window.onscroll = null
-    next()
+    window.onscroll = null;
+    next();
   },
   methods: {
     back () {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     get () {
-      this.isloading = true
+      this.isloading = true;
       this.$http.get(api.getPlayListDetail(this.$route.params.id)).then((res) => {
-        this.list = res.data.playlist.tracks
-        this.isloading = false
+        this.list = res.data.playlist.tracks;
+        this.isloading = false;
       }).catch((error) => {
-        console.log('加载歌单信息出错:' + error)
-      })
+        console.log('加载歌单信息出错:' + error);
+      });
     },
     change (val) {
-      this.value = val
+      this.value = val;
     },
     playAudio (song) {
-      document.getElementById('audioPlay').pause()
-      this.$store.commit('pause')
+      document.getElementById('audioPlay').pause();
+      this.$store.commit('pause');
       // this.$parent.$refs.alert.show('tess')
-      var audio = {}
-      audio.id = song.id  // id
-      audio.singer = song.ar[0].name // 演唱者
-      audio.albumPic = song.al.picUrl
-      audio.name = song.name
+      var audio = {};
+      audio.id = song.id;  // id
+      audio.singer = song.ar[0].name; // 演唱者
+      audio.albumPic = song.al.picUrl;
+      audio.name = song.name;
       // 通过Vuex改变状态
-      this.$store.commit('addToList', audio)
-      this.$store.dispatch('getSong', audio.id)
+      this.$store.commit('addToList', audio);
+      this.$store.dispatch('getSong', audio.id);
     },
     // 播放全部
     playAll () {
       // 添加专辑内所有歌曲到一个新数组
-      let items = []
+      let items = [];
       this.list.forEach((item) => {
         items.push({
           albumPic: item.al.picUrl,
           id: item.id,
           name: item.al.name,
           singer: item.ar[0].name
-        })
-      })
-      this.$store.commit('addToList', items)
+        });
+      });
+      this.$store.commit('addToList', items);
     }
   },
   computed: {
@@ -153,13 +151,13 @@ export default {
   filters: {
     formatCount (v) {
       if (v < 9999) {
-        return v
+        return v;
       } else {
-        return (v / 10000).toFixed(0) + '万'
+        return (v / 10000).toFixed(0) + '万';
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -232,7 +230,7 @@ export default {
             margin-left: 1rem;
             .title {
                 font-size: 16px;
-                word-wrap: wrapper;
+                word-wrap: break-word;
             }
             .author {
                 span {

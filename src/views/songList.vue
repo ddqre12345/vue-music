@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-import api from '../api'
+import api from '../api';
 export default {
   data () {
     return {
@@ -24,42 +24,42 @@ export default {
       playList: [],
       offset: 0,
       loading: false
-    }
+    };
   },
   created () {
-    this.get()
+    this.get();
   },
   mounted () {
-    this.scroller = this.$el
+    this.scroller = this.$el;
   },
   methods: {
     get () {
-      this.loading = true
+      this.loading = true;
       this.$http.get(api.getPlayListByWhere('全部', 'hot', this.offset, true, 6)).then((res) => {
-        var total = res.data.total
-        var list = (res.data.playlists)
+        var total = res.data.total;
+        var list = (res.data.playlists);
         for (let i = 0; i < list.length; i++) {
-          this.playList.push(list[i])
+          this.playList.push(list[i]);
         }
-        this.offset = this.offset + 6
-        if (this.offset > total) this.offset = total
-        this.loading = false
-      })
+        this.offset = this.offset + 6;
+        if (this.offset > total) this.offset = total;
+        this.loading = false;
+      });
     },
     loadMore () {
-      this.get()
+      this.get();
     }
   },
   filters: {
     formatCount (v) {
       if (v < 100000) {
-        return v
+        return v;
       } else {
-        return (v / 10000).toFixed(0) + '万'
+        return (v / 10000).toFixed(0) + '万';
       }
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
 @import "../assets/theme.less";

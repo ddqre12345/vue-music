@@ -59,17 +59,17 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-import Toast from '../components/toast'
-import BottomSheet from '../components/list'
-import api from '../api'
+import { mapGetters, mapMutations } from 'vuex';
+import Toast from '../components/toast';
+import BottomSheet from '../components/list';
+import api from '../api';
 export default {
   data () {
     return {
       lyric: '',
       afterLrc: [],
       lrcIndex: 0
-    }
+    };
   },
   components: {
     Toast,
@@ -79,91 +79,91 @@ export default {
     // 这里判断是否重复打开的同一个歌曲页面
     next(vm => {
       if (parseInt(to.params.id) !== parseInt(vm.audio.id)) {
-        console.log('vm：id' + vm.audio.id)
-        vm.loadLrc(vm.audio.id)
+        console.log('vm：id' + vm.audio.id);
+        vm.loadLrc(vm.audio.id);
       }
-    })
+    });
   },
   watch: {
     audio (val) {
-      this.loadLrc(val.id)
+      this.loadLrc(val.id);
     }
   },
   methods: {
     togglePlay () {
       if (this.playing) {
-        this.$store.commit('pause')
-        document.getElementById('audioPlay').pause()
+        this.$store.commit('pause');
+        document.getElementById('audioPlay').pause();
       } else {
-        this.$store.commit('play')
-        document.getElementById('audioPlay').play()
+        this.$store.commit('play');
+        document.getElementById('audioPlay').play();
       }
     },
     back () {
-      this.$router.go(-1)
-      this.$store.commit('toggleDetail')
+      this.$router.go(-1);
+      this.$store.commit('toggleDetail');
     },
     changeTime (value) { // 改变播放时间事件
-      var time = (value * this.durationTime) / 100
-      this.$store.commit('changeTime', time)
-      this.$store.commit('setChange', true)
+      var time = (value * this.durationTime) / 100;
+      this.$store.commit('changeTime', time);
+      this.$store.commit('setChange', true);
     },
     loadLrc (id) {
-      var self = this
-      this.afterLrc = [{'txt': '正在加载中...'}]
+      var self = this;
+      this.afterLrc = [{'txt': '正在加载中...'}];
       if (!id) {
-        this.afterLrc = [{'txt': '这里显示歌词哦！'}]
-        return
+        this.afterLrc = [{'txt': '这里显示歌词哦！'}];
+        return;
       }
       this.$http.get(api.getLrc(id)).then((res) => {
         // 1、先判断是否有歌词
         if (res.data.nolyric) {
-          this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}]
+          this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
         } else {
-          this.lyric = res.data.lrc.lyric
-          this.getLrc()
+          this.lyric = res.data.lrc.lyric;
+          this.getLrc();
         }
       }, (res) => {
-        console.log('lrc fail')
-        this.afterLrc = [{'txt': '加载歌词失败'}]
+        console.log('lrc fail');
+        this.afterLrc = [{'txt': '加载歌词失败'}];
       })
       .catch(function (error) {
-        console.log(error)
-        self.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}]
-      })
+        console.log(error);
+        self.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
+      });
     },
     getLrc () {
       if (this.lyric) {
-        var lyrics = this.lyric.split('\n')
-        var lrcObj = []
+        var lyrics = this.lyric.split('\n');
+        var lrcObj = [];
         /*eslint-disable */
-        var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g
+        var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
         /*eslint-enable */
         // 思路：1、把歌词进行处理以时间和歌词组成一个对象，放入afterLrc数组中
         // 2、在computed方法中根据当前的时间进行匹配歌词，然后查找在数据中的位置计算offset值
         for (var i = 0; i < lyrics.length; i++) {
-          var timeRegExpArr = lyrics[i].match(timeReg)
-          if (!timeRegExpArr) continue
-          var txt = lyrics[i].replace(timeReg, '')
+          var timeRegExpArr = lyrics[i].match(timeReg);
+          if (!timeRegExpArr) continue;
+          var txt = lyrics[i].replace(timeReg, '');
           // 处理时间
           for (var k = 0; k < timeRegExpArr.length; k++) {
-            var array = {}
-            var t = timeRegExpArr[k]
+            var array = {};
+            var t = timeRegExpArr[k];
             /*eslint-disable */
-            var min = Number(String(t.match(/\[\d*/i)).slice(1))
-            var sec = Number(String(t.match(/\:\d*/i)).slice(1))
+            var min = Number(String(t.match(/\[\d*/i)).slice(1));
+            var sec = Number(String(t.match(/\:\d*/i)).slice(1));
             /*eslint-enable */
-            var time = min * 60 + sec
-            array.time = time
-            array.txt = txt
-            lrcObj.push(array)
+            var time = min * 60 + sec;
+            array.time = time;
+            array.txt = txt;
+            lrcObj.push(array);
           }
         }
-        this.afterLrc = lrcObj
+        this.afterLrc = lrcObj;
       }
     },
     showList () {
-      this.$refs.bottomSheet.show()
+      this.$refs.bottomSheet.show();
     },
     ...mapMutations([
       'playNext',
@@ -182,31 +182,31 @@ export default {
     lrcOffset () {
       if (this.afterLrc) {
         // 1、根据时间获得歌词
-        var current = Math.round(this.currentTime)
+        var current = Math.round(this.currentTime);
         // 2、根据时间得到歌词
         for (var i = 0; i < this.afterLrc.length; i++) {
-          if (this.afterLrc[i].time === current) this.lrcIndex = i
+          if (this.afterLrc[i].time === current) this.lrcIndex = i;
         }
-        return -(this.lrcIndex) * 58
+        return -(this.lrcIndex) * 58;
       }
     }
   },
   filters: {
     // 时间字符格式化
     time (value) {
-      var length = Math.floor(parseInt(value))
-      var minute = Math.floor(value / 60)
+      var length = Math.floor(parseInt(value));
+      var minute = Math.floor(value / 60);
       if (minute < 10) {
-        minute = '0' + minute
+        minute = '0' + minute;
       }
-      var second = length % 60
+      var second = length % 60;
       if (second < 10) {
-        second = '0' + second
+        second = '0' + second;
       }
-      return minute + ':' + second
+      return minute + ':' + second;
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
   .content {
