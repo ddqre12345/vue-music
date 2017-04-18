@@ -1,24 +1,27 @@
 <template>
-  <transition name="fade">
+    <!--<div class="singleList" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">-->
     <div class="singleList">
-
+        <ul>
+            <li>
+                <p title="name">告白气球</p>
+                <p title="source">告白气球</p>
+            </li>
+        </ul>
     </div>
-  </transition>
 </template>
 
 <script>
     import api from '../../api/index';
     export default {
-       name: 'v-single-list',
-        mounted() {
-          this.getSearchResource();
-        },
-
         data() {
             return {
-                singleList: {},
-                imgId: ''
+              singleList: {},
+              imgId: ''
             };
+        },
+
+        mounted() {
+            this.getSearchResource();
         },
 
         methods: {
@@ -26,14 +29,10 @@
               this.$router.go(-1);
             },
             getSearchResource() {
+              console.log('请求单曲数据');
               api.getSearchResource(this.$route.query.keywords, 1, 20, 0)
                   .then((response) => {
-                      console.log(response);
-                      this.singleList = response.data;
-                      console.log(this.singleList);
-                      this.$nextTick(() => {
-                          this.$store.commit('UPDATE_LOADING', false);
-                      });
+                      this.singleList = response.data.result;
                   })
                   .catch((response) => {
                       console.log(response);

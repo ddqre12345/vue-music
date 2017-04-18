@@ -8,7 +8,6 @@
           <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
         </div>
       </div>
-       热门搜索
       <div class="hot" v-if="isShowHot">
         热门搜索
         <!--<div class="keywords">-->
@@ -26,10 +25,7 @@
           </mu-tabs>
         </div>
         <div class="default-view">
-          <div v-show="isLoading" class="loading"><i class="icon-loading"></i>搜索中...</div>
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
+          <router-view></router-view>
         </div>
       </div>
     </div>
@@ -41,11 +37,7 @@
 export default {
   name: 'find',
   created () {
-    // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-    let tmpArr = this.$route.path.split('/');
-    if (tmpArr[1] === 'index') {
-      this.handleTabChange(tmpArr[2]);
-    }
+
   },
   mounted () {
   },
@@ -59,13 +51,7 @@ export default {
     };
   },
   watch: {
-    '$route' (to, from) {
-      let path = to.path;
-      let tmpArr = path.split('/');
-      if (tmpArr[1] === 'search') {
-        this.handleTabChange(tmpArr[2]);
-      }
-    }
+
   },
   methods: {
     goBack () {
@@ -76,7 +62,7 @@ export default {
         console.log(this.keywords);
         this.isShowHot = false;
         this.$router.push({
-          path: '/search/singleList',
+          path: '/find/singleList',
           query: {
             keywords: keywords
           }
@@ -86,7 +72,7 @@ export default {
     handleTabChange (val) {
       this.activeTab = val;
       this.$router.push({
-        path: '/search/' + val,
+        path: '/find/' + val,
         query: {
           keywords: this.keywords
         }

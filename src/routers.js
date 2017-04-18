@@ -43,7 +43,7 @@ const router = [{
     }
   ]
 }, {
-  path: '/search',
+  path: '/find',
   component (resolve) {
     require.ensure(['./components/find/find'], () => {
       resolve(require('./components/find/find'));
@@ -52,14 +52,16 @@ const router = [{
   children: [
     {
       path: 'singleList',
+      name: 'v-single-list',
       component (resolve) {
-        require.ensure(['./components/List/SingerList'], () => {
-          resolve(require('./components/List/SingerList'));
+        require.ensure(['./components/List/SingleList'], () => {
+          resolve(require('./components/List/SingleList'));
         });
       }
     },
     {
       path: 'singerLists',
+      name: 'v-singer-list',
       component (resolve) {
         require.ensure(['./components/List/SingerList'], () => {
           resolve(require('./components/List/SingerList'));
@@ -68,6 +70,7 @@ const router = [{
     },
     {
       path: 'albumLists',
+      name: 'v-album-list',
       component (resolve) {
         require.ensure(['./components/List/AlbumList'], () => {
           resolve(require('./components/List/AlbumList'));
@@ -76,6 +79,7 @@ const router = [{
     },
     {
       path: 'playLists',
+      name: 'v-play-list',
       component (resolve) {
         require.ensure(['./components/List/PlayList'], () => {
           resolve(require('./components/List/PlayList'));
@@ -84,6 +88,7 @@ const router = [{
     },
     {
       path: 'userLists',
+      name: 'v-user-list',
       component (resolve) {
         require.ensure(['./components/List/UserList'], () => {
           resolve(require('./components/List/UserList'));

@@ -3,8 +3,8 @@
     <!-- 主界面部分 -->
     <transition name="show">
       <div class="index">
-        <!-- 侧边栏 -->
-        <AsideMenu v-show="isShowAsideMenu"></AsideMenu>
+        <!--&lt;!&ndash; 侧边栏 &ndash;&gt;-->
+        <!--<AsideMenu v-show="isShowAsideMenu"></AsideMenu>-->
         <!-- 头部 -->
         <VHeader></VHeader>
       </div>
@@ -17,14 +17,14 @@
 </template>
 <script>
   import VHeader from './components/header/header.vue';
-  import AsideMenu from './components/asideMenu/asideMenu.vue';
+//  import AsideMenu from './components/asideMenu/asideMenu.vue';
   import Player from './components/playerBar';
   import { mapGetters } from 'vuex';
 
   export default {
     components: {
       VHeader,
-      AsideMenu,
+//      AsideMenu,
       Player
     },
     computed: {
