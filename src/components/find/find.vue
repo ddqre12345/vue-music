@@ -25,7 +25,9 @@
           </mu-tabs>
         </div>
         <div class="default-view">
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
       </div>
     </div>

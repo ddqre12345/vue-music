@@ -1,10 +1,8 @@
 <template>
-    <!--<div class="singleList" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">-->
     <div class="singleList">
         <ul>
-            <li>
-                <p title="name">告白气球</p>
-                <p title="source">告白气球</p>
+            <li v-for="data in datas" @click="playMusic()">
+              <v-card :data="data"></v-card>
             </li>
         </ul>
     </div>
@@ -12,35 +10,40 @@
 
 <script>
     import api from '../../api/index';
+    import vCard from '../card/singleCard.vue';
     export default {
         data() {
             return {
-              singleList: {},
-              imgId: ''
+              imgId: '',
+              datas: []
             };
         },
 
         mounted() {
-            this.getSearchResource();
+            this.getSingleResource();
         },
 
         methods: {
             goBack() {
               this.$router.go(-1);
             },
-            getSearchResource() {
-              console.log('请求单曲数据');
-              api.getSearchResource(this.$route.query.keywords, 1, 20, 0)
+            getSingleResource() {
+              api.getSearchResource(this.$route.query.keywords, 1, 30, 0)
                   .then((response) => {
-                      this.singleList = response.data.result;
+                      this.datas = response.data.result.songs;
                   })
                   .catch((response) => {
                       console.log(response);
                   });
+            },
+
+            playMusic() {
+              console.log(111);
             }
         },
 
         components: {
+          vCard
         }
     };
 
