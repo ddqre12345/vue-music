@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import api from '../api';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 const store = new Vuex.Store({
@@ -137,6 +138,23 @@ const store = new Vuex.Store({
     },
     setLrc (state, lrc) {
       state.lyric = lrc;
+    }
+  },
+  // 异步的数据操作
+  actions: {
+    getSong ({commit, state}, id) {
+      commit('openLoading');
+      api.getMusicUrlResource(id).then(res => {
+        console.log(res);
+        // 统一数据模型，方便后台接口的改变
+        let url = res.data.data[0].url;
+        commit('setAudio');
+        commit('setLocation', url);
+      })
+        .catch((error) => {     // 错误处理
+          console.log(error);
+          window.alert('获取歌曲信息出错！');
+        });
     }
   }
 });

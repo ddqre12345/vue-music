@@ -55,8 +55,7 @@
               audio.name = song.name;
               // 通过Vuex改变状态
               this.$store.commit('addToList', audio);
-              this.$store.commit('setAudio');
-              this.$store.commit('setLocation', audio.location);
+              this.$store.dispatch('getSong', audio.id);
               this.$store.commit('play');
             }
         },

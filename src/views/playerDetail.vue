@@ -8,7 +8,6 @@
               <div class="play-name"><span>{{audio.name}}</span></div>
               <div class="play-singer"> {{audio.singer}} </div>
             </div>
-            <mu-icon-button icon='share' slot="right"/>
           </mu-appbar>
           <div class="bar-line"></div>
           <mu-flexbox orient="vertical" class="main">
@@ -85,7 +84,7 @@ export default {
     });
   },
   watch: {
-    audio (val) {
+    'audio' (val) {
       this.loadLrc(val.id);
     }
   },
@@ -115,7 +114,8 @@ export default {
         this.afterLrc = [{'txt': '这里显示歌词哦！'}];
         return;
       }
-      this.$http.get(api.getLrc(id)).then((res) => {
+      api.getLyricResource(id).then((res) => {
+        console.log(res);
         // 1、先判断是否有歌词
         if (res.data.nolyric) {
           this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
@@ -210,9 +210,12 @@ export default {
 </script>
 <style lang="less" scoped>
   .content {
+    position: fixed;
     overflow: hidden;
     min-height: 25rem;
+    width: 100%;
     height: 100%;
+    z-index: 100;
   }
   .main {
     height: 100%;
@@ -224,10 +227,12 @@ export default {
     text-overflow: ellipsis;
   }
   .player-wrapper {
+    height: inherit;
     .player-inner {
       position: relative;
       z-index: 2;
       box-sizing: border-box;
+      height: inherit;
     }
     .play-title {
       height: 56px;
