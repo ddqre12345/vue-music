@@ -57,7 +57,7 @@ export default {
 
   /**
    * @method 搜索音乐
-   * @param keywords
+   * @param keywords 关键词
    * @param type 1为单曲，10为专辑， 100为歌手， 1000为歌单， 1002为用户
    * @param limit 返回数据限制
    * @param offset 数据偏移量

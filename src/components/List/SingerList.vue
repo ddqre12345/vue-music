@@ -1,11 +1,13 @@
 <template>
-  <div class="singerList">
-    <ul>
-      <li v-for="data in datas" @click="goSingerDetail()">
-        <v-card :data="data"></v-card>
-      </li>
-    </ul>
-  </div>
+    <transition name="fade">
+      <div class="singerList">
+        <ul>
+          <li v-for="data in datas" @click="goSingerDetail()">
+            <v-card :data="data"></v-card>
+          </li>
+        </ul>
+      </div>
+    </transition>
 </template>
 
 <script>
@@ -22,7 +24,11 @@
         mounted() {
             this.getSingerResource();
         },
-
+        watch: {
+            '$route.query.keywords' (to, from) {
+              this.getSingerResource();
+            }
+        },
         methods: {
             goBack() {
               this.$router.go(-1);
@@ -40,7 +46,6 @@
               console.log(111);
             }
         },
-
         components: {
           vCard
         }

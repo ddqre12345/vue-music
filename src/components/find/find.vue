@@ -39,7 +39,6 @@
 export default {
   name: 'find',
   created () {
-
   },
   mounted () {
   },
@@ -57,12 +56,15 @@ export default {
   },
   methods: {
     goBack () {
-      this.$router.go(-1);
+      this.$router.push({
+        path: '/index'
+      });
     },
     toSearch (keywords) {
       if (this.keywords.trim()) {
         console.log(this.keywords);
         this.isShowHot = false;
+        this.activeTab = 'singleList';
         this.$router.push({
           path: '/find/singleList',
           query: {

@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Axios from 'axios';
-import api from '../api';
 Vue.use(Vuex);
-
 const store = new Vuex.Store({
   state: {
     audio: {
@@ -123,9 +120,9 @@ const store = new Vuex.Store({
       state.audio = state.songList[state.currentIndex - 1];
     },
     addToList (state, songs) {
-      var items = Array.prototype.concat.call(songs);
+      let items = Array.prototype.concat.call(songs);
       items.forEach(item => {
-        var flag = false;
+        let flag = false;
         state.songList.forEach(function (element, index) { // 检测歌曲重复
           if (element.id === item.id) {
             flag = true;
@@ -140,22 +137,6 @@ const store = new Vuex.Store({
     },
     setLrc (state, lrc) {
       state.lyric = lrc;
-    }
-  },
-  // 异步的数据操作
-  actions: {
-    getSong ({commit, state}, id) {
-      commit('openLoading');
-      Axios.get(api.getSong(id)).then(res => {
-        // 统一数据模型，方便后台接口的改变
-        var url = res.data.data[0].url;
-        commit('setAudio');
-        commit('setLocation', url);
-      })
-      .catch((error) => {     // 错误处理
-        console.log(error);
-        window.alert('获取歌曲信息出错！');
-      });
     }
   }
 });

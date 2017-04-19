@@ -1,9 +1,13 @@
+/**
+ * Created by yi on 2016-01-12.
+ */
+
 /** 新增&&修改本地缓存
  *  @param {string} id 唯一id
  *  @param {string} key 标示
  *  @param {string} value 新增&修改的值
  */
-export function savaToLocal (id, key, value) {
+export function savaToLocal(id, key, value) {
   let seller = window.localStorage.__seller__;
   if (!seller) {
     seller = {};
@@ -22,7 +26,7 @@ export function savaToLocal (id, key, value) {
  *  @param {string} key 标示
  *  @param {string} def 如果查询不到显示的值
  */
-export function loadFromlLocal (id, key, def) {
+export function loadFromlLocal(id, key, def) {
   let seller = window.localStorage.__seller__;
   if (!seller) {
     return def;
