@@ -15,7 +15,8 @@ const router = [{
         require.ensure(['./views/rage'], () => {
           resolve(require('./views/rage'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'songList',
@@ -23,7 +24,8 @@ const router = [{
         require.ensure(['./views/songList'], () => {
           resolve(require('./views/songList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'leaderBoard',
@@ -31,7 +33,8 @@ const router = [{
         require.ensure(['./views/leaderBoard'], () => {
           resolve(require('./views/leaderBoard'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'hotSinger',
@@ -39,7 +42,8 @@ const router = [{
         require.ensure(['./views/hotSinger'], () => {
           resolve(require('./views/hotSinger'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     }
   ]
 }, {
@@ -57,7 +61,8 @@ const router = [{
         require.ensure(['./components/List/SingleList'], () => {
           resolve(require('./components/List/SingleList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'singerLists',
@@ -66,7 +71,8 @@ const router = [{
         require.ensure(['./components/List/SingerList'], () => {
           resolve(require('./components/List/SingerList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'albumLists',
@@ -75,7 +81,8 @@ const router = [{
         require.ensure(['./components/List/AlbumList'], () => {
           resolve(require('./components/List/AlbumList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'playLists',
@@ -84,7 +91,8 @@ const router = [{
         require.ensure(['./components/List/PlayList'], () => {
           resolve(require('./components/List/PlayList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: 'userLists',
@@ -93,7 +101,8 @@ const router = [{
         require.ensure(['./components/List/UserList'], () => {
           resolve(require('./components/List/UserList'));
         });
-      }
+      },
+      meta: { keepAlive: true }
     }
   ]
 }, {
@@ -103,7 +112,8 @@ const router = [{
     require.ensure(['./views/playerDetail'], () => {
       resolve(require('./views/playerDetail'));
     });
-  }
+  },
+  meta: { keepAlive: false }
 }, {
   path: '/playListDetail/:id',
   name: 'playListDetail',
@@ -111,6 +121,7 @@ const router = [{
     require.ensure(['./views/playListDetail'], () => {
       resolve(require('./views/playListDetail'));
     });
-  }
+  },
+  meta: { keepAlive: true }
 }];
 export default router;

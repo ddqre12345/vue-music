@@ -25,9 +25,7 @@
           </mu-tabs>
         </div>
         <div class="default-view">
-          <keep-alive>
             <router-view></router-view>
-          </keep-alive>
         </div>
       </div>
     </div>
@@ -38,21 +36,12 @@
 <script>
 export default {
   name: 'find',
-  created () {
-  },
-  mounted () {
-  },
-  computed: {
-  },
   data () {
     return {
       keywords: '',
       isShowHot: true,
       activeTab: 'singleList'
     };
-  },
-  watch: {
-
   },
   methods: {
     goBack () {

@@ -10,15 +10,16 @@
       </div>
     </transition>
     <keep-alive>
-      <router-view></router-view>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <Player v-show="songList.length > 0 && !showDetail"></Player>
   </div>
 </template>
 <script>
   import VHeader from './components/header/header.vue';
 //  import AsideMenu from './components/asideMenu/asideMenu.vue';
-  import Player from './components/playerBar';
+  import Player from './components/playerBar/playerBar';
   import { mapGetters } from 'vuex';
 
   export default {
