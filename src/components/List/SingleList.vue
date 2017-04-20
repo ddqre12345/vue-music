@@ -36,6 +36,7 @@
               this.$router.go(-1);
             },
             getSingleResource() {
+              console.log(1111);
               api.getSearchResource(this.$route.query.keywords, 1, 30, 0)
                   .then((response) => {
                       this.datas = response.data.result.songs;

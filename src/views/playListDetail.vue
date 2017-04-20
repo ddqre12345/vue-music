@@ -1,6 +1,6 @@
 <template>
     <div class="playList" :class="{view: songList.length > 0}">
-        <div class="fixed-title" :style="{'background': 'rgba(206, 61, 62, '+ opacity +')'}" style="transition: opacity .1s;">
+        <div class="fixed-title" :style="{'background': '#b72712'}" style="transition: opacity .1s;">
             <mu-appbar>
             <mu-icon-button icon='arrow_back' @click="back" slot="left"/>
             <div class="play-title">
@@ -105,7 +105,7 @@ export default {
     },
     get () {
       this.isloading = true;
-      this.$http.get(api.getPlayListDetail(this.$route.params.id)).then((res) => {
+      api.getPlayListDetail(this.$route.params.id).then((res) => {
         this.list = res.data.playlist.tracks;
         this.isloading = false;
       }).catch((error) => {
@@ -119,7 +119,7 @@ export default {
       document.getElementById('audioPlay').pause();
       this.$store.commit('pause');
       // this.$parent.$refs.alert.show('tess')
-      var audio = {};
+      let audio = {};
       audio.id = song.id;  // id
       audio.singer = song.ar[0].name; // 演唱者
       audio.albumPic = song.al.picUrl;
@@ -167,11 +167,12 @@ export default {
         width: 100%;
         height: 56px;
         left: 0;
-        z-index: 15;
+        z-index: 100;
     }
 
      // 修改默认的bar样式
     .mu-appbar {
+      height: 55px!important;
       background-color: transparent;
     }
     .bar-line {

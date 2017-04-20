@@ -199,7 +199,7 @@ export default {
   },
   methods: {
     get () {
-      this.$http.get(api.getPlayListByWhere('全部', 'hot', 0, true, 6)).then((res) => {
+      api.getPlayListByWhere('全部', 0, 6).then((res) => {
         this.isloading = false;
         this.playList = res.data.playlists;
       });

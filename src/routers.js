@@ -123,5 +123,7 @@ const router = [{
     });
   },
   meta: { keepAlive: true }
+}, {
+  path: '*', redirect: '/index/rage'
 }];
 export default router;

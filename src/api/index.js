@@ -162,5 +162,21 @@ export default {
         idx: idx
       }
     });
+  },
+  getPlayListByWhere (cat, offset, limit) {
+    return axios.get('http://musicapi.duapp.com/api.php?type=topPlayList', {
+      params: {
+        cat: cat,
+        offset: offset,
+        limit: limit
+      }
+    });
+  },
+  getPlayListDetail (id) {
+    return axios.get('https://api.imjad.cn/cloudmusic?type=playlist', {
+      params: {
+        id: id
+      }
+    });
   }
 };

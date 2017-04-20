@@ -5,7 +5,7 @@
       <router-link to="/index" class="item">
         <span class="music"><i class="music-icon"></i></span>
       </router-link>
-      <router-link to="/search" class="item">
+      <router-link to="/find" class="item">
         <span class="personal"><i class="personal-icon"></i></span>
       </router-link>
       <span class="search"><i @click="toSearch" class="search-icon"></i></span>
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     toSearch () {
-      this.$router.push('/search');
+      this.$router.push('/find');
     },
     showAsideMenu (flag) {
       this.$store.commit('showAsideMenu', flag);

@@ -4,14 +4,12 @@
         <mu-tabs :value="activeTab" @change="handleTabChange" class="view-tabs">
           <mu-tab value="rage" title="时下流行"/>
           <mu-tab value="songList" title="歌单"/>
-          <mu-tab value="leaderBoard" title="排行榜"/>
-          <mu-tab value="hotSinger" title="热门歌手"/>
+          <!--<mu-tab value="leaderBoard" title="排行榜"/>-->
+          <!--<mu-tab value="hotSinger" title="热门歌手"/>-->
         </mu-tabs>
       </div>
       <div class="default-view" :class="{view: songList.length > 0}">
-        <keep-alive>
          <router-view></router-view>
-        </keep-alive>
       </div>
     </div>
 </template>
@@ -58,7 +56,7 @@
     },
     created () {
       // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-      var tmpArr = this.$route.path.split('/');
+      let tmpArr = this.$route.path.split('/');
       if (tmpArr[1] === 'index') {
         this.handleTabChange(tmpArr[2]);
       }
@@ -67,7 +65,7 @@
     watch: {
       '$route' (to, from) {
         const path = to.path;
-        var tmpArr = path.split('/');
+        let tmpArr = path.split('/');
         if (tmpArr[1] === 'index') {
           this.handleTabChange(tmpArr[2]);
         }
