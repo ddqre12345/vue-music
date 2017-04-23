@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import api from '../../api/index';
-  import vCard from '../card/albumCard.vue';
+  import api from '../../../api/index';
+  import vCard from '../../../components/card/albumCard.vue';
   export default {
     data() {
       return {

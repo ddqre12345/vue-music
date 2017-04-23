@@ -5,7 +5,7 @@
         <span @click="goBack" class="back"><i class="back-icon"></i></span>
         <div class="input">
           <input v-model="keywords" @keyup.enter="toSearch(keywords)" type="text"  placeholder='搜素音乐、歌手、歌词、用户'>
-          <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
+          <!--<i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>-->
         </div>
       </div>
       <div class="hot" v-if="isShowHot">
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'find',
+  name: 'search',
   data () {
     return {
       keywords: '',
@@ -46,15 +46,15 @@ export default {
   methods: {
     goBack () {
       this.$router.push({
-        path: '/index'
+        path: '/find'
       });
     },
     toSearch (keywords) {
+      this.isShowHot = false;
       if (this.keywords.trim()) {
-        this.isShowHot = false;
         this.activeTab = 'singleList';
         this.$router.push({
-          path: '/find/singleList',
+          path: '/search/singleList',
           query: {
             keywords: keywords
           }
@@ -64,7 +64,7 @@ export default {
     handleTabChange (val) {
       this.activeTab = val;
       this.$router.push({
-        path: '/find/' + val,
+        path: '/search/' + val,
         query: {
           keywords: this.keywords
         }
@@ -74,5 +74,5 @@ export default {
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "find.styl";
+  @import "search.styl";
 </style>

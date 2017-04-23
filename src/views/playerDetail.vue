@@ -207,5 +207,5 @@ export default {
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-    @import 'playDetail.styl';
+    @import 'playerDetail.styl';
 </style>

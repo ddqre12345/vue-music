@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import api from '../../api/index';
-    import vCard from '../card/singleCard.vue';
+    import api from '../../../api/index';
+    import vCard from '../../../components/card/singleCard.vue';
     import { mapGetters } from 'vuex';
     export default {
         data() {

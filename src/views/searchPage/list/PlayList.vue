@@ -2,7 +2,7 @@
     <transition name="fade">
         <div class="PlayList">
             <ul>
-                <li v-for="data in datas" @click="goAlbumDetail()">
+                <li v-for="data in datas" @click="goPlayListDetail(data.id)">
                     <v-card :data="data"></v-card>
                 </li>
             </ul>
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import api from '../../api/index';
-  import vCard from '../card/playListCard.vue';
+  import api from '../../../api/index';
+  import vCard from '../../../components/card/playListCard.vue';
   export default {
     data() {
       return {
@@ -39,8 +39,11 @@
             console.log(response);
           });
       },
-      goSingerDetail() {
-        console.log(111);
+      goPlayListDetail(id) {
+        console.log(id);
+        this.$router.push({
+          path: 'search'
+        });
       }
     },
 

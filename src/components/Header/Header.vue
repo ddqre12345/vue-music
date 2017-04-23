@@ -2,10 +2,10 @@
   <div :style="{backgroundColor: skinColor}" class="header">
     <div class="name">
       <span @click="showAsideMenu(true)" class="func"><i class="func-icon"></i></span>
-      <router-link to="/index" class="item">
+      <router-link to="/find" class="item">
         <span class="music"><i class="music-icon"></i></span>
       </router-link>
-      <router-link to="/find" class="item">
+      <router-link to="/search" class="item">
         <span class="personal"><i class="personal-icon"></i></span>
       </router-link>
       <span class="search"><i @click="toSearch" class="search-icon"></i></span>
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     toSearch () {
-      this.$router.push('/find');
+      this.$router.push('/search');
     },
     showAsideMenu (flag) {
       this.$store.commit('showAsideMenu', flag);

@@ -2,10 +2,10 @@
  * 整个app的路由设置
  */
 const router = [{
-  path: '/index',
+  path: '/find',
   component (resolve) {
-    require.ensure(['./views/index'], () => {
-      resolve(require('./views/index'));
+    require.ensure(['./views/find/find'], () => {
+      resolve(require('./views/find/find'));
     });
   },
   children: [
@@ -47,59 +47,55 @@ const router = [{
     }
   ]
 }, {
-  path: '/find',
+  path: '/search',
   component (resolve) {
-    require.ensure(['./components/find/find'], () => {
-      resolve(require('./components/find/find'));
+    require.ensure(['./views/searchPage/search'], () => {
+      resolve(require('./views/searchPage/search'));
     });
   },
+  meta: { keepAlive: true },
   children: [
     {
       path: 'singleList',
-      name: 'v-single-list',
       component (resolve) {
-        require.ensure(['./components/List/SingleList'], () => {
-          resolve(require('./components/List/SingleList'));
+        require.ensure(['./views/searchPage/list/SingleList'], () => {
+          resolve(require('./views/searchPage/list/SingleList'));
         });
       },
       meta: { keepAlive: true }
     },
     {
       path: 'singerLists',
-      name: 'v-singer-list',
       component (resolve) {
-        require.ensure(['./components/List/SingerList'], () => {
-          resolve(require('./components/List/SingerList'));
+        require.ensure(['./views/searchPage/list/SingerList'], () => {
+          resolve(require('./views/searchPage/list/SingerList'));
         });
       },
       meta: { keepAlive: true }
     },
     {
       path: 'albumLists',
-      name: 'v-album-list',
       component (resolve) {
-        require.ensure(['./components/List/AlbumList'], () => {
-          resolve(require('./components/List/AlbumList'));
+        require.ensure(['./views/searchPage/list/AlbumList'], () => {
+          resolve(require('./views/searchPage/list/AlbumList'));
         });
       },
       meta: { keepAlive: true }
     },
     {
       path: 'playLists',
-      name: 'v-play-list',
       component (resolve) {
-        require.ensure(['./components/List/PlayList'], () => {
-          resolve(require('./components/List/PlayList'));
+        require.ensure(['./views/searchPage/list/PlayList'], () => {
+          resolve(require('./views/searchPage/list/PlayList'));
         });
       },
       meta: { keepAlive: true }
     },
     {
       path: 'userLists',
-      name: 'v-user-list',
       component (resolve) {
-        require.ensure(['./components/List/UserList'], () => {
-          resolve(require('./components/List/UserList'));
+        require.ensure(['./views/searchPage/list/UserList'], () => {
+          resolve(require('./views/searchPage/list/UserList'));
         });
       },
       meta: { keepAlive: true }
@@ -118,12 +114,12 @@ const router = [{
   path: '/playListDetail/:id',
   name: 'playListDetail',
   component (resolve) {
-    require.ensure(['./views/playListDetail'], () => {
-      resolve(require('./views/playListDetail'));
+    require.ensure(['./views/detail/playList/playListDetail'], () => {
+      resolve(require('./views/detail/playList/playListDetail'));
     });
   },
   meta: { keepAlive: true }
 }, {
-  path: '*', redirect: '/index/rage'
+  path: '*', redirect: '/find/rage'
 }];
 export default router;

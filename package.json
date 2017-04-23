@@ -23,6 +23,7 @@
     "vue-infinite-scroll": "^2.0.1",
     "vue-lazyload": "^1.0.3",
     "vue-router": "^2.2.0",
+    "vue-scrollevent": "^1.0.3",
     "vue-style-loader": "^1.0.0",
     "vuex": "^2.2.1"
   },
