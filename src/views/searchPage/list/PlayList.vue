@@ -20,7 +20,6 @@
         datas: []
       };
     },
-
     mounted() {
       this.getPlayListResource();
     },
@@ -42,7 +41,7 @@
       goPlayListDetail(id) {
         console.log(id);
         this.$router.push({
-          path: 'search'
+          path: '/playListDetail/' + id
         });
       }
     },

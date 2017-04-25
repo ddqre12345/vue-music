@@ -118,7 +118,7 @@ const router = [{
       resolve(require('./views/detail/playList/playListDetail'));
     });
   },
-  meta: { keepAlive: true }
+  meta: { keepAlive: false }
 }, {
   path: '*', redirect: '/find/rage'
 }];
