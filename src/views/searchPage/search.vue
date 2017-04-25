@@ -24,8 +24,11 @@
             <mu-tab value="userLists" title="用户"/>
           </mu-tabs>
         </div>
-        <div class="default-view">
-            <router-view></router-view>
+        <div class="search-view">
+          <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+          </keep-alive>
+          <router-view v-if="!$route.meta.keepAlive"></router-view>
         </div>
       </div>
     </div>
