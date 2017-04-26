@@ -53,54 +53,7 @@ const router = [{
       resolve(require('./views/searchPage/search'));
     });
   },
-  meta: { keepAlive: true },
-  children: [
-    {
-      path: 'singleList',
-      component (resolve) {
-        require.ensure(['./views/searchPage/list/SingleList'], () => {
-          resolve(require('./views/searchPage/list/SingleList'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'singerLists',
-      component (resolve) {
-        require.ensure(['./views/searchPage/list/SingerList'], () => {
-          resolve(require('./views/searchPage/list/SingerList'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'albumLists',
-      component (resolve) {
-        require.ensure(['./views/searchPage/list/AlbumList'], () => {
-          resolve(require('./views/searchPage/list/AlbumList'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'playLists',
-      component (resolve) {
-        require.ensure(['./views/searchPage/list/PlayList'], () => {
-          resolve(require('./views/searchPage/list/PlayList'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'userLists',
-      component (resolve) {
-        require.ensure(['./views/searchPage/list/UserList'], () => {
-          resolve(require('./views/searchPage/list/UserList'));
-        });
-      },
-      meta: { keepAlive: true }
-    }
-  ]
+  meta: { keepAlive: true }
 }, {
   name: 'playerDetail',
   path: '/playerDetail/:id',

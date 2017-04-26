@@ -11,9 +11,10 @@
 </template>
 
 <script>
-  import api from '../../../api/index';
-  import vCard from '../../../components/card/albumCard.vue';
+  import api from '../../api/index';
+  import vCard from '../card/albumCard.vue';
   export default {
+    name: 'v-album-list',
     data() {
       return {
         imgId: '',
@@ -52,5 +53,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    @import 'AlbumList.styl';
+    @import 'albumList.styl';
 </style>

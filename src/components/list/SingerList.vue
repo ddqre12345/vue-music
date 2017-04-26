@@ -11,9 +11,10 @@
 </template>
 
 <script>
-    import api from '../../../api/index';
-    import vCard from '../../../components/card/singerCard.vue';
+    import api from '../../api/index';
+    import vCard from '../card/singerCard.vue';
     export default {
+        name: 'v-singer-list',
         data() {
             return {
               imgId: '',
@@ -54,5 +55,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import 'SingerList.styl';
+  @import 'singerList.styl';
 </style>

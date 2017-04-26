@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
-        <div class="UserList">
+        <div class="PlayList">
             <ul>
-                <li v-for="data in datas" @click="goAlbumDetail()">
+                <li v-for="data in datas" @click="goPlayListDetail(data.id)">
                     <v-card :data="data"></v-card>
                 </li>
             </ul>
@@ -11,9 +11,10 @@
 </template>
 
 <script>
-  import api from '../../../api/index';
-  import vCard from '../../../components/card/userCard.vue';
+  import api from '../../api/index';
+  import vCard from '../card/playListCard.vue';
   export default {
+    name: 'v-play-lists',
     data() {
       return {
         imgId: '',
@@ -21,33 +22,38 @@
       };
     },
     mounted() {
-      this.getAlbumResource();
+      this.getPlayListResource();
     },
     watch: {
       '$route.query.keywords' (to, from) {
-        this.getAlbumResource();
+        this.getPlayListResource();
       }
     },
     methods: {
-      getAlbumResource() {
-        api.getSearchResource(this.$route.query.keywords, 1002, 30, 0)
+      getPlayListResource() {
+        api.getSearchResource(this.$route.query.keywords, 1000, 30, 0)
           .then((response) => {
-            this.datas = response.data.result.userprofiles;
+            this.datas = response.data.result.playlists;
           })
           .catch((response) => {
             console.log(response);
           });
       },
-      goSingerDetail() {
-        console.log(111);
+      goPlayListDetail(id) {
+        console.log(id);
+        this.$router.push({
+          path: '/playListDetail/' + id
+        });
       }
     },
+
     components: {
       vCard
     }
   };
+
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    @import 'UserList.styl';
+    @import 'playLists.styl';
 </style>

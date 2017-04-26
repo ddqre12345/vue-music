@@ -1,6 +1,6 @@
 <template lang="html">
   <transition name="showRouter">
-    <div class="find">
+    <div class="search-page">
       <div class='header-other'>
         <span @click="goBack" class="back"><i class="back-icon"></i></span>
         <div class="input">
@@ -15,64 +15,131 @@
         <!--</div>-->
       </div>
       <div v-else class="search-list">
-        <div class="fixed-bar">
-          <mu-tabs :value="activeTab" @change="handleTabChange" class="view-tabs">
-            <mu-tab value="singleList" title="单曲"/>
-            <mu-tab value="singerLists" title="歌手"/>
-            <mu-tab value="albumLists" title="专辑"/>
-            <mu-tab value="playLists" title="歌单"/>
-            <mu-tab value="userLists" title="用户"/>
-          </mu-tabs>
-        </div>
-        <div class="default-view">
-            <router-view></router-view>
-        </div>
+         <tab :line-width=1 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712' v-model="index">
+          <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+        </tab>
+        <swiper v-model="index" height="100%" :show-dots="false">
+          <swiper-item :key="1">
+            <div class="tab-swiper vux-center">
+              <v-single-list></v-single-list>
+            </div>
+          </swiper-item>
+          <swiper-item :key="2">
+            <div class="tab-swiper vux-center">
+              <v-singer-list></v-singer-list>
+            </div>
+          </swiper-item>
+          <swiper-item :key="3">
+            <div class="tab-swiper vux-center">
+              <v-album-list></v-album-list>
+            </div>
+          </swiper-item>
+          <swiper-item :key="4">
+            <div class="tab-swiper vux-center">
+              <v-play-lists></v-play-lists>
+            </div>
+          </swiper-item>
+          <swiper-item :key="5">
+            <div class="tab-swiper vux-center">
+              <v-user-list></v-user-list>
+            </div>
+          </swiper-item>
+        </swiper>
       </div>
     </div>
   </transition>
-
 </template>
 
 <script>
-export default {
-  name: 'search',
-  data () {
-    return {
-      keywords: '',
-      isShowHot: true,
-      activeTab: 'singleList'
-    };
-  },
-  methods: {
-    goBack () {
-      this.$router.push({
-        path: '/find'
-      });
+  import { Tab, TabItem } from 'vux/src/components/Tab';
+  import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
+  import vSingleList from '../../components/list/singleList.vue';
+  import vSingerList from '../../components/list/singerList.vue';
+  import vAlbumList from '../../components/list/albumList.vue';
+  import vPlayLists from '../../components/list/playLists.vue';
+  import vUserList from '../../components/list/userList.vue';
+  const list = () => ['单曲', '歌手', '专辑', '歌单', '用户'];
+  export default {
+    name: 'search',
+    components: {
+      Tab,
+      TabItem,
+      Swiper,
+      SwiperItem,
+      vSingleList,
+      vSingerList,
+      vAlbumList,
+      vPlayLists,
+      vUserList
     },
-    toSearch (keywords) {
-      this.isShowHot = false;
-      if (this.keywords.trim()) {
-        this.activeTab = 'singleList';
+    data () {
+      return {
+        index: 0,
+        list2: list(),
+        demo2: '美食',
+        keywords: '',
+        isShowHot: true,
+        activeTab: 'singleList'
+      };
+    },
+    methods: {
+      goBack () {
         this.$router.push({
-          path: '/search/singleList',
+          path: '/find'
+        });
+      },
+      toSearch (keywords) {
+        this.isShowHot = false;
+        if (this.keywords.trim()) {
+          this.$router.push({
+            path: '/search',
+            query: {
+              keywords: keywords
+            }
+          });
+        }
+      },
+      handleTabChange (val) {
+        this.$router.push({
+          path: '/search',
           query: {
-            keywords: keywords
+            keywords: this.keywords
           }
         });
       }
-    },
-    handleTabChange (val) {
-      this.activeTab = val;
-      this.$router.push({
-        path: '/search/' + val,
-        query: {
-          keywords: this.keywords
-        }
-      });
     }
-  }
-};
+  };
 </script>
+<style lang="less" scoped>
+  @import '~vux/src/styles/1px.less';
+  @import '~vux/src/styles/center.less';
+
+  .box {
+    padding: 15px;
+  }
+  .active-6-1 {
+    color: rgb(252, 55, 140) !important;
+    border-color: rgb(252, 55, 140) !important;
+  }
+  .active-6-2 {
+    color: #04be02 !important;
+    border-color: #04be02 !important;
+  }
+  .active-6-3 {
+    color: rgb(55, 174, 252) !important;
+    border-color: rgb(55, 174, 252) !important;
+  }
+  .vux-swiper {
+    height: 100%;
+  }
+  .vux-slider {
+    height: 100%;
+  }
+  .tab-swiper {
+    background-color: #fff;
+    height: 100%;
+  }
+</style>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "search.styl";
 </style>
