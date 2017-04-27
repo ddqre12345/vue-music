@@ -15,8 +15,8 @@
         <!--</div>-->
       </div>
       <div v-else class="search-list">
-         <tab :line-width=1 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712' v-model="index">
-          <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+         <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712' v-model="index">
+          <tab-item class="vux-center" :selected="type === item" v-for="(item, index) in tabList" @click="type = item" :key="index">{{item}}</tab-item>
         </tab>
         <swiper v-model="index" height="100%" :show-dots="false">
           <swiper-item :key="1">
@@ -75,8 +75,8 @@
     data () {
       return {
         index: 0,
-        list2: list(),
-        demo2: '美食',
+        tabList: list(),
+        type: '单曲',
         keywords: '',
         isShowHot: true,
         activeTab: 'singleList'
@@ -113,22 +113,6 @@
 <style lang="less" scoped>
   @import '~vux/src/styles/1px.less';
   @import '~vux/src/styles/center.less';
-
-  .box {
-    padding: 15px;
-  }
-  .active-6-1 {
-    color: rgb(252, 55, 140) !important;
-    border-color: rgb(252, 55, 140) !important;
-  }
-  .active-6-2 {
-    color: #04be02 !important;
-    border-color: #04be02 !important;
-  }
-  .active-6-3 {
-    color: rgb(55, 174, 252) !important;
-    border-color: rgb(55, 174, 252) !important;
-  }
   .vux-swiper {
     height: 100%;
   }

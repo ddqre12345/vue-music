@@ -40,10 +40,6 @@
           </div>
         </div>
         <div class="playlist-holder">
-          <div class="add-all">
-            <mu-flat-button label="播放全部" class="demo-flat-button" icon="add_circle_outline" @click="playAll"/>
-            <mu-divider/>
-          </div>
           <div class="play-list">
             <ul>
               <li v-for="(data, index) in list" @click="playAudio(data)">
@@ -105,20 +101,6 @@
         // 通过Vuex改变状态
         this.$store.commit('addToList', audio);
         this.$store.dispatch('getSong', audio.id);
-      },
-      // 播放全部
-      playAll () {
-        // 添加专辑内所有歌曲到一个新数组
-        let items = [];
-        this.list.forEach((item) => {
-          items.push({
-            albumPic: item.al.picUrl,
-            id: item.id,
-            name: item.al.name,
-            singer: item.ar[0].name
-          });
-        });
-        this.$store.commit('addToList', items);
       }
     },
     computed: {
