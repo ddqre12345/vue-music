@@ -78,8 +78,7 @@
         tabList: list(),
         type: '单曲',
         keywords: '',
-        isShowHot: true,
-        activeTab: 'singleList'
+        isShowHot: true
       };
     },
     methods: {
@@ -98,14 +97,6 @@
             }
           });
         }
-      },
-      handleTabChange (val) {
-        this.$router.push({
-          path: '/search',
-          query: {
-            keywords: this.keywords
-          }
-        });
       }
     }
   };

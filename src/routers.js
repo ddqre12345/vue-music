@@ -73,6 +73,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
+  path: '/singer/:id',
+  name: 'singer',
+  component (resolve) {
+    require.ensure(['./views/detail/singer/singer'], () => {
+      resolve(require('./views/detail/singer/singer'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
   path: '*', redirect: '/find/rage'
 }];
 export default router;

@@ -24,11 +24,6 @@
     mounted() {
       this.getPlayListResource();
     },
-    watch: {
-      '$route.query.keywords' (to, from) {
-        this.getPlayListResource();
-      }
-    },
     methods: {
       getPlayListResource() {
         api.getSearchResource(this.$route.query.keywords, 1000, 30, 0)
@@ -40,7 +35,6 @@
           });
       },
       goPlayListDetail(id) {
-        console.log(id);
         this.$router.push({
           path: '/playListDetail/' + id
         });

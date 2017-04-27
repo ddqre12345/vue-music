@@ -26,12 +26,6 @@
     mounted() {
       this.getSingleResource();
     },
-    watch: {
-      '$route.query.keywords' (to, from) {
-        console.log('搜索参数变化');
-        this.getSingleResource();
-      }
-    },
     methods: {
       goBack() {
         this.$router.go(-1);

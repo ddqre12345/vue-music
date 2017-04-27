@@ -7,7 +7,8 @@ import {
   SearchResource,
   LyricResource,
   CommentResource,
-  AlbumResource,
+  ArtistsResource,
+  ArtistAlbumResource,
   RecommendResource,
   RecommendSongsResource,
   PersonalFmResource,
@@ -92,11 +93,21 @@ export default {
     });
   },
 
-  // 获取歌手专辑列表， id为歌手id
-  getAlbumResource (id) {
-    return axios.get(AlbumResource, {
+  // 获取歌手单曲列表， id为歌手id
+  getArtistsResource (id) {
+    return axios.get(ArtistsResource, {
       params: {
         id: id
+      }
+    });
+  },
+
+  // 获取歌手专辑列表， id为歌手id
+  getArtistAlbumResource (id, size) {
+    return axios.get(ArtistAlbumResource, {
+      params: {
+        id: id,
+        limit: 30 || size
       }
     });
   },

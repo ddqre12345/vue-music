@@ -9,7 +9,7 @@ import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import 'assets/theme.less';
-import  { LoadingPlugin } from 'vux/src/components/loading';  // 引入页面loading加载
+import { LoadingPlugin } from 'vux';  // 引入页面loading加载
 Vue.use(LoadingPlugin);
 Vue.use(VueRouter);
 Vue.use(MuseUI);

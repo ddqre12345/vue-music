@@ -2,7 +2,7 @@
     <transition name="fade">
       <div class="singerList">
         <ul>
-          <li v-for="data in datas" @click="goSingerDetail()">
+          <li v-for="data in datas" @click="goSingerDetail(data.id)">
             <v-card :data="data"></v-card>
           </li>
         </ul>
@@ -25,11 +25,6 @@
         mounted() {
             this.getSingerResource();
         },
-        watch: {
-            '$route.query.keywords' (to, from) {
-              this.getSingerResource();
-            }
-        },
         methods: {
             goBack() {
               this.$router.go(-1);
@@ -43,8 +38,10 @@
                       console.log(response);
                   });
             },
-            goSingerDetail() {
-              console.log(111);
+            goSingerDetail(id) {
+              this.$router.push({
+                path: '/singer/' + id
+              });
             }
         },
         components: {

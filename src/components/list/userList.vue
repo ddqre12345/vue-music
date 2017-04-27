@@ -24,11 +24,6 @@
     mounted() {
       this.getAlbumResource();
     },
-    watch: {
-      '$route.query.keywords' (to, from) {
-        this.getAlbumResource();
-      }
-    },
     methods: {
       getAlbumResource() {
         api.getSearchResource(this.$route.query.keywords, 1002, 30, 0)
