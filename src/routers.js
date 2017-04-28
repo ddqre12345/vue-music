@@ -58,8 +58,8 @@ const router = [{
   name: 'playerDetail',
   path: '/playerDetail/:id',
   component (resolve) {
-    require.ensure(['./views/playerDetail'], () => {
-      resolve(require('./views/playerDetail'));
+    require.ensure(['./views/detail/player/playerDetail'], () => {
+      resolve(require('./views/detail/player/playerDetail'));
     });
   },
   meta: { keepAlive: false }
@@ -67,8 +67,8 @@ const router = [{
   path: '/playListDetail/:id',
   name: 'playListDetail',
   component (resolve) {
-    require.ensure(['./views/detail/playList/playListDetail'], () => {
-      resolve(require('./views/detail/playList/playListDetail'));
+    require.ensure(['./views/detail/playList/playlists'], () => {
+      resolve(require('./views/detail/playList/playlists'));
     });
   },
   meta: { keepAlive: false }

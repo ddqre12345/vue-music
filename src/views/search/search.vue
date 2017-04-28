@@ -91,7 +91,7 @@
   import vSingerCard from '../../components/card/searchCard/singerCard';
   import vAlbumCard from '../../components/card/searchCard/albumCard';
   import vPlayListCard from '../../components/card/searchCard/playListCard';
-  import vUserCard from '../../components/card/searchCard/userCard.styl';
+  import vUserCard from '../../components/card/searchCard/userCard';
   const list = () => ['单曲', '歌手', '专辑', '歌单', '用户'];
   export default {
     name: 'search',

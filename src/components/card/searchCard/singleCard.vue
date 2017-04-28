@@ -1,12 +1,12 @@
 <template>
-  <div class="single-card">
+  <div class="single-card" >
     <p class="song-name">{{data.name}}<span class="transNames">{{songNameTrans}}</span></p>
     <p class="source"><span class="singer">{{data.artists[0].name}}-</span><span class="album">{{data.album.name}}</span><span class="transNames">{{albumTrans}}</span></p>
   </div>
 </template>
 <script>
   export default {
-    name: 'v-card',
+    name: 'v-single-card',
     props: {
       data: {
         type: Object

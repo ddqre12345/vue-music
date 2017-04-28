@@ -42,12 +42,8 @@
         <div class="playlist-holder">
           <div class="play-list">
             <ul>
-              <li v-for="(data, index) in list" @click="playAudio(data)">
-                <div class="index">{{index + 1}}</div>
-                <div class="single-info">
-                  <p class="single-name">{{data.name}}</p>
-                  <p class="single-album">{{data.ar[0].name}}</p>
-                </div>
+              <li v-for="(data, index) in data">
+                  <v-single-card :data="data" :index="index"></v-single-card>
               </li>
             </ul>
           </div>
@@ -58,7 +54,7 @@
 </template>
 <script>
   import api from '../../../api';
-  import { mapGetters } from 'vuex';
+  import vSingleCard from '../../../components/card/detail/singleCard';
   export default {
     data () {
       return {
@@ -66,7 +62,8 @@
         datas: {},
         tName: '歌单',
         creator: {},
-        list: [],
+        data: [],
+        index: '',
         backgroundColor: ''
       };
     },
@@ -88,25 +85,9 @@
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });
-      },
-      playAudio (song) {
-        document.getElementById('audioPlay').pause();
-        this.$store.commit('pause');
-        // this.$parent.$refs.alert.show('tess')
-        let audio = {};
-        audio.id = song.id;  // id
-        audio.singer = song.ar[0].name; // 演唱者
-        audio.albumPic = song.al.picUrl;
-        audio.name = song.name;
-        // 通过Vuex改变状态
-        this.$store.commit('addToList', audio);
-        this.$store.dispatch('getSong', audio.id);
       }
     },
     computed: {
-      ...mapGetters([
-        'songList'
-      ]),
       playListImage() {
         return '' || this.datas.picUrl;
       },
@@ -124,9 +105,10 @@
       }
     },
     components: {
+      vSingleCard
     }
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "playListDetail.styl";
+  @import "playlists.styl";
 </style>

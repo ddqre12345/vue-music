@@ -59,9 +59,9 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import Toast from '../components/toast';
-import BottomSheet from '../components/list';
-import api from '../api';
+import Toast from '../../../components/toast';
+import BottomSheet from '../../../components/list';
+import api from '../../../api';
 export default {
   data () {
     return {
