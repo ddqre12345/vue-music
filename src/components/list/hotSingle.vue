@@ -9,10 +9,9 @@
         </div>
     </transition>
 </template>
-
 <script>
   import api from '../../api/index';
-  import vCard from '../card/singleCard.vue';
+  import vCard from '../card/searchCard/singleCard.vue';
   import { mapGetters } from 'vuex';
   export default {
     name: 'v-single-list',
@@ -67,6 +66,3 @@
 
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-    @import 'singleList.styl';
-</style>

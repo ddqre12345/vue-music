@@ -1,6 +1,6 @@
 <template>
-    <div class="card">
-        <img v-lazy="albumImage" lazy="loading" class="albumImage"/>
+    <div class="album-card" @click="goAlbumDetail(data.id)">
+        <img v-lazy="albumImage" lazy="loading" class="album-image"/>
         <div class="album-info">
             <p class="album-name">{{data.name}}<span class="trans">{{albumTrans}}</span></p>
             <p class="album-author">{{data.artist.name}}</p>
@@ -9,10 +9,15 @@
 </template>
 <script>
   export default {
-    name: 'v-card',
+    name: 'v-album-card',
     props: {
       data: {
         type: Object
+      }
+    },
+    method: {
+      goAlbumDetail(id) {
+        console.log(id);
       }
     },
     computed: {
@@ -29,3 +34,6 @@
     }
   };
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+    @import 'albumCard.styl';
+</style>

@@ -30,8 +30,6 @@
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vSingleList from '../../../components/list/singleList.vue';
-  import vAlbumList from '../../../components/list/albumList.vue';
   const list = () => ['热门50', '专辑'];
   export default {
     data () {
@@ -54,6 +52,7 @@
       back () {
         this.$router.go(-1);
       },
+
       getSingerAlbum () {
         api.getArtistAlbumResource(this.$route.params.id, 30)
           .then((response) => {
@@ -89,9 +88,7 @@
       TabItem,
       Swiper,
       SwiperItem,
-      XHeader,
-      vSingleList,
-      vAlbumList
+      XHeader
     }
   };
 </script>

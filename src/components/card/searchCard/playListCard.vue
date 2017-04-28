@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="playlist-card">
         <img v-lazy="coverImage" lazy="loading" class="coverImage"/>
         <div class="playList-info">
             <p class="playList-name">{{data.name}}</p>
@@ -12,9 +12,9 @@
     </div>
 </template>
 <script>
-  import { playCount } from '../../common/js/data';
+  import { playCount } from '../../../common/js/data';
   export default {
-    name: 'v-card',
+    name: 'v-play-list-card',
     props: {
       data: {
         type: Object
@@ -32,3 +32,6 @@
     }
   };
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+    @import 'playListCard.styl';
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="singer-card">
     <img v-lazy="avatarImage" lazy="loading" class="avatar"/>
     <p class="singer-name">
       <span class="name">{{data.name}}</span>
@@ -9,7 +9,7 @@
 </template>
 <script>
   export default {
-    name: 'v-card',
+    name: 'v-singer-card',
     props: {
       data: {
         type: Object
@@ -22,3 +22,6 @@
     }
   };
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+    @import 'singerCard.styl';
+</style>

@@ -49,8 +49,8 @@ const router = [{
 }, {
   path: '/search',
   component (resolve) {
-    require.ensure(['./views/searchPage/search'], () => {
-      resolve(require('./views/searchPage/search'));
+    require.ensure(['./views/search/search'], () => {
+      resolve(require('./views/search/search'));
     });
   },
   meta: { keepAlive: true }
