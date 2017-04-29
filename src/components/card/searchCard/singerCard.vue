@@ -3,7 +3,7 @@
     <img v-lazy="avatarImage" lazy="loading" class="avatar"/>
     <p class="singer-name">
       <span class="name">{{data.name}}</span>
-      <span class="trans">{{data.trans}}</span>
+      <span class="trans" v-show="data.trans">({{data.trans}})</span>
     </p>
   </div>
 </template>

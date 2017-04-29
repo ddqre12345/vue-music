@@ -1,5 +1,5 @@
 <template>
-    <div class="album-card" @click="goAlbumDetail(data.id)">
+    <div class="album-card" @click="jumpAlbumDetail(data.id)">
         <img v-lazy="albumImage" lazy="loading" class="album-image"/>
         <div class="album-info">
             <p class="album-name">{{data.name}}<span class="trans">{{albumTrans}}</span></p>
@@ -15,9 +15,12 @@
         type: Object
       }
     },
-    method: {
-      goAlbumDetail(id) {
+    methods: {
+      jumpAlbumDetail(id) {
         console.log(id);
+        this.$router.push({
+          path: '/album/' + id
+        });
       }
     },
     computed: {

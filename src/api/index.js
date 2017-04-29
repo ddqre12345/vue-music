@@ -7,6 +7,7 @@ import {
   SearchResource,
   LyricResource,
   CommentResource,
+  AlbumResource,
   ArtistsResource,
   ArtistAlbumResource,
   RecommendResource,
@@ -87,6 +88,15 @@ export default {
   // 获取评论， id为单曲id
   getCommentResource (id) {
     return axios.get(CommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+
+  // 获取专辑内容， id为专辑id
+  getAlbumResource (id) {
+    return axios.get(AlbumResource, {
       params: {
         id: id
       }

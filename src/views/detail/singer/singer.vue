@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
         <div class="wrap">
-            <x-header :left-options="{backText: ''}">{{tName}}</x-header>
-            <div class="playlist-info">
+            <x-header :left-options="{backText: ''}" style="background-color:#b72712">{{singerInfo.name}}</x-header>
+            <div class="singer-info" :style="{'background-image': 'url(' + singerImage + ')'}">
                 <div class="singer-page">个人主页</div>
             </div>
             <div class="tab-list">
@@ -14,8 +14,8 @@
                         <div class="tab-swiper vux-center">
                             <div class="hot-single-list">
                                 <ul>
-                                    <li v-for="(data, index) in hotSongs">
-                                        <v-single-card :data="data" :index="index"></v-single-card>
+                                    <li v-for="(data, order) in hotSongs">
+                                        <v-single-card :data="data" :order="order"></v-single-card>
                                     </li>
                                 </ul>
                             </div>
@@ -23,19 +23,18 @@
                     </swiper-item>
                     <swiper-item :key="2">
                         <div class="tab-swiper vux-center">
-                            <!--<div class="play-lists">-->
-                                <!--<ul>-->
-                                    <!--<li v-for="data in hotAlbums">-->
-                                        <!--<v-play-list-card :data="data"></v-play-list-card>-->
-                                    <!--</li>-->
-                                <!--</ul>-->
-                            <!--</div>-->
+                            <div class="album-list-detail">
+                                <ul>
+                                    <li v-for="data in hotAlbums">
+                                        <v-album-card :data="data"></v-album-card>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </swiper-item>
                 </swiper>
             </div>
         </div>
-
     </transition>
 </template>
 <script type="text/ecmascript-6">
@@ -43,7 +42,8 @@
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vSingleCard from '../../../components/card/detail/singleCard';
+  import vSingleCard from '../../../components/card/detail/hotSingleCard';
+  import vAlbumCard from '../../../components/card/detail/albumCard';
   const list = () => ['热门50', '专辑'];
   export default {
     data () {
@@ -51,6 +51,7 @@
         tName: '歌单',
         type: '热门50',
         tabList: list(),
+        index: 0,
         backgroundColor: '',
         singerInfo: {},
         hotSongs: {},
@@ -86,9 +87,9 @@
       }
     },
     computed: {
-//      playListImage() {
-//        return '' || this.datas.picUrl;
-//      },
+      singerImage() {
+        return '' || this.singerInfo.picUrl;
+      }
 //      creatorImage() {
 //        return '' || this.creator.avatarUrl;
 //      }
@@ -99,7 +100,8 @@
       Swiper,
       SwiperItem,
       XHeader,
-      vSingleCard
+      vSingleCard,
+      vAlbumCard
     }
   };
 </script>

@@ -4,19 +4,41 @@
   height 100%
   background-color: #fff
   z-index 20
-.tab-list
-  position fixed
-  width 100%
-  height 100%
-  z-index 100
-  .hot-single-list
-    background-color #fff
+  .singer-info
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .singer-page
+      border: 1px solid #fff;
+      padding: 2px 15px;
+      color: #fff;
+      display: inline-block;
+      border-radius: 20px;
+      right: 20px;
+      bottom: 20px;
+      position: absolute;
+  .tab-list
+    position fixed
     width 100%
     height 100%
-    overflow auto
-    ul
-      list-style none
-      li
-        padding inherit
-        border none
-
+    z-index 100
+    padding-bottom 270px
+    .hot-single-list
+      background-color #fff
+      width 100%
+      height 100%
+      overflow auto
+      ul
+        list-style none
+        li
+          padding inherit
+          border none
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave {
+  transform: translate(100%, 0);
+}

@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     showDetail () {
-      this.$router.push({name: 'playerDetail', params: {id: this.audio.id}});
+      this.$router.push({name: 'player', params: {id: this.audio.id}});
       this.$store.commit('toggleDetail');
     },
     showList () {

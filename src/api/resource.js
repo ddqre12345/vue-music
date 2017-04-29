@@ -8,6 +8,7 @@ const apiMusic = {
   search: '/search',  // 搜素音乐
   lyric: '/lyric',  // 获取歌词
   comment: '/comment',  // 获取评论
+  album: '/album', //  获取专辑内容
   artists: '/artists',  // 获取歌手单曲列表
   artistAlbum: '/artist_album',  // 获取歌手专辑列表
   recommendResource: '/recommend/resource', // 获取每日推荐歌单（用户级）
@@ -26,6 +27,7 @@ export const MusicUrlResource = API_ROOT.concat(apiMusic.musicUrl);
 export const SearchResource = API_ROOT.concat(apiMusic.search);
 export const LyricResource = API_ROOT.concat(apiMusic.lyric);
 export const CommentResource = API_ROOT.concat(apiMusic.comment);
+export const AlbumResource = API_ROOT.concat(apiMusic.album);
 export const ArtistsResource = API_ROOT.concat(apiMusic.artists);
 export const ArtistAlbumResource = API_ROOT.concat(apiMusic.artistAlbum);
 export const RecommendResource = API_ROOT.concat(apiMusic.recommendResource);

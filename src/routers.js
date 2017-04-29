@@ -2,7 +2,8 @@
  * 整个app的路由设置
  */
 const router = [{
-  path: '/find',
+  path: '/find',  //  发现页
+  name: 'find',
   component (resolve) {
     require.ensure(['./views/find/find'], () => {
       resolve(require('./views/find/find'));
@@ -47,7 +48,8 @@ const router = [{
     }
   ]
 }, {
-  path: '/search',
+  path: '/search',  //  搜索页
+  name: 'search',
   component (resolve) {
     require.ensure(['./views/search/search'], () => {
       resolve(require('./views/search/search'));
@@ -55,17 +57,17 @@ const router = [{
   },
   meta: { keepAlive: true }
 }, {
-  name: 'playerDetail',
-  path: '/playerDetail/:id',
+  name: 'player', //  单曲播放页
+  path: '/player/:id',
   component (resolve) {
-    require.ensure(['./views/detail/player/playerDetail'], () => {
-      resolve(require('./views/detail/player/playerDetail'));
+    require.ensure(['./views/detail/player/player'], () => {
+      resolve(require('./views/detail/player/player'));
     });
   },
   meta: { keepAlive: false }
 }, {
-  path: '/playListDetail/:id',
-  name: 'playListDetail',
+  path: '/playLists/:id',  //  歌单详情页
+  name: 'playLists',
   component (resolve) {
     require.ensure(['./views/detail/playList/playlists'], () => {
       resolve(require('./views/detail/playList/playlists'));
@@ -73,7 +75,7 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '/singer/:id',
+  path: '/singer/:id',  //  歌手详情页
   name: 'singer',
   component (resolve) {
     require.ensure(['./views/detail/singer/singer'], () => {
@@ -82,6 +84,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/find/rage'
+  path: '/album/:id',  // 专辑详情页
+  name: 'album',
+  component (resolve) {
+    require.ensure(['./views/detail/album/album'], () => {
+      resolve(require('./views/detail/album/album'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
+  path: '*', redirect: '/find/rage' //  初始化页面
 }];
 export default router;

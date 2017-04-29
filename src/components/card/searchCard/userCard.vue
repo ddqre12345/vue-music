@@ -4,8 +4,8 @@
         <div class="avatar-info">
             <p class="avatar-name">
                 {{data.nickname}}
-                <span class="gender-female"><i class="female-icon"></i></span>
-                <span class="gender-man"><i class="man-icon"></i></span>
+                <span class="gender-man" v-if="data.gender"><i class="man-icon"></i></span>
+                <span class="gender-female" v-else><i class="female-icon"></i></span>
             </p>
             <p class="avatar-intro">{{data.signature}}</p>
         </div>

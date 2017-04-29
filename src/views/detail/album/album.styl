@@ -4,47 +4,38 @@
   height 100%
   background-color: #fff
   z-index 20
-.playlist
+.album
   position fixed
   width 100%
   height 100%
   overflow-y auto
   z-index 100
-  .fixed-title
-    position fixed
-    width 100%
-    height 56px
-    .mu-appbar
-      background-color transparent
-      height 56px
-      .playlist-title
-        color #fff
-  .playlist-info
-    padding-top 56px
+  .album-info
+    padding-top 20px
     background url('../../../assets/loading.jpg') no-repeat left center
     background-size cover
-    .playlist-intro
+    .album-intro
       display flex
       flex-direction row
       padding-left 15px
       padding-right 15px
       padding-bottom 12px
-      .playlist-image
+      .album-image
         flex 3
         img
-          width 100%
-          height 100%
+          width 140px
+          height 140px
           border-radius 5px
-      .playlist-intro-other
+      .album-intro-other
         color #fff
         padding-left 15px
         padding-top 8px
         flex 4
-        .playlist-title
+        .album-title
           display block
           font-size 16px
           padding-bottom 15px
-        .playlist-creator
+        .album-creator
           display flex
           flex-direction row
           align-items center
@@ -55,7 +46,7 @@
           span
             font-size 10px
             padding-left 3px
-    .playlist-status
+    .album-status
       display flex
       flex-direction row
       justify-content space-around

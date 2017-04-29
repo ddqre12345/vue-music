@@ -42,7 +42,7 @@
         <div class="playlist-holder">
           <div class="play-list">
             <ul>
-              <li v-for="(data, index) in data">
+              <li v-for="(data, index) in list">
                   <v-single-card :data="data" :index="index"></v-single-card>
               </li>
             </ul>
@@ -54,7 +54,7 @@
 </template>
 <script>
   import api from '../../../api';
-  import vSingleCard from '../../../components/card/detail/singleCard';
+  import vSingleCard from '../../../components/card/detail/singleCard.vue';
   export default {
     data () {
       return {

@@ -1,5 +1,5 @@
 <template>
-    <div class="playlist-card">
+    <div class="playlist-card" @click="jumpPlayListsDetail(data.id)">
         <img v-lazy="coverImage" lazy="loading" class="coverImage"/>
         <div class="playList-info">
             <p class="playList-name">{{data.name}}</p>
@@ -18,6 +18,13 @@
     props: {
       data: {
         type: Object
+      }
+    },
+    methods: {
+      jumpPlayListsDetail(id) {
+        this.$router.push({
+          path: '/playLists/' + id
+        });
       }
     },
     computed: {
