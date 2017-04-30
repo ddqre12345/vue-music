@@ -1,8 +1,8 @@
 {
-  "name": "netease-clound-webapps",
+  "name": "vue-music",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "javaSwing <zxdlovejava@gmail.com>",
+  "author": "浅滩戏虾",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
