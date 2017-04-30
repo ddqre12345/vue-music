@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import store from './vuex/store';
 import VueRouter from 'vue-router';
-import infiniteScroll from 'vue-infinite-scroll';  // 引入滑动模块
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import App from './App';
 import routes from './routers';
@@ -10,9 +9,10 @@ import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import 'assets/theme.less';
+import { LoadingPlugin } from 'vux';  // 引入页面loading加载
+Vue.use(LoadingPlugin);
 Vue.use(VueRouter);
 Vue.use(MuseUI);
-Vue.use(infiniteScroll);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
     error: require('./assets/404.png'),
@@ -69,8 +69,8 @@ const routerApp = new Vue({
  *
  *
  */
-if (!loadFromlLocal('music', 'index', false)) {
-  router.push('/index');
+if (!loadFromlLocal('music', 'find', false)) {
+  router.push('/find');
 }
 
 export default routerApp;
