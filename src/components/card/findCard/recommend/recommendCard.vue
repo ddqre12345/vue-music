@@ -10,6 +10,7 @@
     </div>
   </div>
 </template>
+
 <script>
   import { playCount } from '../../../../common/js/data';
   export default {
