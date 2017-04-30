@@ -17,6 +17,9 @@ const apiMusic = {
   dailySignin: '/daily_signin',  // 签到(用户级)
   likeMusic: '/like', // 添加喜欢的音乐(用户级)
   fmTrash: '/fm_trash', // 将音乐从私人FM中移除至垃圾桶
+  topPlaylist: '/top_playlist', //  歌单(网友精选歌单)
+  newAlbum: '/new_albums',  // 新碟上架
+  topArtists: '/top_artists', //  热门歌手
   topList: '/top_list' //  音乐排行榜
 };
 
@@ -36,4 +39,7 @@ export const PersonalFmResource = API_ROOT.concat(apiMusic.personalFm);
 export const DailySigninResource = API_ROOT.concat(apiMusic.dailySignin);
 export const LikeMusicResource = API_ROOT.concat(apiMusic.likeMusic);
 export const FmTrashResource = API_ROOT.concat(apiMusic.fmTrash);
+export const TopPlaylistResource = API_ROOT.concat(apiMusic.topPlaylist);
+export const NewAlbumResource = API_ROOT.concat(apiMusic.newAlbum);
+export const TopArtistsResource = API_ROOT.concat(apiMusic.topArtists);
 export const TopListResource = API_ROOT.concat(apiMusic.topList);

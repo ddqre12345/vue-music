@@ -126,6 +126,7 @@
           path: '/find'
         });
       },
+      // 关键词搜索
       toSearch (keywords) {
         if (this.keywords.trim()) {
           this.isShowHot = false;
@@ -135,11 +136,11 @@
               keywords: keywords
             }
           });
-          this.getSingleResource();
-          this.getAlbumResource();
-          this.getSingerResource();
-          this.getPlayListResource();
-          this.getUserResource();
+          this.getSingleResource(); //  获取搜索单曲
+          this.getAlbumResource(); //  获取搜索专辑
+          this.getSingerResource(); //  获取搜索歌手
+          this.getPlayListResource(); //  获取搜索歌单
+          this.getUserResource(); //  获取搜索用户
         }
       },
       getSingleResource() {

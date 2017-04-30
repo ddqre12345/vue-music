@@ -59,6 +59,10 @@
       };
     },
     mounted: function() {
+      // 显示
+      this.$vux.loading.show({
+        text: 'Loading'
+      });
       this.getSingerSingle();
       this.getArtistAlbum();
     },
@@ -70,6 +74,8 @@
         api.getArtistsResource(this.$route.params.id)
           .then((response) => {
             this.hotSongs = response.data.hotSongs;
+            // 隐藏
+            this.$vux.loading.hide();
           })
           .catch((response) => {
             console.log(response);
@@ -90,9 +96,6 @@
       singerImage() {
         return '' || this.singerInfo.picUrl;
       }
-//      creatorImage() {
-//        return '' || this.creator.avatarUrl;
-//      }
     },
     components: {
       Tab,

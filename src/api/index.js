@@ -16,6 +16,9 @@ import {
   DailySigninResource,
   LikeMusicResource,
   FmTrashResource,
+  TopPlaylistResource,
+  NewAlbumResource,
+  TopArtistsResource,
   TopListResource
 } from './resource';
 
@@ -168,6 +171,53 @@ export default {
   },
 
   /**
+   * @method 获取网友精选歌单
+   * @param order new:  最新, hot:  最热
+   * @param limit 每次请求返回列表条数，默认50
+   * @param offset  偏移量 默认为0
+   * @returns 返回歌单列表
+   */
+  getTopPlaylistResource (order, limit, offset) {
+    return axios.get(TopPlaylistResource, {
+      params: {
+        order: order || 'hot',
+        limit: limit || 50,
+        offset: offset || 0
+      }
+    });
+  },
+
+  /**
+   * @method 获取新碟上架列表
+   * @param limit
+   * @param offset
+   * @returns 返回新碟列表
+   */
+  getNewAlbumResource (limit, offset) {
+    return axios.get(NewAlbumResource, {
+      params: {
+        limit: limit || 50,
+        offset: offset || 0
+      }
+    });
+  },
+
+  /**
+   * @method 获取热门歌手数据
+   * @param limit
+   * @param offset
+   * @returns 返回热门歌手列表
+   */
+  getTopArtistsResource (limit, offset) {
+    return axios.get(TopArtistsResource, {
+      params: {
+        limit: limit || 50,
+        offset: offset || 0
+      }
+    });
+  },
+
+  /**
    * @method 获取音乐排行榜
    * @param idx 0.云音乐新歌排行榜  1.云音乐热歌排行榜  2.网易原创歌曲排行榜
    * 3. 云音乐飙升榜  4.云音乐电音榜  5.UK排行榜周榜   6.美国billboard周榜
@@ -184,6 +234,7 @@ export default {
       }
     });
   },
+
   getPlayListByWhere (cat, offset, limit) {
     return axios.get('http://musicapi.duapp.com/api.php?type=topPlayList', {
       params: {
@@ -193,6 +244,7 @@ export default {
       }
     });
   },
+
   getPlayListDetail (id) {
     return axios.get('https://api.imjad.cn/cloudmusic?type=playlist', {
       params: {

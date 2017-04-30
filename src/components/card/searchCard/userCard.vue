@@ -1,5 +1,5 @@
 <template>
-    <div class="user-card">
+    <div class="user-card" @click="jumpUserDetail(data.userId)">
         <img v-lazy="avatarImage" lazy="loading" class="avatarImage"/>
         <div class="avatar-info">
             <p class="avatar-name">
@@ -17,6 +17,13 @@
     props: {
       data: {
         type: Object
+      }
+    },
+    methods: {
+      jumpUserDetail(id) {
+        this.$router.push({
+          path: '/user/' + id
+        });
       }
     },
     computed: {

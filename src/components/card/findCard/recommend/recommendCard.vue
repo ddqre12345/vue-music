@@ -11,9 +11,9 @@
   </div>
 </template>
 <script>
-  import { playCount } from '../../../common/js/data';
+  import { playCount } from '../../../../common/js/data';
   export default {
-    name: 'v-play-list-card',
+    name: 'v-recommend-card',
     props: {
       data: {
         type: Object
@@ -39,5 +39,5 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import 'playlists.styl';
+  @import 'recommendCard.styl';
 </style>

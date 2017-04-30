@@ -1,54 +1,76 @@
 <template>
-    <div>
-      <div class="fixed-bar">
-        <mu-tabs :value="activeTab" @change="handleTabChange" class="view-tabs">
-          <mu-tab value="rage" title="个性推荐"/>
-          <mu-tab value="songList" title="歌单"/>
-          <!--<mu-tab value="leaderBoard" title="排行榜"/>-->
-          <!--<mu-tab value="hotSinger" title="热门歌手"/>-->
-        </mu-tabs>
-      </div>
-      <div class="default-view" :class="{view: songList.length > 0}">
-         <router-view></router-view>
-      </div>
+    <div class="find-page">
+        <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712'
+             v-model="index">
+          <tab-item class="vux-center" :selected="type === item" v-for="(item, index) in tabList"
+                    @click="type = item" :key="index">{{item}}
+          </tab-item>
+        </tab>
+        <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container" style="height: 100%">
+          <swiper-item :key="1">
+            <div class="tab-swiper vux-center">
+              <v-recommend></v-recommend>
+            </div>
+          </swiper-item>
+          <swiper-item :key="2">
+            <div class="tab-swiper vux-center">
+              <!--<div class="singer-list">-->
+                <!--<ul>-->
+                  <!--<li v-for="data in singer">-->
+                    <!--<v-singer-card :data="data"></v-singer-card>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            </div>
+          </swiper-item>
+          <swiper-item :key="3">
+            <div class="tab-swiper vux-center">
+              <!--<div class="album-list">-->
+                <!--<ul>-->
+                  <!--<li v-for="data in albums">-->
+                    <!--<v-album-card :data="data"></v-album-card>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            </div>
+          </swiper-item>
+        </swiper>
     </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex';
+//  import { mapGetters } from 'vuex';
+//  import api from '../../api/index';
+  import {Tab, TabItem} from 'vux/src/components/Tab';
+  import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
+  import vRecommend from './recommend/recommend';
+  const list = () => ['个性推荐', '歌单', '排行榜'];
   export default {
+    name: 'find',
+    components: {
+      vRecommend,
+      Tab,
+      TabItem,
+      Swiper,
+      SwiperItem
+    },
     data () {
       return {
-        activeTab: 'rage'
+        index: 0,
+        tabList: list(),
+        type: '个性推荐'
       };
     },
     created () {
-      // 当created函数时监测路由信息,防止页面刷新tab高亮错误
-      let tmpArr = this.$route.path.split('/');
-      if (tmpArr[1] === 'find') {
-        this.handleTabChange(tmpArr[2]);
-      }
+
     },
     // watch函数监测路由的变化,保持tab面板的高亮位置正确
     watch: {
-      '$route' (to, from) {
-        const path = to.path;
-        let tmpArr = path.split('/');
-        if (tmpArr[1] === 'find') {
-          this.handleTabChange(tmpArr[2]);
-        }
-      }
+
     },
     methods: {
-      handleTabChange (val) {
-        console.log(val);
-        this.activeTab = val;
-        this.$router.push({ path: '/find/' + val });
-      }
     },
     computed: {
-      ...mapGetters([
-        'songList'
-      ])
+
     }
   };
 </script>

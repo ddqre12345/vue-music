@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :style="{backgroundColor: skinColor}" class="header">
+  <div class="header">
     <div class="name">
       <span @click="showAsideMenu(true)" class="func"><i class="func-icon"></i></span>
       <router-link to="/find" class="item">
@@ -20,14 +20,6 @@ export default {
     return {
       index: ''
     };
-  },
-  computed: {
-    linkBorderIndex () {
-      return this.$store.state.linkBorderIndex;
-    },
-    skinColor () {
-      return this.$store.state.skinColor;
-    }
   },
   methods: {
     toSearch () {

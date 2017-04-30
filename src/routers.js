@@ -8,45 +8,7 @@ const router = [{
     require.ensure(['./views/find/find'], () => {
       resolve(require('./views/find/find'));
     });
-  },
-  children: [
-    {
-      path: 'rage',
-      component (resolve) {
-        require.ensure(['./views/rage'], () => {
-          resolve(require('./views/rage'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'songList',
-      component (resolve) {
-        require.ensure(['./views/songList'], () => {
-          resolve(require('./views/songList'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'leaderBoard',
-      component (resolve) {
-        require.ensure(['./views/leaderBoard'], () => {
-          resolve(require('./views/leaderBoard'));
-        });
-      },
-      meta: { keepAlive: true }
-    },
-    {
-      path: 'hotSinger',
-      component (resolve) {
-        require.ensure(['./views/hotSinger'], () => {
-          resolve(require('./views/hotSinger'));
-        });
-      },
-      meta: { keepAlive: true }
-    }
-  ]
+  }
 }, {
   path: '/search',  //  搜索页
   name: 'search',
@@ -93,6 +55,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/find/rage' //  初始化页面
+  path: '/user/:id',  // 用户详情页
+  name: 'user',
+  component (resolve) {
+    require.ensure(['./views/detail/user/user'], () => {
+      resolve(require('./views/detail/user/user'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
+  path: '*', redirect: '/find' //  初始化页面
 }];
 export default router;
