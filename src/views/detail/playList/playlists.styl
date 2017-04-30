@@ -1,0 +1,92 @@
+.wrap
+  position fixed
+  width 100%
+  height 100%
+  background-color: #fff
+  z-index 20
+.playlist
+  position fixed
+  width 100%
+  height 100%
+  overflow-y auto
+  z-index 100
+  .fixed-title
+    position fixed
+    width 100%
+    height 56px
+    .mu-appbar
+      background-color transparent
+      height 56px
+      .playlist-title
+        color #fff
+  .playlist-info
+    padding-top 56px
+    background url('../../../assets/loading.jpg') no-repeat left center
+    background-size cover
+    .playlist-intro
+      display flex
+      flex-direction row
+      padding-left 15px
+      padding-right 15px
+      padding-bottom 12px
+      .playlist-image
+        flex 3
+        img
+          width 100%
+          height 100%
+          border-radius 5px
+      .playlist-intro-other
+        color #fff
+        padding-left 15px
+        padding-top 8px
+        flex 4
+        .playlist-title
+          display block
+          font-size 16px
+          padding-bottom 15px
+        .playlist-creator
+          display flex
+          flex-direction row
+          align-items center
+          img
+            width 30px
+            height 30px
+            border-radius 50%
+          span
+            font-size 10px
+            padding-left 3px
+    .playlist-status
+      display flex
+      flex-direction row
+      justify-content space-around
+      align-items center
+      text-align: -webkit-center;
+      text-align center
+      color #fff
+      padding-bottom 6px
+      span
+        display block
+      span.file
+        i
+          background url(../../../common/images/file.svg) no-repeat
+          background-size: contain
+      span.comment
+        i
+          background url(../../../common/images/comment.svg) no-repeat
+          background-size: contain
+      span.share
+        i
+          background url(../../../common/images/share.svg) no-repeat
+          background-size: contain
+      i
+        display inline-block
+        width 30px
+        height 30px
+        cursor pointer
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave {
+  transform: translate(100%, 0);
+}

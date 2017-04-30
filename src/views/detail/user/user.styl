@@ -1,0 +1,48 @@
+.wrap
+  position fixed
+  width 100%
+  height 100%
+  background-color: #fff
+  z-index 20
+  .user-info
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display flex
+    flex-direction column
+    align-items center
+    justify-content center
+    > img
+      width 60px
+      border-radius 50%
+    .user-name
+      display flex
+      color: #fff
+      font-size 14px
+      span.gender-female
+        i
+          background url(../../../common/images/female.svg) no-repeat
+          background-size: contain
+      span.gender-man
+        i
+          background url(../../../common/images/man.svg) no-repeat
+          background-size: contain
+      i
+        display inline-block
+        width 20px
+        height 20px
+  .tab-list
+    position fixed
+    width 100%
+    height 100%
+    z-index 100
+    padding-bottom 270px
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave {
+  transform: translate(100%, 0);
+}

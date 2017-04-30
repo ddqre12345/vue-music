@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     showDetail () {
-      this.$router.push({name: 'playerDetail', params: {id: this.audio.id}});
+      this.$router.push({name: 'player', params: {id: this.audio.id}});
       this.$store.commit('toggleDetail');
     },
     showList () {
@@ -120,7 +120,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scopoed>
+<style lang="less" scoped>
     @import "../../assets/theme.less";
 </style>
 <style lang="stylus" rel="stylesheet/stylus">
