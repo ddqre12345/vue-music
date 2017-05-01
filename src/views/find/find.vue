@@ -6,7 +6,7 @@
                     @click="type = item" :key="index">{{item}}
           </tab-item>
         </tab>
-        <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container" style="width:100%;height: 100%;overflow-y: auto;padding-bottom: 100px;">
+        <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container" style="width:100%;height: 100%;padding-bottom: 100px;">
           <swiper-item :key="1">
             <div class="tab-swiper vux-center">
               <v-recommend :playlists="playlists" :activitys="activitys" :MVs="MVs"></v-recommend>

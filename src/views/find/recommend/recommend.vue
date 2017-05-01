@@ -78,14 +78,6 @@
         },
         slide_list: imgList
       };
-    },
-    mounted: function() {
-    },
-    methods: {
-
-    },
-    computed: {
-
     }
   };
 </script>

@@ -17,7 +17,7 @@ const apiMusic = {
   dailySignin: '/daily_signin',  // 签到(用户级)
   likeMusic: '/like', // 添加喜欢的音乐(用户级)
   fmTrash: '/fm_trash', // 将音乐从私人FM中移除至垃圾桶
-  topPlaylist: '/top_playlist', //  歌单(网友精选歌单)
+  topPlaylist: '/top/playlist', //  歌单(网友精选歌单)
   newAlbum: '/new_albums',  // 新碟上架
   topArtists: '/top_artists', //  热门歌手
   topList: '/top_list', //  音乐排行榜
