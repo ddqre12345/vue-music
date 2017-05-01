@@ -19,7 +19,10 @@ import {
   TopPlaylistResource,
   NewAlbumResource,
   TopArtistsResource,
-  TopListResource
+  TopListResource,
+  PersonalizedResource,
+  PrivatecontentResource,
+  PersonalizedMvResource
 } from './resource';
 
 export default {
@@ -233,6 +236,21 @@ export default {
         idx: idx
       }
     });
+  },
+
+  // 获取推荐歌单
+  getPersonalized () {
+    return axios.get(PersonalizedResource);
+  },
+
+  // 获取独家放送
+  getPrivatecontent () {
+    return axios.get(PrivatecontentResource);
+  },
+
+  // 获取推荐MV
+  getPersonalizedMv () {
+    return axios.get(PersonalizedMvResource);
   },
 
   getPlayListByWhere (cat, offset, limit) {

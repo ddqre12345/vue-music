@@ -147,6 +147,7 @@
         api.getSearchResource(this.$route.query.keywords, 1, 30, 0)
           .then((response) => {
             this.songs = response.data.result.songs;
+            console.log(this.songs);
           })
           .catch((response) => {
             console.log(response);

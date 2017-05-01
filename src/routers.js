@@ -8,7 +8,8 @@ const router = [{
     require.ensure(['./views/find/find'], () => {
       resolve(require('./views/find/find'));
     });
-  }
+  },
+  meta: { keepAlive: true }
 }, {
   path: '/search',  //  搜索页
   name: 'search',

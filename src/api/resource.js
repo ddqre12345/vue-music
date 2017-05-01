@@ -20,7 +20,11 @@ const apiMusic = {
   topPlaylist: '/top_playlist', //  歌单(网友精选歌单)
   newAlbum: '/new_albums',  // 新碟上架
   topArtists: '/top_artists', //  热门歌手
-  topList: '/top_list' //  音乐排行榜
+  topList: '/top_list', //  音乐排行榜
+  personalized: '/personalized', //  推荐歌单
+  privatecontent: '/personalized/privatecontent',  // 独家放送
+  personalizedMv: '/personalized/mv'  // 推荐MV
+
 };
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone);
@@ -43,3 +47,6 @@ export const TopPlaylistResource = API_ROOT.concat(apiMusic.topPlaylist);
 export const NewAlbumResource = API_ROOT.concat(apiMusic.newAlbum);
 export const TopArtistsResource = API_ROOT.concat(apiMusic.topArtists);
 export const TopListResource = API_ROOT.concat(apiMusic.topList);
+export const PersonalizedResource = API_ROOT.concat(apiMusic.personalized);
+export const PrivatecontentResource = API_ROOT.concat(apiMusic.privatecontent);
+export const PersonalizedMvResource = API_ROOT.concat(apiMusic.personalizedMv);

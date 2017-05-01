@@ -2,8 +2,9 @@
   background-color #fff
   width 100%
   height 100%
-  overflow auto
+  overflow-y auto
   .title
+    padding-top 15px
     font-size 14px
     color #282c2b
     &:before
@@ -22,11 +23,22 @@
     justify-content space-between
     flex-flow row wrap
     list-style none
-    li
-      flex 33%
   .recommend-playLists-area
     .playLists-area
-      display block
-
+      li
+        padding-top 10px
+        flex 0 0 33%
+  .recommend-activitys-area
+    .activitys-area
+      li
+        padding-top 10px
+        flex 0 0 49.5%
+        &:last-child
+          flex 0 0 100%
+  .recommend-mv-area
+    .MV-area
+      li
+        padding-top 10px
+        flex 0 0 49.5%
 
 

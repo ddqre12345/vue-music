@@ -10,28 +10,28 @@
       <div class="title">推荐歌单</div>
       <div class="playLists-area">
         <ul>
-          <li class="playList">
-            <v-recommend-card :imgUrl="playList.imgUrl" :title="playList.name"></v-recommend-card>
+          <li v-for="data in playlists">
+            <v-play-list-card :data="data"></v-play-list-card>
           </li>
         </ul>
       </div>
     </div>
-    <div class="recommend-album-area">
-      <div class="title">推荐专辑</div>
-      <div class="albums-area">
+    <div class="recommend-activitys-area">
+      <div class="title">独家放送</div>
+      <div class="activitys-area">
         <ul>
-          <li class="album">
-            <!--<v-play-list-card></v-play-list-card>-->
+          <li v-for="data in activitys">
+            <v-activity-card :data="data"></v-activity-card>
           </li>
         </ul>
       </div>
     </div>
-    <div class="recommend-singer-area">
-      <div class="title">推荐歌手</div>
-      <div class="singers-area">
+    <div class="recommend-mv-area">
+      <div class="title">推荐MV</div>
+      <div class="MV-area">
         <ul>
-          <li class="singer">
-            <!--<v-play-list-card></v-play-list-card>-->
+          <li v-for="data in MVs">
+            <v-mv-card :data="data"></v-mv-card>
           </li>
         </ul>
       </div>
@@ -39,10 +39,10 @@
   </div>
 </template>
 <script>
-  import api from '../../../api/index';
-  import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
-  import vRecommendCard from '../../../components/card/findCard/recommend/recommendCard';
+  import vPlayListCard from '../../../components/card/findCard/recommend/playListCard';
+  import vActivityCard from '../../../components/card/findCard/recommend/activityCard';
+  import vMvCard from '../../../components/card/findCard/recommend/mvCard';
   const imgList = [
     '/static/banner1.jpg',
     '/static/banner2.jpg',
@@ -50,18 +50,24 @@
     '/static/banner4.jpg'
   ];
   export default {
+    name: 'v-recommend',
+    props: {
+      playlists: {
+        type: Array
+      },
+      activitys: {
+        type: Array
+      },
+      MVs: {
+        type: Array
+      }
+    },
     components: {
-      Swiper,
-      SwiperItem,
       swiper,
       swiperSlide,
-      vRecommendCard
-    },
-    name: 'v-recommend-card',
-    props: {
-      data: {
-        type: Object
-      }
+      vPlayListCard,
+      vActivityCard,
+      vMvCard
     },
     data () {
       return {
@@ -73,19 +79,10 @@
         slide_list: imgList
       };
     },
-    mounted () {
-        this.getSingleResource();
+    mounted: function() {
     },
     methods: {
-      getSingleResource() {
-        api.getTopPlaylistResource('hot', 6, 0)
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((response) => {
-            console.log(response);
-          });
-      }
+
     },
     computed: {
 
