@@ -19,13 +19,7 @@
           </swiper-item>
           <swiper-item :key="3">
             <div class="tab-swiper vux-center">
-              <!--<div class="album-list">-->
-                <!--<ul>-->
-                  <!--<li v-for="data in albums">-->
-                    <!--<v-album-card :data="data"></v-album-card>-->
-                  <!--</li>-->
-                <!--</ul>-->
-              <!--</div>-->
+              <v-ranking></v-ranking>
             </div>
           </swiper-item>
         </swiper>
@@ -37,12 +31,14 @@
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
   import vRecommend from './recommend/recommend';
   import vPlayLists from './playLists/playLists';
+  import vRanking from './ranking/ranking';
   const list = () => ['个性推荐', '歌单', '排行榜'];
   export default {
     name: 'find',
     components: {
       vPlayLists,
       vRecommend,
+      vRanking,
       Tab,
       TabItem,
       Swiper,
