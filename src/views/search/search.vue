@@ -5,14 +5,14 @@
                 <span @click="goBack" class="back"><i class="back-icon"></i></span>
                 <div class="input">
                     <input v-model="keywords" @keyup.enter="toSearch(keywords)" type="text" placeholder='搜素音乐、歌手、歌词、用户'>
-                    <!--<i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>-->
+                    <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
                 </div>
             </div>
             <div class="hot" v-if="isShowHot">
-                热门搜索
-                <!--<div class="keywords">-->
-                <!--<div v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></div>-->
-                <!--</div>-->
+                <p>热门搜索</p>
+                <div class="keywords">
+                  <div v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></div>
+                </div>
             </div>
             <div v-else class="search-list">
                 <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712'
@@ -93,6 +93,8 @@
   import vPlayListCard from '../../components/card/searchCard/playListCard';
   import vUserCard from '../../components/card/searchCard/userCard';
   const list = () => ['单曲', '歌手', '专辑', '歌单', '用户'];
+  const hotKeywordsList = () => ['清白之年', '我喜欢上你时的内心活动', '我想和你唱',
+    'hyukoh', '童话镇', '陈奕迅', '漂洋过海来看你', '许嵩', '成都', '林俊杰'];
   export default {
     name: 'search',
     components: {
@@ -110,6 +112,7 @@
       return {
         index: 0,
         tabList: list(),
+        hotKeywords: hotKeywordsList(),
         type: '单曲',
         keywords: '',
         isShowHot: true,
@@ -120,6 +123,17 @@
         user: {}
       };
     },
+    // 接着在父组件内
+    // watch $route 决定使用哪种过渡
+    watch: {
+      '$route' (to, from) {
+        if (from.name === 'find') {
+            this.keywords = '';
+            this.isShowHot = true;
+            console.log(from.name);
+        }
+      }
+    },
     methods: {
       goBack () {
         this.$router.push({
@@ -128,6 +142,7 @@
       },
       // 关键词搜索
       toSearch (keywords) {
+        this.keywords = keywords;
         if (this.keywords.trim()) {
           this.isShowHot = false;
           this.$router.push({
@@ -143,16 +158,17 @@
           this.getUserResource(); //  获取搜索用户
         }
       },
+      //  获取搜索单曲
       getSingleResource() {
         api.getSearchResource(this.$route.query.keywords, 1, 30, 0)
           .then((response) => {
             this.songs = response.data.result.songs;
-            console.log(this.songs);
           })
           .catch((response) => {
             console.log(response);
           });
       },
+      //  获取搜索专辑
       getSingerResource() {
         api.getSearchResource(this.$route.query.keywords, 100, 30, 0)
           .then((response) => {
@@ -162,6 +178,7 @@
             console.log(response);
           });
       },
+      //  获取搜索歌手
       getAlbumResource() {
         api.getSearchResource(this.$route.query.keywords, 10, 30, 0)
           .then((response) => {
@@ -171,6 +188,7 @@
             console.log(response);
           });
       },
+      //  获取搜索歌单
       getPlayListResource() {
         api.getSearchResource(this.$route.query.keywords, 1000, 30, 0)
           .then((response) => {
@@ -180,6 +198,7 @@
             console.log(response);
           });
       },
+      //  获取搜索用户
       getUserResource() {
         api.getSearchResource(this.$route.query.keywords, 1002, 30, 0)
           .then((response) => {

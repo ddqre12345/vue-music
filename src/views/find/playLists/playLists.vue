@@ -16,7 +16,7 @@
 <script>
   import api from '../../../api/index';
   import { ButtonTab, ButtonTabItem } from 'vux';
-  import vPlayList from '../../../components/card/findCard/playList.vue';
+  import vPlayList from '../../../components/card/findCard/playList/playList';
   export default {
     name: 'v-play-lists',
     components: {
@@ -41,8 +41,6 @@
       getTopPlaylistResource() {
         this.keys = this.index ? 'hot' : 'new';
         api.getTopPlaylistResource(this.keys, 20, 0).then((response) => {
-          console.log(response);
-          console.log(this.keys);
           this.playlists = response.data.playlists;
         })
           .catch((response) => {

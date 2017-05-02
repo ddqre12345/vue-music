@@ -10,7 +10,7 @@ const apiMusic = {
   comment: '/comment',  // 获取评论
   album: '/album', //  获取专辑内容
   artists: '/artists',  // 获取歌手单曲列表
-  artistAlbum: '/artist_album',  // 获取歌手专辑列表
+  artistAlbum: '/artist/album',  // 获取歌手专辑列表
   recommendResource: '/recommend/resource', // 获取每日推荐歌单（用户级）
   recommendSongs: '/recommend/songs',  // 获取每日推荐歌曲（用户级）
   personalFm: '/personal_fm', // 私人FM(用户级)
@@ -18,9 +18,9 @@ const apiMusic = {
   likeMusic: '/like', // 添加喜欢的音乐(用户级)
   fmTrash: '/fm_trash', // 将音乐从私人FM中移除至垃圾桶
   topPlaylist: '/top/playlist', //  歌单(网友精选歌单)
-  newAlbum: '/new_albums',  // 新碟上架
-  topArtists: '/top_artists', //  热门歌手
-  topList: '/top_list', //  音乐排行榜
+  newAlbum: '/top/albums',  // 新碟上架
+  topArtists: '/top/artists', //  热门歌手
+  topList: '/top/list', //  音乐排行榜
   personalized: '/personalized', //  推荐歌单
   privatecontent: '/personalized/privatecontent',  // 独家放送
   personalizedMv: '/personalized/mv'  // 推荐MV

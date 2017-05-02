@@ -1,35 +1,27 @@
 <template>
     <div class="ranking-area">
         <div class="surge">
-            <img src="/static/surge.jpg">
+            <img v-lazy="surgeInfo.coverImgUrl" lazy="loading" />
             <ul>
-                <li>11</li>
-                <li>22</li>
-                <li>32</li>
+              <li v-for="(data, index) in surgeList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="newSonges">
-            <img src="/static/newSonges.jpg">
+            <img v-lazy="newSongesInfo.coverImgUrl" lazy="loading" />
             <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+              <li v-for="(data, index) in newSongesList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="original">
-            <img src="/static/original.jpg">
+            <img v-lazy="originalInfo.coverImgUrl" lazy="loading" />
             <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+              <li v-for="(data, index) in originalList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="hot">
-            <img src="/static/hot.jpg">
+            <img v-lazy="hotInfo.coverImgUrl" lazy="loading" />
             <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+              <li v-for="(data, index) in hotList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
     </div>
@@ -43,19 +35,24 @@
         surgeList: [],
         newSongesList: [],
         originalList: [],
-        hotList: []
+        hotList: [],
+        surgeInfo: {},
+        newSongesInfo: {},
+        originalInfo: {},
+        hotInfo: {}
       };
     },
     mounted: function() {
       this.getSurgeList();
       this.getNewSongesList();
       this.getOriginalList();
-      this.getOriginalList();
+      this.getHotList();
     },
     methods: {
       getSurgeList() {
         api.getTopListResource(3).then((response) => {
-          this.surgeList = response.data.result;
+          this.surgeInfo = response.data.result;
+          this.surgeList = response.data.result.tracks.slice(0, 3);
         })
           .catch((response) => {
             console.log(response);
@@ -63,7 +60,8 @@
       },
       getNewSongesList() {
         api.getTopListResource(0).then((response) => {
-          this.newSongesList = response.data.result;
+          this.newSongesInfo = response.data.result;
+          this.newSongesList = response.data.result.tracks.slice(0, 3);
         })
           .catch((response) => {
             console.log(response);
@@ -71,7 +69,8 @@
       },
       getOriginalList() {
         api.getTopListResource(2).then((response) => {
-          this.originalList = response.data.result;
+          this.originalInfo = response.data.result;
+          this.originalList = response.data.result.tracks.slice(0, 3);
         })
           .catch((response) => {
             console.log(response);
@@ -79,7 +78,8 @@
       },
       getHotList() {
         api.getTopListResource(1).then((response) => {
-          this.hotList = response.data.result;
+          this.hotInfo = response.data.result;
+          this.hotList = response.data.result.tracks.slice(0, 3);
         })
           .catch((response) => {
             console.log(response);

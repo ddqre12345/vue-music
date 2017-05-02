@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import { playCount } from '../../../common/js/data';
+  import { playCount } from '../../../../common/js/data';
   export default {
     name: 'v-play-list',
     props: {
