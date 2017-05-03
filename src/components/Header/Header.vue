@@ -2,7 +2,7 @@
   <div class="header">
     <div class="name">
       <span @click="showAsideMenu(true)" class="func"><i class="func-icon"></i></span>
-      <router-link to="/find" class="item">
+      <router-link to="/index/find" class="item">
         <span class="music"><i class="music-icon"></i></span>
       </router-link>
       <router-link to="/search" class="item">

@@ -2,13 +2,23 @@
  * 整个app的路由设置
  */
 const router = [{
-  path: '/find',  //  发现页
-  name: 'find',
+  path: '/index',  //  引导页
+  name: 'index',
   component (resolve) {
-    require.ensure(['./views/find/find'], () => {
-      resolve(require('./views/find/find'));
+    require.ensure(['./views/index'], () => {
+      resolve(require('./views/index'));
     });
   },
+  children: [{
+    path: 'find',  //  发现
+    name: 'find',
+    component (resolve) {
+      require.ensure(['./views/find/find'], () => {
+        resolve(require('./views/find/find'));
+      });
+    },
+    meta: { keepAlive: true }
+  }],
   meta: { keepAlive: true }
 }, {
   path: '/search',  //  搜索页

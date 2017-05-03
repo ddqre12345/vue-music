@@ -1,5 +1,5 @@
 <template lang="html">
-    <transition name="fade">
+    <transition name="show">
         <div class="search-page">
             <div class='header-other'>
                 <span @click="goBack" class="back"><i class="back-icon"></i></span>
@@ -130,14 +130,13 @@
         if (from.name === 'find') {
             this.keywords = '';
             this.isShowHot = true;
-            console.log(from.name);
         }
       }
     },
     methods: {
       goBack () {
         this.$router.push({
-          path: '/find'
+          path: '/index/find'
         });
       },
       // 关键词搜索

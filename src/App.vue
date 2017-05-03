@@ -1,14 +1,6 @@
 <template>
   <div>
     <!-- 主界面部分 -->
-    <transition name="show">
-      <div class="index">
-        <!--&lt;!&ndash; 侧边栏 &ndash;&gt;-->
-        <!--<AsideMenu v-show="isShowAsideMenu"></AsideMenu>-->
-        <!-- 头部 -->
-        <VHeader></VHeader>
-      </div>
-    </transition>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
@@ -17,15 +9,10 @@
   </div>
 </template>
 <script>
-  import VHeader from './components/header/header.vue';
-//  import AsideMenu from './components/asideMenu/asideMenu.vue';
   import Player from './components/playerBar/playerBar';
   import { mapGetters } from 'vuex';
-
   export default {
     components: {
-      VHeader,
-//      AsideMenu,
       Player
     },
     computed: {
