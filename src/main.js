@@ -69,8 +69,7 @@ const routerApp = new Vue({
  *
  *
  */
-if (!loadFromlLocal('music', 'index/find', false)) {
+if (!loadFromlLocal('music', 'index', false)) {
   router.push('/index/find');
 }
-
 export default routerApp;

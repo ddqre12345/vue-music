@@ -1,42 +1,38 @@
 <template>
   <transition name="fade">
     <div class="wrap">
-      <mu-linear-progress color="#b72712"  v-if="isloading"/>
-      <div class="playlist" v-else>
+      <div class="playlist">
         <div class="fixed-title">
-          <mu-appbar>
-            <mu-icon-button icon='arrow_back' @click="back" slot="left"/>
-            <div class="playlist-title">
-              <div class="play-name"><span>{{tName}}</span></div>
-            </div>
-          </mu-appbar>
+          <x-header :left-options="{backText: ''}" style="background-color:transparent">{{tName}}</x-header>
         </div>
         <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + ')'}">
-          <div class="playlist-intro">
-            <div class="playlist-image">
-              <img v-lazy="playListImage" lazy="loading" alt="歌单图片">
-            </div>
-            <div class="playlist-intro-other">
-              <p class="playlist-title">{{datas.name}}</p>
-              <div class="playlist-creator">
-                <img v-lazy="creatorImage" lazy="loading">
-                <span class="playlist-nickname">{{creator.nickname}} ></span>
+          <div class="playlist-info-blur">
+              <div class="playlist-intro">
+                <div class="playlist-image">
+                  <img v-lazy="playListImage" lazy="loading" alt="photo">
+                </div>
+                <div class="playlist-intro-other">
+                  <p class="playlist-title">{{datas.name}}</p>
+                  <div class="playlist-creator">
+                    <img v-lazy="creatorImage" lazy="loading">
+                    <span class="playlist-nickname">{{creator.nickname}} ></span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="playlist-status">
-            <div class="playCount">
-              <span class="file"><i class="icon-file"></i></span>
-              <span>{{datas.playCount}}</span>
-            </div>
-            <div class="commentCount">
-              <span class="comment"><i class="icon-comment"></i></span>
-              <span>{{datas.commentCount}}</span>
-            </div>
-            <div class="shareCount">
-              <span class="share"><i class="icon-share"></i></span>
-              <span>{{datas.shareCount}}</span>
-            </div>
+              <div class="playlist-status">
+                <div class="playCount">
+                  <span class="file"><i class="icon-file"></i></span>
+                  <span>{{datas.playCount}}</span>
+                </div>
+                <div class="commentCount">
+                  <span class="comment"><i class="icon-comment"></i></span>
+                  <span>{{datas.commentCount}}</span>
+                </div>
+                <div class="shareCount">
+                  <span class="share"><i class="icon-share"></i></span>
+                  <span>{{datas.shareCount}}</span>
+                </div>
+              </div>
           </div>
         </div>
         <div class="playlist-holder">
@@ -54,16 +50,21 @@
 </template>
 <script>
   import api from '../../../api';
+  import { XHeader } from 'vux';
   import vSingleCard from '../../../components/card/detail/singleCard.vue';
   export default {
+    components: {
+      XHeader,
+      vSingleCard
+    },
     data () {
       return {
-        isloading: true,
         datas: {},
         tName: '歌单',
         creator: {},
         data: [],
         index: '',
+        list: [],
         backgroundColor: ''
       };
     },
@@ -71,9 +72,6 @@
       this.getPlayListDetail();
     },
     methods: {
-      back () {
-        this.$router.go(-1);
-      },
       getPlayListDetail () {
         this.isloading = true;
         api.getPlaylistDetailResource(this.$route.params.id).then((response) => {
@@ -81,7 +79,6 @@
           this.list = response.data.playlist.tracks;
           this.creator = this.nickname = response.data.playlist.creator;
           this.nickname = response.data.playlist.creator.nickname;
-          this.isloading = false;
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });
@@ -103,9 +100,6 @@
           return (v / 10000).toFixed(0) + '万';
         }
       }
-    },
-    components: {
-      vSingleCard
     }
   };
 </script>
