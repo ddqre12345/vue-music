@@ -36,7 +36,11 @@
   </script>
 </head>
 <body>
-<div id="app"></div>
-<!-- built files will be auto injected -->
+<div id="app">
+  <keep-alive>
+    <router-view v-if="$route.meta.keepAlive"></router-view>
+  </keep-alive>
+  <router-view v-if="!$route.meta.keepAlive"></router-view>
+</div>
 </body>
 </html>

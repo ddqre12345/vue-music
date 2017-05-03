@@ -1,48 +1,46 @@
 <template>
   <transition name="fade">
-    <div class="wrap">
-      <div class="playlist">
-        <div class="fixed-title">
-          <x-header :left-options="{backText: ''}" style="background-color:transparent">{{tName}}</x-header>
-        </div>
-        <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + ')'}">
-          <div class="playlist-info-blur">
-              <div class="playlist-intro">
-                <div class="playlist-image">
-                  <img v-lazy="playListImage" lazy="loading" alt="photo">
-                </div>
-                <div class="playlist-intro-other">
-                  <p class="playlist-title">{{datas.name}}</p>
-                  <div class="playlist-creator">
-                    <img v-lazy="creatorImage" lazy="loading">
-                    <span class="playlist-nickname">{{creator.nickname}} ></span>
-                  </div>
+    <div class="playlist">
+      <div class="fixed-title" :style="{'background': 'rgba(183, 39, 18, '+ opacity +')'}" style="transition: opacity .1s;">
+        <x-header :left-options="{backText: ''}" style="background-color:transparent">{{tName}}</x-header>
+      </div>
+      <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + ')'}">
+        <div class="playlist-info-blur">
+            <div class="playlist-intro">
+              <div class="playlist-image">
+                <img v-lazy="playListImage" lazy="loading" alt="photo">
+              </div>
+              <div class="playlist-intro-other">
+                <p class="playlist-title">{{datas.name}}</p>
+                <div class="playlist-creator">
+                  <img v-lazy="creatorImage" lazy="loading">
+                  <span class="playlist-nickname">{{creator.nickname}} ></span>
                 </div>
               </div>
-              <div class="playlist-status">
-                <div class="playCount">
-                  <span class="file"><i class="icon-file"></i></span>
-                  <span>{{datas.playCount}}</span>
-                </div>
-                <div class="commentCount">
-                  <span class="comment"><i class="icon-comment"></i></span>
-                  <span>{{datas.commentCount}}</span>
-                </div>
-                <div class="shareCount">
-                  <span class="share"><i class="icon-share"></i></span>
-                  <span>{{datas.shareCount}}</span>
-                </div>
+            </div>
+            <div class="playlist-status">
+              <div class="playCount">
+                <span class="file"><i class="icon-file"></i></span>
+                <span>{{datas.playCount}}</span>
               </div>
-          </div>
+              <div class="commentCount">
+                <span class="comment"><i class="icon-comment"></i></span>
+                <span>{{datas.commentCount}}</span>
+              </div>
+              <div class="shareCount">
+                <span class="share"><i class="icon-share"></i></span>
+                <span>{{datas.shareCount}}</span>
+              </div>
+            </div>
         </div>
-        <div class="playlist-holder">
-          <div class="play-list">
-            <ul>
-              <li v-for="(data, index) in list">
-                  <v-single-card :data="data" :index="index"></v-single-card>
-              </li>
-            </ul>
-          </div>
+      </div>
+      <div class="playlist-holder">
+        <div class="play-list">
+          <ul>
+            <li v-for="(data, index) in list">
+                <v-single-card :data="data" :index="index"></v-single-card>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -57,6 +55,26 @@
       XHeader,
       vSingleCard
     },
+    // 解除keep-alive的缓存
+    beforeRouteEnter: (to, from, next) => {
+      next(vm => {
+        window.onscroll = function (e) {
+          let opa = window.pageYOffset / 222;
+          if (opa > 1) {
+              vm.tName = vm.datas.name;
+              vm.opacity = 1;
+          } else {
+              vm.tName = '歌单';
+              vm.opacity = 0;
+          }
+        };
+      });
+    },
+    // 路由离开时清除onscroll事件
+    beforeRouteLeave: (to, from, next) => {
+      window.onscroll = null;
+      next();
+    },
     data () {
       return {
         datas: {},
@@ -65,7 +83,8 @@
         data: [],
         index: '',
         list: [],
-        backgroundColor: ''
+        backgroundColor: '',
+        opacity: 0
       };
     },
     mounted: function() {
@@ -77,8 +96,7 @@
         api.getPlaylistDetailResource(this.$route.params.id).then((response) => {
           this.datas = response.data.playlist;
           this.list = response.data.playlist.tracks;
-          this.creator = this.nickname = response.data.playlist.creator;
-          this.nickname = response.data.playlist.creator.nickname;
+          this.creator = response.data.playlist.creator;
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });
@@ -93,13 +111,7 @@
       }
     },
     filters: {
-      formatCount (v) {
-        if (v < 9999) {
-          return v;
-        } else {
-          return (v / 10000).toFixed(0) + '万';
-        }
-      }
+
     }
   };
 </script>

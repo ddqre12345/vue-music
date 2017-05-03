@@ -1,19 +1,12 @@
-.wrap
-  position fixed
-  width 100%
-  height 100%
-  background-color: #fff
-  z-index 20
 .playlist
-  position fixed
   width 100%
   height 100%
   overflow-y auto
-  z-index 100
   .fixed-title
     position fixed
     width 100%
     height 46px
+    z-index 2
   .playlist-info,
   .playlist-info-blur::before
     background url('../../../assets/loading.jpg') 0 / cover fixed;
@@ -28,7 +21,6 @@
     margin -30px
     z-index -1
   .playlist-info
-    padding-top 46px
     .playlist-info-blur
       position relative
       background hsla(0, 0%, 100%, .3)
@@ -36,9 +28,7 @@
       .playlist-intro
         display flex
         flex-direction row
-        padding-left 15px
-        padding-right 15px
-        padding-bottom 12px
+        padding 46px 15px 12px
         .playlist-image
           flex 3
           img
@@ -59,12 +49,12 @@
             flex-direction row
             align-items center
             img
-              width 30px
-              height 30px
+              width 40px
+              height 40px
               border-radius 50%
             span
-              font-size 10px
-              padding-left 3px
+              font-size 12px
+              padding-left 5px
       .playlist-status
         display flex
         flex-direction row

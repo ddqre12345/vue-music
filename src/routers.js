@@ -75,6 +75,6 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/find' //  初始化页面
+  path: '*', redirect: '/index' //  初始化页面
 }];
 export default router;

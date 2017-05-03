@@ -1,5 +1,5 @@
 <template lang="html">
-    <transition name="show">
+    <transition name="fade">
         <div class="search-page">
             <div class='header-other'>
                 <span @click="goBack" class="back"><i class="back-icon"></i></span>

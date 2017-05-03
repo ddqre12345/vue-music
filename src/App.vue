@@ -12,6 +12,7 @@
   import Player from './components/playerBar/playerBar';
   import { mapGetters } from 'vuex';
   export default {
+    name: 'app',
     components: {
       Player
     },
