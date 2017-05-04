@@ -17,7 +17,6 @@
     },
     methods: {
       jumpAlbumDetail(id) {
-        console.log(id);
         this.$router.push({
           path: '/album/' + id
         });

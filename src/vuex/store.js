@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
+    loadingShow: false,
     audio: {
       'id': 0,
       'name': '歌曲名称',
@@ -25,6 +26,7 @@ const store = new Vuex.Store({
     change: false   // 判断是更改的时间还是播放的时间
   },
   getters: {
+    loadingShow: state => state.loadingShow,
     audio: state => state.audio,
     playing: state => state.playing,
     loading: state => state.loading,
@@ -44,6 +46,9 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    update_loading(state, data) {
+      state.loadingShow = data;
+    },
     play (state) {
       state.playing = true;
     },
@@ -142,7 +147,7 @@ const store = new Vuex.Store({
   },
   // 异步的数据操作
   actions: {
-    getSong ({commit, state}, id) {
+    getSong ({commit}, id) {
       commit('openLoading');
       api.getMusicUrlResource(id).then(res => {
         console.log(res);
