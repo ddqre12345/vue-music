@@ -2,7 +2,7 @@ import Vue from 'vue';
 import store from './vuex/store';
 import VueRouter from 'vue-router';
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
-// import App from './App';
+import App from './App';
 import routes from './routers';
 import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 // 注册为全局组件
@@ -59,13 +59,12 @@ const router = new VueRouter({
  */
 const routerApp = new Vue({
   router,
-  store
+  store,
+  render: h => h(App)
 }).$mount('#app');
 
 /**
  * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
- *
- *
  */
 if (!loadFromlLocal('music', 'index', false)) {
   router.push('/index/find');
