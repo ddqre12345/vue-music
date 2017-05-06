@@ -1,7 +1,7 @@
 <template>
   <div class="playlist-find">
-    <img v-lazy="data.coverImgUrl" lazy="loading" />
-    <h1>{{data.name}}</h1>
+    <img v-lazy="data.coverImgUrl + '?param=500y500'" lazy="loading" />
+    <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
     <p>by {{data.creator.nickname}}</p>
   </div>
 </template>

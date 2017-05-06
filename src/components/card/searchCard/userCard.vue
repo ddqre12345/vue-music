@@ -1,13 +1,13 @@
 <template>
     <div class="user-card" @click="jumpUserDetail(data.userId)">
-        <img v-lazy="avatarImage" lazy="loading" class="avatarImage"/>
+        <img v-lazy="avatarImage + '?param=200y200'" lazy="loading" class="avatarImage"/>
         <div class="avatar-info">
             <p class="avatar-name">
                 {{data.nickname}}
                 <span class="gender-man" v-if="data.gender"><i class="man-icon"></i></span>
                 <span class="gender-female" v-else><i class="female-icon"></i></span>
             </p>
-            <p class="avatar-intro">{{data.signature}}</p>
+            <p class="avatar-intro" style="-webkit-box-orient: vertical;">{{data.signature}}</p>
         </div>
     </div>
 </template>

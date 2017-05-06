@@ -14,10 +14,10 @@
         align-items center
         img.coverImage
           width 0
-          flex 2
+          flex 1 0 15%
           padding 5px 0
         .playList-info
-          flex 9
+          flex 1 0 85%
           margin-left 5px
           border-bottom 1px solid #e1e5e4
           align-items flex-start
@@ -25,6 +25,11 @@
           justify-content center
           display flex
           flex-direction column
+          .playList-name
+            overflow hidden
+            text-overflow ellipsis
+            display -webkit-box
+            -webkit-line-clamp 1
           .playList-info-other
             display flex
             justify-content flex-start

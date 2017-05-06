@@ -40,8 +40,14 @@
       },
       getTopPlaylistResource() {
         this.keys = this.index ? 'hot' : 'new';
+        this.playlists = [];
+        this.$store.commit('update_loading', true);
         api.getTopPlaylistResource(this.keys, 20, 0).then((response) => {
           this.playlists = response.data.playlists;
+          // $nextTick() 在dom 重新渲染完后执行
+          this.$nextTick(() => {
+            this.$store.commit('update_loading', false);
+          });
         })
           .catch((response) => {
             console.log(response);

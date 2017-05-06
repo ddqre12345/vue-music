@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
-        <div class="wrap">
-            <x-header :left-options="{backText: ''}" style="background-color:#b72712">{{singerInfo.name}}</x-header>
+        <div class="singer-detail">
             <div class="singer-info" :style="{'background-image': 'url(' + singerImage + ')'}">
+                <x-header :left-options="{backText: ''}" style="background-color: inherit">{{singerInfo.name}}</x-header>
                 <div class="singer-page">个人主页</div>
             </div>
             <div class="tab-list">
@@ -94,7 +94,7 @@
     },
     computed: {
       singerImage() {
-        return '' || this.singerInfo.picUrl;
+        return '' || (this.singerInfo.picUrl + '?param=500y500');
       }
     },
     components: {

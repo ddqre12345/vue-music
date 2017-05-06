@@ -1,8 +1,8 @@
 <template>
-  <div class="album-card" @click="jumpAlbumDetail(data.id)">
-    <img v-lazy="albumImage" lazy="loading" class="album-image"/>
+  <div class="album-card-detail" @click="jumpAlbumDetail(data.id)">
+    <img v-lazy="albumImage + '?param=200y200'" lazy="loading" class="album-image"/>
     <div class="album-info">
-      <p class="album-name">{{data.name}}<span class="trans">{{albumTrans}}</span></p>
+      <p class="album-name" style="-webkit-box-orient: vertical;">{{data.name}}<span class="trans">{{albumTrans}}</span></p>
       <p class="publishTime">{{data.publishTime | formatDate}} <span class="songs">歌曲{{data.size}}</span></p>
     </div>
   </div>

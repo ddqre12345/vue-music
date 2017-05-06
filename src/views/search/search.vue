@@ -10,9 +10,9 @@
             </div>
             <div class="hot" v-if="isShowHot">
                 <p>热门搜索</p>
-                <div class="keywords">
-                  <div v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></div>
-                </div>
+                <ul class="keywords">
+                  <li v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></li>
+                </ul>
             </div>
             <div v-else class="search-list">
                 <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712'

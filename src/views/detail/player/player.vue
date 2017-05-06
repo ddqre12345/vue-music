@@ -15,9 +15,8 @@
               <div class="cd-holder" :class="{'cd-play': playing}">
                 <div class="stick"></div>
                 <div class="cd-wrapper" :class="{'cd-rotate': playing}">
-                  <div class="cd-mask">
-                  </div>
-                  <img class="cd-img" :src="audio.albumPic + '?param=500y500'"/>
+                  <div class="cd-mask"></div>
+                  <img v-lazy="audio.albumPic + '?param=500y500'" lazy="loading" class="cd-img"/>
                 </div>
               </div>
             </mu-flexbox-item>

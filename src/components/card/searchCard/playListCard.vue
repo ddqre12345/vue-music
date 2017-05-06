@@ -1,8 +1,8 @@
 <template>
     <div class="playlist-card" @click="jumpPlayListsDetail(data.id)">
-        <img v-lazy="coverImage" lazy="loading" class="coverImage"/>
+        <img v-lazy="coverImage + '?param=200y200'" lazy="loading" class="coverImage"/>
         <div class="playList-info">
-            <p class="playList-name">{{data.name}}</p>
+            <p class="playList-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
             <p class="playList-info-other">
                 <span class="playList-count">{{data.trackCount}}首</span>
                 <span class="playList-creator">by {{data.creator.nickname}}</span>

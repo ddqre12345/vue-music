@@ -1,7 +1,7 @@
 <template>
   <div class="playlist-card-find">
-    <img v-lazy="data.picUrl" lazy="loading" />
-    <h1>{{data.name}}</h1>
+    <img v-lazy="data.picUrl+ '?param=200y200'" lazy="loading" />
+    <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
   </div>
 </template>
 

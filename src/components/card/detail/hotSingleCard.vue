@@ -2,7 +2,7 @@
   <div class="hot-single-card" @click="playAudio(data)">
     <div class="index">{{order + 1}}</div>
     <div class="single-info">
-      <p class="single-name">{{data.name}}</p>
+      <p class="single-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
       <p class="single-album">{{data.al.name}}</p>
     </div>
   </div>

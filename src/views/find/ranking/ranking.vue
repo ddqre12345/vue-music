@@ -3,25 +3,25 @@
         <div class="surge">
             <img v-lazy="surgeInfo.coverImgUrl" lazy="loading" />
             <ul>
-              <li v-for="(data, index) in surgeList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
+              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in surgeList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="newSonges">
-            <img v-lazy="newSongesInfo.coverImgUrl" lazy="loading" />
+            <img v-lazy="newSongesInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
             <ul>
-              <li v-for="(data, index) in newSongesList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
+              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in newSongesList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="original">
-            <img v-lazy="originalInfo.coverImgUrl" lazy="loading" />
+            <img v-lazy="originalInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
             <ul>
-              <li v-for="(data, index) in originalList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
+              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in originalList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
         <div class="hot">
-            <img v-lazy="hotInfo.coverImgUrl" lazy="loading" />
+            <img v-lazy="hotInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
             <ul>
-              <li v-for="(data, index) in hotList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
+              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in hotList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
             </ul>
         </div>
     </div>

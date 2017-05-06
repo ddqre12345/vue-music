@@ -1,8 +1,8 @@
 <template>
   <div class="singer-card" @click="jumpSingerDetail(data.id)">
-    <img v-lazy="avatarImage" lazy="loading" class="avatar"/>
+    <img v-lazy="avatarImage + '?param=200y200'" lazy="loading" class="avatar"/>
     <p class="singer-name">
-      <span class="name">{{data.name}}</span>
+      <span class="name" style="-webkit-box-orient: vertical;">{{data.name}}</span>
       <span class="trans" v-show="data.trans">({{data.trans}})</span>
     </p>
   </div>

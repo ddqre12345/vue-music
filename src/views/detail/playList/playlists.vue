@@ -92,11 +92,15 @@
     },
     methods: {
       getPlayListDetail () {
-        this.isloading = true;
+        this.$store.commit('update_loading', true);
         api.getPlaylistDetailResource(this.$route.params.id).then((response) => {
           this.datas = response.data.playlist;
           this.list = response.data.playlist.tracks;
           this.creator = response.data.playlist.creator;
+          // $nextTick() 在dom 重新渲染完后执行
+          this.$nextTick(() => {
+            this.$store.commit('update_loading', false);
+          });
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });

@@ -8,22 +8,29 @@
     li
       padding-left 5px
       .album-card
-        height: 67px;
         display flex
         flex-direction row
         justify-content flex-start
-        align-items stretch
+        align-items center
         img.album-image
           width 0
-          flex 2
+          flex 1 0 15%
           padding 5px 0
         .album-info
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          flex 9
+          align-self stretch
+          display flex
+          flex-direction column
+          justify-content center
+          flex 1 0 85%
           margin-left 5px
+          padding-right 5px
           border-bottom 1px solid #e1e5e4
+          .album-name
+            font-size 14px
+            overflow hidden
+            text-overflow ellipsis
+            display -webkit-box
+            -webkit-line-clamp 1
           .album-author
             font-size 12px
             color #6c6e6d
