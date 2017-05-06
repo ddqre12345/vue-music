@@ -1,12 +1,12 @@
 <template>
   <transition name="fade">
-    <div class="wrap">
-      <x-header :left-options="{backText: ''}" style="background-color:#b72712">{{userInfo.nickname}}</x-header>
+    <div class="user-detail">
       <div class="user-info" :style="{'background-image': 'url(' + backgroundImage + ')'}">
-        <img v-lazy="avatarImage" lazy="loading">
+        <x-header :left-options="{backText: ''}" style="background-color:inherit; width: 100%;">{{userInfo.nickname}}</x-header>
+        <img v-lazy="avatarImage + '?param=200y200'" lazy="loading">
         <p class="user-name">
           {{userInfo.nickname}}
-          <span class="gender-man" v-if="userInfo.gender"><i class="man-icon"></i></span>
+          <span class="gender-man" v-if="userInfo.gender === 1"><i class="man-icon"></i></span>
           <span class="gender-female" v-else><i class="female-icon"></i></span>
         </p>
       </div>
@@ -69,10 +69,15 @@
         this.$router.go(-1);
       },
       getUserInfo () {
+        this.$store.commit('update_loading', true);
         api.getUserPlaylistResource(this.$route.params.id)
           .then((response) => {
             this.playlist = response.data.playlist;
             this.userInfo = response.data.playlist[0].creator;
+            // $nextTick() 在dom 重新渲染完后执行
+            this.$nextTick(() => {
+              this.$store.commit('update_loading', false);
+            });
           })
           .catch((response) => {
             console.log(response);
@@ -81,7 +86,7 @@
     },
     computed: {
       backgroundImage() {
-        return '' || this.userInfo.backgroundUrl;
+        return '' || (this.userInfo.backgroundUrl + '?param=500y500');
       },
       avatarImage() {
         return '' || this.userInfo.avatarUrl;

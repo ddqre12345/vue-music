@@ -3,7 +3,7 @@
         <div class="singer-detail">
             <div class="singer-info" :style="{'background-image': 'url(' + singerImage + ')'}">
                 <x-header :left-options="{backText: ''}" style="background-color: inherit">{{singerInfo.name}}</x-header>
-                <div class="singer-page">个人主页</div>
+                <div class="singer-page" v-show="userId" @click="jumpUserDetail(userId)">个人主页</div>
             </div>
             <div class="tab-list">
                 <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712' v-model="index">
@@ -54,38 +54,58 @@
         index: 0,
         backgroundColor: '',
         singerInfo: {},
+        userId: '',
         hotSongs: {},
         hotAlbums: {}
       };
     },
     mounted: function() {
-      // 显示
-      this.$vux.loading.show({
-        text: 'Loading'
-      });
+      this.getSingerDetail();
       this.getSingerSingle();
       this.getArtistAlbum();
     },
     methods: {
+      jumpUserDetail (id) {
+        this.$router.push({
+          path: '/user/' + id
+        });
+      },
       back () {
         this.$router.go(-1);
       },
-      getSingerSingle () {
-        api.getArtistsResource(this.$route.params.id)
+      // 获取歌手信息
+      getSingerDetail () {
+        this.$store.commit('update_loading', true);
+        api.getArtistDescResource(this.$route.params.id)
           .then((response) => {
-            this.hotSongs = response.data.hotSongs;
-            // 隐藏
-            this.$vux.loading.hide();
+            if (response.data.topicData) {
+              this.userId = response.data.topicData[0].creator.userId;
+            }
+            // $nextTick() 在dom 重新渲染完后执行
+            this.$nextTick(() => {
+              this.$store.commit('update_loading', false);
+            });
           })
           .catch((response) => {
             console.log(response);
           });
       },
+      // 获取歌手单曲
+      getSingerSingle () {
+        api.getArtistsResource(this.$route.params.id)
+          .then((response) => {
+            this.singerInfo = response.data.artist;
+            this.hotSongs = response.data.hotSongs;
+          })
+          .catch((response) => {
+            console.log(response);
+          });
+      },
+      // 获取歌手专辑
       getArtistAlbum () {
         api.getArtistAlbumResource(this.$route.params.id, 30)
           .then((response) => {
             this.hotAlbums = response.data.hotAlbums;
-            this.singerInfo = response.data.artist;
           })
           .catch((response) => {
             console.log(response);

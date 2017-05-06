@@ -10,6 +10,7 @@ import {
   AlbumResource,
   ArtistsResource,
   ArtistAlbumResource,
+  ArtistDescResource,
   RecommendResource,
   RecommendSongsResource,
   PersonalFmResource,
@@ -124,6 +125,15 @@ export default {
       params: {
         id: id,
         limit: 30 || size
+      }
+    });
+  },
+
+  // 获取歌手信息， id为歌手id
+  getArtistDescResource (id) {
+    return axios.get(ArtistDescResource, {
+      params: {
+        id: id
       }
     });
   },

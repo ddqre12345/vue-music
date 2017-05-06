@@ -10,13 +10,13 @@
 <script>
   import { formatDate } from '../../../common/js/date';
   export default {
-    name: 'v-album-card',
+    name: 'v-album-card-detail',
     props: {
       data: {
         type: Object
       }
     },
-    method: {
+    methods: {
       jumpAlbumDetail(id) {
         this.$router.push({
           path: '/album/' + id

@@ -7,15 +7,11 @@
       <div class="album-info" :style="{'background-image': 'url(' + albumImage + ')'}">
         <div class="album-info-blur">
           <div class="album-intro">
-            <div class="album-image">
-              <img v-lazy="albumImage" lazy="loading" alt="专辑图片">
-            </div>
+            <img v-lazy="albumImage + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image">
             <div class="album-intro-other">
-              <p class="album-title">{{album.name}}</p>
-              <div class="album-creator">
-                <span class="album-nickname">歌手：{{singerName}} ></span>
-              </div>
-              <p class="publishTime">发行时间：{{album.publishTime}}</p>
+              <p class="album-title" style="-webkit-box-orient: vertical;">{{album.name}}<span v-show="albumTrans">{{albumTrans}}</span></p>
+              <p class="album-nickname" @click="jumpSingerDetail(singerId)">歌手：{{singerName}} ></p>
+              <p class="publishTime">发行时间：{{album.publishTime | formatDate}}</p>
             </div>
           </div>
           <div class="album-status">
@@ -34,20 +30,19 @@
           </div>
         </div>
       </div>
-      <div class="album-holder">
-        <div class="play-list">
-          <ul>
-            <li v-for="(data, order) in songs">
-              <v-hot-single-card :data="data" :order="order"></v-hot-single-card>
-            </li>
-          </ul>
-        </div>
+      <div class="album-list">
+        <ul>
+          <li v-for="(data, order) in songs">
+            <v-hot-single-card :data="data" :order="order"></v-hot-single-card>
+          </li>
+        </ul>
       </div>
     </div>
   </transition>
 </template>
 <script>
   import api from '../../../api';
+  import { formatDate } from '../../../common/js/date';
   import { XHeader } from 'vux';
   import vHotSingleCard from '../../../components/card/detail/hotSingleCard';
   export default {
@@ -55,6 +50,7 @@
       return {
         album: [],
         albumInfo: {},
+        singerId: '',
         singerName: '',
         songs: [],
         tName: '专辑',
@@ -89,11 +85,17 @@
       back () {
         this.$router.go(-1);
       },
+      jumpSingerDetail(id) {
+        this.$router.push({
+          path: '/singer/' + id
+        });
+      },
       getlAlbumDetail () {
         this.$store.commit('update_loading', true);
         api.getAlbumResource(this.$route.params.id).then((response) => {
           this.album = response.data.album;
           this.albumInfo = response.data.album.info;
+          this.singerId = response.data.album.artist.id;
           this.singerName = response.data.album.artist.name;
           this.songs = response.data.songs;
           // $nextTick() 在dom 重新渲染完后执行
@@ -107,10 +109,21 @@
     },
     computed: {
       albumImage () {
-        return '' || this.album.picUrl;
+        return '' || (this.album.picUrl + '?param=500y500');
+      },
+      albumTrans () {
+        if (this.album.alias && this.album.alias[0]) {
+          return '(' + this.album.alias[0] + ')';
+        } else {
+          return '';
+        }
       }
     },
     filters: {
+      formatDate(time) {
+        let date = new Date(time);
+        return formatDate(date, 'yyyy.MM.dd');
+      }
     },
     components: {
       XHeader,

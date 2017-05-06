@@ -4,17 +4,16 @@
       <div class="fixed-title" :style="{'background': 'rgba(183, 39, 18, '+ opacity +')'}" style="transition: opacity .1s;">
         <x-header :left-options="{backText: ''}" style="background-color:transparent">{{tName}}</x-header>
       </div>
-      <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + ')'}">
+      <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + '?param=500y500'+ ')'}">
         <div class="playlist-info-blur">
             <div class="playlist-intro">
-              <div class="playlist-image">
-                <img v-lazy="playListImage" lazy="loading" alt="photo">
-              </div>
+              <img v-lazy="playListImage"  class="playlist-image" lazy="loading" alt="photo">
               <div class="playlist-intro-other">
-                <p class="playlist-title">{{datas.name}}</p>
-                <div class="playlist-creator">
-                  <img v-lazy="creatorImage" lazy="loading">
-                  <span class="playlist-nickname">{{creator.nickname}} ></span>
+                <p class="playlist-title" style="-webkit-box-orient: vertical;">{{datas.name}}</p>
+                <div class="playlist-creator"  @click="jumpUserDetail(creator.userId)">
+                  <img v-lazy="creatorImage + '?param=100y100'" lazy="loading">
+                  <span class="playlist-nickname" style="-webkit-box-orient: vertical;">{{creator.nickname}}</span>
+                  <span class="more"> > </span>
                 </div>
               </div>
             </div>
@@ -34,14 +33,12 @@
             </div>
         </div>
       </div>
-      <div class="playlist-holder">
-        <div class="play-list">
+      <div class="play-list">
           <ul>
             <li v-for="(data, index) in list">
                 <v-single-card :data="data" :index="index"></v-single-card>
             </li>
           </ul>
-        </div>
       </div>
     </div>
   </transition>
@@ -91,6 +88,11 @@
       this.getPlayListDetail();
     },
     methods: {
+      jumpUserDetail(id) {
+        this.$router.push({
+          path: '/user/' + id
+        });
+      },
       getPlayListDetail () {
         this.$store.commit('update_loading', true);
         api.getPlaylistDetailResource(this.$route.params.id).then((response) => {
@@ -108,7 +110,7 @@
     },
     computed: {
       playListImage() {
-        return '' || this.datas.picUrl;
+        return '' || (this.datas.picUrl);
       },
       creatorImage() {
         return '' || this.creator.avatarUrl;

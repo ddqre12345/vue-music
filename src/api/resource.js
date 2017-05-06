@@ -11,6 +11,7 @@ const apiMusic = {
   album: '/album', //  获取专辑内容
   artists: '/artists',  // 获取歌手单曲列表
   artistAlbum: '/artist/album',  // 获取歌手专辑列表
+  artistDesc: '/artist/desc', //  获取歌手信息
   recommendResource: '/recommend/resource', // 获取每日推荐歌单（用户级）
   recommendSongs: '/recommend/songs',  // 获取每日推荐歌曲（用户级）
   personalFm: '/personal_fm', // 私人FM(用户级)
@@ -37,6 +38,7 @@ export const CommentResource = API_ROOT.concat(apiMusic.comment);
 export const AlbumResource = API_ROOT.concat(apiMusic.album);
 export const ArtistsResource = API_ROOT.concat(apiMusic.artists);
 export const ArtistAlbumResource = API_ROOT.concat(apiMusic.artistAlbum);
+export const ArtistDescResource = API_ROOT.concat(apiMusic.artistDesc);
 export const RecommendResource = API_ROOT.concat(apiMusic.recommendResource);
 export const RecommendSongsResource = API_ROOT.concat(apiMusic.recommendSongs);
 export const PersonalFmResource = API_ROOT.concat(apiMusic.personalFm);

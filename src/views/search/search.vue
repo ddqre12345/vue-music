@@ -159,9 +159,14 @@
       },
       //  获取搜索单曲
       getSingleResource() {
+        this.$store.commit('update_loading', true);
         api.getSearchResource(this.$route.query.keywords, 1, 30, 0)
           .then((response) => {
             this.songs = response.data.result.songs;
+            // $nextTick() 在dom 重新渲染完后执行
+            this.$nextTick(() => {
+              this.$store.commit('update_loading', false);
+            });
           })
           .catch((response) => {
             console.log(response);

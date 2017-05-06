@@ -2,8 +2,8 @@
     <div class="common-single-card" @click="playAudio(data)">
         <div class="index">{{index + 1}}</div>
         <div class="single-info">
-            <p class="single-name">{{data.name}}</p>
-            <p class="single-album">{{data.al.name}}</p>
+            <p class="single-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
+            <p class="single-album" style="-webkit-box-orient: vertical;">{{data.al.name}}</p>
         </div>
     </div>
 </template>
@@ -25,8 +25,8 @@
         this.$store.commit('pause');
         let audio = {};
         audio.id = song.id;  // id
-        audio.singer = song.album.name; // 演唱者
-        audio.albumPic = song.album.picUrl;
+        audio.singer = song.al.name; // 演唱者
+        audio.albumPic = song.al.picUrl;
         audio.name = song.name;
         // 通过Vuex改变状态
         this.$store.commit('addToList', audio);

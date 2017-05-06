@@ -1,9 +1,7 @@
-.wrap
-  position fixed
-  width 100%
-  height 100%
-  background-color: #fff
-  z-index 20
+.user-detail
+  .vux-header .vux-header-left .left-arrow:before
+    border 1px solid #fff
+    border-width 1px 0 0 1px
   .user-info
     position: relative;
     width: 100%;
@@ -13,14 +11,14 @@
     display flex
     flex-direction column
     align-items center
-    justify-content center
     > img
       width 60px
       border-radius 50%
     .user-name
       display flex
-      color: #fff
+      color: #6c6e6d
       font-size 14px
+      margin-top 10px
       span.gender-female
         i
           background url(../../../common/images/female.svg) no-repeat
@@ -38,7 +36,7 @@
     width 100%
     height 100%
     z-index 100
-    padding-bottom 270px
+    padding-bottom 224px
 // 过渡效果
 .fade-enter-active, .fade-leave-active {
   transition: all .4s;
