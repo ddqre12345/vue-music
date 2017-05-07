@@ -5,10 +5,10 @@
       <router-link to="/index/find" class="item">
         <span class="music"><i class="music-icon"></i></span>
       </router-link>
-      
-      <router-link to="/search" class="item">
-        <span class="personal"><i class="personal-icon"></i></span>
-      </router-link>
+
+      <!--<router-link to="/search" class="item">-->
+        <!--<span class="personal"><i class="personal-icon"></i></span>-->
+      <!--</router-link>-->
       <span class="search"><i @click="toSearch" class="search-icon"></i></span>
     </div>
   </div>

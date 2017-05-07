@@ -2,23 +2,23 @@
   <div class="foot">
     <div class="player-mini">
       <div class="mini-content">
-       <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay"/>
-        <div class="cover" @click="showDetail">
-          <mu-circular-progress v-show="loading" :size="30"/>
-          <img class="xmplogo" :src="audio.albumPic + '?param=100y100'" v-show="!loading" :alt="audio.name">
+        <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay"/>
+        <div class="music-logo">
+          <img v-lazy="audio.albumPic + '?param=100y100'" lazy="loading" v-show="!loading" :alt="audio.name" @click="showDetail">
         </div>
         <div class="info">
-          <div class="name xmpname">{{audio.name}}</div>
-          <div class="artist xmpartist">{{audio.singer}}</div>
+          <p class="name" style="-webkit-box-orient: vertical;">{{audio.name}}</p>
+          <p class="artist" style="-webkit-box-orient: vertical;">{{audio.singer}}</p>
         </div>
-        <div class="control">
-          <mu-icon-button class="mini-btn player-list" @click="showList"/>
-          <mu-icon-button class="mini-btn player" :class="{pause: playing}" @click="toggleStatus"/>
-          <mu-icon-button class="mini-btn next" @click="next"/>
+        <div class="mini-option">
+          <div  class="mini-btn player-list" :class="{pause: playing}" @click="showList"></div>
+          <div style='width:40px;height:40px;'>
+            <x-circle :percent="prCurrentTime" :stroke-width="5" stroke-color="#ce332e" trail-color="#d1d1d1">
+              <div class="mini-btn player" :class="{pause: playing}" @click="toggleStatus"></div>
+            </x-circle>
+          </div>
+          <div  class="mini-btn next" :class="{pause: playing}" @click="next"></div>
         </div>
-        <div class="pro">
-          <div class="pro-load proload" :style="{'-webkit-transform':'translateX(' + prBufferedTime +'%)' }"></div>
-          <div class="pro-play proplay" :style="{'-webkit-transform':'translateX(' + prCurrentTime +'%)' }"></div> </div>
       </div>
     </div>
     <toast ref="toast"></toast>
@@ -27,6 +27,7 @@
 </template>
 <script>
 import { mapMutations, mapGetters } from 'vuex';
+import { XCircle } from 'vux';
 import Toast from '../toast';
 import BottomSheet from '../list';
 export default {
@@ -38,7 +39,8 @@ export default {
   },
   components: {
     Toast,
-    BottomSheet
+    BottomSheet,
+    XCircle
   },
   methods: {
     showDetail () {

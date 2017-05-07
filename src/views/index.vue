@@ -2,8 +2,8 @@
     <!-- 主界面部分 -->
     <transition name="fade">
         <div class="index">
-            <!--&lt;!&ndash; 侧边栏 &ndash;&gt;-->
-            <!--<AsideMenu v-show="isShowAsideMenu"></AsideMenu>-->
+            <!-- 侧边栏 -->
+            <AsideMenu v-show="isShowAsideMenu"></AsideMenu>
             <!-- 头部 -->
             <VHeader></VHeader>
             <router-view></router-view>
@@ -12,14 +12,17 @@
 </template>
 <script>
   import VHeader from '../components/header/header.vue';
-  //  import AsideMenu from './components/asideMenu/asideMenu.vue';
+  import AsideMenu from '../components/asideMenu/asideMenu.vue';
 
   export default {
     components: {
-      VHeader
-//      AsideMenu,
+      VHeader,
+      AsideMenu
     },
     computed: {
+      isShowAsideMenu() {
+        return this.$store.state.isShowAsideMenu;
+      }
     }
   };
 </script>

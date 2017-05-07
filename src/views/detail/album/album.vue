@@ -61,7 +61,7 @@
     // 解除keep-alive的缓存
     beforeRouteEnter: (to, from, next) => {
       next(vm => {
-        window.onscroll = function (e) {
+        window.onscroll = () => {
           let opa = window.pageYOffset / 222;
           if (opa > 1) {
             vm.tName = vm.album.name;

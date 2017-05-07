@@ -6,94 +6,52 @@ primaryColor = #ce3d3e;           // 主色
   bottom 0
   z-index 998
   .player-mini
-    width 100%
-    height 46px
-    position relative
     background-color: rgba(255,255,255,.9)
     color: #333
     .mini-content
-      .cover
-        width 40px
-        height 40px
-        overflow hidden
-        float left
-        padding-left 4px
-        padding-top 4px
-        background url('../../../static/player-bar.png') no-repeat
-        background-size cover
+      display flex
+      flex-direction row
+      align-items center
+      padding 3px
+      .music-logo
+        width: 56px
+        height 56px
         img
           width 100%
-          height 100%
       .info
-        overflow hidden
-        position relative
-        width 140px
-        float left
-        padding-top 6px
-        padding-left 6px
+        flex 1 0 50%
         .name
           font-size 14px
-          line-height 20px
+          overflow hidden
+          text-overflow ellipsis
+          display -webkit-box
+          -webkit-line-clamp 1
+          color #2a2a2a
         .artist
           overflow hidden
-          display block
-          white-space nowrap
           text-overflow ellipsis
-      .control
-        float right
+          display -webkit-box
+          -webkit-line-clamp 1
+          color #858585
+          font-size 12px
+      .mini-option
+        flex 1 0 35%
+        width 0
+        display flex
+        flex-direction row
         .mini-btn
           width 40px
           height 40px
-          .info
-            .control
-              position absolute
-              height 100%
-              top 50%
-              margin-top -20px
-              right 0
-        .player-list {
-          background url("../../../static/playbar_btn_playlist.png") no-repeat!important
-          background-size cover!important
-        }
-        .player {
-          background url("../../../static/playbar_btn_play.png") no-repeat!important
-          background-size cover!important
-        }
-        .pause {
-          background url("../../../static/playbar_btn_pause.png") no-repeat!important
-          background-size cover!important
-        }
-        .next {
-          background url("../../../static/playbar_btn_next.png") no-repeat!important
-          background-size cover!important
-        }
-      .pro
-        width 100%
-        height 2px
-        position absolute
-        left 0
-        bottom 0
-        background-color rgba(255,255,255,.5)
-        .pro-load,
-        .pro-play
-          width 100%
-          height 2px
-          position absolute
-          left -100%
-        .pro-load
-          background-color rgba(220, 217, 217, 0.4)
-        .pro-play
-          background-color primaryColor
-
-.songlist
-  height 260px
-  overflow auto
-.songlist-title
-  position fixed
-  background #fff
-  width 100%
-  height 40px
-  line-height 40px
-  border-bottom 1px solid rgba(0,0,0,.12)
-  text-align center
+        .player
+          background url("../../../static/playbar_btn_play.svg") no-repeat center
+          background-size 60%
+        .pause
+          background url("../../../static/playbar_btn_pause.svg") no-repeat center
+          background-size 60%
+        .player-list
+          background url("../../../static/playbar_btn_playlist.png") no-repeat left center
+          background-size 100%
+        .next
+          background url("../../../static/playbar_btn_next.png") no-repeat left center
+          background-size 100%
 

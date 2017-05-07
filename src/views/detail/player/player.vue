@@ -1,53 +1,52 @@
 <template>
-    <div class="content">
+    <div class="single-player">
       <div class="player-wrapper">
-        <div class="player-inner">
-          <mu-appbar>
-            <mu-icon-button icon='arrow_back' @click="back"  slot="left"/>
-            <div class="play-title">
-              <div class="play-name"><span>{{audio.name}}</span></div>
-              <div class="play-singer"> {{audio.singer}} </div>
+        <div class='header-other'>
+          <span @click="goBack" class="back"><i class="back-icon"></i></span>
+          <div class="play-title">
+            <p class="play-name"><span>{{audio.name}}</span></p>
+            <p class="play-singer"> {{audio.singer}}</p>
+          </div>
+        </div>
+        <div class="bar-line"></div>
+        <div class="play-content">
+          <div class="play-effect">
+            <div class="cd-holder" :class="{'cd-play': playing}" :style="{'opacity': showLyric ? 0 : 1}" @click="toggleShow">
+              <div class="stick"></div>
+              <div class="cd-wrapper" :class="{'cd-rotate': playing}">
+                <div class="cd-mask"></div>
+                <img v-lazy="audio.albumPic + '?param=300y300'" lazy="loading" class="cd-img"/>
+              </div>
             </div>
-          </mu-appbar>
-          <div class="bar-line"></div>
-          <mu-flexbox orient="vertical" class="main">
-            <mu-flexbox-item order="0">
-              <div class="cd-holder" :class="{'cd-play': playing}">
-                <div class="stick"></div>
-                <div class="cd-wrapper" :class="{'cd-rotate': playing}">
-                  <div class="cd-mask"></div>
-                  <img v-lazy="audio.albumPic + '?param=500y500'" lazy="loading" class="cd-img"/>
-                </div>
+            <div class="lyric-holder" @click="toggleShow" :style="{'display': showLyric ? 'block' : 'none'}">
+              <div class="lrc-inner" style="transition: -webkit-transform 0.3s ease-out; transform-origin: 0 0 0;" :style="{'transform':' translate3d(0px,'+ lrcOffset +'px, 0px)'}">
+                <p v-for="(item, index) in afterLrc" :id="'line-'+index" :key="index">{{item.txt}}</p>
+                <p v-show="afterLrc.length === 0">没有找到歌词</p>
               </div>
-            </mu-flexbox-item>
-            <mu-flexbox-item order="2" class="bottom-wrapper">
-              <div class="lyric-holder">
-                <div class="lrc-inner" style="transition: -webkit-transform 0.3s ease-out; transform-origin: 0px 0px 0px;" :style="{'transform':' translate3d(0px,'+ lrcOffset +'px, 0px)'}">
-                  <p v-for="(item, index) in afterLrc" :id="'line-'+index" :key="index">{{item.txt}}</p>
-                </div>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="process-bar">
+              <div class="pro">
+                  <div class="pro-wrap">
+                    <mu-slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
+                  </div>
+                  <div class="time">
+                    <time id="cur">{{currentTime | time}}</time>
+                    <time id="total">{{durationTime | time}}</time>
+                  </div>
               </div>
-              <div class="process-bar">
-                <div class="pro">
-                    <div class="pro-wrap">
-                      <mu-slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
-                    </div>
-                    <div class="time">
-                      <time id="cur">{{currentTime | time}}</time>
-                      <time id="total">{{durationTime | time}}</time>
-                    </div>
-                </div>
-              </div>
-              <div class="control-bar ">
-                <mu-icon-button class="btn d-mode"/>
-                <mu-icon-button class="btn d-prev" @click="playPrev"/>
-                <mu-icon-button class="btn d-play btn-big" @click="togglePlay" :class="{'d-pause': playing}"/>
-                <mu-icon-button class="btn d-next" @click="playNext"/>
-                <mu-icon-button class="btn d-list" @click="showList"/>
-              </div>
-            </mu-flexbox-item>
-          </mu-flexbox>
+            </div>
+            <div class="control-bar">
+              <div class="btn d-mode"></div>
+              <div class="btn d-prev" @click="playPrev"></div>
+              <div class="btn d-play btn-big" @click="togglePlay" :class="{'d-pause': playing}"></div>
+              <div class="btn d-next" @click="playNext"></div>
+              <div class="btn d-list" @click="showList"></div>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
       <div class="mask">
         <div class="album-cover" :style="{'background-image':'url(' + audio.albumPic + '?param=500y500' + ')'}"></div>
         <div class="cover-mask" style="opacity:0.6;"></div>
@@ -66,28 +65,21 @@ export default {
     return {
       lyric: '',
       afterLrc: [],
-      lrcIndex: 0
+      lrcIndex: 0,
+      showLyric: false
     };
   },
   components: {
     Toast,
     BottomSheet
   },
-  beforeRouteEnter: (to, from, next) => {
-    // 这里判断是否重复打开的同一个歌曲页面
-    next(vm => {
-      if (parseInt(to.params.id) !== parseInt(vm.audio.id)) {
-        console.log('vm：id' + vm.audio.id);
-        vm.loadLrc(vm.audio.id);
-      }
-    });
-  },
-  watch: {
-    'audio' (val) {
-      this.loadLrc(val.id);
-    }
+  mounted () {
+    this.loadLrc(this.$route.params.id);
   },
   methods: {
+    toggleShow () {
+      this.showLyric = !this.showLyric;
+    },
     togglePlay () {
       if (this.playing) {
         this.$store.commit('pause');
@@ -97,7 +89,7 @@ export default {
         document.getElementById('audioPlay').play();
       }
     },
-    back () {
+    goBack () {
       this.$router.go(-1);
       this.$store.commit('toggleDetail');
     },
@@ -114,15 +106,12 @@ export default {
             return;
         }
         api.getLyricResource(id).then((res) => {
-            if (res.data.nolyric) {
-                this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
-            } else {
-                this.lyric = res.data.lrc.lyric;
-                this.getLrc();
-            }
-            }, (res) => {
-            console.log('lrc fail');
-            this.afterLrc = [{'txt': '加载歌词失败'}];
+              if (res.data.nolyric) {
+                  this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
+              } else {
+                  this.lyric = res.data.lrc.lyric;
+                  this.getLrc();
+              }
         })
         .catch(function (error) {
             console.log(error);
@@ -150,8 +139,7 @@ export default {
             let min = Number(String(t.match(/\[\d*/i)).slice(1));
             let sec = Number(String(t.match(/\:\d*/i)).slice(1));
             /*eslint-enable */
-            let time = min * 60 + sec;
-            array.time = time;
+            array.time = min * 60 + sec;
             array.txt = txt;
             lrcObj.push(array);
           }
