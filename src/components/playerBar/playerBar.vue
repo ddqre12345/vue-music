@@ -77,8 +77,6 @@ export default {
         this.loading = false;
         this.$store.commit('closeLoading');
         // 还要把playbar重置下 TODO
-      } else {
-        console.log('APP 程序第一次加载');
       }
     },
     next () {
