@@ -1,5 +1,5 @@
 <template>
-  <div class="playlist-find">
+  <div class="playlist-find" @click="jumpPlayListsDetail(data.id)">
     <img v-lazy="data.coverImgUrl + '?param=500y500'" lazy="loading" />
     <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
     <p>by {{data.creator.nickname}}</p>
@@ -7,7 +7,6 @@
 </template>
 
 <script>
-  import { playCount } from '../../../../common/js/data';
   export default {
     name: 'v-play-list',
     props: {
@@ -15,9 +14,11 @@
         type: Object
       }
     },
-    filters: {
-      playCount(count) {
-        return playCount(count);
+    methods: {
+      jumpPlayListsDetail(id) {
+        this.$router.push({
+          path: '/playLists/' + id
+        });
       }
     }
   };

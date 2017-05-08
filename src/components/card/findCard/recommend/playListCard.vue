@@ -1,12 +1,11 @@
 <template>
-  <div class="playlist-card-find">
+  <div class="playlist-card-find" @click="jumpPlayListsDetail(data.id)">
     <img v-lazy="data.picUrl+ '?param=200y200'" lazy="loading" />
     <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
   </div>
 </template>
 
 <script>
-  import { playCount } from '../../../../common/js/data';
   export default {
     name: 'v-play-list-card',
     props: {
@@ -15,16 +14,10 @@
       }
     },
     methods: {
-
-    },
-    mounted: function() {
-    },
-    computed: {
-
-    },
-    filters: {
-      playCount(count) {
-        return playCount(count);
+      jumpPlayListsDetail(id) {
+        this.$router.push({
+          path: '/playLists/' + id
+        });
       }
     }
   };
