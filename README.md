@@ -1,5 +1,5 @@
 # vue-music
-> 这是一个用VUEJS写高仿网易云音乐的webapp，只实现了APP的核心功能，这个项目会长期进行更新。
+> 这个项目真的会长期进行更新，如果api还能用的话。
 
 >*  [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托)
 >*  [源码地址](https://github.com/ddqre12345/vue-music)
