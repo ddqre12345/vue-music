@@ -4,8 +4,8 @@
         <div class='header-other'>
           <span @click="goBack" class="back"><i class="back-icon"></i></span>
           <div class="play-title">
-            <p class="play-name"><span>{{audio.name}}</span></p>
-            <p class="play-singer"> {{audio.singer}}</p>
+            <p class="play-name" style="-webkit-box-orient: vertical;"><span>{{audio.name}}</span></p>
+            <p class="play-singer" style="-webkit-box-orient: vertical;"> {{audio.singer}}</p>
           </div>
         </div>
         <div class="bar-line"></div>
@@ -107,7 +107,7 @@ export default {
         }
         api.getLyricResource(id).then((res) => {
               if (res.data.nolyric) {
-                  this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
+                  this.afterLrc = [{'txt': '暂无歌词'}];
               } else {
                   this.lyric = res.data.lrc.lyric;
                   this.getLrc();
