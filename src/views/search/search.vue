@@ -123,7 +123,6 @@
         user: {}
       };
     },
-    // 接着在父组件内
     // watch $route 决定使用哪种过渡
     watch: {
       '$route' (to, from) {

@@ -19,8 +19,8 @@
               </div>
             </div>
             <div class="lyric-holder" @click="toggleShow" :style="{'display': showLyric ? 'block' : 'none'}">
-              <div class="lrc-inner" style="transition: -webkit-transform 0.3s ease-out; transform-origin: 0 0 0;" :style="{'transform':' translate3d(0px,'+ lrcOffset +'px, 0px)'}">
-                <p v-for="(item, index) in afterLrc" :id="'line-'+index" :key="index">{{item.txt}}</p>
+              <div class="lrc-inner" style="transition: -webkit-transform 0.3s ease-out; transform-origin: 0 0 0;" :style="{'top': (300 - 42 * (currentIndex + 1) + 'px')}">
+                <p v-for="(item, index) in afterLrc" :id="index" :key="index" :style="{'color': index === currentIndex ? '#fff' : '#8e9ba1'}">{{item[1]}}</p>
                 <p v-show="afterLrc.length === 0">没有找到歌词</p>
               </div>
             </div>
@@ -66,7 +66,8 @@ export default {
       lyric: '',
       afterLrc: [],
       lrcIndex: 0,
-      showLyric: false
+      showLyric: false,
+      currentIndex: -1
     };
   },
   components: {
@@ -75,6 +76,20 @@ export default {
   },
   mounted () {
     this.loadLrc(this.$route.params.id);
+  },
+  // watch currentTime 调整歌词当前高亮位置
+  watch: {
+    'currentTime' (val) {
+      let currentIndex = 0;
+      for (let i = 0; i < this.afterLrc.length; i++) {
+        if (val > this.afterLrc[i][0] - 1) {
+          currentIndex = i;
+//          $('.lyric-content').css('top',210 - 30 * (i + 1));
+        }
+      }
+      this.currentIndex = currentIndex;
+      console.log(currentIndex);
+    }
   },
   methods: {
     toggleShow () {
@@ -95,6 +110,15 @@ export default {
     },
     changeTime (value) { // 改变播放时间事件
       let time = (value * this.durationTime) / 100;
+      let currentIndex = 0;
+      for (let i = 0; i < this.afterLrc.length; i++) {
+        if (time > this.afterLrc[i][0] - 1) {
+          currentIndex = i;
+//          $('.lyric-content').css('top',210 - 30 * (i + 1));
+        }
+      }
+      this.currentIndex = currentIndex;
+//      console.log(this.currentIndex);
       this.$store.commit('changeTime', time);
       this.$store.commit('setChange', true);
     },
@@ -110,7 +134,7 @@ export default {
                   this.afterLrc = [{'txt': '暂无歌词'}];
               } else {
                   this.lyric = res.data.lrc.lyric;
-                  this.getLrc();
+                  this.afterLrc = this.parseLyric(this.lyric);
               }
         })
         .catch(function (error) {
@@ -118,34 +142,26 @@ export default {
             self.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
         });
     },
-    getLrc () {
-      if (this.lyric) {
-        let lyrics = this.lyric.split('\n');
-        let lrcObj = [];
-        /*eslint-disable */
-        let timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
-        /*eslint-enable */
-        // 思路：1、把歌词进行处理以时间和歌词组成一个对象，放入afterLrc数组中
-        // 2、在computed方法中根据当前的时间进行匹配歌词，然后查找在数据中的位置计算offset值
-        for (let i = 0; i < lyrics.length; i++) {
-          let timeRegExpArr = lyrics[i].match(timeReg);
-          if (!timeRegExpArr) continue;
-          let txt = lyrics[i].replace(timeReg, '');
-          // 处理时间
-          for (let k = 0; k < timeRegExpArr.length; k++) {
-            let array = {};
-            let t = timeRegExpArr[k];
-            /*eslint-disable */
-            let min = Number(String(t.match(/\[\d*/i)).slice(1));
-            let sec = Number(String(t.match(/\:\d*/i)).slice(1));
-            /*eslint-enable */
-            array.time = min * 60 + sec;
-            array.txt = txt;
-            lrcObj.push(array);
-          }
-        }
-        this.afterLrc = lrcObj;
+    parseLyric(lyric) {
+      let lines = lyric.split('\n');
+      let pattern = /\[\d{2}:\d{2}.\d{2}\]/g;
+      let result = [];
+      while (!pattern.test(lines[0])) {
+        lines = lines.slice(1);
       }
+      lines[lines.length - 1].length === 0 && lines.pop();
+      for (let data of lines) {
+        let index = data.indexOf(']');
+        let time = data.substring(0, index + 1);
+        let value = data.substring(index + 1);
+        let timeString = time.substring(1, time.length - 2);
+        let timeArr = timeString.split(':');
+        result.push([parseInt(timeArr[0], 10) * 60 + parseFloat(timeArr[1]), value]);
+      }
+      result.sort(function(a, b) {
+        return a[0] - b[0];
+      });
+      return result;
     },
     showList () {
       this.$refs.bottomSheet.show();
