@@ -63,7 +63,6 @@ import api from '../../../api';
 export default {
   data () {
     return {
-      lyric: '',
       afterLrc: [],
       lrcIndex: 0,
       showLyric: false,
@@ -84,11 +83,9 @@ export default {
       for (let i = 0; i < this.afterLrc.length; i++) {
         if (val > this.afterLrc[i][0] - 1) {
           currentIndex = i;
-//          $('.lyric-content').css('top',210 - 30 * (i + 1));
         }
       }
       this.currentIndex = currentIndex;
-      console.log(currentIndex);
     }
   },
   methods: {
@@ -110,15 +107,6 @@ export default {
     },
     changeTime (value) { // 改变播放时间事件
       let time = (value * this.durationTime) / 100;
-      let currentIndex = 0;
-      for (let i = 0; i < this.afterLrc.length; i++) {
-        if (time > this.afterLrc[i][0] - 1) {
-          currentIndex = i;
-//          $('.lyric-content').css('top',210 - 30 * (i + 1));
-        }
-      }
-      this.currentIndex = currentIndex;
-//      console.log(this.currentIndex);
       this.$store.commit('changeTime', time);
       this.$store.commit('setChange', true);
     },
@@ -133,8 +121,7 @@ export default {
               if (res.data.nolyric) {
                   this.afterLrc = [{'txt': '暂无歌词'}];
               } else {
-                  this.lyric = res.data.lrc.lyric;
-                  this.afterLrc = this.parseLyric(this.lyric);
+                  this.afterLrc = this.parseLyric(res.data.lrc.lyric);
               }
         })
         .catch(function (error) {
@@ -143,6 +130,7 @@ export default {
         });
     },
     parseLyric(lyric) {
+      console.log(lyric);
       let lines = lyric.split('\n');
       let pattern = /\[\d{2}:\d{2}.\d{2}\]/g;
       let result = [];
@@ -161,6 +149,7 @@ export default {
       result.sort(function(a, b) {
         return a[0] - b[0];
       });
+      console.log(result);
       return result;
     },
     showList () {
