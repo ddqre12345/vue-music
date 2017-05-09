@@ -50,6 +50,12 @@ const router = new VueRouter({
   scrollBehavior
 });
 
+router.afterEach(function (to) {
+  if (window.ga) {
+    window.ga('set', 'page', to.fullPath); // 你可能想根据请求参数添加其他参数，可以修改这里的 to.fullPath
+    window.ga('send', 'pageview');
+  }
+});
 /**
  * 创建和挂载根实例。
  * 记得要通过 router 配置参数注入路由，
