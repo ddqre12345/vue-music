@@ -125,12 +125,10 @@ export default {
               }
         })
         .catch(function (error) {
-            console.log(error);
             self.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
         });
     },
     parseLyric(lyric) {
-      console.log(lyric);
       let lines = lyric.split('\n');
       let pattern = /\[\d{2}:\d{2}.\d{2}\]/g;
       let result = [];
@@ -149,7 +147,6 @@ export default {
       result.sort(function(a, b) {
         return a[0] - b[0];
       });
-      console.log(result);
       return result;
     },
     showList () {
