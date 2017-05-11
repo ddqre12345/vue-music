@@ -49,6 +49,7 @@
 启动服务：npm run dev
 发布代码：npm run build
 代码检查：npm run lint
+
 #### 项目构成
 <pre>
 ├── build              // 构建服务和webpack配置

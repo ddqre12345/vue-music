@@ -111,9 +111,8 @@ export default {
       this.$store.commit('setChange', true);
     },
     loadLrc (id) {
-        let self = this;
-            this.afterLrc = [{'txt': '正在加载中...'}];
-            if (!id) {
+        this.afterLrc = [{'txt': '正在加载中...'}];
+        if (!id) {
             this.afterLrc = [{'txt': '这里显示歌词哦！'}];
             return;
         }
@@ -125,7 +124,7 @@ export default {
               }
         })
         .catch(function (error) {
-            self.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}];
+          console.log('加载出错:' + error);
         });
     },
     parseLyric(lyric) {
