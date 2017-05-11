@@ -1,14 +1,14 @@
 ### vue-music
 希望它会成为用vue实现网易云音乐最全的webapp，我们的目标是更像，更快，更优雅
 
-####网易云音乐（移动版）
+#### 网易云音乐（移动版）
 - [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托)
 - [源码地址](https://github.com/ddqre12345/vue-music)
 - [项目预览](http://118.89.226.181:8080)（web端在chrome调试模式下效果更佳）
 - 针对segmenfault类app暂时无法有效预览的问题，建议粘贴http://118.89.226.181:8080到手机其他浏览器体验
 - 项目所提供请求地址希望仅供预览使用，如果在开发过程中调用，可能会引起服务崩溃，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理，健康绿色环保
 
-####使用技术
+#### 使用技术
 - Vue2：采用最新Vue2的语法
 - Vuex：主要实现非父子组件通讯
 - vue-router：管理单页面应用路由
@@ -19,7 +19,7 @@
 - ES6：采用ES6语法。
 - CSS3：CSS3动画及样式。
 
-####项目进度
+#### 项目进度
 > 已完成
 
 - 网易云（轮播，推荐歌单，独家放送，推荐MV，网友精选歌单（最新，最热），排行榜）
@@ -43,12 +43,12 @@
 - “我的”争取还是做出来吧，尽管可能没人敢用
 - 完善各个页面的功能吧，持续优化
 
-####安装运行（安装运行前请确定已安装node环境）
-项目地址：https://github.com/ddqre12345/vue-music.git
-环境安装：npm install
-启动服务：npm run dev
-发布代码：npm run build
-代码检查：npm run lint
+#### 安装运行（安装运行前请确定已安装node环境）
+- 项目地址：https://github.com/ddqre12345/vue-music.git
+- 环境安装：npm install
+- 启动服务：npm run dev
+- 发布代码：npm run build
+- 代码检查：npm run lint
 
 #### 项目构成
 <pre>
@@ -70,7 +70,7 @@
 │   └── main.js        // Webpack 预编译入口
 </pre>
 
-### 最后
+#### 最后
 到这里，欢迎大家提issue，pr，star，如果喜欢可以watch，每周应该都会有些小更新，本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
 
 
