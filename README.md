@@ -21,7 +21,7 @@
 ***
 项目地址：（`git clone`）
 ```shell
-git clone ddqre12345/vue-music
+git clone https://github.com/ddqre12345/vue-music.git
 ```
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](Node.js))
 ```
