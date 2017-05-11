@@ -15,7 +15,7 @@
 - axios：发起http请求
 - stylus：css预处理语言
 - Express：vue-cli使用Express做服务器。
-- Webpack：自动化构建工具，主要配置由vue-cli脚手架提供。😏
+- Webpack：自动化构建工具，主要配置由vue-cli脚手架提供。
 - ES6：采用ES6语法。
 - CSS3：CSS3动画及样式。
 
@@ -35,6 +35,7 @@
 ![详情](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-3.gif?raw=true)
 ![测试](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-4.gif?raw=true)
 ![歌词](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-5.gif?raw=true)
+
 图片就到这里，[more >](http://118.89.226.181:8080)
 
 > 下阶段计划
@@ -44,7 +45,7 @@
 - 完善各个页面的功能吧，持续优化
 
 #### 安装运行（安装运行前请确定已安装node环境）
-- 项目地址：https://github.com/ddqre12345/vue-music.git
+- git clone：https://github.com/ddqre12345/vue-music.git
 - 环境安装：npm install
 - 启动服务：npm run dev
 - 发布代码：npm run build
