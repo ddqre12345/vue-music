@@ -75,6 +75,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/index' //  初始化页面
+  path: '/video',  // 视频播放
+  name: 'video',
+  component (resolve) {
+    require.ensure(['./views/detail/mvPlay/mvPlay'], () => {
+      resolve(require('./views/detail/mvPlay/mvPlay'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
+  path: '*', redirect: '/video' //  初始化页面
 }];
 export default router;

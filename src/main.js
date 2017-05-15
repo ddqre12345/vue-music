@@ -64,7 +64,10 @@ const routerApp = new Vue({
 /**
  * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
  */
-if (!loadFromlLocal('music', 'index', false)) {
-  router.push('/index/find');
+// if (!loadFromlLocal('music', 'index', false)) {
+//   router.push('/index/find');
+// }
+if (!loadFromlLocal('music', 'video', false)) {
+  router.push('video');
 }
 export default routerApp;

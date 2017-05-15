@@ -1,0 +1,103 @@
+.vue-mv-video-container
+  position: relative;
+  width: 100%;
+  padding-bottom 10px
+  .vue-mv-video
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+  .vue-mv-control-content
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content space-between
+    align-items: center;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+    z-index: 99999;
+    .vue-mv-control-fullScreen-btn
+      background: none;
+      border: none;
+      outline: none;
+      width 25px
+      height 25px
+      padding 0
+      img
+        width 100%
+  .vue-mv-contrl-video-slider
+    position: absolute;
+    transition: all 0.2s ease-in;
+    left: 0;
+    bottom: 5px;
+    height 10px
+    z-index: 99999;
+    .vue-mv-contrl-video-inner
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      top: 50%;
+      background-color: #e92e35;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      margin-top: -.25rem;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 16ms;
+     .vue-mv-contrl-video-rail
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: .1rem;
+        margin-top: -.05rem;
+        background #bec2c1
+        opacity 0.5
+        overflow: hidden;
+        .vue-mv-contrl-video-rail-inner
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: .1rem;
+          background-color: #e92e35;
+          transition: transform .2s;
+
+.vue-mv-contrl-play-btn:hover {
+  background-color: rgba(255, 255, 255, 0.27);
+}
+
+.vue-mv-contrl-video-time {
+  padding: 0 1rem;
+}
+.vue-mv-contrl-video-time-text {
+  color: #fff;
+  line-height: 2rem;
+  font-size: .8rem;
+}
+::-webkit-media-controls {
+  display:none !important;
+}
+video::-webkit-media-controls {
+  display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter{
+  opacity: 1;
+}
+.fade-leave {
+  opacity: 0;
+}
+.hide-cursor {
+  cursor: none;
+}
+@media all and (max-width: 768px) {
+  .vue-mv-contrl-video-time {
+    padding: 0 .2rem;
+  }
+}
