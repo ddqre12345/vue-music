@@ -51,7 +51,7 @@
             <div class="vue-mv-contrl-video-slider" @click="slideClick" @mousedown="videoMove">
                 <div class="vue-mv-contrl-video-inner" :style="{ 'transform': `translate3d(${video.pos.current}px, 0, 0)`}"></div>
                 <div class="vue-mv-contrl-video-rail">
-                    <div class="vue-mv-contrl-video-rail-inner" :style="{ 'transform': 'translate3d(' +video.loaded + '%, 0, 0)'}"></div>
+                    <div class="vue-mv-contrl-video-rail-inner" :style="{ 'transform': 'translate3d(0, 0, 0)'}"></div>
                 </div>
             </div>
         </div>
@@ -94,6 +94,7 @@
     data () {
       return {
         $video: null,
+        per: 0,
         video: {
           $videoSlider: null,
           len: 0,
@@ -172,17 +173,20 @@
           this.tmp.contrlHideTimer = null;
         }, 2000);
       },
-      toggleContrlShow () {
-        this.state.contrlShow = !this.state.contrlShow;
-      },
       getTime () {
-        this.$video.addEventListener('durationchange', (e) => {
-          console.log(e);
+        let per;
+        this.$video.addEventListener('timeupdate', (e) => {
+          if (this.$video.duration) {
+            per = (this.$video.currentTime / this.$video.duration).toFixed(3);
+            this.per = per;
+          } else {
+            this.per = 0;
+          }
         });
-        this.$video.addEventListener('progress', (e) => {
-          this.video.loaded = (-1 + (this.$video.buffered.end(0) / this.$video.duration)) * 100;
-        });
-        this.video.len = this.$video.duration;
+//        this.$video.addEventListener('progress', (e) => {
+//          this.video.loaded = (-1 + (this.$video.buffered.end(0) / this.$video.duration)) * 100;
+//        });
+//        this.video.len = this.$video.duration;
       },
       setVideoByTime (percent) {
         this.$video.currentTime = Math.floor(percent * this.video.len);
