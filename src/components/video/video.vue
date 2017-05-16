@@ -8,7 +8,7 @@
             </video>
             <div class="vue-mv-contrl-play-btn-area">
                 <!--暂停图标-->
-                <img src="./playing.svg" v-show="!state.playing" @click="play">
+                <img src="./timeOut.svg" v-show="!state.playing" @click="play">
                 <!--播放图标-->
                 <img src="./playing.svg" v-show="state.playing" @click="play">
             </div>
@@ -22,13 +22,12 @@
                 </div>
                 <!--全屏播放按钮-->
                 <button class="vue-mv-control-fullScreen-btn" @click="fullScreen">
-                    <img src="./fullScreen.svg" alt="fullScreen">
+                  <img src="./fullScreen.svg" alt="fullScreen">
                 </button>
             </div>
             <div class="vue-mv-contrl-video-slider">
-                <div class="vue-mv-contrl-video-inner" :style="{ 'transform': `translate3d(${video.pos.circle}px, 0, 0)`}"></div>
                 <div class="vue-mv-contrl-video-rail" :style="{'width': `${video.pos.buffered}%`}">
-                    <div class="vue-mv-contrl-video-rail-inner" :style="{'width': `${video.pos.current}%`}"></div>
+                  <div class="vue-mv-contrl-video-rail-inner" :style="{'width': `${video.pos.current}%`}"></div>
                 </div>
             </div>
         </div>
@@ -66,25 +65,18 @@
       return {
         $video: null,
         video: {
-          $videoSlider: null,
           displayTime: '00:00',
           durationTime: '00:00',
           pos: {
-            width: 0,
             current: 0,
             buffered: 0
           }
-        },
-        player: {
-          $player: null,
-          pos: null
         },
         tmp: {
           contrlHideTimer: null
         },
         state: {
           contrlShow: true,
-          currentTime: 0,
           fullScreen: false,
           playing: false
         }
@@ -99,6 +91,7 @@
     },
     methods: {
       mouseEnterVideo () {
+        console.log('鼠标点击');
         if (this.tmp.contrlHideTimer) {
           clearTimeout(this.tmp.contrlHideTimer);
           this.tmp.contrlHideTimer = null;
@@ -106,6 +99,7 @@
         this.state.contrlShow = true;
       },
       mouseLeaveVideo (e) {
+        console.log('鼠标移开');
         if (this.tmp.contrlHideTimer) {
           clearTimeout(this.tmp.contrlHideTimer);
         }
@@ -113,9 +107,6 @@
           this.state.contrlShow = false;
           this.tmp.contrlHideTimer = null;
         }, 2000);
-      },
-      setVideoByTime (percent) {
-        this.$video.currentTime = Math.floor(percent * this.$video.duration);
       },
       play () {
         this.state.playing = !this.state.playing;
@@ -134,10 +125,8 @@
           }
         }
       },
-      // 监听视频播放情况，同步修正缓冲进度，播放进度，进度按钮位置
+      // 监听视频播放情况，同步修正缓冲进度，播放进度
       timeline () {
-        // 修正进度按钮位置
-        this.video.pos.circle = (this.$video.currentTime / this.$video.duration).toFixed(3) * this.video.pos.width;
         // 修正视频当前播放进度
         this.video.pos.current = (this.$video.currentTime / this.$video.duration).toFixed(3) * 100;
         // 修正视频缓冲进度
