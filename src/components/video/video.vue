@@ -6,64 +6,35 @@
                 <source v-for="source in sources" :src="source.src" :type="source.type">
                 </source>
             </video>
-            <!--<div class="vue-mv-contrl-play-btn-area">-->
-                <!--<button class="vue-mv-contrl-play-btn" @click="play">-->
-                    <!--&lt;!&ndash;暂停图标&ndash;&gt;-->
-                    <!--<svg class="vue-mv-contrl-play-btn-icon" v-show="!state.playing" viewBox="0 0 47 57" version="1.1" xmlns="http://www.w3.org/2000/svg">-->
-                        <!--&lt;!&ndash; Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch &ndash;&gt;-->
-                        <!--<title>Triangle 1</title>-->
-                        <!--<desc>Created with Sketch.</desc>-->
-                        <!--<defs></defs>-->
-                        <!--<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">-->
-                            <!--<polygon id="Triangle-1" stroke="#FFFFFF" fill="#FFFFFF" points="1 56 1 1 47 28.5"></polygon>-->
-                        <!--</g>-->
-                    <!--</svg>-->
-                    <!--&lt;!&ndash;播放图标&ndash;&gt;-->
-                    <!--<svg class="vue-mv-contrl-play-btn-icon" v-show="state.playing" viewBox="0 0 15 22" version="1.1" xmlns="http://www.w3.org/2000/svg">-->
-                        <!--&lt;!&ndash; Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch &ndash;&gt;-->
-                        <!--<title>Combined Shape</title>-->
-                        <!--<desc>Created with Sketch.</desc>-->
-                        <!--<defs>-->
-                            <!--<path d="M0,0.979149244 L5,0.979149244 L5,22 L0,22 L0,0.979149244 Z M10,0.979149244 L15,0.979149244 L15,22 L10,22 L10,0.979149244 Z" id="path-1"></path>-->
-                            <!--<mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="15" height="21.0208508" fill="white">-->
-                                <!--<use xlink:href="#path-1"></use>-->
-                            <!--</mask>-->
-                        <!--</defs>-->
-                        <!--<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">-->
-                            <!--<use id="Combined-Shape" stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>-->
-                        <!--</g>-->
-                    <!--</svg>-->
-                <!--</button>-->
-            <!--</div>-->
+            <div class="vue-mv-contrl-play-btn-area">
+                <!--暂停图标-->
+                <img src="./playing.svg" v-show="!state.playing" @click="play">
+                <!--播放图标-->
+                <img src="./playing.svg" v-show="state.playing" @click="play">
+            </div>
             <!--控制条-->
             <div class="vue-mv-control-content" transition="fade" v-show="state.contrlShow">
                 <!--视频播放时间-->
                 <div class="vue-mv-contrl-video-time">
                     <span class="vue-mv-contrl-video-time-text">{{video.displayTime}}</span>
                     <span>/</span>
-                    <span class="vue-mv-contrl-video-time-text">{{video.displayTime}}</span>
+                    <span class="vue-mv-contrl-video-time-text">{{video.durationTime}}</span>
                 </div>
                 <!--全屏播放按钮-->
                 <button class="vue-mv-control-fullScreen-btn" @click="fullScreen">
                     <img src="./fullScreen.svg" alt="fullScreen">
                 </button>
             </div>
-            <div class="vue-mv-contrl-video-slider" @click="slideClick" @mousedown="videoMove">
-                <div class="vue-mv-contrl-video-inner" :style="{ 'transform': `translate3d(${video.pos.current}px, 0, 0)`}"></div>
-                <div class="vue-mv-contrl-video-rail">
-                    <div class="vue-mv-contrl-video-rail-inner" :style="{ 'transform': 'translate3d(0, 0, 0)'}"></div>
+            <div class="vue-mv-contrl-video-slider">
+                <div class="vue-mv-contrl-video-inner" :style="{ 'transform': `translate3d(${video.pos.circle}px, 0, 0)`}"></div>
+                <div class="vue-mv-contrl-video-rail" :style="{'width': `${video.pos.buffered}%`}">
+                    <div class="vue-mv-contrl-video-rail-inner" :style="{'width': `${video.pos.current}%`}"></div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-  const getMousePosition = function (e, type = 'x') {
-    if (type === 'x') {
-      return e.pageX;
-    }
-    return e.pageY;
-  };
   const pad = (val) => {
     val = Math.floor(val);
     if (val < 10) {
@@ -94,19 +65,14 @@
     data () {
       return {
         $video: null,
-        per: 0,
         video: {
           $videoSlider: null,
-          len: 0,
-          current: 0,
-          loaded: 0,
-          moving: false,
           displayTime: '00:00',
+          durationTime: '00:00',
           pos: {
-            start: 0,
             width: 0,
-            innerWidth: 0,
-            current: 0
+            current: 0,
+            buffered: 0
           }
         },
         player: {
@@ -118,7 +84,6 @@
         },
         state: {
           contrlShow: true,
-          vol: 0.5,
           currentTime: 0,
           fullScreen: false,
           playing: false
@@ -127,36 +92,12 @@
     },
     mounted () {
       this.$video = this.$el.getElementsByTagName('video')[0];
-      this.init();
+      this.video.pos.width = window.screen.width;
       if (this.options.autoplay) {
         this.play();
       }
-      document.body.addEventListener('mousemove', this.mouseMoveAction, false);
-      document.body.addEventListener('mouseup', this.mouseUpAction, false);
-    },
-    beforeDestroy () {
-      document.body.removeEventListener('mousemove', this.mouseMoveAction);
-      document.body.removeEventListener('mouseup', this.mouseUpAction);
     },
     methods: {
-      init () {
-        this.initVideo();
-        this.initPlayer();
-      },
-      initPlayer () {
-        const $player = this.$el.getElementsByClassName('vue-mv-video-container')[0];
-        this.player.pos = $player.getBoundingClientRect();
-        this.player.$player = $player;
-      },
-      initVideo () {
-        const $videoSlider = this.$el.getElementsByClassName('vue-mv-contrl-video-slider')[0];
-        const $videoInner = $videoSlider.getElementsByClassName('vue-mv-contrl-video-inner')[0];
-        this.$videoSlider = $videoSlider;
-        this.video.pos.start = $videoSlider.getBoundingClientRect().left;
-        this.video.pos.innerWidth = $videoInner.getBoundingClientRect().width;
-        this.video.pos.width = $videoSlider.getBoundingClientRect().width - this.video.pos.innerWidth;
-        this.getTime();
-      },
       mouseEnterVideo () {
         if (this.tmp.contrlHideTimer) {
           clearTimeout(this.tmp.contrlHideTimer);
@@ -173,23 +114,8 @@
           this.tmp.contrlHideTimer = null;
         }, 2000);
       },
-      getTime () {
-        let per;
-        this.$video.addEventListener('timeupdate', (e) => {
-          if (this.$video.duration) {
-            per = (this.$video.currentTime / this.$video.duration).toFixed(3);
-            this.per = per;
-          } else {
-            this.per = 0;
-          }
-        });
-//        this.$video.addEventListener('progress', (e) => {
-//          this.video.loaded = (-1 + (this.$video.buffered.end(0) / this.$video.duration)) * 100;
-//        });
-//        this.video.len = this.$video.duration;
-      },
       setVideoByTime (percent) {
-        this.$video.currentTime = Math.floor(percent * this.video.len);
+        this.$video.currentTime = Math.floor(percent * this.$video.duration);
       },
       play () {
         this.state.playing = !this.state.playing;
@@ -208,17 +134,18 @@
           }
         }
       },
+      // 监听视频播放情况，同步修正缓冲进度，播放进度，进度按钮位置
       timeline () {
-        const percent = this.$video.currentTime / this.$video.duration;
-        this.video.pos.current = (this.video.pos.width * percent).toFixed(3);
-        this.video.displayTime = timeParse(this.$video.duration - this.$video.currentTime);
-      },
-      videoMove (e) {
-        this.initVideo();
-        this.video.moving = true;
-      },
-      slideClick (e) {
-        this.videoSlideMove(e);
+        // 修正进度按钮位置
+        this.video.pos.circle = (this.$video.currentTime / this.$video.duration).toFixed(3) * this.video.pos.width;
+        // 修正视频当前播放进度
+        this.video.pos.current = (this.$video.currentTime / this.$video.duration).toFixed(3) * 100;
+        // 修正视频缓冲进度
+        this.video.pos.buffered = (this.$video.buffered.end(0) / this.$video.duration).toFixed(3) * 100;
+        // 获取视频播放总时长，转化为00:00格式
+        this.video.durationTime = timeParse(this.$video.duration);
+        // 获取视频当前播放时间点，转化为00:00格式
+        this.video.displayTime = timeParse(this.$video.currentTime);
       },
       fullScreen () {
         if (!this.state.fullScreen) {
@@ -228,40 +155,7 @@
           this.state.fullScreen = false;
           document.webkitCancelFullScreen();
         }
-        setTimeout(this.initVideo, 200);
-      },
-      mouseMoveAction (e) {
-        if (this.video.moving) {
-          this.videoSlideMove(e);
-        }
-        this.contrlHider(e);
-      },
-      contrlHider (e) {
-        const x = getMousePosition(e, 'x');
-        const y = getMousePosition(e, 'y');
-        if (!this.player.pos) return;
-        if (x > this.player.pos.left &&
-          x < this.player.pos.left + this.player.pos.width
-        ) {
-          if (
-            y > this.player.pos.top + this.player.pos.height * 0.6 &&
-            y < this.player.pos.top + this.player.pos.height
-          ) {
-            return this.mouseEnterVideo();
-          }
-        }
-        return this.mouseLeaveVideo();
-      },
-      videoSlideMove (e) {
-        const x = getMousePosition(e) - this.video.pos.start;
-        if (x > 0 && x < this.video.pos.width) {
-          this.video.pos.current = x;
-          this.setVideoByTime(x / this.video.pos.width);
-        }
-      },
-      mouseUpAction (e) {
-        this.volume.moving = false;
-        this.video.moving = false;
+        setTimeout(this.$video.addEventListener('timeupdate', this.timeline), 200);
       }
     }
   };

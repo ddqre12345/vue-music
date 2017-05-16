@@ -17,7 +17,7 @@
               <div class="mini-btn player" :class="{pause: playing}" @click="toggleStatus"></div>
             </x-circle>
           </div>
-          <div  class="mini-btn next" :class="{pause: playing}" @click="next"></div>
+          <div class="mini-btn next" :class="{pause: playing}" @click="next"></div>
         </div>
       </div>
     </div>
