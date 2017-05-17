@@ -1,19 +1,19 @@
 <template>
     <div class="container">
-        <div class="vue-mv-video-container" @mouseenter="mouseEnterVideo" @mouseleave="mouseLeaveVideo">
+        <div class="vue-mv-video-container">
             <!--视频数据来源-->
-            <video :class="{ 'hide-cursor': !state.contrlShow }" class="vue-mv-video" :poster="options.poster">
+            <video :class="{ 'hide-cursor': !state.controlShow }" class="vue-mv-video" :poster="options.poster" @touchstart="touchStart">
                 <source v-for="source in sources" :src="source.src" :type="source.type">
                 </source>
             </video>
-            <div class="vue-mv-contrl-play-btn-area">
+            <div class="vue-mv-contrl-play-btn-area" v-show="state.controlShow">
                 <!--暂停图标-->
-                <img src="./timeOut.svg" v-show="!state.playing" @click="play">
+                <img src="./timeOut.svg" v-show="state.playing" @click="play">
                 <!--播放图标-->
-                <img src="./playing.svg" v-show="state.playing" @click="play">
+                <img src="./playing.svg" v-show="!state.playing" @click="play">
             </div>
             <!--控制条-->
-            <div class="vue-mv-control-content" transition="fade" v-show="state.contrlShow">
+            <div class="vue-mv-control-content" transition="fade" v-show="state.controlShow">
                 <!--视频播放时间-->
                 <div class="vue-mv-contrl-video-time">
                     <span class="vue-mv-contrl-video-time-text">{{video.displayTime}}</span>
@@ -21,7 +21,7 @@
                     <span class="vue-mv-contrl-video-time-text">{{video.durationTime}}</span>
                 </div>
                 <!--全屏播放按钮-->
-                <button class="vue-mv-control-fullScreen-btn" @click="fullScreen">
+                <button class="vue-mv-control-fullScreen-btn" @click="toggleFullScreen">
                   <img src="./fullScreen.svg" alt="fullScreen">
                 </button>
             </div>
@@ -55,7 +55,6 @@
         default () {
           return {
             autoplay: false,
-            volume: 0.9,
             poster: ''
           };
         }
@@ -76,7 +75,7 @@
           contrlHideTimer: null
         },
         state: {
-          contrlShow: true,
+          controlShow: true,
           fullScreen: false,
           playing: false
         }
@@ -90,61 +89,99 @@
       }
     },
     methods: {
-      mouseEnterVideo () {
-        console.log('鼠标点击');
-        if (this.tmp.contrlHideTimer) {
-          clearTimeout(this.tmp.contrlHideTimer);
-          this.tmp.contrlHideTimer = null;
-        }
-        this.state.contrlShow = true;
+      // 触摸事件
+      touchStart () {
+        let self = this;
+        let xxx = this.debounce(() => {
+          self.state.controlShow ? (self.state.controlShow = false) : (self.state.controlShow = true);
+          console.log(self.state.controlShow);
+          console.log(self.state.playing);
+        }, 200, true);
+        xxx();
       },
-      mouseLeaveVideo (e) {
-        console.log('鼠标移开');
-        if (this.tmp.contrlHideTimer) {
-          clearTimeout(this.tmp.contrlHideTimer);
+
+      // 判断是否处于播放状态中，如果处于，5秒后控制条及标题栏消失，消失效果为，标题向上滑出，控制条向下滑出
+      isPlaying () {
+        if (this.state.playing && this.state.controlShow) {
+          let self = this;
+          setTimeout(function () {
+            self.state.controlShow = false;
+          }, 5000);
         }
-        this.tmp.contrlHideTimer = setTimeout(() => {
-          this.state.contrlShow = false;
-          this.tmp.contrlHideTimer = null;
-        }, 2000);
       },
+
+      // 播放暂停按钮
       play () {
         this.state.playing = !this.state.playing;
         if (this.$video) {
           if (this.state.playing) {
+            // 开始播放
             this.$video.play();
-            this.mouseLeaveVideo();
+            // 监听视频播放时间，同步更新相关数据
             this.$video.addEventListener('timeupdate', this.timeline);
-            this.$video.addEventListener('ended', (e) => {
+            // 监听视频是否结束播放，如果结束，重置视频播放相关状态
+            this.$video.addEventListener('ended', () => {
               this.state.playing = false;
+              this.state.controlShow = true;
               this.video.pos.current = 0;
               this.$video.currentTime = 0;
             });
           } else {
             this.$video.pause();
+            this.state.playing = false;
           }
         }
       },
+
       // 监听视频播放情况，同步修正缓冲进度，播放进度
       timeline () {
         // 修正视频当前播放进度
-        this.video.pos.current = (this.$video.currentTime / this.$video.duration).toFixed(3) * 100;
+        this.video.pos.current = (this.$video.currentTime / this.$video.duration).toFixed(6) * 100;
         // 修正视频缓冲进度
-        this.video.pos.buffered = (this.$video.buffered.end(0) / this.$video.duration).toFixed(3) * 100;
+        this.video.pos.buffered = (this.$video.buffered.end(0) / this.$video.duration).toFixed(6) * 100;
         // 获取视频播放总时长，转化为00:00格式
         this.video.durationTime = timeParse(this.$video.duration);
         // 获取视频当前播放时间点，转化为00:00格式
         this.video.displayTime = timeParse(this.$video.currentTime);
       },
-      fullScreen () {
-        if (!this.state.fullScreen) {
-          this.state.fullScreen = true;
-          this.$video.webkitRequestFullScreen();
-        } else {
-          this.state.fullScreen = false;
-          document.webkitCancelFullScreen();
+
+      // 视频全屏，小屏切换，兼容Gecko和WebKit
+      toggleFullScreen () {
+        if (!document.fullscreenElement) {
+          if (this.$video.requestFullscreen) {
+            this.$video.requestFullscreen();
+            this.state.playing = true;
+          } else if (this.$video.mozRequestFullScreen) {
+            this.$video.mozRequestFullScreen();
+            this.state.playing = true;
+          } else if (this.$video.webkitRequestFullscreen) {
+            this.$video.webkitRequestFullscreen();
+            this.state.playing = true;
+          }
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen();
+          this.state.playing = false;
         }
-        setTimeout(this.$video.addEventListener('timeupdate', this.timeline), 200);
+      },
+
+      // 防抖函数
+      debounce(fn, interval, immediate) {
+        // fn为要执行的函数
+        // interval为等待的时间
+        // immediate判断是否立即执行
+        let timeout;  // 定时器
+        return function() { // 返回一个闭包
+          let context = this;
+          let args = arguments; // 先把变量缓存
+          let later = function() {  // 把稍后要执行的代码封装起来
+            timeout = null; // 成功调用后清除定时器
+            if (!immediate) fn.apply(context, args); // 不立即执行时才可以调用
+          };
+          let callNow = immediate && !timeout;  // 判断是否立即调用，并且如果定时器存在，则不立即调用
+          clearTimeout(timeout);  // 不管什么情况，先清除定时器，这是最稳妥的
+          timeout = setTimeout(later, interval);  // 延迟执行
+          if (callNow) fn.apply(context, args);  // 如果是第一次触发，并且immediate为true，则立即执行
+        };
       }
     }
   };
