@@ -121,7 +121,6 @@
           if (this.state.playing) {
             // 开始播放
             this.$video.play();
-            this.isPlaying();
             // 监听视频播放时间，同步更新相关数据
             this.$video.addEventListener('timeupdate', this.timeLine);
             // 监听视频是否结束播放，如果结束，重置视频播放相关状态
