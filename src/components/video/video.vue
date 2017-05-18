@@ -2,7 +2,7 @@
     <div class="container">
         <div class="vue-mv-video-container">
             <!--视频数据来源-->
-            <video :class="{ 'hide-cursor': !state.controlShow }" class="vue-mv-video" :poster="options.poster" @touchstart="touchStart">
+            <video :class="{ 'hide-cursor': !state.controlShow }" class="vue-mv-video" :poster="options.poster" @touchstart="touchStart" @touchend="touchend">
                 <source v-for="source in sources" :src="source.src" :type="source.type">
                 </source>
             </video>
@@ -13,7 +13,7 @@
                 <img src="./playing.svg" v-show="!state.playing" @click="play">
             </div>
             <!--控制条-->
-            <div class="vue-mv-control-content" transition="fade" v-show="state.controlShow">
+            <div class="vue-mv-control-content" transition="fade" v-show="state.controlShow" id="videoControls">
                 <!--视频播放时间-->
                 <div class="vue-mv-contrl-video-time">
                     <span class="vue-mv-contrl-video-time-text">{{video.displayTime}}</span>
@@ -63,6 +63,7 @@
     data () {
       return {
         $video: null,
+        $videoControls: null,
         video: {
           displayTime: '00:00',
           durationTime: '00:00',
@@ -70,9 +71,6 @@
             current: 0,
             buffered: 0
           }
-        },
-        tmp: {
-          contrlHideTimer: null
         },
         state: {
           controlShow: true,
@@ -82,30 +80,36 @@
       };
     },
     mounted () {
-      this.$video = this.$el.getElementsByTagName('video')[0];
+      this.init();
       this.video.pos.width = window.screen.width;
       if (this.options.autoplay) {
         this.play();
       }
     },
     methods: {
-      // 触摸事件
-      touchStart () {
-        let self = this;
-        let xxx = this.debounce(() => {
-          self.state.controlShow ? (self.state.controlShow = false) : (self.state.controlShow = true);
-          console.log(self.state.controlShow);
-          console.log(self.state.playing);
-        }, 200, true);
-        xxx();
+      // 组件初始化
+      init () {
+        this.$video = this.$el.getElementsByTagName('video')[0];
+        this.$videoControls = this.$el.querySelector('#videoControls');
+        // 禁用默认控制条， 便于使用自定义的
+        this.$video.removeAttribute('controls');
       },
 
-      // 判断是否处于播放状态中，如果处于，5秒后控制条及标题栏消失，消失效果为，标题向上滑出，控制条向下滑出
-      isPlaying () {
-        if (this.state.playing && this.state.controlShow) {
+      // 触摸移入事件
+      touchStart () {
+        this.state.controlShow = !this.state.controlShow;
+      },
+      // 触摸移入事件
+      touchend () {
+        // 这里存在一个短时间内反复触发touchend，delayHide异步回调积累的问题，使用debounce未解决，初步判断是双层异步回调导致的
+        // 但是当起作用的时候，debounce函数只被触发了一次，原因不明
+        // 判断是否处于播放状态中，如果处于，5秒后控制条及标题栏消失，消失效果为，标题向上滑出，控制条向下滑出
+        let delayHide = null;
+        if (this.state.playing || this.state.controlShow) {
           let self = this;
-          setTimeout(function () {
+          delayHide = setTimeout(() => {
             self.state.controlShow = false;
+            clearTimeout(delayHide);
           }, 5000);
         }
       },
@@ -117,8 +121,9 @@
           if (this.state.playing) {
             // 开始播放
             this.$video.play();
+            this.isPlaying();
             // 监听视频播放时间，同步更新相关数据
-            this.$video.addEventListener('timeupdate', this.timeline);
+            this.$video.addEventListener('timeupdate', this.timeLine);
             // 监听视频是否结束播放，如果结束，重置视频播放相关状态
             this.$video.addEventListener('ended', () => {
               this.state.playing = false;
@@ -132,9 +137,8 @@
           }
         }
       },
-
       // 监听视频播放情况，同步修正缓冲进度，播放进度
-      timeline () {
+      timeLine () {
         // 修正视频当前播放进度
         this.video.pos.current = (this.$video.currentTime / this.$video.duration).toFixed(6) * 100;
         // 修正视频缓冲进度
@@ -144,8 +148,8 @@
         // 获取视频当前播放时间点，转化为00:00格式
         this.video.displayTime = timeParse(this.$video.currentTime);
       },
-
       // 视频全屏，小屏切换，兼容Gecko和WebKit
+      // 全屏模式下，各个控制条，播放按钮，最小化按钮定位功能未做，暂时只支持小屏幕播放
       toggleFullScreen () {
         if (!document.fullscreenElement) {
           if (this.$video.requestFullscreen) {
@@ -163,14 +167,13 @@
           this.state.playing = false;
         }
       },
-
       // 防抖函数
       debounce(fn, interval, immediate) {
         // fn为要执行的函数
         // interval为等待的时间
         // immediate判断是否立即执行
         let timeout;  // 定时器
-        return function() { // 返回一个闭包
+        return () => { // 返回一个闭包
           let context = this;
           let args = arguments; // 先把变量缓存
           let later = function() {  // 把稍后要执行的代码封装起来
