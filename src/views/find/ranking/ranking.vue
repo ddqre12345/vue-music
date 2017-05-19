@@ -1,35 +1,31 @@
 <template>
     <div class="ranking-area">
         <div class="surge">
-            <img v-lazy="surgeInfo.coverImgUrl" lazy="loading" />
-            <ul>
-              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in surgeList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
-            </ul>
+            <img src="../../../../static/surge.jpg" alt="surge"/>
+            <v-songs-list :data="surgeList"></v-songs-list>
         </div>
         <div class="newSonges">
-            <img v-lazy="newSongesInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
-            <ul>
-              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in newSongesList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
-            </ul>
+            <img src="../../../../static/newSonges.jpg" alt="newSonges"/>
+            <v-songs-list :data="newSongesList"></v-songs-list>
         </div>
         <div class="original">
-            <img v-lazy="originalInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
-            <ul>
-              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in originalList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
-            </ul>
+            <img src="../../../../static/original.jpg" alt="original" />
+            <v-songs-list :data="originalList"></v-songs-list>
         </div>
         <div class="hot">
-            <img v-lazy="hotInfo.coverImgUrl + '?param=200y200'" lazy="loading" />
-            <ul>
-              <li  style="-webkit-box-orient: vertical;" v-for="(data, index) in hotList">{{index + 1}}.{{data.name}}-{{data.artists[0].name}}</li>
-            </ul>
+            <img src="../../../../static/hot.jpg" alt="hot" />
+            <v-songs-list :data="hotList"></v-songs-list>
         </div>
     </div>
 </template>
 <script>
   import api from '../../../api/index';
+  import vSongsList from '../../../components/list/find/ranking/songsList.vue';
   export default {
     name: 'v-ranking',
+    components: {
+      vSongsList
+    },
     data () {
       return {
         surgeList: [],
@@ -54,36 +50,36 @@
           this.surgeInfo = response.data.result;
           this.surgeList = response.data.result.tracks.slice(0, 3);
         })
-          .catch((response) => {
-            console.log(response);
-          });
+        .catch((response) => {
+          console.log(response);
+        });
       },
       getNewSongesList() {
         api.getTopListResource(0).then((response) => {
           this.newSongesInfo = response.data.result;
           this.newSongesList = response.data.result.tracks.slice(0, 3);
         })
-          .catch((response) => {
-            console.log(response);
-          });
+        .catch((response) => {
+          console.log(response);
+        });
       },
       getOriginalList() {
         api.getTopListResource(2).then((response) => {
           this.originalInfo = response.data.result;
           this.originalList = response.data.result.tracks.slice(0, 3);
         })
-          .catch((response) => {
-            console.log(response);
-          });
+        .catch((response) => {
+          console.log(response);
+        });
       },
       getHotList() {
         api.getTopListResource(1).then((response) => {
           this.hotInfo = response.data.result;
           this.hotList = response.data.result.tracks.slice(0, 3);
         })
-          .catch((response) => {
-            console.log(response);
-          });
+        .catch((response) => {
+          console.log(response);
+        });
       }
     }
   };
