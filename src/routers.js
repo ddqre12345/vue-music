@@ -10,7 +10,7 @@ const router = [{
     });
   },
   children: [{
-    path: 'find',  //  发现
+    path: '/find',  //  发现
     name: 'find',
     component (resolve) {
       require.ensure(['./views/find/find'], () => {
@@ -30,8 +30,8 @@ const router = [{
   },
   meta: { keepAlive: true }
 }, {
-  name: 'player', //  单曲播放页
-  path: '/player/:id',
+  path: '/player/:id', //  单曲播放页
+  name: 'player',
   component (resolve) {
     require.ensure(['./views/detail/player/player'], () => {
       resolve(require('./views/detail/player/player'));
