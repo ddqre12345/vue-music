@@ -6,25 +6,11 @@
 </template>
 
 <script>
-  import { playCount } from '../../../../common/js/data';
   export default {
     name: 'v-activity-card',
     props: {
       data: {
         type: Object
-      }
-    },
-    methods: {
-
-    },
-    mounted: function() {
-    },
-    computed: {
-
-    },
-    filters: {
-      playCount(count) {
-        return playCount(count);
       }
     }
   };

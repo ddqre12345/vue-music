@@ -2,17 +2,45 @@
   width 100%
   height 100%
   overflow-y auto
-  padding-top 10px
-  display flex
-  flex-direction column
-  justify-content center
-  > div
+  .title
+    padding-top 15px
+    font-size 14px
+    color #282c2b
+    &:before
+      content '|'
+      color #ce3d3e
+      font-size 20px
+      font-weight 600
+      padding-right 5px
+  .ranking-official-area
+    padding-top 10px
+    display flex
+    flex-direction column
+    justify-content center
+    > div
+        display flex
+        flex-direction row
+        padding 2px 0
+        img
+          flex 1 0 33%
+          height 130px
+  .ranking-world-area
+    ul
       display flex
       flex-direction row
-      padding 2px 0
-      img
-        flex 1 0 30%
-        height 130px
+      justify-content space-between
+      flex-flow row wrap
+      list-style none
+      li
+        padding-top 10px
+        flex 0 0 32%
+        width 0
+        img
+          width 100%
+        p
+          color: #272d2b
+          padding-left 5px
+          padding-right 5px
 
 
 

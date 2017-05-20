@@ -2,7 +2,7 @@
  * 整个app的路由设置
  */
 const router = [{
-  path: '/index',  //  引导页
+  path: '/',  //  引导页
   name: 'index',
   component (resolve) {
     require.ensure(['./views/index'], () => {
@@ -71,6 +71,15 @@ const router = [{
   component (resolve) {
     require.ensure(['./views/detail/user/user'], () => {
       resolve(require('./views/detail/user/user'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
+  path: '/ranking/:idx',  // 榜单详情页
+  name: 'ranking',
+  component (resolve) {
+    require.ensure(['./views/detail/ranking/ranking'], () => {
+      resolve(require('./views/detail/ranking/ranking'));
     });
   },
   meta: { keepAlive: false }

@@ -4,27 +4,12 @@
     <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
   </div>
 </template>
-
 <script>
-  import { playCount } from '../../../../common/js/data';
   export default {
     name: 'v-mv-card',
     props: {
       data: {
         type: Object
-      }
-    },
-    methods: {
-
-    },
-    mounted: function() {
-    },
-    computed: {
-
-    },
-    filters: {
-      playCount(count) {
-        return playCount(count);
       }
     }
   };
