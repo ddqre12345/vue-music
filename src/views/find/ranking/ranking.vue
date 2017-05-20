@@ -3,19 +3,19 @@
     <div class="ranking-area">
       <div class="title">官方榜</div>
       <div class="ranking-official-area">
-          <div class="surge">
+          <div class="surge" @click="jumpRankingDetail(3)">
               <img src="/static/surge.jpg" alt="surge"/>
               <v-songs-list :data="surgeList"></v-songs-list>
           </div>
-          <div class="newSonges">
+          <div class="newSonges" @click="jumpRankingDetail(0)">
               <img src="/static/newSonges.jpg" alt="newSonges"/>
               <v-songs-list :data="newSongesList"></v-songs-list>
           </div>
-          <div class="original">
+          <div class="original" @click="jumpRankingDetail(2)">
               <img src="/static/original.jpg" alt="original" />
               <v-songs-list :data="originalList"></v-songs-list>
           </div>
-          <div class="hot">
+          <div class="hot" @click="jumpRankingDetail(1)">
               <img src="/static/hot.jpg" alt="hot" />
               <v-songs-list :data="hotList"></v-songs-list>
           </div>

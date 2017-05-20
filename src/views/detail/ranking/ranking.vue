@@ -10,6 +10,7 @@
               <img v-lazy="playListImage"  class="playlist-image" lazy="loading" alt="photo">
               <div class="playlist-intro-other">
                 <p class="playlist-title" style="-webkit-box-orient: vertical;">{{datas.name}}</p>
+                <p class="playlist-updateTime">最近更新:{{datas.updateTime | formatDate}}</p>
                 <div class="playlist-creator"  @click="jumpUserDetail(creator.userId)">
                   <img v-lazy="creatorImage + '?param=100y100'" lazy="loading">
                   <span class="playlist-nickname" style="-webkit-box-orient: vertical;">{{creator.nickname}}</span>
@@ -20,7 +21,7 @@
             <div class="playlist-status">
               <div class="playCount">
                 <span class="file"><i class="icon-file"></i></span>
-                <span>{{datas.subscribedCount | countHandlet}}</span>
+                <span>{{datas.subscribedCount | countHandle}}</span>
               </div>
               <div class="commentCount">
                 <span class="comment"><i class="icon-comment"></i></span>
@@ -34,11 +35,7 @@
         </div>
       </div>
       <div class="play-list">
-          <ul>
-            <!--<li v-for="(data, index) in list" >-->
-                <!--<v-single-card :data="data" :index="index"></v-single-card>-->
-            <!--</li>-->
-          </ul>
+        <v-single-list :list="list"></v-single-list>
       </div>
     </div>
   </transition>
@@ -46,12 +43,13 @@
 <script>
   import api from '../../../api';
   import { countHandle } from '../../../common/js/data';
+  import { formatDate } from '../../../common/js/date';
   import { XHeader } from 'vux';
-  import vSingleCard from '../../../components/card/detail/singleCard.vue';
+  import vSingleList from '../../../components/list/find/ranking/detail/singleList';
   export default {
     components: {
       XHeader,
-      vSingleCard
+      vSingleList
     },
     // 解除keep-alive的缓存
     beforeRouteEnter: (to, from, next) => {
@@ -79,7 +77,6 @@
         tName: '歌单',
         creator: {},
         data: [],
-        index: '',
         list: [],
         backgroundColor: '',
         opacity: 0
@@ -112,7 +109,7 @@
     },
     computed: {
       playListImage() {
-        return '' || (this.datas.coverImgUrl);
+        return '' || this.datas.coverImgUrl;
       },
       creatorImage() {
         return '' || this.creator.avatarUrl;
@@ -121,6 +118,10 @@
     filters: {
       countHandle(count) {
         return countHandle(count);
+      },
+      formatDate(time) {
+        let date = new Date(time);
+        return formatDate(date, 'MM月dd日');
       }
     }
   };
