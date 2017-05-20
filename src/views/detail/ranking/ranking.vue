@@ -6,14 +6,14 @@
       </div>
       <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + '?param=500y500'+ ')'}">
         <div class="playlist-info-blur">
-            <div class="playlist-intro">
-              <img v-lazy="playListImage"  class="playlist-image" lazy="loading" alt="photo">
-              <div class="playlist-intro-other">
-                <p class="playlist-title" style="-webkit-box-orient: vertical;">{{datas.name}}</p>
-                <p class="playlist-updateTime">最近更新:{{datas.updateTime | formatDate}}</p>
-                <div class="playlist-creator"  @click="jumpUserDetail(creator.userId)">
+            <div class="intro-area">
+              <img v-lazy="playListImage"  class="image" lazy="loading" alt="photo">
+              <div class="intro">
+                <p class="title" style="-webkit-box-orient: vertical;">{{datas.name}}</p>
+                <p class="updateTime">最近更新:{{datas.updateTime | formatDate}}</p>
+                <div class="creator"  @click="jumpUserDetail(creator.userId)">
                   <img v-lazy="creatorImage + '?param=100y100'" lazy="loading">
-                  <span class="playlist-nickname" style="-webkit-box-orient: vertical;">{{creator.nickname}}</span>
+                  <span class="nickname" style="-webkit-box-orient: vertical;">{{creator.nickname}}</span>
                   <span class="more"> > </span>
                 </div>
               </div>

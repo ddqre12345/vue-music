@@ -8,66 +8,33 @@
     </div>
     <div class="recommend-playLists-area">
       <div class="title">推荐歌单</div>
-      <div class="playLists-area">
-        <ul>
-          <li v-for="data in playlists">
-            <v-play-list-card :data="data"></v-play-list-card>
-          </li>
-        </ul>
-      </div>
+      <v-play-lists :playlists="playlists"></v-play-lists>
     </div>
     <div class="recommend-activitys-area">
       <div class="title">独家放送</div>
-      <div class="activitys-area">
-        <ul>
-          <li v-for="data in activitys">
-            <v-activity-card :data="data"></v-activity-card>
-          </li>
-        </ul>
-      </div>
+      <v-activitys-list :activitys="activitys"></v-activitys-list>
     </div>
     <div class="recommend-mv-area">
       <div class="title">推荐MV</div>
-      <div class="MV-area">
-        <ul>
-          <li v-for="data in MVs">
-            <v-mv-card :data="data"></v-mv-card>
-          </li>
-        </ul>
-      </div>
+      <v-mv-list :MVs="MVs"></v-mv-list>
     </div>
   </div>
 </template>
 <script>
+  import api from '../../../api/index';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
-  import vPlayListCard from '../../../components/card/findCard/recommend/playListCard';
-  import vActivityCard from '../../../components/card/findCard/recommend/activityCard';
-  import vMvCard from '../../../components/card/findCard/recommend/mvCard';
-  const imgList = [
-    '/static/banner1.jpg',
-    '/static/banner2.jpg',
-    '/static/banner3.jpg',
-    '/static/banner4.jpg'
-  ];
+  import vPlayLists from '../../../components/list/find/recommend/playLists';
+  import vActivitysList from '../../../components/list/find/recommend/activitysList';
+  import vMvList from '../../../components/list/find/recommend/mvList';
+  const imgList = ['/static/banner1.jpg', '/static/banner2.jpg', '/static/banner3.jpg', '/static/banner4.jpg'];
   export default {
     name: 'v-recommend',
-    props: {
-      playlists: {
-        type: Array
-      },
-      activitys: {
-        type: Array
-      },
-      MVs: {
-        type: Array
-      }
-    },
     components: {
       swiper,
       swiperSlide,
-      vPlayListCard,
-      vActivityCard,
-      vMvCard
+      vPlayLists,
+      vActivitysList,
+      vMvList
     },
     data () {
       return {
@@ -76,8 +43,42 @@
           paginationClickable: true,
           autoplay: 2500
         },
-        slide_list: imgList
+        slide_list: imgList,
+        playlists: [],
+        activitys: [],
+        MVs: []
       };
+    },
+    mounted () {
+      this.getPersonalizedResource();
+      this.getPrivatecontentResource();
+      this.getPersonalizedMvResource();
+    },
+    methods: {
+      getPersonalizedResource() {
+        api.getPersonalized().then((response) => {
+          this.playlists = response.data.result;
+        })
+          .catch((response) => {
+            console.log(response);
+          });
+      },
+      getPrivatecontentResource() {
+        api.getPrivatecontent().then((response) => {
+          this.activitys = response.data.result;
+        })
+          .catch((response) => {
+            console.log(response);
+          });
+      },
+      getPersonalizedMvResource() {
+        api.getPersonalizedMv().then((response) => {
+          this.MVs = response.data.result;
+        })
+          .catch((response) => {
+            console.log(response);
+          });
+      }
     }
   };
 </script>

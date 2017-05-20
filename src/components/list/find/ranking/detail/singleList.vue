@@ -1,10 +1,10 @@
 <template>
   <ul>
-    <li v-for="(data, index) in list" class="common-single-card" @click="playAudio(data)">
+    <li class="common-single-card" v-for="(data, index) in list" @click="playAudio(data)">
       <div class="index" :style="{'color': index < 3 ? '#ce3d3e': '#818584'}">{{index + 1}}</div>
-      <div class="single-info">
-        <p class="single-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
-        <p class="single-album" style="-webkit-box-orient: vertical;">{{data.artists[0].name}}</p>
+      <div class="info">
+        <p class="name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
+        <p class="album" style="-webkit-box-orient: vertical;">{{data.artists[0].name}}</p>
       </div>
     </li>
   </ul>
