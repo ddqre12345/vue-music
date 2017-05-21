@@ -1,18 +1,17 @@
 <template>
-  <ul class="playLists-area">
-    <li class="playlist-card-find" v-for="data in playlists" @click="jumpPlayListsDetail(data.id)">
+  <ul class="djProgram-area">
+    <li class="djProgram-card-find" v-for="data in djProgram">
       <img v-lazy="data.picUrl+ '?param=200y200'" lazy="loading" />
       <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
     </li>
   </ul>
 </template>
-
 <script>
   export default {
-    name: 'v-play-lists',
+    name: 'v-dj-program-lists',
     props: {
-      playlists: {
-          type: Array
+      djProgram: {
+        type: Array
       }
     },
     methods: {

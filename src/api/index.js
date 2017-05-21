@@ -23,7 +23,9 @@ import {
   TopListResource,
   PersonalizedResource,
   PrivatecontentResource,
-  PersonalizedMvResource
+  PersonalizedMvResource,
+  NewSongResource,
+  DjProgramResource
 } from './resource';
 
 export default {
@@ -261,5 +263,15 @@ export default {
   // 获取推荐MV
   getPersonalizedMv () {
     return axios.get(PersonalizedMvResource);
+  },
+
+  // 获取推荐MV
+  getNewSong () {
+    return axios.get(NewSongResource);
+  },
+
+  // 获取推荐MV
+  getDjProgram () {
+    return axios.get(DjProgramResource);
   }
 };

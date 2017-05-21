@@ -2,7 +2,7 @@
   <ul class="activitys-area">
     <li class="activity-card-find" v-for="data in activitys">
       <img v-lazy="data.picUrl + '?param=400y200'" lazy="loading" />
-      <h1 style="-webkit-box-orient: vertical;">{{data.name}}</h1>
+      <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
     </li>
   </ul>
 </template>

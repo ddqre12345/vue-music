@@ -24,8 +24,9 @@ const apiMusic = {
   topList: '/api/top/list', //  音乐排行榜
   personalized: '/api/personalized', //  推荐歌单
   privatecontent: '/api/personalized/privatecontent',  // 独家放送
-  personalizedMv: '/api/personalized/mv'  // 推荐MV
-
+  personalizedMv: '/api/personalized/mv',  // 推荐MV
+  newSong: '/api/personalized/newsong', // 推荐音乐
+  djProgram: '/api/personalized/djprogram'  // 推荐电台
 };
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone);
@@ -52,3 +53,5 @@ export const TopListResource = API_ROOT.concat(apiMusic.topList);
 export const PersonalizedResource = API_ROOT.concat(apiMusic.personalized);
 export const PrivatecontentResource = API_ROOT.concat(apiMusic.privatecontent);
 export const PersonalizedMvResource = API_ROOT.concat(apiMusic.personalizedMv);
+export const NewSongResource = API_ROOT.concat(apiMusic.newSong);
+export const DjProgramResource = API_ROOT.concat(apiMusic.djProgram);
