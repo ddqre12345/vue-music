@@ -6,7 +6,7 @@
 - [源码地址](https://github.com/ddqre12345/vue-music)
 - [项目预览](http://118.89.226.181:8080)（web端在chrome调试模式下效果更佳）
 - 针对segmenfault类app暂时无法有效预览的问题，建议粘贴http://118.89.226.181:8080到手机其他浏览器体验
-- 项目所提供请求地址希望仅供预览使用，如果在开发过程中调用，可能会引起服务崩溃，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理，健康绿色环保
+- 项目所提供请求地址希望仅供预览使用，项目后台已加入pm守护之光，如果需要可以直接调用，当然，因为接口不断变化，开发使用[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)最新代码，配置本地服务器代理。
 
 #### 使用技术
 - Vue2：采用最新Vue2的语法
