@@ -84,7 +84,7 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '/video',  // 视频播放
+  path: '/video/:id',  // 视频播放
   name: 'video',
   component (resolve) {
     require.ensure(['./views/detail/mvPlay/mvPlay'], () => {

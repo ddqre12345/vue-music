@@ -25,7 +25,8 @@ import {
   PrivatecontentResource,
   PersonalizedMvResource,
   NewSongResource,
-  DjProgramResource
+  DjProgramResource,
+  MvResource
 } from './resource';
 
 export default {
@@ -273,5 +274,13 @@ export default {
   // 获取推荐MV
   getDjProgram () {
     return axios.get(DjProgramResource);
+  },
+  // 获取mv数据
+  getMvResource (id) {
+    return axios.get(MvResource, {
+      params: {
+        mvid: id
+      }
+    });
   }
 };

@@ -115,9 +115,6 @@
       creatorImage() {
         return '' || this.creator.avatarUrl;
       }
-    },
-    filters: {
-
     }
   };
 </script>

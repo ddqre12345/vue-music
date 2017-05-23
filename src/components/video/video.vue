@@ -1,10 +1,10 @@
 <template>
-    <div class="video-player">
+    <div class="video-player" @click="showControls">
         <!--视频数据来源-->
         <video id="video" ref="video" :poster="options.poster" webkit-playsinline playsinline>
             <source v-for="source in sources" :src="source.src" :type="source.type" />
         </video>
-        <div class="controls" v-show="isControlShow">
+        <div class="controls" v-show="isControlShow&&!loading">
             <!--播放/暂停按钮-->
             <div class="player-control-btn">
                 <!--暂停图标-->
@@ -17,7 +17,7 @@
                 <v-mv-loading :show="loading"></v-mv-loading>
             </div>
             <!--控制条-->
-            <div class="control-content" transition="fade" id="videoControls" v-show="isPlayShow">
+            <div class="control-content" transition="fade" id="videoControls">
                 <!--视频播放时间-->
                 <div class="time-display">
                     <span class="current-time">{{currentTime}}</span>
@@ -103,7 +103,7 @@
         });
         // 当浏览器能够开始播放视频时
         this.$video.addEventListener('canplay', () => {
-          this.controlShow = false;
+          this.isControlShow = false;
           this.loading = false;
         });
         // 当目前的播放位置已更改时
@@ -117,22 +117,22 @@
         });
         // 当视频由于需要缓冲下一帧而停止
         this.$video.addEventListener('waiting', () => {
-          this.controlShow = true;
+          this.isControlShow = true;
           this.loading = true;
         });
         // 当视频已暂停时
         this.$video.addEventListener('pause', () => {
-          this.controlShow = true;
+          this.isControlShow = true;
           this.isPlay = false;
         });
         // 当视频已开始或不再暂停时
         this.$video.addEventListener('play', () => {
-          this.controlShow = false;
+          this.isControlShow = false;
           this.isPlay = true;
         });
         // 当目前的播放列表已结束时
         this.$video.addEventListener('ended', () => {
-          this.controlShow = true;
+          this.isControlShow = true;
           this.isPlay = false;
         });
         this.pressMove();
@@ -147,11 +147,11 @@
             }, 0);
           } else {
             this.$video.play();
-            this.controlShow = false;
+            this.isControlShow = false;
           }
         } else {
           clearTimeout(this.controlShowTimer);
-          this.controlShow = true;
+          this.isControlShow = true;
           this.$refs.video.pause();
           this.isPlay = false;
         }
@@ -184,15 +184,16 @@
         });
       },
       showControls() {
+        console.log(11);
         clearTimeout(this.controlShowTimer);
         if (this.isPlay === true && !this.loading) {
-          if (this.controlShow === false) {
-            this.controlShow = true;
-            this.controlShowTimer = setTimeout(() => {
-              this.controlShow = false;
+          if (this.isControlShow === false) {
+            this.isControlShow = true;
+            this.ontrolShowTimer = setTimeout(() => {
+              this.isControlShow = false;
             }, 3000);
           } else {
-            this.controlShow = false;
+            this.isControlShow = false;
           }
         }
       },
