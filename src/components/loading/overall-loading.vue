@@ -12,6 +12,6 @@
     };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-@import './loading.styl';
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+@import './overall-loading.styl';
 </style>

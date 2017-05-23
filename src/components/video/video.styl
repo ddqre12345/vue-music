@@ -1,13 +1,13 @@
-.vue-mv-video-container
-  position: relative;
-  width: 100%;
+.video-player
+  position relative
+  width 100%
   text-align center
-  padding-bottom 4px
-  .vue-mv-video
+  padding-bottom 8px
+  #video
     width: 100%;
     height: 100%;
     vertical-align: bottom;
-  .vue-mv-contrl-play-btn-area
+  .player-control-btn
     position: absolute;
     top 40%
     left 0
@@ -15,9 +15,15 @@
     display inline-block
     width 10%
     margin 0 auto
-    img
+    z-index 100
+    .btn
       width 100%
-  .vue-mv-control-content
+  .mv-loading
+    position absolute
+    top 0
+    left 45%
+    z-index 99
+  .control-content
     position absolute
     display flex
     flex-direction row
@@ -27,13 +33,15 @@
     bottom 4px
     width 100%
     height 40px
-    z-index 99999
-    .vue-mv-contrl-video-time
+    z-index 999
+    .time-display
       padding: 0 10px;
-      .vue-mv-contrl-video-time-text
+      .current-time
         color: #fff;
         font-size: 14px;
-    .vue-mv-control-fullScreen-btn
+      .total-time
+        color #fff;
+    .fullScreen-btn
       box-sizing content-box
       background: none;
       border: none;
@@ -43,14 +51,14 @@
       padding 0 10px
       img
         width 100%
-  .vue-mv-contrl-video-slider
+  .video-progress
     position: absolute;
     transition: all 0.2s ease-in;
     left: 0;
-    width 100%
+    width 96.7%
     height 4px
-    z-index: 99999;
-    .vue-mv-contrl-video-inner
+    z-index: 999;
+    .drager
       position: absolute;
       display: inline-block;
       left: 0;
@@ -62,13 +70,12 @@
       z-index: 2;
       cursor: pointer;
       transition: all 16ms;
-     .vue-mv-contrl-video-rail
+     .video-buffered-progress
         position: absolute;
         width: 100%;
         height: 4px;
         background #bec2c1
-        overflow: hidden;
-        .vue-mv-contrl-video-rail-inner
+        .video-current-progress
           position: absolute;
           top: 0;
           left: 0;
@@ -77,15 +84,9 @@
           background-color: #e92e35;
           transition: transform .2s;
 
-.vue-mv-contrl-play-btn:hover {
+.player-control-btn:hover {
   background-color: rgba(255, 255, 255, 0.27);
 }
-
-.vue-mv-video:-webkit-full-screen {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 ::-webkit-media-controls {
   display:none !important;
 }
