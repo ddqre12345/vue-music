@@ -1,12 +1,12 @@
 <template>
     <div class="video-player" @click="showControls">
         <!--视频数据来源-->
-        <video id="video" ref="video" :poster="options.poster" webkit-playsinline playsinline>
-            <source v-for="source in sources" :src="source.src" :type="source.type" />
+        <video id="video" ref="video" :poster="options.poster" preload="auto" webkit-playsinline playsinline width="100%" height="300">
+            <source :src="sources.src" :type="sources.type"/>
         </video>
-        <div class="controls" v-show="isControlShow&&!loading">
+        <div class="controls">
             <!--播放/暂停按钮-->
-            <div class="player-control-btn">
+            <div class="player-control-btn" v-show="isControlShow&&!loading">
                 <!--暂停图标-->
                 <img src="./timeOut.svg" class="btn" v-show="isPlay" @click="play">
                 <!--播放图标-->
@@ -17,7 +17,7 @@
                 <v-mv-loading :show="loading"></v-mv-loading>
             </div>
             <!--控制条-->
-            <div class="control-content" transition="fade" id="videoControls">
+            <div class="control-content" v-show="isControlShow&&!loading">
                 <!--视频播放时间-->
                 <div class="time-display">
                     <span class="current-time">{{currentTime}}</span>
@@ -42,7 +42,7 @@
   import vMvLoading from '../../components/loading/mv-loading';
   export default {
     props: {
-      sources: Array,
+      sources: Object,
       options: {
         type: Object,
         default () {
@@ -75,7 +75,21 @@
         $videoControls: null
       };
     },
+    beforeMount () {
+    },
     mounted () {
+      this.$root.$on('change-poster', (val) => {
+        console.log(val);
+        if (this.options.poster === '') {
+          this.options.poster = val;
+        }
+      });
+      this.$root.$on('change-source', (val) => {
+        console.log(val);
+        if (this.sources.src === '') {
+          this.sources.src = val;
+        }
+      });
       this.initVideo();
     },
     methods: {
@@ -93,6 +107,7 @@
         return this.pad(min) + ':' + this.pad(sec);
       },
       initVideo() {
+        console.log(111);
         this.$video = this.$refs.video;
         this.$video.play();
         this.loading = true;
@@ -184,7 +199,6 @@
         });
       },
       showControls() {
-        console.log(11);
         clearTimeout(this.controlShowTimer);
         if (this.isPlay === true && !this.loading) {
           if (this.isControlShow === false) {

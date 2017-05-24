@@ -44,7 +44,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 };
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   'linkActiveClass': 'active',
   routes, // （缩写）相当于 routes: routes
   scrollBehavior
@@ -64,9 +64,6 @@ const routerApp = new Vue({
 /**
  * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
  */
-// if (!loadFromlLocal('music', 'index', false)) {
-//   router.push('/index/find');
-// }
 if (!loadFromlLocal('music', 'find', false)) {
   router.push('/find');
 }

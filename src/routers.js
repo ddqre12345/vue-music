@@ -93,6 +93,6 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/video' //  初始化页面
+  path: '*', redirect: '/find' //  初始化页面
 }];
 export default router;
