@@ -1,8 +1,8 @@
 <template>
     <div class="video-player" @click="showControls">
         <!--视频数据来源-->
-        <video id="video" ref="video" :poster="options.poster" preload="auto" webkit-playsinline playsinline width="100%" height="300">
-            <source :src="sources.src" :type="sources.type"/>
+        <video id="video" ref="video" preload="auto" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
+            <source :src="video.source" type='video/mp4'/>
         </video>
         <div class="controls">
             <!--播放/暂停按钮-->
@@ -17,19 +17,17 @@
                 <v-mv-loading :show="loading"></v-mv-loading>
             </div>
             <!--控制条-->
-            <div class="control-content" v-show="isControlShow&&!loading">
+            <div class="control-content" v-show="isControlShow&&!loading&&isPlayShow">
                 <!--视频播放时间-->
                 <div class="time-display">
-                    <span class="current-time">{{currentTime}}</span>
-                    <span>/</span>
-                    <span class="total-time">{{durationTime}}</span>
+                    <span class="current-time">{{currentTime}}</span>/<span class="total-time">{{durationTime}}</span>
                 </div>
                 <!--全屏播放按钮-->
                 <div class="fullScreen-btn" @click="setFullScreen">
                     <img src="./fullScreen.svg" alt="fullScreen">
                 </div>
             </div>
-            <div class="video-progress" ref="progress">
+            <div class="video-progress" ref="progress" v-show="isPlayShow">
                 <div class="video-buffered-progress" :style="{'width': `${posBuffered}%`}">
                     <div class="video-current-progress" :style="{'width': `${posCurrent}%`}"></div>
                     <div ref="drager" :style="{'left': `${posCurrent}%`}" class="drager"></div>
@@ -41,17 +39,11 @@
 <script>
   import vMvLoading from '../../components/loading/mv-loading';
   export default {
+    name: 'v-video',
     props: {
-      sources: Object,
-      options: {
-        type: Object,
-        default () {
-          return {
-            autoplay: false,
-            poster: ''
-          };
-        }
-      }
+      source: String,
+      type: String,
+      poster: String
     },
     components: {
       vMvLoading
@@ -67,30 +59,26 @@
         durationTime: '00:00',
         posCurrent: 0,
         posBuffered: 0,
-        dragerX: 0,
-        $video: null,
-        $drager: null,
-        $progress: null,
+        $video: undefined,
         controlShowTimer: null,
-        $videoControls: null
+        video: {
+          type: this.type,
+          source: this.source,
+          poster: this.poster
+        }
       };
-    },
-    beforeMount () {
     },
     mounted () {
       this.$root.$on('change-poster', (val) => {
-        console.log(val);
-        if (this.options.poster === '') {
-          this.options.poster = val;
+        if (this.poster === undefined) {
+          this.video.poster = val;
         }
       });
       this.$root.$on('change-source', (val) => {
-        console.log(val);
-        if (this.sources.src === '') {
-          this.sources.src = val;
+        if (this.source === undefined) {
+          this.video.source = val;
         }
       });
-      this.initVideo();
     },
     methods: {
       pad(val) {
@@ -107,7 +95,6 @@
         return this.pad(min) + ':' + this.pad(sec);
       },
       initVideo() {
-        console.log(111);
         this.$video = this.$refs.video;
         this.$video.play();
         this.loading = true;
@@ -173,26 +160,25 @@
       },
       // 拖动更改视频进度
       pressMove() {
-        this.$drager = this.$refs.drager;
-        this.$progress = this.$refs.progress;
-        this.$drager.addEventListener('touchstart', (event) => {
+        let $drager = this.$refs.drager;
+        let $progress = this.$refs.progress;
+        $drager.addEventListener('touchstart', (e) => {
           clearTimeout(this.controlShowTimer);
-          this.dragerX = event.targetTouches[0].clientX;
         });
-        this.$drager.addEventListener('touchmove', (event) => {
+        $drager.addEventListener('touchmove', (e) => {
           this.$video.pause();
-          if (event.targetTouches[0].clientX < 0) {
+          if (e.targetTouches[0].clientX < 0) {
             this.posCurrent = 0;
-          } else if (event.targetTouches[0].clientX > this.$progress.offsetWidth) {
+          } else if (e.targetTouches[0].clientX > $progress.offsetWidth) {
             this.posCurrent = '100';
           } else {
-            let dragerTime = (event.targetTouches[0].clientX / this.$progress.offsetWidth).toFixed(4);
+            let dragerTime = (e.targetTouches[0].clientX / $progress.offsetWidth).toFixed(4);
             this.posCurrent = dragerTime * 100;
             this.currentTime = this.timeParse(dragerTime * this.$video.duration);
           }
         });
-        this.$drager.addEventListener('touchend', (event) => {
-          let dragerTime = (event.changedTouches[0].clientX / this.$progress.offsetWidth).toFixed(4) * this.$video.duration;
+        $drager.addEventListener('touchend', (e) => {
+          let dragerTime = (e.changedTouches[0].clientX / $progress.offsetWidth).toFixed(4) * this.$video.duration;
           this.currentTime = this.timeParse(dragerTime);
           this.$video.currentTime = dragerTime.toFixed(0);
           this.$video.play();
@@ -203,7 +189,7 @@
         if (this.isPlay === true && !this.loading) {
           if (this.isControlShow === false) {
             this.isControlShow = true;
-            this.ontrolShowTimer = setTimeout(() => {
+            this.controlShowTimer = setTimeout(() => {
               this.isControlShow = false;
             }, 3000);
           } else {
