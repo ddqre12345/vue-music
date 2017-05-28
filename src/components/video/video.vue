@@ -30,7 +30,7 @@
             <div class="video-progress" ref="progress" v-show="isPlayShow">
                 <div class="video-buffered-progress" :style="{'width': `${posBuffered}%`}">
                     <div class="video-current-progress" :style="{'width': `${posCurrent}%`}"></div>
-                    <div ref="drager" :style="{'left': `${posCurrent}%`}" class="drager"></div>
+                    <div ref="drager" :style="{'left': `${posCurrent}%`}" class="drager" v-show="isControlShow&&!loading&&isPlayShow"></div>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
 <script>
   import vMvLoading from '../../components/loading/mv-loading';
   export default {
-    name: 'v-video',
+    name: 'video-player',
     props: {
       source: String,
       type: String,

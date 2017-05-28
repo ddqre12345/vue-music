@@ -164,18 +164,7 @@ export default {
       'prCurrentTime',
       'audio',
       'playing'
-    ]),
-    lrcOffset () {
-      if (this.afterLrc) {
-        // 1、根据时间获得歌词
-        let current = Math.round(this.currentTime);
-        // 2、根据时间得到歌词
-        for (let i = 0; i < this.afterLrc.length; i++) {
-          if (this.afterLrc[i].time === current) this.lrcIndex = i;
-        }
-        return -(this.lrcIndex) * 58;
-      }
-    }
+    ])
   },
   filters: {
     // 时间字符格式化
