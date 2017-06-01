@@ -1,51 +1,57 @@
 <template>
     <div class="video-player" @click="showControls">
-        <!--视频数据来源-->
-        <video id="video" ref="video" preload="auto" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
-            <source :src="video.source" type='video/mp4'/>
-        </video>
-        <div class="controls">
-            <!--播放/暂停按钮-->
-            <div class="player-control-btn" v-show="isControlShow&&!loading">
-                <!--暂停图标-->
-                <img src="./timeOut.svg" class="btn" v-show="isPlay" @click="play">
-                <!--播放图标-->
-                <img src="./playing.svg" class="btn" v-show="!isPlay" @click="play">
-            </div>
-            <!--缓存加载效果-->
-            <div class="mv-loading">
-                <v-mv-loading :show="loading"></v-mv-loading>
-            </div>
-            <!--控制条-->
-            <div class="control-content" v-show="isControlShow&&!loading&&isPlayShow">
-                <!--视频播放时间-->
-                <div class="time-display">
-                    <span class="current-time">{{currentTime}}</span>/<span class="total-time">{{durationTime}}</span>
-                </div>
-                <!--全屏播放按钮-->
-                <div class="fullScreen-btn" @click="setFullScreen">
-                    <img src="./fullScreen.svg" alt="fullScreen">
-                </div>
-            </div>
-            <div class="video-progress" ref="progress" v-show="isPlayShow">
-                <div class="video-buffered-progress" :style="{'width': `${posBuffered}%`}">
-                    <div class="video-current-progress" :style="{'width': `${posCurrent}%`}"></div>
-                    <div ref="drager" :style="{'left': `${posCurrent}%`}" class="drager" v-show="isControlShow&&!loading&&isPlayShow"></div>
-                </div>
-            </div>
-        </div>
+      <div class="fixed-title" style="transition: opacity .1s;" v-show="isControlShow&&!loading&&isPlayShow">
+        <x-header :left-options="{backText: ''}" style="background-color:transparent">{{name}}</x-header>
+      </div>
+      <!--视频数据来源-->
+      <video id="video" ref="video" preload="auto" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
+          <source :src="video.source" type='video/mp4'/>
+      </video>
+      <div class="controls">
+          <!--播放/暂停按钮-->
+          <div class="player-control-btn" v-show="isControlShow&&!loading">
+              <!--暂停图标-->
+              <img src="./timeOut.svg" class="btn" v-show="isPlay" @click="play">
+              <!--播放图标-->
+              <img src="./playing.svg" class="btn" v-show="!isPlay" @click="play">
+          </div>
+          <!--缓存加载效果-->
+          <div class="mv-loading">
+              <v-mv-loading :show="loading"></v-mv-loading>
+          </div>
+          <!--控制条-->
+          <div class="control-content" v-show="isControlShow&&!loading&&isPlayShow">
+              <!--视频播放时间-->
+              <div class="time-display">
+                  <span class="current-time">{{currentTime}}</span>/<span class="total-time">{{durationTime}}</span>
+              </div>
+              <!--全屏播放按钮-->
+              <div class="fullScreen-btn" @click="setFullScreen">
+                  <img src="./fullScreen.svg" alt="fullScreen">
+              </div>
+          </div>
+          <div class="video-progress" ref="progress" v-show="isPlayShow">
+              <div class="video-buffered-progress" :style="{'width': `${posBuffered}%`}">
+                  <div class="video-current-progress" :style="{'width': `${posCurrent}%`}"></div>
+                  <div ref="drager" :style="{'left': `${posCurrent}%`}" class="drager" v-show="isControlShow&&!loading&&isPlayShow"></div>
+              </div>
+          </div>
+      </div>
     </div>
 </template>
 <script>
+  import { XHeader } from 'vux';
   import vMvLoading from '../../components/loading/mv-loading';
   export default {
     name: 'video-player',
     props: {
       source: String,
       type: String,
-      poster: String
+      poster: String,
+      name: String
     },
     components: {
+      XHeader,
       vMvLoading
     },
     data () {

@@ -77,6 +77,11 @@
                             </div>
                         </div>
                     </swiper-item>
+                    <swiper-item :key="6">
+                        <div class="tab-swiper vux-center">
+                            <v-mv-list :MVs="mvs"></v-mv-list>
+                        </div>
+                    </swiper-item>
                 </swiper>
             </div>
         </div>
@@ -92,7 +97,8 @@
   import vAlbumCard from '../../components/card/searchCard/albumCard';
   import vPlayListCard from '../../components/card/searchCard/playListCard';
   import vUserCard from '../../components/card/searchCard/userCard';
-  const list = () => ['单曲', '歌手', '专辑', '歌单', '用户'];
+  import vMvList from '../../components/list/search/mvList';
+  const list = () => ['单曲', '歌手', '专辑', '歌单', '用户', 'MV'];
   const hotKeywordsList = () => ['清白之年', '我喜欢上你时的内心活动', '我想和你唱',
     'hyukoh', '童话镇', '陈奕迅', '漂洋过海来看你', '许嵩', '成都', '林俊杰'];
   export default {
@@ -106,7 +112,8 @@
       vSingerCard,
       vAlbumCard,
       vPlayListCard,
-      vUserCard
+      vUserCard,
+      vMvList
     },
     data () {
       return {
@@ -116,14 +123,15 @@
         type: '单曲',
         keywords: '',
         isShowHot: true,
-        songs: {},
-        singer: {},
-        albums: {},
-        playlist: {},
-        user: {}
+        songs: [],
+        singer: [],
+        albums: [],
+        playlist: [],
+        user: [],
+        mvs: []
       };
     },
-    // watch $route 决定使用哪种过渡
+    // watch $route 决定是否清除关键词
     watch: {
       '$route' (to, from) {
         if (from.name === 'find') {
@@ -133,9 +141,17 @@
       }
     },
     methods: {
+      initSearchList () {
+        this.getSingleResource(); //  获取搜索单曲
+        this.getAlbumResource(); //  获取搜索专辑
+        this.getSingerResource(); //  获取搜索歌手
+        this.getPlayListResource(); //  获取搜索歌单
+        this.getUserResource(); //  获取搜索用户
+        this.getMvResource(); // 获取搜索MV
+      },
       goBack () {
         this.$router.push({
-          path: '/index/find'
+          path: '/find'
         });
       },
       // 关键词搜索
@@ -149,11 +165,7 @@
               keywords: keywords
             }
           });
-          this.getSingleResource(); //  获取搜索单曲
-          this.getAlbumResource(); //  获取搜索专辑
-          this.getSingerResource(); //  获取搜索歌手
-          this.getPlayListResource(); //  获取搜索歌单
-          this.getUserResource(); //  获取搜索用户
+          this.initSearchList();
         }
       },
       //  获取搜索单曲
@@ -210,27 +222,20 @@
           .catch((response) => {
             console.log(response);
           });
+      },
+      //  获取搜索MV
+      getMvResource() {
+        api.getSearchResource(this.$route.query.keywords, 1004, 30, 0)
+          .then((response) => {
+            this.mvs = response.data.result.mvs;
+          })
+          .catch((response) => {
+            console.log(response);
+          });
       }
     }
   };
 </script>
-<style lang="less" scoped>
-    @import '~vux/src/styles/1px.less';
-    @import '~vux/src/styles/center.less';
-
-    .vux-swiper {
-        height: 100%;
-    }
-
-    .vux-slider {
-        height: 100%;
-    }
-
-    .tab-swiper {
-        background-color: #fff;
-        height: 100%;
-    }
-</style>
 <style lang="stylus" rel="stylesheet/stylus">
     @import "search.styl";
 </style>

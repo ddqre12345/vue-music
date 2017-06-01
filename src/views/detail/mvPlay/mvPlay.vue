@@ -1,6 +1,6 @@
 <template>
   <div class="mv-info">
-    <video-player :source="video.source" :poster="video.poster"></video-player>
+    <video-player :source="video.source" :poster="video.poster" :name="mvDetail.name"></video-player>
     <div class="intro">
       <p class="name">{{mvDetail.name}}</p>
       <p class="special"><span class="artists">歌手：{{artists}}</span><span>|</span><span class="playCount">播放：{{mvDetail.playCount}}次</span></p>
@@ -61,8 +61,17 @@
       this.getMvResource();
       this.getSimiMvResource();
       this.getMvCommentResource();
+//      this.$root.$on('mv-init', (val) => {
+//        console.log(val);
+//        this.init();
+//      });
     },
     methods: {
+//      init () {
+//        this.getMvResource();
+//        this.getSimiMvResource();
+//        this.getMvCommentResource();
+//      },
       getMvResource() {
         api.getMvResource(this.$route.params.id).then((response) => {
           let data = response.data.data;
