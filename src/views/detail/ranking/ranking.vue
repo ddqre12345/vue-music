@@ -45,7 +45,7 @@
   import { countHandle } from '../../../common/js/data';
   import { formatDate } from '../../../common/js/date';
   import { XHeader } from 'vux';
-  import vSingleList from '../../../components/list/find/ranking/detail/singleList';
+  import vSingleList from '../../../components/list/detail/ranking/singleList';
   export default {
     components: {
       XHeader,

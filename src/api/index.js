@@ -26,7 +26,9 @@ import {
   PersonalizedMvResource,
   NewSongResource,
   DjProgramResource,
-  MvResource
+  MvResource,
+  SimiMvResource,
+  MvCommentResource
 } from './resource';
 
 export default {
@@ -280,6 +282,22 @@ export default {
     return axios.get(MvResource, {
       params: {
         mvid: id
+      }
+    });
+  },
+  // 获取mv数据
+  getSimiMvResource (id) {
+    return axios.get(SimiMvResource, {
+      params: {
+        mvid: id
+      }
+    });
+  },
+  // 获取mv数据
+  getMvCommentResource (id) {
+    return axios.get(MvCommentResource, {
+      params: {
+        id: id
       }
     });
   }

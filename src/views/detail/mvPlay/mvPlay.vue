@@ -21,11 +21,25 @@
         </div>
       </div>
     </div>
+    <div class="recommend-mv">
+      <h1 class="title">相关推荐</h1>
+      <same-mv-list :list="mvs"></same-mv-list>
+    </div>
+    <div class="hot-comments" v-if="hotComments.length">
+      <h1 class="title">精彩评论</h1>
+      <comment-list :list="hotComments"></comment-list>
+    </div>
+    <div class="comments" v-if="comments.length">
+      <h1 class="title">最新评论<span>{{total}}</span></h1>
+      <comment-list :list="comments"></comment-list>
+    </div>
   </div>
 </template>
 <script>
   import api from '../../../api';
-  import videoPlayer from '../../../components/video/video.vue';
+  import videoPlayer from '../../../components/video/video';
+  import sameMvList from '../../../components/list/detail/mv/sameMvList';
+  import commentList from '../../../components/list/detail/comment/commentList';
   export default {
     name: 'mv',
     data () {
@@ -36,11 +50,17 @@
             source: '',
             poster: ''
           }
-        }
+        },
+        mvs: [],
+        hotComments: [],
+        comments: [],
+        total: ''
       };
     },
     mounted () {
       this.getMvResource();
+      this.getSimiMvResource();
+      this.getMvCommentResource();
     },
     methods: {
       getMvResource() {
@@ -52,22 +72,39 @@
           this.video.source = '/api/mv/url?url=' + data.brs[240];
           this.$root.$emit('change-source', this.video.source);
         }).catch((error) => {
-          console.log('加载歌单信息出错:' + error);
+          console.log(error);
+        });
+      },
+      getSimiMvResource() {
+        api.getSimiMvResource(this.$route.params.id).then((response) => {
+          this.mvs = response.data.mvs;
+        }).catch((error) => {
+          console.log(error);
+        });
+      },
+      getMvCommentResource() {
+        api.getMvCommentResource(this.$route.params.id).then((response) => {
+          this.hotComments = response.data.hotComments;
+          this.comments = response.data.comments;
+          this.total = response.data.total;
+        }).catch((error) => {
+          console.log(error);
         });
       }
     },
     computed: {
       artists () {
-        let names = this.mvDetail.artists;
         let artists = [];
-        for (let index in names) {
-          artists.push(names[index].name);
+        for (let index in this.mvDetail.artists) {
+          artists.push(this.mvDetail.artists[index].name);
         }
         return artists.join('/');
       }
     },
     components: {
-      videoPlayer
+      videoPlayer,
+      sameMvList,
+      commentList
     }
   };
 </script>

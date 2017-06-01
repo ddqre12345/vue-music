@@ -35,7 +35,6 @@
         }
       }
     },
-
     filters: {
       formatDate(time) {
         let date = new Date(time);

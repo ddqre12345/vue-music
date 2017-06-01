@@ -1,5 +1,6 @@
 .mv-info
   padding-top 200px
+  background-color #f0f4f3
   .intro
     display flex
     flex-direction column
@@ -28,7 +29,6 @@
         margin-left 20px
     .publishTime
       font-size 12px
-      margin-bottom 10px
       color #8c908f
     .desc
       font-size 14px
@@ -42,7 +42,8 @@
     text-align center
     color #8c908f
     margin-top 25px
-    margin-bottom 10px
+    padding-bottom 10px
+    border-bottom 1px solid #d8dcdb
     span
       display block
     span.file
@@ -62,4 +63,14 @@
       width 30px
       height 30px
       cursor pointer
-
+  .title
+    padding-top 15px
+    font-size 14px
+    font-weight normal
+    color #282c2b
+    margin-bottom 0
+    &:before
+      content '|'
+      color #ce3d3e
+      font-size 20px
+      padding-right 5px

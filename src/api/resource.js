@@ -27,7 +27,9 @@ const apiMusic = {
   personalizedMv: '/api/personalized/mv',  // 推荐MV
   newSong: '/api/personalized/newsong', // 推荐音乐
   djProgram: '/api/personalized/djprogram',  // 推荐电台
-  mv: '/api/mv' // 获取mv数据
+  mv: '/api/mv', // 获取mv数据
+  simiMv: '/api/simi/mv', // 获取相似mv
+  mvComment: '/api/comment/mv'  // 获取mv评论
 };
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone);
@@ -57,3 +59,5 @@ export const PersonalizedMvResource = API_ROOT.concat(apiMusic.personalizedMv);
 export const NewSongResource = API_ROOT.concat(apiMusic.newSong);
 export const DjProgramResource = API_ROOT.concat(apiMusic.djProgram);
 export const MvResource = API_ROOT.concat(apiMusic.mv);
+export const SimiMvResource = API_ROOT.concat(apiMusic.simiMv);
+export const MvCommentResource = API_ROOT.concat(apiMusic.mvComment);
