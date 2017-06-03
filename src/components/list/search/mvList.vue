@@ -1,13 +1,11 @@
 <template>
-  <div class="mv-area-search">
-    <ul>
-      <li class="mv-card" v-for="data in MVs" style="flex: 0 0 49.5%" @click="jumpMvDetail(data.id)">
-        <img v-lazy="data.cover + '?param=400y200'" lazy="loading" class="mv-image"/>
-        <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
-        <p style="-webkit-box-orient: vertical;">{{data.artistName}}</p>
-      </li>
-    </ul>
-  </div>
+  <ul class="mv-list">
+    <li class="mv-card" v-for="data in MVs" style="flex: 0 0 49.5%" @click="jumpMvDetail(data.id)">
+      <img v-lazy="data.cover + '?param=400y200'" lazy="loading" class="mv-image"/>
+      <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
+      <p style="-webkit-box-orient: vertical;">{{data.artistName}}</p>
+    </li>
+  </ul>
 </template>
 <script>
   export default {

@@ -23,18 +23,16 @@
                 </tab>
                 <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container">
                     <swiper-item :key="1">
-                        <div class="tab-swiper vux-center">
-                            <div class="single-list">
-                                <ul>
-                                    <li v-for="data in songs">
-                                        <v-single-card :data="data"></v-single-card>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="tab-swiper vux-center search-area">
+                          <ul class="single-list">
+                              <li v-for="data in songs">
+                                  <v-single-card :data="data"></v-single-card>
+                              </li>
+                          </ul>
                         </div>
                     </swiper-item>
                     <swiper-item :key="2">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center search-area">
                             <div class="singer-list">
                                 <ul>
                                     <li v-for="data in singer">
@@ -45,7 +43,7 @@
                         </div>
                     </swiper-item>
                     <swiper-item :key="3">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center search-area">
                             <div class="album-list">
                                 <ul>
                                     <li v-for="data in albums">
@@ -56,7 +54,7 @@
                         </div>
                     </swiper-item>
                     <swiper-item :key="4">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center search-area">
                             <div class="play-lists">
                                 <ul>
                                     <li v-for="data in playlist">
@@ -67,7 +65,7 @@
                         </div>
                     </swiper-item>
                     <swiper-item :key="5">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center search-area">
                             <div class="user-list">
                                 <ul>
                                     <li v-for="data in user">
@@ -78,7 +76,7 @@
                         </div>
                     </swiper-item>
                     <swiper-item :key="6">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center search-area">
                             <v-mv-list :MVs="mvs"></v-mv-list>
                         </div>
                     </swiper-item>
