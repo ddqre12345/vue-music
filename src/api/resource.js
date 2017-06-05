@@ -29,7 +29,8 @@ const apiMusic = {
   djProgram: '/api/personalized/djprogram',  // 推荐电台
   mv: '/api/mv', // 获取mv数据
   simiMv: '/api/simi/mv', // 获取相似mv
-  mvComment: '/api/comment/mv'  // 获取mv评论
+  mvComment: '/api/comment/mv',  // 获取mv评论
+  playlistComment: '/api/comment/playlist'  // 获取歌单评论
 };
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone);
@@ -61,3 +62,4 @@ export const DjProgramResource = API_ROOT.concat(apiMusic.djProgram);
 export const MvResource = API_ROOT.concat(apiMusic.mv);
 export const SimiMvResource = API_ROOT.concat(apiMusic.simiMv);
 export const MvCommentResource = API_ROOT.concat(apiMusic.mvComment);
+export const PlaylistCommentResource = API_ROOT.concat(apiMusic.playlistComment);

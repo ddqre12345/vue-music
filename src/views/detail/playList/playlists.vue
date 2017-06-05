@@ -7,10 +7,10 @@
       <div class="playlist-info" :style="{'background-image': 'url(' + playListImage + '?param=500y500'+ ')'}">
         <div class="playlist-info-blur">
             <div class="playlist-intro">
-              <img v-lazy="playListImage"  class="playlist-image" lazy="loading" alt="photo">
+              <img v-lazy="playListImage" class="playlist-image" lazy="loading" alt="photo">
               <div class="playlist-intro-other">
                 <p class="playlist-title" style="-webkit-box-orient: vertical;">{{datas.name}}</p>
-                <div class="playlist-creator"  @click="jumpUserDetail(creator.userId)">
+                <div class="playlist-creator" @click="jumpUserDetail(creator.userId)">
                   <img v-lazy="creatorImage + '?param=100y100'" lazy="loading">
                   <span class="playlist-nickname" style="-webkit-box-orient: vertical;">{{creator.nickname}}</span>
                   <span class="more"> > </span>
@@ -23,7 +23,7 @@
                 <span>{{datas.playCount}}</span>
               </div>
               <div class="commentCount">
-                <span class="comment"><i class="icon-comment"></i></span>
+                <span class="comment" @click="jumpCommentDetail()"><i class="icon-comment"></i></span>
                 <span>{{datas.commentCount}}</span>
               </div>
               <div class="shareCount">
@@ -91,6 +91,11 @@
       jumpUserDetail(id) {
         this.$router.push({
           path: '/user/' + id
+        });
+      },
+      jumpCommentDetail() {
+        this.$router.push({
+          path: '/playListComment/' + this.$route.params.id
         });
       },
       getPlayListDetail () {

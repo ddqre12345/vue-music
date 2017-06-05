@@ -93,6 +93,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
+  path: '/playListComment/:id',  // 歌单评论
+  name: 'playListComment',
+  component (resolve) {
+    require.ensure(['./views/detail/playList/playListComment'], () => {
+      resolve(require('./views/detail/playList/playListComment'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
   path: '*', redirect: '/find' //  初始化页面
 }];
 export default router;

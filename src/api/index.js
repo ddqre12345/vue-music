@@ -28,7 +28,8 @@ import {
   DjProgramResource,
   MvResource,
   SimiMvResource,
-  MvCommentResource
+  MvCommentResource,
+  PlaylistCommentResource
 } from './resource';
 
 export default {
@@ -296,6 +297,14 @@ export default {
   // 获取mv数据
   getMvCommentResource (id) {
     return axios.get(MvCommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+  // 获取歌单评论
+  getPlaylistCommentResource (id) {
+    return axios.get(PlaylistCommentResource, {
       params: {
         id: id
       }
