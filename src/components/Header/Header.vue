@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="header">
     <div class="name">
       <span @click="showAsideMenu(true)" class="func"><i class="func-icon"></i></span>

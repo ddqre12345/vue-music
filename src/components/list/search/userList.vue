@@ -1,6 +1,7 @@
 <template>
-    <div class="user-card" @click="jumpUserDetail(data.userId)">
-        <img v-lazy="avatarImage + '?param=200y200'" lazy="loading" class="avatarImage"/>
+    <ul class="user-list">
+      <li v-for="data in user" class="user-card" @click="jumpUserDetail(data.userId)">
+        <img v-lazy="data.avatarUrl + '?param=200y200'" lazy="loading" class="avatarImage"/>
         <div class="avatar-info">
             <p class="avatar-name">
                 {{data.nickname}}
@@ -9,14 +10,15 @@
             </p>
             <p class="avatar-intro" style="-webkit-box-orient: vertical;">{{data.signature}}</p>
         </div>
-    </div>
+      </li>
+    </ul>
 </template>
 <script>
   export default {
     name: 'v-user-card',
     props: {
-      data: {
-        type: Object
+      user: {
+        type: Array
       }
     },
     methods: {
@@ -25,14 +27,9 @@
           path: '/user/' + id
         });
       }
-    },
-    computed: {
-      avatarImage() {
-        return '' || this.data.avatarUrl;
-      }
     }
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-    @import 'userCard.styl';
+    @import 'userList.styl';
 </style>

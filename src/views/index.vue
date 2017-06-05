@@ -3,7 +3,7 @@
     <transition name="fade">
         <div class="index">
             <!-- 侧边栏 -->
-            <AsideMenu v-show="isShowAsideMenu"></AsideMenu>
+            <asideMenu v-show="isShowAsideMenu"></asideMenu>
             <!-- 头部 -->
             <vHeader></vHeader>
             <router-view></router-view>
@@ -11,13 +11,13 @@
     </transition>
 </template>
 <script>
-  import vHeader from '../components/header/header.vue';
-  import AsideMenu from '../components/asideMenu/asideMenu.vue';
+  import vHeader from '../components/header/header';
+  import asideMenu from '../components/aside/aside';
 
   export default {
     components: {
       vHeader,
-      AsideMenu
+      asideMenu
     },
     computed: {
       isShowAsideMenu() {

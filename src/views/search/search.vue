@@ -24,60 +24,32 @@
                 <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container">
                     <swiper-item :key="1">
                         <div class="tab-swiper vux-center search-area">
-                          <ul class="single-list">
-                              <li v-for="data in songs">
-                                  <v-single-card :data="data"></v-single-card>
-                              </li>
-                          </ul>
+                          <v-single-list :songs="songs"></v-single-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="2">
                         <div class="tab-swiper vux-center search-area">
-                            <div class="singer-list">
-                                <ul>
-                                    <li v-for="data in singer">
-                                        <v-singer-card :data="data"></v-singer-card>
-                                    </li>
-                                </ul>
-                            </div>
+                          <v-singer-list :singer="singer"></v-singer-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="3">
                         <div class="tab-swiper vux-center search-area">
-                            <div class="album-list">
-                                <ul>
-                                    <li v-for="data in albums">
-                                        <v-album-card :data="data"></v-album-card>
-                                    </li>
-                                </ul>
-                            </div>
+                          <v-album-list :albums="albums"></v-album-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="4">
                         <div class="tab-swiper vux-center search-area">
-                            <div class="play-lists">
-                                <ul>
-                                    <li v-for="data in playlist">
-                                        <v-play-list-card :data="data"></v-play-list-card>
-                                    </li>
-                                </ul>
-                            </div>
+                          <v-play-lists :playlist="playlist"></v-play-lists>
                         </div>
                     </swiper-item>
                     <swiper-item :key="5">
                         <div class="tab-swiper vux-center search-area">
-                            <div class="user-list">
-                                <ul>
-                                    <li v-for="data in user">
-                                        <v-user-card :data="data"></v-user-card>
-                                    </li>
-                                </ul>
-                            </div>
+                          <v-user-list :user="user"></v-user-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="6">
                         <div class="tab-swiper vux-center search-area">
-                            <v-mv-list :MVs="mvs"></v-mv-list>
+                          <v-mv-list :MVs="mvs"></v-mv-list>
                         </div>
                     </swiper-item>
                 </swiper>
@@ -86,15 +58,15 @@
     </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import api from '../../api/index';
   import {Tab, TabItem} from 'vux/src/components/Tab';
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
-  import vSingleCard from '../../components/card/searchCard/singleCard';
-  import vSingerCard from '../../components/card/searchCard/singerCard';
-  import vAlbumCard from '../../components/card/searchCard/albumCard';
-  import vPlayListCard from '../../components/card/searchCard/playListCard';
-  import vUserCard from '../../components/card/searchCard/userCard';
+  import vSingleList from '../../components/list/search/singleList';
+  import vSingerList from '../../components/list/search/singerList';
+  import vAlbumList from '../../components/list/search/albumList';
+  import vPlayLists from '../../components/list/search/playLists';
+  import vUserList from '../../components/list/search/userList';
   import vMvList from '../../components/list/search/mvList';
   const list = () => ['单曲', '歌手', '专辑', '歌单', '用户', 'MV'];
   const hotKeywordsList = () => ['清白之年', '我喜欢上你时的内心活动', '我想和你唱',
@@ -106,11 +78,11 @@
       TabItem,
       Swiper,
       SwiperItem,
-      vSingleCard,
-      vSingerCard,
-      vAlbumCard,
-      vPlayListCard,
-      vUserCard,
+      vSingleList,
+      vSingerList,
+      vAlbumList,
+      vPlayLists,
+      vUserList,
       vMvList
     },
     data () {

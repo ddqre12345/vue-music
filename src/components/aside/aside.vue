@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <transition name="fadeIn">
     <div  class="aside-menu">
       <i @click="showAsideMenu" class="back"></i>
@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'AsideMenu',
+  name: 'aside',
   data () {
     return {
       isSignIn: false
@@ -28,6 +28,6 @@ export default {
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "asideMenu.styl";
+  @import "aside.styl";
 </style>
 
