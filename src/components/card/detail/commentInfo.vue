@@ -1,9 +1,9 @@
 <template>
   <div class="comment-info">
-    <img :src="img">
+    <img v-lazy="img + '?param=200y200'" lazy="loading"/>
     <div class="detail">
-      <p class="title"></p>
-      <p class="author"></p>
+      <p class="title">{{title}}</p>
+      <p class="author">{{author}}</p>
     </div>
     <div class="back-icon"></div>
   </div>

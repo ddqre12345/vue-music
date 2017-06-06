@@ -1,5 +1,5 @@
 <template>
-  <div class="playList-comment">
+  <div class="albumt-comment">
     <div class="fixed-title" style="background: rgb(183, 39, 18);position: fixed;width: 100%;top: 0;height: 46px;">
       <x-header :left-options="{backText: ''}" style="background-color:transparent">评论({{total}})</x-header>
     </div>
@@ -34,16 +34,16 @@
       };
     },
     mounted () {
-      this.getPlayListDetail();
-      this.getPlaylistCommentResource();
+      this.getlAlbumDetail();
+      this.getAlbumCommentResource();
     },
     methods: {
-      getPlayListDetail () {
+      getlAlbumDetail () {
         this.$store.commit('update_loading', true);
-        api.getPlaylistDetailResource(this.$route.params.id).then((response) => {
-          this.imgUrl = response.data.playlist.picUrl;
-          this.title = response.data.playlist.name;
-          this.author = response.data.playlist.creator.nickname;
+        api.getAlbumResource(this.$route.params.id).then((response) => {
+          this.imgUrl = response.data.album.picUrl;
+          this.title = response.data.album.name;
+          this.author = response.data.album.artist.name;
           // $nextTick() 在dom 重新渲染完后执行
           this.$nextTick(() => {
             this.$store.commit('update_loading', false);
@@ -52,8 +52,8 @@
           console.log('加载歌单信息出错:' + error);
         });
       },
-      getPlaylistCommentResource() {
-        api.getPlaylistCommentResource(this.$route.params.id).then((response) => {
+      getAlbumCommentResource() {
+        api.getAlbumCommentResource(this.$route.params.id).then((response) => {
           this.hotComments = response.data.hotComments;
           this.comments = response.data.comments;
           this.total = response.data.total;
@@ -70,5 +70,5 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "playListComment.styl";
+  @import "albumComment.styl";
 </style>

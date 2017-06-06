@@ -29,7 +29,8 @@ import {
   MvResource,
   SimiMvResource,
   MvCommentResource,
-  PlaylistCommentResource
+  PlaylistCommentResource,
+  AlbumCommentResource
 } from './resource';
 
 export default {
@@ -305,6 +306,14 @@ export default {
   // 获取歌单评论
   getPlaylistCommentResource (id) {
     return axios.get(PlaylistCommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+  // 获取专辑评论
+  getAlbumCommentResource (id) {
+    return axios.get(AlbumCommentResource, {
       params: {
         id: id
       }

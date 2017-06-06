@@ -20,7 +20,7 @@
               <span>{{albumInfo.likedCount || 0}}</span>
             </div>
             <div class="commentCount">
-              <span class="comment"><i class="icon-comment"></i></span>
+              <span class="comment" @click="jumpCommentDetail()"><i class="icon-comment"></i></span>
               <span>{{albumInfo.commentCount || 0}}</span>
             </div>
             <div class="shareCount">
@@ -88,6 +88,11 @@
       jumpSingerDetail(id) {
         this.$router.push({
           path: '/singer/' + id
+        });
+      },
+      jumpCommentDetail() {
+        this.$router.push({
+          path: '/albumComment/' + this.$route.params.id
         });
       },
       getlAlbumDetail () {

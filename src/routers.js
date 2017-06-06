@@ -102,6 +102,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
+  path: '/albumComment/:id',  // 专辑评论
+  name: 'albumComment',
+  component (resolve) {
+    require.ensure(['./views/detail/album/albumComment'], () => {
+      resolve(require('./views/detail/album/albumComment'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
   path: '*', redirect: '/find' //  初始化页面
 }];
 export default router;
