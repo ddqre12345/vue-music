@@ -111,6 +111,15 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
+  path: '/rankingComment/:id',  // 排行榜歌单评论
+  name: 'rankingComment',
+  component (resolve) {
+    require.ensure(['./views/detail/ranking/rankingComment'], () => {
+      resolve(require('./views/detail/ranking/rankingComment'));
+    });
+  },
+  meta: { keepAlive: false }
+}, {
   path: '*', redirect: '/find' //  url错误重回定向
 }];
 export default router;

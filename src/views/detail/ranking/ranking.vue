@@ -23,7 +23,7 @@
                 <span class="file"><i class="icon-file"></i></span>
                 <span>{{datas.subscribedCount | countHandle}}</span>
               </div>
-              <div class="commentCount">
+              <div class="commentCount" @click="jumpCommentDetail()">
                 <span class="comment"><i class="icon-comment"></i></span>
                 <span>{{datas.commentCount | countHandle}}</span>
               </div>
@@ -89,6 +89,11 @@
       jumpUserDetail(id) {
         this.$router.push({
           path: '/user/' + id
+        });
+      },
+      jumpCommentDetail() {
+        this.$router.push({
+          path: '/rankingComment/' + this.datas.id
         });
       },
       getTopListDetail () {

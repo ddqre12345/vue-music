@@ -1,11 +1,11 @@
 <template>
-  <div class="comment-info">
+  <div class="comment-info" @click="goback">
     <img v-lazy="img + '?param=200y200'" lazy="loading"/>
     <div class="detail">
       <p class="title">{{title}}</p>
       <p class="author">{{author}}</p>
     </div>
-    <div class="back-buttom">></div>
+    <div class="back-buttom"></div>
   </div>
 </template>
 <script>
@@ -27,6 +27,9 @@
       };
     },
     methods: {
+      goback () {
+        this.$router.go(-1);
+      }
     }
   };
 </script>
