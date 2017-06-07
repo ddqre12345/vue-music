@@ -5,16 +5,22 @@
       <p class="title">{{title}}</p>
       <p class="author">{{author}}</p>
     </div>
-    <div class="back-icon"></div>
+    <div class="back-buttom">></div>
   </div>
 </template>
 <script>
   export default {
     name: 'video-player',
     props: {
-      img: String,
-      title: String,
-      author: String
+      img: {
+        type: String
+      },
+      title: {
+        type: String
+      },
+      author: {
+        type: String
+      }
     },
     data () {
       return {

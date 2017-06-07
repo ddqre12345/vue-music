@@ -29,7 +29,7 @@
             <div class="process-bar">
               <div class="pro">
                   <div class="pro-wrap">
-                    <mu-slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
+                    <slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
                   </div>
                   <div class="time">
                     <time id="cur">{{currentTime | time}}</time>
@@ -57,6 +57,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import slider from '../../../components/slider/slider';
 import Toast from '../../../components/toast';
 import BottomSheet from '../../../components/list';
 import api from '../../../api';
@@ -70,6 +71,7 @@ export default {
     };
   },
   components: {
+    slider,
     Toast,
     BottomSheet
   },

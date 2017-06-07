@@ -2,7 +2,7 @@
  * 整个app的路由设置
  */
 const router = [{
-  path: '/',  //  引导页
+  path: '/find',  //  引导页
   name: 'index',
   component (resolve) {
     require.ensure(['./views/index'], () => {
@@ -111,6 +111,6 @@ const router = [{
   },
   meta: { keepAlive: false }
 }, {
-  path: '*', redirect: '/find' //  初始化页面
+  path: '*', redirect: '/find' //  url错误重回定向
 }];
 export default router;
