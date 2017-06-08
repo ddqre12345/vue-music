@@ -11,18 +11,12 @@
                 </tab>
                 <swiper v-model="index" height="100%" :show-dots="false">
                     <swiper-item :key="1">
-                        <div class="tab-swiper vux-center">
-                            <div class="hot-single-list">
-                                <ul>
-                                    <li v-for="(data, order) in hotSongs">
-                                        <v-single-card :data="data" :order="order"></v-single-card>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="tab-swiper vux-center list-area">
+                            <v-single-list :list="hotSongs"></v-single-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="2">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center list-area">
                             <div class="album-list-detail">
                                 <ul>
                                     <li v-for="data in hotAlbums">
@@ -33,7 +27,7 @@
                         </div>
                     </swiper-item>
                     <swiper-item :key="3">
-                        <div class="tab-swiper vux-center">
+                        <div class="tab-swiper vux-center list-area">
                             <div class="album-list-detail">
                                 <ul>
                                     <li v-for="data in hotAlbums">
@@ -53,7 +47,7 @@
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vSingleCard from '../../../components/card/detail/hotSingleCard';
+  import vSingleList from '../../../components/list/detail/singer/singleList';
   import vAlbumCard from '../../../components/card/detail/albumCard';
   const list = () => ['热门50', '专辑', 'MV'];
   export default {
@@ -145,7 +139,7 @@
       Swiper,
       SwiperItem,
       XHeader,
-      vSingleCard,
+      vSingleList,
       vAlbumCard
     }
   };
