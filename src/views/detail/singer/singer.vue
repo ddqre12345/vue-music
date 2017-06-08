@@ -32,19 +32,30 @@
                             </div>
                         </div>
                     </swiper-item>
+                    <swiper-item :key="3">
+                        <div class="tab-swiper vux-center">
+                            <div class="album-list-detail">
+                                <ul>
+                                    <li v-for="data in hotAlbums">
+                                        <v-album-card :data="data"></v-album-card>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </swiper-item>
                 </swiper>
             </div>
         </div>
     </transition>
 </template>
-<script type="text/ecmascript-6">
+<script>
   import api from '../../../api';
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
   import vSingleCard from '../../../components/card/detail/hotSingleCard';
   import vAlbumCard from '../../../components/card/detail/albumCard';
-  const list = () => ['热门50', '专辑'];
+  const list = () => ['热门50', '专辑', 'MV'];
   export default {
     data () {
       return {
@@ -63,6 +74,7 @@
       this.getSingerDetail();
       this.getSingerSingle();
       this.getArtistAlbum();
+      this.getArtistMv();
     },
     methods: {
       jumpUserDetail (id) {
@@ -106,6 +118,16 @@
         api.getArtistAlbumResource(this.$route.params.id, 30)
           .then((response) => {
             this.hotAlbums = response.data.hotAlbums;
+          })
+          .catch((response) => {
+            console.log(response);
+          });
+      },
+      // 获取歌手专辑
+      getArtistMv () {
+        api.getArtistMvResource(this.$route.params.id, 30)
+          .then((response) => {
+            this.mvs = response.data.mvs;
           })
           .catch((response) => {
             console.log(response);

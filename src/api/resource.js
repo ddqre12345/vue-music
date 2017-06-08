@@ -31,7 +31,8 @@ const apiMusic = {
   simiMv: '/api/simi/mv', // 获取相似mv
   mvComment: '/api/comment/mv',  // 获取mv评论
   playlistComment: '/api/comment/playlist',  // 获取歌单评论
-  albumComment: '/api/comment/album'  // 获取专辑评论
+  albumComment: '/api/comment/album',  // 获取专辑评论
+  artistMv: '/api/artist/mv'  // 获取歌手MV
 };
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone);
@@ -65,3 +66,4 @@ export const SimiMvResource = API_ROOT.concat(apiMusic.simiMv);
 export const MvCommentResource = API_ROOT.concat(apiMusic.mvComment);
 export const PlaylistCommentResource = API_ROOT.concat(apiMusic.playlistComment);
 export const AlbumCommentResource = API_ROOT.concat(apiMusic.albumComment);
+export const ArtistMvResource = API_ROOT.concat(apiMusic.artistMv);
