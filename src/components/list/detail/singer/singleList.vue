@@ -15,7 +15,7 @@
     name: 'v-hot-single-list',
     props: {
       list: {
-        type: Array
+        type: [Object, Array]
       }
     },
     methods: {

@@ -1,44 +1,19 @@
 <template>
-  <ul class="hot-single-list">
-    <li class="single-card" v-for="(data, index) in list" @click="playAudio(data)">
-      <div class="index">{{index + 1}}</div>
-      <div class="single-info">
-          <p class="single-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
-          <p class="single-album" style="-webkit-box-orient: vertical;">{{data.al.name}}</p>
-      </div>
-    </li>
+  <ul class="album-list-detail">
+    <v-album-card v-for="data in list" :data="data"></v-album-card>
   </ul>
 </template>
 <script>
-  import { mapGetters } from 'vuex';
+  import vAlbumCard from '../../../card/detail/albumCard';
   export default {
-    name: 'v-hot-single-list',
+    name: 'v-album-list',
     props: {
       list: {
-        type: Array
+        type: [Object, Array]
       }
     },
-    methods: {
-      playAudio (song) {
-        document.getElementById('audioPlay').pause();
-        this.$store.commit('pause');
-        let audio = {};
-        audio.id = song.id;  // id
-        audio.singer = song.album.name; // 演唱者
-        audio.albumPic = song.album.picUrl; // 专辑图片
-        audio.name = song.name;
-        // 通过Vuex改变状态
-        this.$store.commit('addToList', audio);
-        this.$store.dispatch('getSong', audio.id);
-      }
-    },
-    computed: {
-      ...mapGetters([
-        'songList'
-      ])
+    components: {
+      vAlbumCard
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'albumList.styl';
-</style>

@@ -17,24 +17,12 @@
                     </swiper-item>
                     <swiper-item :key="2">
                         <div class="tab-swiper vux-center list-area">
-                            <div class="album-list-detail">
-                                <ul>
-                                    <li v-for="data in hotAlbums">
-                                        <v-album-card :data="data"></v-album-card>
-                                    </li>
-                                </ul>
-                            </div>
+                            <v-album-list :list="hotAlbums"></v-album-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="3">
                         <div class="tab-swiper vux-center list-area">
-                            <div class="album-list-detail">
-                                <ul>
-                                    <li v-for="data in hotAlbums">
-                                        <v-album-card :data="data"></v-album-card>
-                                    </li>
-                                </ul>
-                            </div>
+                            <v-mv-list :list="mvs"></v-mv-list>
                         </div>
                     </swiper-item>
                 </swiper>
@@ -48,7 +36,8 @@
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
   import vSingleList from '../../../components/list/detail/singer/singleList';
-  import vAlbumCard from '../../../components/card/detail/albumCard';
+  import vAlbumList from '../../../components/list/detail/singer/albumList';
+  import vMvList from '../../../components/list/detail/singer/mvList';
   const list = () => ['热门50', '专辑', 'MV'];
   export default {
     data () {
@@ -60,8 +49,9 @@
         backgroundColor: '',
         singerInfo: {},
         userId: '',
-        hotSongs: {},
-        hotAlbums: {}
+        hotSongs: [],
+        hotAlbums: [],
+        mvs: []
       };
     },
     mounted: function() {
@@ -140,7 +130,8 @@
       SwiperItem,
       XHeader,
       vSingleList,
-      vAlbumCard
+      vAlbumList,
+      vMvList
     }
   };
 </script>
