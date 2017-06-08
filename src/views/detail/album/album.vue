@@ -37,6 +37,7 @@
           </li>
         </ul>
       </div>
+      <v-album-detail :data="album"></v-album-detail>
     </div>
   </transition>
 </template>
@@ -45,10 +46,11 @@
   import { formatDate } from '../../../common/js/date';
   import { XHeader } from 'vux';
   import vHotSingleCard from '../../../components/card/detail/hotSingleCard';
+  import vAlbumDetail from './albumDetail';
   export default {
     data () {
       return {
-        album: [],
+        album: {},
         albumInfo: {},
         singerId: '',
         singerName: '',
@@ -132,7 +134,8 @@
     },
     components: {
       XHeader,
-      vHotSingleCard
+      vHotSingleCard,
+      vAlbumDetail
     }
   };
 </script>
