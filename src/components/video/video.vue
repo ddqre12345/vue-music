@@ -75,6 +75,9 @@
       };
     },
     mounted () {
+      let self = this;
+      self.$video = this.$refs.video;
+      console.log(self.$video);
       this.$root.$on('change-poster', (val) => {
         if (this.poster === undefined) {
           this.video.poster = val;
@@ -84,6 +87,10 @@
         if (this.source === undefined) {
           this.video.source = val;
         }
+      });
+      this.$root.$on('mv-reload', (val) => {
+        console.log(val);
+        self.reload();
       });
     },
     methods: {
@@ -100,8 +107,13 @@
         sec = sec - min * 60;
         return this.pad(min) + ':' + this.pad(sec);
       },
+      reload() {
+        console.log(this.$refs.video);
+        this.$refs.video.load();
+      },
       initVideo() {
         this.$video = this.$refs.video;
+        console.log(this.$video);
         this.$video.play();
         this.loading = true;
         // 当视频的元数据(时长、尺寸)已加载时
@@ -121,7 +133,10 @@
           // 修正视频当前播放进度
           this.posCurrent = (this.$video.currentTime / this.$video.duration).toFixed(6) * 100;
           // 修正视频缓冲进度
-          this.posBuffered = (this.$video.buffered.end(0) / this.$video.duration).toFixed(6) * 100;
+
+          if (this.$video.buffered.length > 0) {
+            this.posBuffered = (this.$video.buffered.end(0) / this.$video.duration).toFixed(6) * 100;
+          }
         });
         // 当视频由于需要缓冲下一帧而停止
         this.$video.addEventListener('waiting', () => {

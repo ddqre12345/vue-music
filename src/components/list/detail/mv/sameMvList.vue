@@ -22,7 +22,7 @@
         this.$router.replace({
           path: '/mv/' + id
         });
-//        this.$root.$emit('mv-init', id);
+        this.$root.$emit('mv-init', id);
       }
     }
   };

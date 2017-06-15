@@ -58,20 +58,22 @@
       };
     },
     mounted () {
+      let self = this;
       this.getMvResource();
       this.getSimiMvResource();
       this.getMvCommentResource();
-//      this.$root.$on('mv-init', (val) => {
-//        console.log(val);
-//        this.init();
-//      });
+      this.$root.$on('mv-init', (val) => {
+        console.log(val);
+        self.init();
+        this.$root.$emit('mv-reload', val);
+      });
     },
     methods: {
-//      init () {
-//        this.getMvResource();
-//        this.getSimiMvResource();
-//        this.getMvCommentResource();
-//      },
+     init () {
+       this.getMvResource();
+       this.getSimiMvResource();
+       this.getMvCommentResource();
+     },
       getMvResource() {
         api.getMvResource(this.$route.params.id).then((response) => {
           let data = response.data.data;
