@@ -63,9 +63,7 @@
       this.getSimiMvResource();
       this.getMvCommentResource();
       this.$root.$on('mv-init', (val) => {
-        console.log(val);
         self.init();
-        this.$root.$emit('mv-reload', val);
       });
     },
     methods: {

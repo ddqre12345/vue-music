@@ -4,7 +4,7 @@
         <x-header :left-options="{backText: ''}" style="background-color:transparent">{{name}}</x-header>
       </div>
       <!--视频数据来源-->
-      <video id="video" ref="video" preload="auto" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
+      <video id="video" ref="video" preload="auto" :src="video.source" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
           <source :src="video.source" type='video/mp4'/>
       </video>
       <div class="controls">
@@ -75,22 +75,12 @@
       };
     },
     mounted () {
-      let self = this;
-      self.$video = this.$refs.video;
-      console.log(self.$video);
       this.$root.$on('change-poster', (val) => {
-        if (this.poster === undefined) {
           this.video.poster = val;
-        }
       });
       this.$root.$on('change-source', (val) => {
-        if (this.source === undefined) {
           this.video.source = val;
-        }
-      });
-      this.$root.$on('mv-reload', (val) => {
-        console.log(val);
-        self.reload();
+          this.reload();
       });
     },
     methods: {
@@ -108,12 +98,12 @@
         return this.pad(min) + ':' + this.pad(sec);
       },
       reload() {
-        console.log(this.$refs.video);
-        this.$refs.video.load();
+        if (this.$refs.video !== undefined) {
+          this.$refs.video.load();
+        }
       },
       initVideo() {
         this.$video = this.$refs.video;
-        console.log(this.$video);
         this.$video.play();
         this.loading = true;
         // 当视频的元数据(时长、尺寸)已加载时
