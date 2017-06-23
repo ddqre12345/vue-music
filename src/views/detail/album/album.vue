@@ -1,13 +1,13 @@
 <template>
   <transition name="fade">
     <div class="album">
-      <div class="fixed-title" :style="{'background': 'rgba(183, 39, 18, '+ opacity +')'}" style="transition: opacity .1s;">
+      <div class="fixed-title" :style="{'background': 'rgba(183, 39, 18, '+ opacity +')'}" style="transition: opacity .1s;" v-show="!isShowDetail">
         <x-header :left-options="{backText: ''}" style="background-color:transparent">{{tName}}</x-header>
       </div>
-      <div class="album-info" :style="{'background-image': 'url(' + albumImage + ')'}">
+      <div class="album-info" :style="{'background-image': 'url(' + albumImage + ')'}" v-show="!isShowDetail">
         <div class="album-info-blur">
           <div class="album-intro">
-            <img v-lazy="albumImage + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image">
+            <img v-lazy="albumImage + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image" @click="showAlbumDetail()">
             <div class="album-intro-other">
               <p class="album-title" style="-webkit-box-orient: vertical;">{{album.name}}<span v-show="albumTrans">{{albumTrans}}</span></p>
               <p class="album-nickname" @click="jumpSingerDetail(singerId)">歌手：{{singerName}} ></p>
@@ -30,14 +30,14 @@
           </div>
         </div>
       </div>
-      <div class="album-list">
+      <div class="album-list" v-show="!isShowDetail">
         <ul>
           <li v-for="(data, order) in songs">
             <v-hot-single-card :data="data" :order="order"></v-hot-single-card>
           </li>
         </ul>
       </div>
-      <v-album-detail :data="album"></v-album-detail>
+      <v-album-detail :data="album" v-show="isShowDetail"></v-album-detail>
     </div>
   </transition>
 </template>
@@ -57,7 +57,8 @@
         songs: [],
         tName: '专辑',
         backgroundColor: '',
-        opacity: 0
+        opacity: 0,
+        isShowDetail: false
       };
     },
     // 解除keep-alive的缓存
@@ -81,7 +82,11 @@
       next();
     },
     mounted: function() {
+      let self = this;
       this.getlAlbumDetail();
+      this.$root.$on('close-detail', (condition) => {
+        self.isShowDetail = condition;
+      });
     },
     methods: {
       back () {
@@ -92,10 +97,13 @@
           path: '/singer/' + id
         });
       },
-      jumpCommentDetail() {
+      jumpCommentDetail () {
         this.$router.push({
           path: '/albumComment/' + this.$route.params.id
         });
+      },
+      showAlbumDetail () {
+        this.isShowDetail = true;
       },
       getlAlbumDetail () {
         this.$store.commit('update_loading', true);

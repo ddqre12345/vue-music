@@ -1,7 +1,7 @@
 <template>
     <div class="album-detail">
       <div class="fixed-close">
-        <x-header :left-options="{showBack: false}" style="background-color:transparent"><a slot="right"><div class="close-img"></div></a></x-header>
+        <x-header :left-options="{showBack: false}" style="background-color:transparent"><a slot="right"><div class="close-img" @click="hiddenDetail()"></div></a></x-header>
       </div>
       <div class="album-wrapper">
         <img v-lazy="data.picUrl + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image">
@@ -21,11 +21,16 @@
         type: Object
       }
     },
+    methods: {
+      hiddenDetail () {
+        this.$root.$emit('close-detail', false);
+      }
+    },
     computed: {
       contentChange () {
         let content = '';
-        content = this.data.description.replace(/\r\n/g, '<br>');
-        content = content.replace(/\n/g, '<br>');
+        content = this.data.description.replace(/\r\n/g, '<br/>');
+        content = content.replace(/\n/g, '<br/>');
         return content;
       }
     },
