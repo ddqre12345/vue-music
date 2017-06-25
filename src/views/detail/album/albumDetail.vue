@@ -29,14 +29,25 @@
     computed: {
       contentChange () {
         let content = '';
-        content = this.data.description.replace(/\r\n/g, '<br/>');
-        content = content.replace(/\n/g, '<br/>');
-        return content;
+        content = this.data.description;
+        if (content !== undefined) {
+          content = content.replace(/\r\n/g, '<br/>');
+          content = content.replace(/\n/g, '<br/>');
+          return content;
+        }
       }
     },
     components: {
       XHeader,
       vMask
+    },
+    filters: {
+      contentChange (content) {
+        let regx = /\r\n/g;
+        content = content.replace(regx, '<br/>');
+        content = content.replace(/\n/g, '<br/>');
+        return content;
+      }
     }
   };
 </script>

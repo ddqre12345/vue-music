@@ -7,7 +7,7 @@
       <div class="album-info" :style="{'background-image': 'url(' + albumImage + ')'}" v-show="!isShowDetail">
         <div class="album-info-blur">
           <div class="album-intro">
-            <img v-lazy="albumImage + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image" @click="showAlbumDetail()">
+            <img v-lazy="albumImage + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image" @click="showDetail()">
             <div class="album-intro-other">
               <p class="album-title" style="-webkit-box-orient: vertical;">{{album.name}}<span v-show="albumTrans">{{albumTrans}}</span></p>
               <p class="album-nickname" @click="jumpSingerDetail(singerId)">歌手：{{singerName}} ></p>
@@ -102,7 +102,7 @@
           path: '/albumComment/' + this.$route.params.id
         });
       },
-      showAlbumDetail () {
+      showDetail () {
         this.isShowDetail = true;
       },
       getlAlbumDetail () {
