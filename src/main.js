@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import store from './vuex/store';
+import store from './vuex';
 import VueRouter from 'vue-router';
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import App from './App';

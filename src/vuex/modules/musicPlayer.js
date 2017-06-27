@@ -1,9 +1,6 @@
-import Vue from 'vue';
-import api from '../api';
-import Vuex from 'vuex';
-Vue.use(Vuex);
-const store = new Vuex.Store({
-  state: {
+import api from '../../api';
+
+const state = {
     isShowAsideMenu: false,
     loadingShow: false,
     audio: {
@@ -25,8 +22,9 @@ const store = new Vuex.Store({
     durationTime: 0,
     bufferedTime: 0,
     change: false   // 判断是更改的时间还是播放的时间
-  },
-  getters: {
+};
+
+const getters = {
     isShowAsideMenu: state => state.isShowAsideMenu,
     loadingShow: state => state.loadingShow,
     audio: state => state.audio,
@@ -46,8 +44,9 @@ const store = new Vuex.Store({
     prBufferedTime: state => {
       return state.bufferedTime / state.durationTime * 100;
     }
-  },
-  mutations: {
+};
+
+const mutations = {
     showAsideMenu(state, flag) {
       state.isShowAsideMenu = flag;
     },
@@ -149,10 +148,10 @@ const store = new Vuex.Store({
     setLrc (state, lrc) {
       state.lyric = lrc;
     }
-  },
-  // 异步的数据操作
-  actions: {
-    getSong ({commit}, id) {
+};
+
+const actions = {
+  getSong ({commit}, id) {
       commit('openLoading');
       api.getMusicUrlResource(id).then(res => {
         let url = res.data.data[0].url;
@@ -164,7 +163,11 @@ const store = new Vuex.Store({
           window.alert('获取歌曲信息出错！');
         });
     }
-  }
-});
+};
 
-export default store;
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+};
