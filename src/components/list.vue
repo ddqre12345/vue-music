@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet ">
+    <bottom-sheet :open="bottomSheet" @close="closeBottomSheet ">
       <div class="title-wrapper">
         播放列表（{{songList.length}}）
       </div>
@@ -14,13 +14,17 @@
           <hr class="mu-divider">
         </div>
       </div>
-    </mu-bottom-sheet>
+    </bottom-sheet>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import bottomSheet from './bottomSheet/bottomSheet';
 export default {
   name: 'list',
+  components: {
+    bottomSheet
+  },
   data () {
     return {
       bottomSheet: false

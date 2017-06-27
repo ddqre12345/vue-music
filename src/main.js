@@ -6,11 +6,8 @@ import App from './App';
 import routes from './routers';
 // import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 // 注册为全局组件
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
 import 'assets/theme.less';
 Vue.use(VueRouter);
-Vue.use(MuseUI);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
     error: require('./assets/404.png'),

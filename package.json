@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-types": "^6.24.1",
-    "muse-ui": "^2.0.0-rc.2",
     "sinon": "^2.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
