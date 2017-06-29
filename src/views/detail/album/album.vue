@@ -31,8 +31,9 @@
         </div>
       </div>
       <div class="album-list" v-show="!isShowDetail">
+        <v-play-all data="album"></v-play-all>
         <ul>
-          <li v-for="(data, order) in songs">
+          <li v-for="(data, order) in songs" :key="order">
             <v-hot-single-card :data="data" :order="order"></v-hot-single-card>
           </li>
         </ul>
@@ -45,6 +46,7 @@
   import api from '../../../api';
   import { formatDate } from '../../../common/js/date';
   import { XHeader } from 'vux';
+  import vPlayAll from '../../../components/playAll/playAll.vue';
   import vHotSingleCard from '../../../components/card/detail/hotSingleCard';
   import vAlbumDetail from './albumDetail';
   export default {
@@ -142,6 +144,7 @@
     },
     components: {
       XHeader,
+      vPlayAll,
       vHotSingleCard,
       vAlbumDetail
     }
