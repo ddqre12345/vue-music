@@ -9,12 +9,13 @@ const state = {
       'location': '',
       'album': ''
     },
+    playType: '1',  // 歌单列表播放方式:1,歌单循环;2,歌单随机;3,单曲循环
     lyric: '',
     currentIndex: 0, // 当前播放的歌曲位置
-    playing: false, // 是否正在播放
+    playing: false, // 播放状态:true,播放;false,暂停
     loading: false, // 是否正在加载中
     showDetail: false,
-    songList: [],    // 播放列表
+    songList: [],    // 播放歌单列表
     currentTime: 0,
     tmpCurrentTime: 0,
     durationTime: 0,
@@ -32,6 +33,7 @@ const getters = {
     bufferedTime: state => state.bufferedTime,
     tmpCurrentTime: state => state.tmpCurrentTime,
     songList: state => state.songList,
+    playType: playType => state.playType,
     change: state => state.change,
     currentTime: state => state.currentTime,
     prCurrentTime: state => {
@@ -43,15 +45,19 @@ const getters = {
 };
 
 const mutations = {
+    // 播放
     play (state) {
       state.playing = true;
     },
+    // 暂停
     pause (state) {
       state.playing = false;
     },
+    // 切换至音乐播放界面
     toggleDetail (state) {
       state.showDetail = !state.showDetail;
     },
+    // 设置播放音乐
     setAudio (state) {
       state.audio = state.songList[state.currentIndex - 1];
     },
@@ -83,6 +89,19 @@ const mutations = {
     },
     setLocation (state, location) {
       state.audio.location = location;
+    },
+    setLrc (state, lrc) {
+      state.lyric = lrc;
+    },
+    setPlayType (state, type) {
+      if (typeof type === String) {
+        switch (type) {
+          case 1: state.playType = '1'; break;
+          case 2: state.playType = '2'; break;
+          case 3: state.playType = '3'; break;
+          default: state.playType = '1'; break;
+        }
+      }
     },
     updateCurrentTime (state, time) {
       state.currentTime = time;
@@ -119,24 +138,24 @@ const mutations = {
       }
       state.audio = state.songList[state.currentIndex - 1];
     },
-    addToList (state, songs) {
-      let items = Array.prototype.concat.call(songs);
-      items.forEach(item => {
-        let flag = false;
-        state.songList.forEach(function (element, index) { // 检测歌曲重复
-          if (element.id === item.id) {
-            flag = true;
-            state.currentIndex = index + 1;
+    addToList (state, song) {
+        let items = Array.prototype.concat.call(song);
+        items.forEach(item => {
+          let flag = false;
+          state.songList.forEach(function (element, index) { // 检测歌曲重复
+            if (element.id === item.id) {
+              flag = true;
+              state.currentIndex = index + 1;
+            }
+          });
+          if (!flag) {
+            state.songList.push(item);
+            state.currentIndex = state.songList.length;
           }
         });
-        if (!flag) {
-          state.songList.push(item);
-          state.currentIndex = state.songList.length;
-        }
-      });
     },
-    setLrc (state, lrc) {
-      state.lyric = lrc;
+    addAllToList (state, songs) {
+      state.songList = state.songList.concat(songs);
     }
 };
 
