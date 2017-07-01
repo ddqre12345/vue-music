@@ -1,8 +1,6 @@
 import api from '../../api';
 
 const state = {
-    isShowAsideMenu: false,
-    loadingShow: false,
     audio: {
       'id': 0,
       'name': '歌曲名称',
@@ -25,8 +23,6 @@ const state = {
 };
 
 const getters = {
-    isShowAsideMenu: state => state.isShowAsideMenu,
-    loadingShow: state => state.loadingShow,
     audio: state => state.audio,
     playing: state => state.playing,
     loading: state => state.loading,
@@ -47,12 +43,6 @@ const getters = {
 };
 
 const mutations = {
-    showAsideMenu(state, flag) {
-      state.isShowAsideMenu = flag;
-    },
-    update_loading(state, data) {
-      state.loadingShow = data;
-    },
     play (state) {
       state.playing = true;
     },

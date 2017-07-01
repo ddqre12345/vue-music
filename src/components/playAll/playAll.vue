@@ -5,12 +5,27 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex';
   export default {
     name: 'play-all',
     props: {
       data: {
         type: Object
       }
+    },
+    methods: {
+      playAll (data) {
+        document.getElementById('audioPlay').pause();
+        this.$store.commit('pause');
+        // 通过Vuex改变状态
+        // this.$store.commit('addToList', audio);
+        // this.$store.dispatch('getSong', audio.id);
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'songList'
+      ])
     }
   };
 </script>
@@ -21,11 +36,11 @@
     align-items: center;
     border-bottom: 1px solid #e5e9e8;
     .play-icon
-      width 30px
-      height 30px
-      padding 10px
+      width 35px
+      height 45px
+      padding 15px
       background url(./playAll.png) no-repeat center
-      background-size 50%
+      background-size 70%
     .describe
       color: #2e302f;
       font-size:14px;
