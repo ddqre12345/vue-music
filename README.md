@@ -1,48 +1,63 @@
 ### vue-music
 希望它会成为用vue实现网易云音乐最全的webapp，我们的目标是更像，更快，更优雅
 
-#### 网易云音乐（移动版）
-- [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托)
+##网易云音乐v2.0(mv播放等你来看)
+> Star，Star，Star，重要的话说三遍，广告就要放在最显眼的地方，哈哈。
+- [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(再次感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托，看着他的star蹭蹭蹭的往上涨，我必须厚着脸皮说有我一份功劳)
 - [源码地址](https://github.com/ddqre12345/vue-music)
 - [项目预览](http://118.89.226.181:8080)（web端在chrome调试模式下效果更佳）
 - 针对segmenfault类app暂时无法有效预览的问题，建议粘贴http://118.89.226.181:8080到手机其他浏览器体验
-- 项目所提供请求地址希望仅供预览使用，项目后台已加入pm守护之光，如果需要可以直接调用，当然，因为接口不断变化，开发使用[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)最新代码，配置本地服务器代理。
+- 项目所提供请求地址希望仅供预览使用，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理
+- 这是个连载的故事，预知前事如何，跳转[网易云音乐v1.0](https://segmentfault.com/a/1190000009339117?_ea=2099626),这里我主要讲的是这个版本的更新内容
+##项目进程
 
-#### 使用技术
-- Vue2：采用最新Vue2的语法
-- Vuex：主要实现非父子组件通讯
-- vue-router：管理单页面应用路由
-- axios：发起http请求
-- stylus：css预处理语言
-- Express：vue-cli使用Express做服务器。
-- Webpack：自动化构建工具，主要配置由vue-cli脚手架提供。
-- ES6：采用ES6语法。
-- CSS3：CSS3动画及样式。
-
-#### 项目进度
-> 已完成
-
+> 网易云音乐v1.0
 - 网易云（轮播，推荐歌单，独家放送，推荐MV，网友精选歌单（最新，最热），排行榜）
 - 搜索（热门搜索，搜索结果包括单曲，歌手，专辑，歌单，用户及其滑动切换）
 - 播放页面（歌词，碟片切换）
 - 歌手，专辑，歌单，用户等详情展示
 - 音乐播放功能（切歌，播放列表，播放进度显示）
 
-> 效果图
-
+> 网易云音乐v2.0
+1. 新增功能
+    - mv播放详情页，包括mv播放，mv介绍，相似mv，mv评论，相似mv播放切换
+    - 歌手详情页：歌手mv
+    - 专辑详情页：专辑评论，专辑介绍详情
+    - 歌单详情页：歌单评论，歌单介绍详情
+    - 个性推荐增加最新音乐，主播电台
+    - 排行榜增加全球榜
+    - 排行榜榜单详情页，包括歌曲排名，歌单评论
+    - 上滑歌单组件歌单循环，单曲，随机播放切换，歌曲播放效果增加
+2. 功能优化
+    - 转场效果优化
+    - 播放展示效果优化
+3. 组件优化
+    - 合并部分列表组件
+    - 优化slider组件
+    - vuex的module层组件分离
+4. UI框架统一为vux（历史遗留问题）
+> 放一波新增功能效果图
 ![发现](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-1.gif?raw=true)
 ![搜索](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-2.gif?raw=true)
 ![详情](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-3.gif?raw=true)
 ![测试](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-4.gif?raw=true)
-![歌词](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-5.gif?raw=true)
+图片就到这里，[more](http://118.89.226.181:8080)
 
-图片就到这里，[more >](http://118.89.226.181:8080)
+## 计划(接下来就是网易云v3.0的规划了)
+> 新增功能
+- 新增“我的”及相关功能版块
+- 添加主题更换功能
+- 继续根据接口，完善各个版块功能
+> 最重要的工作
+- 重构可能是下一阶段最重要的工作了，具体方向感兴趣的同学可以关注[v3.0版本规划](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)，
 
-> 下阶段计划
 
-- MV播放，希望这个功能能走下去
-- “我的”争取还是做出来吧，尽管可能没人敢用
-- 完善各个页面的功能吧，持续优化
+## 最后！！！！！
+1.感谢[github](https://github.com/),感谢同样在分享的你，让我能站在巨人的肩膀上
+2.感谢[Binaryify](https://github.com/Binaryify)对接口文档的不断维护与更新。
+3.再下个版本前我可能会和大家分享下自定义mv视频播放部分遇到的一些坑及一些webpack打包优化
+
+到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，下阶段项目进展请关注[v3.0小黑板](https://github.com/ddqre12345/vue-music/projects/2)，如果你有什么想法或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言，毕竟，作为工程师的我们，征途可是星辰大海。
 
 #### 安装运行（安装运行前请确定已安装node环境）
 - 环境安装：npm install
