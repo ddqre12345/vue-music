@@ -34,8 +34,9 @@
         </div>
       </div>
       <div class="play-list" v-show="!isShowDetail">
+          <v-play-all :data="commonSongs"></v-play-all>
           <ul>
-            <li v-for="(data, index) in list">
+            <li v-for="(data, index) in list" :key='index'>
                 <v-single-card :data="data" :index="index"></v-single-card>
             </li>
           </ul>
@@ -47,11 +48,13 @@
 <script>
   import api from '../../../api';
   import { XHeader } from 'vux';
+  import vPlayAll from '../../../components/playAll/playAll.vue';
   import vSingleCard from '../../../components/card/detail/singleCard.vue';
   import vPlayListDetail from './playListDetail';
   export default {
     components: {
       XHeader,
+      vPlayAll,
       vSingleCard,
       vPlayListDetail
     },
@@ -83,6 +86,7 @@
         data: [],
         index: '',
         list: [],
+        commonSongs: [],
         backgroundColor: '',
         opacity: 0,
         isShowDetail: false
@@ -115,6 +119,7 @@
           this.playlist = response.data.playlist;
           this.list = response.data.playlist.tracks;
           this.creator = response.data.playlist.creator;
+          this.songsToCommon(this.list);
           // $nextTick() 在dom 重新渲染完后执行
           this.$nextTick(() => {
             this.$store.commit('update_loading', false);
@@ -122,6 +127,24 @@
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });
+      },
+      songsToCommon (items) {
+        let vm = this;
+        this.commonSongs = items.map(function (item, index, array) {
+          return {
+            'id': item.id,
+            'name': item.name,
+            'singer': vm.getAuthorList(item.ar),
+            'albumPic': item.al.picUrl,
+            'location': '',
+            'album': item.al.id
+          };
+        });
+      },
+      getAuthorList(authorInfo) {
+        return authorInfo.map(function (item) {
+          return item.name;
+        }).toString();
       }
     },
     computed: {

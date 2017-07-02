@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="album-list" v-show="!isShowDetail">
-        <v-play-all data="album"></v-play-all>
+        <v-play-all :data="commonSongs"></v-play-all>
         <ul>
           <li v-for="(data, order) in songs" :key="order">
             <v-hot-single-card :data="data" :order="order"></v-hot-single-card>
@@ -57,6 +57,7 @@
         singerId: '',
         singerName: '',
         songs: [],
+        commonSongs: [],
         tName: '专辑',
         backgroundColor: '',
         opacity: 0,
@@ -115,6 +116,7 @@
           this.singerId = response.data.album.artist.id;
           this.singerName = response.data.album.artist.name;
           this.songs = response.data.songs;
+          this.songsToCommon(this.songs);
           // $nextTick() 在dom 重新渲染完后执行
           this.$nextTick(() => {
             this.$store.commit('update_loading', false);
@@ -122,6 +124,24 @@
         }).catch((error) => {
           console.log('加载歌单信息出错:' + error);
         });
+      },
+      songsToCommon (items) {
+        let vm = this;
+        this.commonSongs = items.map(function (item, index, array) {
+          return {
+            'id': item.id,
+            'name': item.name,
+            'singer': vm.getAuthorList(item.ar),
+            'albumPic': item.al.picUrl,
+            'location': '',
+            'album': item.al.id
+          };
+        });
+      },
+      getAuthorList(authorInfo) {
+        return authorInfo.map(function (item) {
+          return item.name;
+        }).toString();
       }
     },
     computed: {

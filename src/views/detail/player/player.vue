@@ -15,7 +15,7 @@
               <div class="stick"></div>
               <div class="cd-wrapper" :class="{'cd-rotate': playing}">
                 <div class="cd-mask"></div>
-                <img v-lazy="audio.albumPic + '?param=300y300'" lazy="loading" class="cd-img"/>
+                <img v-lazy="audio.albumPic + '?param=300y300'" lazy="loading" class="cd-img">
               </div>
             </div>
             <div class="lyric-holder" @click="toggleShow" :style="{'display': showLyric ? 'block' : 'none'}">
@@ -29,7 +29,7 @@
             <div class="process-bar">
               <div class="pro">
                   <div class="pro-wrap">
-                    <slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
+                    <slider class="song-slider" @change="changeTime" v-model="prCurrentTime"></slider>
                   </div>
                   <div class="time">
                     <time id="cur">{{currentTime | time}}</time>
@@ -59,7 +59,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 import slider from '../../../components/slider/slider';
 import Toast from '../../../components/toast';
-import BottomSheet from '../../../components/list';
+import BottomSheet from '../../../components/list/common/list';
 import api from '../../../api';
 export default {
   data () {

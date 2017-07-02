@@ -9,7 +9,7 @@ const state = {
       'location': '',
       'album': ''
     },
-    playType: '1',  // 歌单列表播放方式:1,歌单循环;2,歌单随机;3,单曲循环
+    playType: 1,  // 歌单列表播放方式:1,歌单循环;2,歌单随机;3,单曲循环
     lyric: '',
     currentIndex: 0, // 当前播放的歌曲位置
     playing: false, // 播放状态:true,播放;false,暂停
@@ -84,6 +84,9 @@ const mutations = {
         state.playing = false;
       }
     },
+    removeList (state) {
+      state.songList.splice(0, state.songList.length);
+    },
     setChange (state, flag) {
       state.change = flag;
     },
@@ -93,14 +96,11 @@ const mutations = {
     setLrc (state, lrc) {
       state.lyric = lrc;
     },
-    setPlayType (state, type) {
-      if (typeof type === String) {
-        switch (type) {
-          case 1: state.playType = '1'; break;
-          case 2: state.playType = '2'; break;
-          case 3: state.playType = '3'; break;
-          default: state.playType = '1'; break;
-        }
+    setPlayType (state) {
+      if (state.playType < 3) {
+        state.playType++;
+      } else {
+        state.playType = 1;
       }
     },
     updateCurrentTime (state, time) {
@@ -155,7 +155,7 @@ const mutations = {
         });
     },
     addAllToList (state, songs) {
-      state.songList = state.songList.concat(songs);
+      state.songList = songs;
     }
 };
 
@@ -167,10 +167,10 @@ const actions = {
         commit('setAudio');
         commit('setLocation', url);
       })
-        .catch((error) => {     // 错误处理
-          console.log(error);
-          window.alert('获取歌曲信息出错！');
-        });
+      .catch((error) => {     // 错误处理
+        console.log(error);
+        window.alert('获取歌曲信息出错！');
+      });
     }
 };
 

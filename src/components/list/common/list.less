@@ -1,0 +1,74 @@
+
+.option-area {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display:flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
+  padding: 10px;
+  color: #232323;
+  background-color:#fff;
+  border-bottom: 1px solid #dadada;
+  margin-bottom:5px;
+  .loop {
+    font-size: 14px;
+    img {
+      width: 30px;
+      height: 12px;
+      vertical-align: baseline;
+    }
+  }
+  .delete {
+    font-size: 14px;
+    img {
+      width: 18px;
+      height: 16px;
+      vertical-align: text-top;
+    }
+  }
+}
+.list-wrapper {
+  box-sizing:border-box;
+  height: 100%;
+  width: 100%;
+  padding: 0 0 0 10px;
+  overflow: auto;
+  margin-top: 50px;
+  -webkit-overflow-scrolling: touch;
+}
+.list-item {
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px 10px 0;
+  border-bottom:1px solid #e7e7e7;
+  .left {
+    .list-name{
+      color: #232323;
+      font-size:16px;
+    }
+    .list-singer{
+      color: #7b7b7b;
+      font-size:12px;
+    }
+  }
+  img{
+    width:30px;
+  }
+}
+.on {
+  color: @primaryColor;
+  .left {
+    .list-name{
+      color: @primaryColor;
+    }
+    .list-singer{
+      color: @primaryColor;
+    }
+  }
+}

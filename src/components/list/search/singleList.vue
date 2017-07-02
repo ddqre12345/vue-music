@@ -1,6 +1,6 @@
 <template>
   <ul class="single-list">
-     <v-single-card :data="data" v-for="data in songs"></v-single-card>
+     <v-single-card :data="data" v-for="(data, index) in songs" :key="index"></v-single-card>
   </ul>
 </template>
 <script>
