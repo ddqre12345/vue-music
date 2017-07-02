@@ -10,7 +10,7 @@
         <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container" style="width:100%;height: 100%;padding-bottom: 90px;background-color: #eef2f1;">
           <swiper-item :key="1">
             <div class="tab-swiper vux-center">
-              <v-recommend :playlists="playlists" :activitys="activitys" :MVs="MVs"></v-recommend>
+              <v-recommend></v-recommend>
             </div>
           </swiper-item>
           <swiper-item :key="2">
@@ -28,7 +28,6 @@
   </transition>
 </template>
 <script>
-  import api from '../../api/index';
   import {Tab, TabItem} from 'vux/src/components/Tab';
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
   import vRecommend from './recommend/recommend';
@@ -50,42 +49,8 @@
       return {
         index: 0,
         tabList: list(),
-        type: '个性推荐',
-        playlists: [],
-        activitys: [],
-        MVs: []
+        type: '个性推荐'
       };
-    },
-    mounted () {
-      this.getPersonalizedResource();
-      this.getPrivatecontentResource();
-      this.getPersonalizedMvResource();
-    },
-    methods: {
-      getPersonalizedResource() {
-        api.getPersonalized().then((response) => {
-          this.playlists = response.data.result;
-        })
-          .catch((response) => {
-            console.log(response);
-          });
-      },
-      getPrivatecontentResource() {
-        api.getPrivatecontent().then((response) => {
-          this.activitys = response.data.result;
-        })
-          .catch((response) => {
-            console.log(response);
-          });
-      },
-      getPersonalizedMvResource() {
-        api.getPersonalizedMv().then((response) => {
-          this.MVs = response.data.result;
-        })
-          .catch((response) => {
-            console.log(response);
-          });
-      }
     }
   };
 </script>

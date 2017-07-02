@@ -1,0 +1,110 @@
+.playlist
+  width 100%
+  height 100%
+  overflow-y auto
+  .fixed-title
+    position fixed
+    width 100%
+    height 46px
+    z-index 2
+  .playlist-info,
+  .playlist-info-blur::before
+    background url('../../../assets/loading.jpg') 0 / cover fixed;
+  .playlist-info-blur::before
+    content ''
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    filter blur(20px)
+    margin -30px
+    z-index -1
+  .playlist-info
+    .playlist-info-blur
+      position relative
+      background rgba(0, 0, 0, 0.8)
+      overflow hidden
+      .intro-area
+        display flex
+        flex-direction row
+        padding 46px 15px 12px
+        .image
+          width 0
+          height 100%
+          flex 1 0 35%
+        .intro
+          color #fff
+          padding-left 15px
+          padding-top 8px
+          flex 1 0 65%
+          line-height 1.2
+          .title
+            font-size 14px
+            margin-bottom 5px
+            overflow hidden
+            text-overflow ellipsis
+            display -webkit-box
+            -webkit-line-clamp 2
+          .updateTime
+            font-size 12px
+            margin-bottom 15px
+            color #e0e0e0
+          .creator
+            display flex
+            flex-direction row
+            align-items center
+            .nickname
+              overflow hidden
+              text-overflow ellipsis
+              display -webkit-box
+              -webkit-line-clamp 1
+              padding-right 10px
+            .more
+              color #fff
+              font-size 12px
+            img
+              width 30px
+              height 30px
+              border-radius 50%
+            span
+              font-size 12px
+              padding-left 5px
+      .playlist-status
+        display flex
+        flex-direction row
+        justify-content space-around
+        align-items center
+        text-align: -webkit-center;
+        text-align center
+        color #fff
+        padding-bottom 6px
+        span
+          display block
+        span.file
+          i
+            background url(../../../common/images/file.png) no-repeat
+            background-size: contain
+        span.comment
+          i
+            background url(../../../common/images/comment.png) no-repeat
+            background-size: contain
+        span.share
+          i
+            background url(../../../common/images/share.png) no-repeat
+            background-size: contain
+        i
+          display inline-block
+          width 30px
+          height 30px
+          cursor pointer
+  .play-list
+    ul
+      list-style none
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave {
+  transform: translate(100%, 0);
+}

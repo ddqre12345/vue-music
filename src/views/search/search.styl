@@ -3,10 +3,10 @@
   width 100%
   height 100%
   z-index: 99
-  padding-bottom 100px
+  padding-bottom 90px
   .header-other
     position: relative
-    flex 2
+    flex 1 0 20%
     width: 100%
     z-index: 2
     display flex
@@ -18,7 +18,7 @@
     padding-bottom: 5px
     background-color: #B72712
     span.back
-      flex: 3
+      flex: 1 0 10%
       i
         display inline-block
         width 20px
@@ -29,7 +29,7 @@
         background url(../../common/images/back.svg) no-repeat
         background-size: contain
     .input
-      flex: 17
+      flex: 1 0 90%
       margin-left: 10px
       margin-right: 10px
       border-bottom: 1px solid #fff;
@@ -55,9 +55,10 @@
       color: #ffbeb7;
       }
   .hot
-    flex 8
+    flex 1 0 80%
     padding 10px
     color #6c706f
+    font-size 14px
     .keywords
       display flex
       flex-wrap wrap
@@ -80,104 +81,19 @@
   .search-list
     width:100%
     height: 100%
-    .history
-      display flex
-      width 100%
-      height 50px
-      justify-content center
-      align-items center
-      border-top 1px solid rgba(0, 0, 0, .1)
-      .icon
-        flex 1
-        height 100%
-        display flex
-        justify-content center
-        align-items center
-      .icon-history
-        display inline-block
-        width 23px
-        height 23px
-        background url('../../common/images/history.svg') no-repeat
-        background-size contain
-      .icon-del
-        display inline-block
-        width 20px
-        height 20px
-        background url('../../common/images/del.svg') no-repeat
-        background-size contain
-      .word
-        flex 5
-        width 80%
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-    .tips
-      text-align center
-      margin 12px auto
-      width 200px
-      font-size: 80%
-      color gray
-    .loading
-      padding-top 10px
-      text-align center
-      .icon-loading
-        display inline-block
-        margin auto
-        width 22px
-        height 22px
-        background url('../../common/images/loading.svg') no-repeat
-        background-size contain
-        animation loading .6s linear infinite
-        vertical-align text-top
-        margin-right 10px
-    .music + .music
-      border-top 1px solid rgba(0, 0, 0, .1)
-    .music
-      display flex
-      width 100%
-      height 60px
-      cursor pointer
-      .icon-music
-        display flex
-        justify-content center
-        align-items center
-        width 60px
-        height 60px
-        img
-          display inline-block
-          width 90%
-          height 90%
-          background url(../../common/images/music.svg) no-repeat
-          background-size contain
-      .music-info
-        position relative
-        flex 1
-        padding 8px 10px
-        .music-name
-          width 250px
-          text-overflow ellipsis
-          white-space nowrap
-          overflow hidden
-        .music-singer
-          padding-top 3px
-          font-size 50%
-          color gray
-        i
-          position absolute
-          display inline-block
-          width 13px
-          height 13px
-        i.icon-listening
-          background url('../../common/images/listening.svg') no-repeat
-          background-size contain
-          right 20px
-          top 22px
-          animation listening 1s linear infinite
-        i.icon-love
-          background url('../../common/images/love.svg') no-repeat
-          background-size contain
-          right 40px
-          top 20px
+    .vux-swiper,
+    .vux-slider,
+    .tab-swiper
+      height 100%
+    .tab-swiper
+      background-color #fff
+    .search-area
+      background-color: #fff;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      ul
+        list-style: none
 // 过渡效果
 .fade-enter-active,
 .fade-leave-active

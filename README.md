@@ -45,7 +45,6 @@
 - 完善各个页面的功能吧，持续优化
 
 #### 安装运行（安装运行前请确定已安装node环境）
-- git clone：https://github.com/ddqre12345/vue-music.git
 - 环境安装：npm install
 - 启动服务：npm run dev
 - 发布代码：npm run build

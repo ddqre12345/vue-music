@@ -1,0 +1,52 @@
+{
+  "rankingList": [
+    {
+      "coverImageUrl": "/static/images/云音乐电音榜.jpg", "title": "云音乐电音榜", "idx": "4"
+    },
+    {
+      "coverImageUrl": "/static/images/云音乐ACG音乐榜.jpg", "title": "云音乐ACG音乐榜", "idx": ""
+    },
+    {
+      "coverImageUrl": "/static/images/Beatport全球电子舞曲榜.jpg", "title": "Beatport全球电子舞曲榜", "idx": "21"
+    },
+    {
+      "coverImageUrl": "/static/images/日本Oricon周榜.jpg", "title": "日本Oricon周榜", "idx": "10"
+    },
+    {
+      "coverImageUrl": "/static/images/云音乐古典音乐榜.jpg", "title": "云音乐古典音乐榜", "idx": ""
+    },
+    {
+      "coverImageUrl": "/static/images/UK排行榜周榜.jpg", "title": "UK排行榜周榜", "idx": "5"
+    },
+    {
+      "coverImageUrl": "/static/images/美国Billboard周榜.jpg", "title": "美国Billboard周榜", "idx": "6"
+    },
+    {
+      "coverImageUrl": "/static/images/法国 NRJ Vos Hits 周榜.jpg", "title": "法国 NRJ Vos Hits 周榜", "idx": "19"
+    },
+    {
+      "coverImageUrl": "/static/images/iTunes榜.jpg", "title": "iTunes榜", "idx": "8"
+    },
+    {
+      "coverImageUrl": "/static/images/Hit FM Top榜.jpg", "title": "Hit FM Top榜", "idx": "9"
+    },
+    {
+      "coverImageUrl": "/static/images/KTV唛榜.jpg", "title": "KTV唛榜", "idx": "7"
+    },
+    {
+      "coverImageUrl": "/static/images/台湾Hito排行榜.jpg", "title": "台湾Hito排行榜", "idx": "20"
+    },
+    {
+      "coverImageUrl": "/static/images/中国TOP排行榜（港台榜）.jpg", "title": "中国TOP排行榜（港台榜）", "idx": "14"
+    },
+    {
+      "coverImageUrl": "/static/images/中国TOP排行榜（内地榜）.jpg", "title": "中国TOP排行榜（内地榜）", "idx": "15"
+    },
+    {
+      "coverImageUrl": "/static/images/香港电台中文歌曲龙虎榜.jpg", "title": "香港电台中文歌曲龙虎榜", "idx": "16"
+    },
+    {
+      "coverImageUrl": "/static/images/中国嘻哈榜.jpg", "title": "中国嘻哈榜", "idx": "18"
+    }
+  ]
+}

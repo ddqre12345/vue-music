@@ -15,7 +15,7 @@
               <div class="stick"></div>
               <div class="cd-wrapper" :class="{'cd-rotate': playing}">
                 <div class="cd-mask"></div>
-                <img v-lazy="audio.albumPic + '?param=300y300'" lazy="loading" class="cd-img"/>
+                <img v-lazy="audio.albumPic + '?param=300y300'" lazy="loading" class="cd-img">
               </div>
             </div>
             <div class="lyric-holder" @click="toggleShow" :style="{'display': showLyric ? 'block' : 'none'}">
@@ -29,7 +29,7 @@
             <div class="process-bar">
               <div class="pro">
                   <div class="pro-wrap">
-                    <mu-slider class="song-slider" @change="changeTime" v-model="prCurrentTime"/>
+                    <slider class="song-slider" @change="changeTime" v-model="prCurrentTime"></slider>
                   </div>
                   <div class="time">
                     <time id="cur">{{currentTime | time}}</time>
@@ -57,8 +57,9 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import slider from '../../../components/slider/slider';
 import Toast from '../../../components/toast';
-import BottomSheet from '../../../components/list';
+import BottomSheet from '../../../components/list/common/list';
 import api from '../../../api';
 export default {
   data () {
@@ -70,6 +71,7 @@ export default {
     };
   },
   components: {
+    slider,
     Toast,
     BottomSheet
   },
@@ -164,18 +166,7 @@ export default {
       'prCurrentTime',
       'audio',
       'playing'
-    ]),
-    lrcOffset () {
-      if (this.afterLrc) {
-        // 1、根据时间获得歌词
-        let current = Math.round(this.currentTime);
-        // 2、根据时间得到歌词
-        for (let i = 0; i < this.afterLrc.length; i++) {
-          if (this.afterLrc[i].time === current) this.lrcIndex = i;
-        }
-        return -(this.lrcIndex) * 58;
-      }
-    }
+    ])
   },
   filters: {
     // 时间字符格式化

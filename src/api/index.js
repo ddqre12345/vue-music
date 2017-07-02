@@ -23,7 +23,15 @@ import {
   TopListResource,
   PersonalizedResource,
   PrivatecontentResource,
-  PersonalizedMvResource
+  PersonalizedMvResource,
+  NewSongResource,
+  DjProgramResource,
+  MvResource,
+  SimiMvResource,
+  MvCommentResource,
+  PlaylistCommentResource,
+  AlbumCommentResource,
+  ArtistMvResource
 } from './resource';
 
 export default {
@@ -261,5 +269,63 @@ export default {
   // 获取推荐MV
   getPersonalizedMv () {
     return axios.get(PersonalizedMvResource);
+  },
+
+  // 获取推荐MV
+  getNewSong () {
+    return axios.get(NewSongResource);
+  },
+
+  // 获取推荐MV
+  getDjProgram () {
+    return axios.get(DjProgramResource);
+  },
+  // 获取mv数据
+  getMvResource (id) {
+    return axios.get(MvResource, {
+      params: {
+        mvid: id
+      }
+    });
+  },
+  // 获取mv数据
+  getSimiMvResource (id) {
+    return axios.get(SimiMvResource, {
+      params: {
+        mvid: id
+      }
+    });
+  },
+  // 获取mv数据
+  getMvCommentResource (id) {
+    return axios.get(MvCommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+  // 获取歌单评论
+  getPlaylistCommentResource (id) {
+    return axios.get(PlaylistCommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+  // 获取专辑评论
+  getAlbumCommentResource (id) {
+    return axios.get(AlbumCommentResource, {
+      params: {
+        id: id
+      }
+    });
+  },
+  // 获取歌手MV
+  getArtistMvResource (id) {
+    return axios.get(ArtistMvResource, {
+      params: {
+        id: id
+      }
+    });
   }
 };

@@ -11,25 +11,18 @@
                 </tab>
                 <swiper v-model="index" height="100%" :show-dots="false">
                     <swiper-item :key="1">
-                        <div class="tab-swiper vux-center">
-                            <div class="hot-single-list">
-                                <ul>
-                                    <li v-for="(data, order) in hotSongs">
-                                        <v-single-card :data="data" :order="order"></v-single-card>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="tab-swiper vux-center list-area">
+                            <v-single-list :list="hotSongs"></v-single-list>
                         </div>
                     </swiper-item>
                     <swiper-item :key="2">
-                        <div class="tab-swiper vux-center">
-                            <div class="album-list-detail">
-                                <ul>
-                                    <li v-for="data in hotAlbums">
-                                        <v-album-card :data="data"></v-album-card>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="tab-swiper vux-center list-area">
+                            <v-album-list :list="hotAlbums"></v-album-list>
+                        </div>
+                    </swiper-item>
+                    <swiper-item :key="3">
+                        <div class="tab-swiper vux-center list-area">
+                            <v-mv-list :list="mvs"></v-mv-list>
                         </div>
                     </swiper-item>
                 </swiper>
@@ -37,14 +30,15 @@
         </div>
     </transition>
 </template>
-<script type="text/ecmascript-6">
+<script>
   import api from '../../../api';
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vSingleCard from '../../../components/card/detail/hotSingleCard';
-  import vAlbumCard from '../../../components/card/detail/albumCard';
-  const list = () => ['热门50', '专辑'];
+  import vSingleList from '../../../components/list/detail/singer/singleList';
+  import vAlbumList from '../../../components/list/detail/singer/albumList';
+  import vMvList from '../../../components/list/detail/singer/mvList';
+  const list = () => ['热门50', '专辑', 'MV'];
   export default {
     data () {
       return {
@@ -55,14 +49,16 @@
         backgroundColor: '',
         singerInfo: {},
         userId: '',
-        hotSongs: {},
-        hotAlbums: {}
+        hotSongs: [],
+        hotAlbums: [],
+        mvs: []
       };
     },
     mounted: function() {
       this.getSingerDetail();
       this.getSingerSingle();
       this.getArtistAlbum();
+      this.getArtistMv();
     },
     methods: {
       jumpUserDetail (id) {
@@ -110,6 +106,16 @@
           .catch((response) => {
             console.log(response);
           });
+      },
+      // 获取歌手专辑
+      getArtistMv () {
+        api.getArtistMvResource(this.$route.params.id, 30)
+          .then((response) => {
+            this.mvs = response.data.mvs;
+          })
+          .catch((response) => {
+            console.log(response);
+          });
       }
     },
     computed: {
@@ -123,8 +129,9 @@
       Swiper,
       SwiperItem,
       XHeader,
-      vSingleCard,
-      vAlbumCard
+      vSingleList,
+      vAlbumList,
+      vMvList
     }
   };
 </script>

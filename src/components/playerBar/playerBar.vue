@@ -17,7 +17,7 @@
               <div class="mini-btn player" :class="{pause: playing}" @click="toggleStatus"></div>
             </x-circle>
           </div>
-          <div  class="mini-btn next" :class="{pause: playing}" @click="next"></div>
+          <div class="mini-btn next" :class="{pause: playing}" @click="next"></div>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 import { mapMutations, mapGetters } from 'vuex';
 import { XCircle } from 'vux';
 import Toast from '../toast';
-import BottomSheet from '../list';
+import BottomSheet from '../list/common/list';
 export default {
   data () {
     return {
@@ -43,6 +43,12 @@ export default {
     XCircle
   },
   methods: {
+    ...mapMutations([
+      'play',
+      'pause',
+      'playNext',
+      'resetAudio'
+    ]),
     showDetail () {
       this.$router.push({name: 'player', params: {id: this.audio.id}});
       this.$store.commit('toggleDetail');
@@ -50,11 +56,6 @@ export default {
     showList () {
       this.$refs.bottomSheet.show();
     },
-    ...mapMutations([
-      'play',
-      'pause',
-      'playNext'
-    ]),
     canPlaySong () {
       this.$store.commit('closeLoading');
       this.$store.commit('play');
@@ -73,15 +74,29 @@ export default {
     loadError () {
       // 判断是第一次打开程序还是后来程序加载的路径有错根据src是否为空
       if (document.getElementById('audioPlay').currentSrc) {
-        this.$refs.toast.show('歌曲路径加载出错');
         this.loading = false;
         this.$store.commit('closeLoading');
         // 还要把playbar重置下 TODO
+      } else {
+        this.$refs.toast.show('歌曲路径加载出错');
       }
     },
     next () {
       this.toggleStatus();
-      this.$store.commit('playNext');
+      switch (this.playType) {
+        case 1:
+        this.$store.commit('playNext');
+        this.$store.dispatch('getSong', this.songList[this.currentIndex - 1].id);
+        break;
+        case 2:
+        let value = Math.floor(Math.random() * (this.songList.length));
+        this.$store.commit('setAudioIndex', value);
+        this.$store.dispatch('getSong', this.songList[value].id);
+        break;
+        case 3:
+        this.$store.commit('resetAudio');
+        break;
+      }
     },
     // 更新进度条事件
     updateTime () {
@@ -112,7 +127,10 @@ export default {
       'change',
       'playing',
       'loading',
+      'songList',
+      'playType',
       'currentTime',
+      'currentIndex',
       'prBufferedTime',
       'tmpCurrentTime',
       'prCurrentTime'

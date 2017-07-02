@@ -5,13 +5,13 @@
       <p class="playList-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
       <p class="playList-info-other">
         <span class="playList-count">{{data.trackCount}}首,</span>
-        <span class="playList-playCount">播放{{data.playCount | playCount}}次</span>
+        <span class="playList-playCount">播放{{data.playCount | countHandle}}次</span>
       </p>
     </div>
   </div>
 </template>
 <script>
-  import { playCount } from '../../../common/js/data';
+  import { countHandle } from '../../../common/js/data';
   export default {
     name: 'v-play-list-card',
     props: {
@@ -32,8 +32,8 @@
       }
     },
     filters: {
-      playCount(count) {
-        return playCount(count);
+      countHandle(count) {
+        return countHandle(count);
       }
     }
   };

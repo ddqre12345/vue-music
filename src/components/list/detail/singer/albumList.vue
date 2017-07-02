@@ -1,0 +1,19 @@
+<template>
+  <ul class="album-list-detail">
+    <v-album-card v-for="data in list" :data="data"></v-album-card>
+  </ul>
+</template>
+<script>
+  import vAlbumCard from '../../../card/detail/albumCard';
+  export default {
+    name: 'v-album-list',
+    props: {
+      list: {
+        type: [Object, Array]
+      }
+    },
+    components: {
+      vAlbumCard
+    }
+  };
+</script>

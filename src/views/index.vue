@@ -3,21 +3,21 @@
     <transition name="fade">
         <div class="index">
             <!-- 侧边栏 -->
-            <AsideMenu v-show="isShowAsideMenu"></AsideMenu>
+            <asideMenu v-show="isShowAsideMenu"></asideMenu>
             <!-- 头部 -->
-            <VHeader></VHeader>
+            <vHeader></vHeader>
             <router-view></router-view>
         </div>
     </transition>
 </template>
 <script>
-  import VHeader from '../components/header/header.vue';
-  import AsideMenu from '../components/asideMenu/asideMenu.vue';
+  import vHeader from '../components/header/header';
+  import asideMenu from '../components/aside/aside';
 
   export default {
     components: {
-      VHeader,
-      AsideMenu
+      vHeader,
+      asideMenu
     },
     computed: {
       isShowAsideMenu() {

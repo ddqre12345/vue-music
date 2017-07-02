@@ -1,0 +1,119 @@
+.video-player
+  position: fixed;
+  background-color: #000;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width 100%
+  height 200px
+  text-align center
+  .fixed-title
+    position fixed
+    width 100%
+    height 46px
+    z-index 2
+  #video
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+  .player-control-btn
+    position: absolute;
+    top 40%
+    left 0
+    right 0
+    display inline-block
+    width 10%
+    margin 0 auto
+    z-index 100
+    .btn
+      width 100%
+  .mv-loading
+    position absolute
+    top 0
+    left 45%
+    z-index 99
+  .control-content
+    position absolute
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    left 0
+    bottom 4px
+    width 100%
+    height 40px
+    z-index 999
+    .time-display
+      padding: 0 10px
+      color #b3b3b3
+      font-size: 12px
+      .current-time
+        color #fff
+    .fullScreen-btn
+      box-sizing content-box
+      background none
+      border none
+      outline none
+      width 25px
+      height 25px
+      padding 0 10px
+      img
+        width 100%
+  .video-progress
+    position: absolute;
+    transition: all 0.2s ease-in;
+    left: 0;
+    width 98.7%
+    height 4px
+    z-index: 999;
+    .drager
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-top -4px;
+      background-color: #e92e35;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 16ms;
+     .video-buffered-progress
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background #bec2c1
+        .video-current-progress
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background-color: #e92e35;
+          transition: transform .2s;
+
+.player-control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.27);
+}
+::-webkit-media-controls {
+  display:none !important;
+}
+video::-webkit-media-controls {
+  display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter{
+  opacity: 1;
+}
+.fade-leave {
+  opacity: 0;
+}
+.hide-cursor {
+  cursor: none;
+}
+
