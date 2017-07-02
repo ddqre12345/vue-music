@@ -1,16 +1,19 @@
 ### vue-music
+
 希望它会成为用vue实现网易云音乐最全的webapp，我们的目标是更像，更快，更优雅
 
-##网易云音乐v2.0(mv播放等你来看)
+## 网易云音乐v2.0(mv播放等你来看)
+
 > Star，Star，Star，重要的话说三遍，广告就要放在最显眼的地方，哈哈。
+
 - [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(再次感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托，看着他的star蹭蹭蹭的往上涨，我必须厚着脸皮说有我一份功劳)
 - [源码地址](https://github.com/ddqre12345/vue-music)
 - [项目预览](http://118.89.226.181:8080)（web端在chrome调试模式下效果更佳）
 - 针对segmenfault类app暂时无法有效预览的问题，建议粘贴http://118.89.226.181:8080到手机其他浏览器体验
 - 项目所提供请求地址希望仅供预览使用，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理
 - 这是个连载的故事，预知前事如何，跳转[网易云音乐v1.0](https://segmentfault.com/a/1190000009339117?_ea=2099626),这里我主要讲的是这个版本的更新内容
-##项目进程
 
+##项目进程
 > 网易云音乐v1.0
 - 网易云（轮播，推荐歌单，独家放送，推荐MV，网友精选歌单（最新，最热），排行榜）
 - 搜索（热门搜索，搜索结果包括单曲，歌手，专辑，歌单，用户及其滑动切换）
@@ -36,7 +39,9 @@
     - 优化slider组件
     - vuex的module层组件分离
 4. UI框架统一为vux（历史遗留问题）
+
 > 放一波新增功能效果图
+
 ![发现](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-1.gif?raw=true)
 ![搜索](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-2.gif?raw=true)
 ![详情](https://github.com/ddqre12345/vue-music/blob/master/static/vue-music-3.gif?raw=true)
@@ -44,28 +49,33 @@
 图片就到这里，[more](http://118.89.226.181:8080)
 
 ## 计划(接下来就是网易云v3.0的规划了)
+
 > 新增功能
+
 - 新增“我的”及相关功能版块
 - 添加主题更换功能
 - 继续根据接口，完善各个版块功能
+
 > 最重要的工作
+
 - 重构可能是下一阶段最重要的工作了，具体方向感兴趣的同学可以关注[v3.0版本规划](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)，
 
 
 ## 最后！！！！！
+
 1.感谢[github](https://github.com/),感谢同样在分享的你，让我能站在巨人的肩膀上
 2.感谢[Binaryify](https://github.com/Binaryify)对接口文档的不断维护与更新。
 3.再下个版本前我可能会和大家分享下自定义mv视频播放部分遇到的一些坑及一些webpack打包优化
 
-到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，下阶段项目进展请关注[v3.0小黑板](https://github.com/ddqre12345/vue-music/projects/2)，如果你有什么想法或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言，毕竟，作为工程师的我们，征途可是星辰大海。
-
 #### 安装运行（安装运行前请确定已安装node环境）
+
 - 环境安装：npm install
 - 启动服务：npm run dev
 - 发布代码：npm run build
 - 代码检查：npm run lint
 
 #### 项目构成
+
 <pre>
 ├── build              // 构建服务和webpack配置
 ├── config             // 项目不同环境的配置
@@ -86,7 +96,7 @@
 </pre>
 
 #### 最后
-到这里，欢迎大家提issue，pr，star，如果喜欢可以watch，每周应该都会有些小更新，本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
+到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，下阶段项目进展请关注[v3.0小黑板](https://github.com/ddqre12345/vue-music/projects/2)，如果你有什么想法或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言，毕竟，作为工程师的我们，征途可是星辰大海。本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
 
 
 
