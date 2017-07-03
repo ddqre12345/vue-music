@@ -114,7 +114,6 @@ export default {
 }
 </style>
 <style lang="less" scoped>
-@import "../../../assets/theme.less";
 @import "./list.less";
 </style>
 

@@ -138,9 +138,6 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-    @import "../../assets/theme.less";
-</style>
 <style lang="stylus" rel="stylesheet/stylus">
     @import 'playerBar.styl';
 </style>

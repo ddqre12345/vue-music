@@ -6,7 +6,6 @@ import App from './App';
 import routes from './routers';
 // import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 // 注册为全局组件
-import 'assets/theme.less';
 Vue.use(VueRouter);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
