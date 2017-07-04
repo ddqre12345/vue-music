@@ -4,7 +4,7 @@
 
 ### vue网易云音乐webapp版
 
-> Star，Star，Star，重要的话说三遍，广告就要放在最显眼的地方，哈哈。
+> Star，Star，Star，这是对我最大的鼓励，重要的话说三遍，广告就要放在最显眼的地方，哈哈。
 
 - [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(再次感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托，看着他的star蹭蹭蹭的往上涨，我必须厚着脸皮说有我一份功劳)
 - [源码地址](https://github.com/ddqre12345/vue-music)
