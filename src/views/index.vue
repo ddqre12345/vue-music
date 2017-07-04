@@ -5,7 +5,7 @@
             <!-- 侧边栏 -->
             <asideMenu v-show="isShowAsideMenu"></asideMenu>
             <!-- 头部 -->
-            <vHeader></vHeader>
+            <v-header></v-header>
             <router-view></router-view>
         </div>
     </transition>

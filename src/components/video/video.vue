@@ -1,7 +1,7 @@
 <template>
     <div class="video-player" @click="showControls">
       <div class="fixed-title" style="transition: opacity .1s;" v-show="isControlShow&&!loading&&isPlayShow">
-        <x-header :left-options="{backText: ''}" style="background-color:transparent">{{name}}</x-header>
+        <x-header :left-options="{backText: ''}" style="background-color:transparent;font-size: 12px;">{{name}}</x-header>
       </div>
       <!--视频数据来源-->
       <video id="video" ref="video" preload="auto" :src="video.source" webkit-playsinline playsinline width="100%" height="100%" v-if="isPlayShow">
