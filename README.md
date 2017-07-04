@@ -13,6 +13,18 @@
 - 项目所提供请求地址希望仅供预览使用，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理
 - 这是个连载的故事，预知前事如何，请跳转[网易云音乐v1.0](https://segmentfault.com/a/1190000009339117?_ea=2099626),现在我主要讲的是这个版本的更新内容
 
+#### 技术栈
+
+- Vue2：采用最新Vue2的语法
+- Vuex：管理公共组件状态量
+- vue-router：管理单页面应用路由
+- axios：发起http请求
+- stylus：css预处理语言
+- Express：vue-cli使用Express做服务器。
+- Webpack：自动化构建工具，主要配置vue-cli脚手架提供。
+- ES6：采用ES6语法。
+- CSS3：CSS3动画及样式。
+
 #### 功能介绍
 > v1.0 | 2017.05.09
 
