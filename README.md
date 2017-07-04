@@ -41,9 +41,10 @@
 
 > 新增功能效果图
 
-![mv播放机mv评论](http://118.89.226.181:8080/images/img1.gif)
-![歌单排行榜全球版及评论](http://118.89.226.181:8080/images/img2.gif)
-![点击播放全部,歌曲循环，随机，单曲切换，专辑歌单详情，评论等](http://118.89.226.181:8080/images/img3.gif)
+
+![mv播放机mv评论](https://github.com/ddqre12345/coder-essay/blob/master/images/img1.gif?raw=true)
+![歌单排行榜全球版及评论](https://github.com/ddqre12345/coder-essay/blob/master/images/img2.gif?raw=true)
+![点击播放全部,歌曲循环，随机，单曲切换，专辑歌单详情，评论等](https://github.com//ddqre12345/coder-essay/blob/master/images/img3.gif?raw=true)
 
 图片就到这里，[more](http://118.89.226.181:8080)
 
