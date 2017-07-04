@@ -89,7 +89,9 @@
 ### 最后！！！！！
 
 1.感谢[github](https://github.com/),感谢同样在分享的你，让我能站在巨人的肩膀上
+
 2.感谢[Binaryify](https://github.com/Binaryify)对接口文档的不断维护与更新。
-3.再下个版本前我可能会和大家分享下自定义mv视频播放部分遇到的一些坑及一些webpack打包优化
+
+3.在下个版本前我可能会和大家分享下自定义mv视频播放部分遇到的一些坑及一些webpack打包优化
 
 到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，下阶段项目进展请关注[v3.0小黑板](https://github.com/ddqre12345/vue-music/projects/2)，如果你有什么建议或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言。本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
