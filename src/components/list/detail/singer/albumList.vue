@@ -1,6 +1,6 @@
 <template>
   <ul class="album-list-detail">
-    <v-album-card v-for="data in list" :data="data"></v-album-card>
+    <v-album-card v-for="(data, index) in list" :data="data" :key="index"></v-album-card>
   </ul>
 </template>
 <script>
