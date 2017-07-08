@@ -18,10 +18,10 @@
           <swiper-item :key="0">
           <div class="tab-swiper vux-center">
             <div class="play-lists-detail">
-              <ul>
-              <li v-for="(data, index) in playlist" :key="index">
-                <v-play-lists-card :data="data"></v-play-lists-card>
-              </li>
+              <ul style="list-style: none;">
+                <li v-for="(data, index) in playlist" :key="index">
+                  <v-play-lists-card :data="data"></v-play-lists-card>
+                </li>
               </ul>
             </div>
           </div>
@@ -116,6 +116,6 @@
     height: 100%;
   }
 </style>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   @import "user.styl";
 </style>
