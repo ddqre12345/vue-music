@@ -1,8 +1,8 @@
 <template>
   <ul>
-    <li class="comment" v-for="data in list">
+    <li class="comment" v-for="(data, index) in list" :key="index">
       <div class="head-info">
-        <img v-lazy="data.user.avatarUrl + '?param=100y100'" lazy="loading" class="avatar-image"  @click="jumpUserDetail(data.user.userId)"/>
+        <img v-lazy="data.user.avatarUrl + '?param=100y100'" lazy="loading" class="avatar-image"  @click="jumpUserDetail(data.user.userId)">
         <div class="user">
           <p class="nickname">{{data.user.nickname}}</p>
           <p class="time">{{data.time | formatDate}}</p>
@@ -31,13 +31,8 @@
     name: 'comment-list',
     props: {
       list: {
-        type: Array
-      }
-    },
-    filters: {
-      formatDate(time) {
-        let date = new Date(time);
-        return formatDate(date, 'yyyy-MM-dd');
+        type: Array,
+        default: []
       }
     },
     methods: {
@@ -45,6 +40,12 @@
         this.$router.push({
           path: '/user/' + id
         });
+      }
+    },
+    filters: {
+      formatDate(time) {
+        let date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd');
       }
     }
   };

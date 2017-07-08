@@ -49,7 +49,7 @@
             this.$store.commit('update_loading', false);
           });
         }).catch((error) => {
-          console.log('加载歌单信息出错:' + error);
+          console.log(error);
         });
       },
       getAlbumCommentResource() {

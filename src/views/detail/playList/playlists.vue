@@ -52,11 +52,19 @@
   import vSingleCard from '../../../components/card/detail/singleCard.vue';
   import vPlayListDetail from './playListDetail';
   export default {
-    components: {
-      XHeader,
-      vPlayAll,
-      vSingleCard,
-      vPlayListDetail
+    data () {
+      return {
+        playlist: {},
+        tName: '歌单',
+        creator: {},
+        data: [],
+        index: '',
+        list: [],
+        commonSongs: [],
+        backgroundColor: '',
+        opacity: 0,
+        isShowDetail: false
+      };
     },
     // 解除keep-alive的缓存
     beforeRouteEnter: (to, from, next) => {
@@ -77,20 +85,6 @@
     beforeRouteLeave: (to, from, next) => {
       window.onscroll = null;
       next();
-    },
-    data () {
-      return {
-        playlist: {},
-        tName: '歌单',
-        creator: {},
-        data: [],
-        index: '',
-        list: [],
-        commonSongs: [],
-        backgroundColor: '',
-        opacity: 0,
-        isShowDetail: false
-      };
     },
     mounted: function() {
       let self = this;
@@ -130,7 +124,7 @@
       },
       songsToCommon (items) {
         let vm = this;
-        this.commonSongs = items.map(function (item, index, array) {
+        this.commonSongs = items.map(function (item) {
           return {
             'id': item.id,
             'name': item.name,
@@ -154,9 +148,15 @@
       creatorImage() {
         return '' || this.creator.avatarUrl;
       }
+    },
+    components: {
+      XHeader,
+      vPlayAll,
+      vSingleCard,
+      vPlayListDetail
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "playlists.styl";
 </style>

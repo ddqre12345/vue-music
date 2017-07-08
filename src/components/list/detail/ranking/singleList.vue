@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li class="common-single-card" v-for="(data, index) in list" @click="playAudio(data)">
+    <li class="common-single-card" v-for="(data, index) in list" @click="playAudio(data)" :key="index">
       <div class="index" :style="{'color': index < 3 ? '#ce3d3e': '#818584'}">{{index + 1}}</div>
       <div class="info">
         <p class="name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
@@ -15,7 +15,8 @@
     name: 'v-single-list',
     props: {
       list: {
-        type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {
@@ -39,6 +40,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'singleList.styl';
 </style>

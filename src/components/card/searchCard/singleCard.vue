@@ -1,7 +1,11 @@
 <template>
   <li class="single-card" @click="playAudio(data)">
     <p class="song-name" style="-webkit-box-orient: vertical;">{{data.name}}<span class="transNames">{{songNameTrans}}</span></p>
-    <p class="source"><span class="singer">{{data.artists[0].name}}-</span><span class="album">{{data.album.name}}</span><span class="transNames">{{albumTrans}}</span></p>
+    <p class="source">
+      <span class="singer">{{data.artists[0].name}}-</span>
+      <span class="album">{{data.album.name}}</span>
+      <span class="transNames">{{albumTrans}}</span>
+    </p>
   </li>
 </template>
 <script>
@@ -48,6 +52,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'singleCard.styl';
 </style>

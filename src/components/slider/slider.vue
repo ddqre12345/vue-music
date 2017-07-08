@@ -14,6 +14,15 @@
 import keycode from 'keycode';
 export default {
   name: 'slider',
+  data () {
+    return {
+      inputValue: this.value,
+      active: false,
+      hover: false,
+      focused: false,
+      dragging: false
+    };
+  },
   props: {
     name: {
       type: String
@@ -37,38 +46,6 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
-  },
-  data () {
-    return {
-      inputValue: this.value,
-      active: false,
-      hover: false,
-      focused: false,
-      dragging: false
-    };
-  },
-  computed: {
-    percent () {
-      let percentNum = (this.inputValue - this.min) / (this.max - this.min) * 100;
-      return percentNum > 100 ? 100 : percentNum < 0 ? 0 : percentNum;
-    },
-    fillStyle () {
-      return {
-        width: this.percent + '%'
-      };
-    },
-    thumbStyle () {
-      return {
-        left: this.percent + '%'
-      };
-    },
-    sliderClass () {
-      return {
-        zero: this.inputValue <= this.min,
-        active: this.active,
-        disabled: this.disabled
-      };
     }
   },
   created () {
@@ -234,11 +211,34 @@ export default {
     inputValue (val) {
       this.$emit('input', val);
     }
+  },
+  computed: {
+    percent () {
+      let percentNum = (this.inputValue - this.min) / (this.max - this.min) * 100;
+      return percentNum > 100 ? 100 : percentNum < 0 ? 0 : percentNum;
+    },
+    fillStyle () {
+      return {
+        width: this.percent + '%'
+      };
+    },
+    thumbStyle () {
+      return {
+        left: this.percent + '%'
+      };
+    },
+    sliderClass () {
+      return {
+        zero: this.inputValue <= this.min,
+        active: this.active,
+        disabled: this.disabled
+      };
+    }
   }
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .slider {
   width: 100%;
   position: relative;

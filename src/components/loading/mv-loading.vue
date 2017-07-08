@@ -17,7 +17,8 @@
     name: 'v-mv-loading',
     props: {
       show: {
-        type: Boolean
+        type: Boolean,
+        default: false
       }
     }
   };

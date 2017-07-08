@@ -1,7 +1,7 @@
 <template>
   <ul class="mv-list">
-    <li class="mv-card" v-for="data in MVs" style="flex: 0 0 49.5%" @click="jumpMvDetail(data.id)">
-      <img v-lazy="data.cover + '?param=400y200'" lazy="loading" class="mv-image"/>
+    <li class="mv-card" v-for="(data, index) in MVs" style="flex: 0 0 49.5%" @click="jumpMvDetail(data.id)" :key="index">
+      <img v-lazy="data.cover + '?param=400y200'" lazy="loading" class="mv-image">
       <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
       <p style="-webkit-box-orient: vertical;">{{data.artistName}}</p>
     </li>
@@ -12,7 +12,8 @@
     name: 'v-mv-list',
     props: {
       MVs: {
-        type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {

@@ -1,7 +1,11 @@
 <template>
     <div class="album-detail">
       <div class="fixed-close">
-        <x-header :left-options="{showBack: false}" style="background-color:transparent"><a slot="right"><div class="close-img" @click="hiddenDetail()"></div></a></x-header>
+        <x-header :left-options="{showBack: false}" style="background-color:transparent">
+          <a slot="right">
+            <div class="close-img" @click="hiddenDetail()"></div>
+            </a>
+        </x-header>
       </div>
       <div class="album-wrapper">
         <img v-lazy="data.picUrl + '?param=200y200'" lazy="loading" alt="专辑图片" class="album-image">
@@ -18,7 +22,8 @@
   export default {
     props: {
       data: {
-        type: Object
+        type: Object,
+        default: false
       }
     },
     methods: {
@@ -37,10 +42,6 @@
         }
       }
     },
-    components: {
-      XHeader,
-      vMask
-    },
     filters: {
       contentChange (content) {
         let regx = /\r\n/g;
@@ -48,9 +49,13 @@
         content = content.replace(/\n/g, '<br/>');
         return content;
       }
+    },
+    components: {
+      XHeader,
+      vMask
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'albumDetail.styl';
 </style>

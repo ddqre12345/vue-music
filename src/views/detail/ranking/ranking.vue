@@ -47,9 +47,16 @@
   import { XHeader } from 'vux';
   import vSingleList from '../../../components/list/detail/ranking/singleList';
   export default {
-    components: {
-      XHeader,
-      vSingleList
+    data () {
+      return {
+        datas: {},
+        tName: '歌单',
+        creator: {},
+        data: [],
+        list: [],
+        backgroundColor: '',
+        opacity: 0
+      };
     },
     // 解除keep-alive的缓存
     beforeRouteEnter: (to, from, next) => {
@@ -70,17 +77,6 @@
     beforeRouteLeave: (to, from, next) => {
       window.onscroll = null;
       next();
-    },
-    data () {
-      return {
-        datas: {},
-        tName: '歌单',
-        creator: {},
-        data: [],
-        list: [],
-        backgroundColor: '',
-        opacity: 0
-      };
     },
     mounted: function() {
       this.getTopListDetail();
@@ -128,9 +124,13 @@
         let date = new Date(time);
         return formatDate(date, 'MM月dd日');
       }
+    },
+    components: {
+      XHeader,
+      vSingleList
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "ranking.styl";
 </style>

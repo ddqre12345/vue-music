@@ -1,6 +1,6 @@
 <template>
   <ul class="album-list">
-    <v-album-card :data="data" v-for="data in albums"></v-album-card>
+    <v-album-card :data="data" v-for="(data, index) in albums" :key="index"></v-album-card>
   </ul>
 </template>
 <script>
@@ -12,7 +12,8 @@ import vAlbumCard from '../../card/searchCard/albumCard';
     },
     props: {
       albums: {
-        type: Array
+        type: Array,
+        default: []
       }
     }
   };

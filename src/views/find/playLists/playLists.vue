@@ -1,12 +1,12 @@
 <template>
   <div class="playLists-area">
     <button-tab v-model="index">
-      <button-tab-item @on-item-click="type()">最新</button-tab-item>
-      <button-tab-item @on-item-click="type()">最热</button-tab-item>
+      <button-tab-item @on-item-click="selectType()">最新</button-tab-item>
+      <button-tab-item @on-item-click="selectType()">最热</button-tab-item>
     </button-tab>
     <div class="playLists">
       <ul>
-        <li v-for="data in playlists">
+        <li v-for="(data, index) in playlists" :key="index">
           <v-play-list :data="data"></v-play-list>
         </li>
       </ul>
@@ -19,11 +19,6 @@
   import vPlayList from '../../../components/card/findCard/playList/playList';
   export default {
     name: 'v-play-lists',
-    components: {
-      vPlayList,
-      ButtonTab,
-      ButtonTabItem
-    },
     data () {
       return {
         index: 0,
@@ -35,12 +30,11 @@
       this.getTopPlaylistResource();
     },
     methods: {
-      type () {
+      selectType () {
+        this.keys = this.index ? 'hot' : 'new';
         this.getTopPlaylistResource();
       },
       getTopPlaylistResource() {
-        this.keys = this.index ? 'hot' : 'new';
-        this.playlists = [];
         this.$store.commit('update_loading', true);
         api.getTopPlaylistResource(this.keys, 20, 0).then((response) => {
           this.playlists = response.data.playlists;
@@ -49,13 +43,18 @@
             this.$store.commit('update_loading', false);
           });
         })
-          .catch((response) => {
-            console.log(response);
-          });
+        .catch((response) => {
+          console.log(response);
+        });
       }
+    },
+    components: {
+      vPlayList,
+      ButtonTab,
+      ButtonTabItem
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import 'playLists.styl';
 </style>
