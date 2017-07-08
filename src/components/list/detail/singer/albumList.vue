@@ -9,7 +9,8 @@
     name: 'v-album-list',
     props: {
       list: {
-        type: [Object, Array]
+        type: Array,
+        default: []
       }
     },
     components: {

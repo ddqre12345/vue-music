@@ -4,26 +4,26 @@
       <div class="title">官方榜</div>
       <div class="ranking-official-area">
           <div class="surge" @click="jumpRankingDetail(3)">
-              <img src="/static/surge.jpg" alt="surge"/>
+              <img src="/static/surge.jpg" alt="surge">
               <v-songs-list :data="surgeList"></v-songs-list>
           </div>
           <div class="newSonges" @click="jumpRankingDetail(0)">
-              <img src="/static/newSonges.jpg" alt="newSonges"/>
+              <img src="/static/newSonges.jpg" alt="newSonges">
               <v-songs-list :data="newSongesList"></v-songs-list>
           </div>
           <div class="original" @click="jumpRankingDetail(2)">
-              <img src="/static/original.jpg" alt="original" />
+              <img src="/static/original.jpg" alt="original">
               <v-songs-list :data="originalList"></v-songs-list>
           </div>
           <div class="hot" @click="jumpRankingDetail(1)">
-              <img src="/static/hot.jpg" alt="hot" />
+              <img src="/static/hot.jpg" alt="hot">
               <v-songs-list :data="hotList"></v-songs-list>
           </div>
       </div>
       <div class="title">全球榜</div>
       <div class="ranking-world-area">
         <ul>
-          <li v-for="item in rankingList" @click="jumpRankingDetail(item.idx)">
+          <li v-for="(item, index) in rankingList" @click="jumpRankingDetail(item.idx)" :key="index">
             <img :src="item.coverImageUrl" alt="item.title">
             <p class="ranking-title">{{item.title}}</p>
           </li>
@@ -36,12 +36,9 @@
   import api from '../../../api/index';
   import vSongsList from '../../../components/list/find/ranking/songsList';
   // wRL为全球榜单
-  import wRL from '../../../../static/wRL.json';
+  import wRL from '../../../../static/mock/wRL.json';
   export default {
     name: 'v-ranking',
-    components: {
-      vSongsList
-    },
     data () {
       return {
         surgeList: [],
@@ -107,9 +104,12 @@
           console.log(response);
         });
       }
+    },
+    components: {
+      vSongsList
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'ranking.styl';
 </style>

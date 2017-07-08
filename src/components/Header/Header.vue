@@ -16,11 +16,6 @@
 <script>
 export default {
   name: 'header',
-  data () {
-    return {
-      index: ''
-    };
-  },
   methods: {
     toSearch () {
       this.$router.push('/search');
@@ -31,6 +26,6 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "header.styl";
 </style>

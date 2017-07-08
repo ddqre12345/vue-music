@@ -70,11 +70,6 @@ export default {
       currentIndex: -1
     };
   },
-  components: {
-    slider,
-    Toast,
-    BottomSheet
-  },
   mounted () {
     this.loadLrc(this.$route.params.id);
   },
@@ -182,9 +177,14 @@ export default {
       }
       return minute + ':' + second;
     }
+  },
+  components: {
+    slider,
+    Toast,
+    BottomSheet
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'player.styl';
 </style>

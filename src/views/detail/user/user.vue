@@ -19,7 +19,7 @@
           <div class="tab-swiper vux-center">
             <div class="play-lists-detail">
               <ul>
-              <li v-for="data in playlist">
+              <li v-for="(data, index) in playlist" :key="index">
                 <v-play-lists-card :data="data"></v-play-lists-card>
               </li>
               </ul>
@@ -103,9 +103,6 @@
   };
 </script>
 <style lang="less" scoped>
-  @import '~vux/src/styles/1px.less';
-  @import '~vux/src/styles/center.less';
-
   .vux-swiper {
     height: 100%;
   }
@@ -119,6 +116,6 @@
     height: 100%;
   }
 </style>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "user.styl";
 </style>

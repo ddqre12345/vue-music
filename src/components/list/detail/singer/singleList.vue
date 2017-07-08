@@ -1,6 +1,6 @@
 <template>
   <ul class="hot-single-list">
-    <li class="single-card" v-for="(data, index) in list" @click="playAudio(data)">
+    <li class="single-card" v-for="(data, index) in list" @click="playAudio(data)" :key="index">
       <div class="index">{{index + 1}}</div>
       <div class="single-info">
           <p class="single-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
@@ -15,7 +15,8 @@
     name: 'v-hot-single-list',
     props: {
       list: {
-        type: [Object, Array]
+        type: Array,
+        default: []
       }
     },
     methods: {

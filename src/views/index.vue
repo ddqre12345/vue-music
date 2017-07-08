@@ -15,17 +15,17 @@
   import asideMenu from '../components/aside/aside';
 
   export default {
-    components: {
-      vHeader,
-      asideMenu
-    },
     computed: {
       isShowAsideMenu() {
         return this.$store.state.isShowAsideMenu;
       }
+    },
+    components: {
+      vHeader,
+      asideMenu
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'index.styl';
 </style>

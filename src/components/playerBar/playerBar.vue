@@ -2,7 +2,7 @@
   <div class="foot">
     <div class="player-mini">
       <div class="mini-content">
-        <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay"/>
+        <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay"></audio>
         <div class="music-logo">
           <img v-lazy="audio.albumPic + '?param=100y100'" lazy="loading" v-show="!loading" :alt="audio.name" @click="showDetail">
         </div>
@@ -36,11 +36,6 @@ export default {
       loadedTime: 0,
       playerTime: 0
     };
-  },
-  components: {
-    Toast,
-    BottomSheet,
-    XCircle
   },
   methods: {
     ...mapMutations([
@@ -135,6 +130,11 @@ export default {
       'tmpCurrentTime',
       'prCurrentTime'
     ])
+  },
+  components: {
+    Toast,
+    BottomSheet,
+    XCircle
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
     <ul class="user-list">
-      <li v-for="data in user" class="user-card" @click="jumpUserDetail(data.userId)">
-        <img v-lazy="data.avatarUrl + '?param=200y200'" lazy="loading" class="avatarImage"/>
+      <li v-for="(data, index) in user" class="user-card" @click="jumpUserDetail(data.userId)" :key="index">
+        <img v-lazy="data.avatarUrl + '?param=200y200'" lazy="loading" class="avatarImage">
         <div class="avatar-info">
             <p class="avatar-name">
                 {{data.nickname}}
@@ -18,7 +18,8 @@
     name: 'v-user-card',
     props: {
       user: {
-        type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {
@@ -30,6 +31,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'userList.styl';
 </style>

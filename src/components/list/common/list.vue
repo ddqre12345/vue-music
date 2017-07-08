@@ -44,13 +44,6 @@ import { Confirm, TransferDomDirective as TransferDom } from 'vux';
 import bottomSheet from '../../bottomSheet/bottomSheet';
 export default {
   name: 'list',
-  directives: {
-    TransferDom
-  },
-  components: {
-    Confirm,
-    bottomSheet
-  },
   data () {
     return {
       bottomSheet: false,
@@ -102,6 +95,13 @@ export default {
       'audio',
       'playType'
     ])
+  },
+  directives: {
+    TransferDom
+  },
+  components: {
+    Confirm,
+    bottomSheet
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <ul class="play-lists">
-      <li v-for="data in playlist" class="playlist-card" @click="jumpPlayListsDetail(data.id)">
-          <img v-lazy="data.coverImgUrl + '?param=200y200'" lazy="loading" class="coverImage"/>
+      <li v-for="(data, index) in playlist" class="playlist-card" @click="jumpPlayListsDetail(data.id)" :key="index">
+          <img v-lazy="data.coverImgUrl + '?param=200y200'" lazy="loading" class="coverImage">
           <div class="playList-info">
               <p class="playList-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
               <p class="playList-info-other">
@@ -19,7 +19,8 @@
     name: 'v-play-list-card',
     props: {
       playlist: {
-        type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {
@@ -36,6 +37,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'playLists.styl';
 </style>

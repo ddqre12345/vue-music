@@ -36,6 +36,13 @@
   const list = () => ['个性推荐', '歌单', '排行榜'];
   export default {
     name: 'find',
+    data () {
+      return {
+        index: 0,
+        tabList: list(),
+        type: '个性推荐'
+      };
+    },
     components: {
       vPlayLists,
       vRecommend,
@@ -44,16 +51,9 @@
       TabItem,
       Swiper,
       SwiperItem
-    },
-    data () {
-      return {
-        index: 0,
-        tabList: list(),
-        type: '个性推荐'
-      };
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import 'find.styl';
 </style>

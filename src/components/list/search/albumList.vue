@@ -12,7 +12,8 @@ import vAlbumCard from '../../card/searchCard/albumCard';
     },
     props: {
       albums: {
-        type: Array
+        type: Array,
+        default: []
       }
     }
   };

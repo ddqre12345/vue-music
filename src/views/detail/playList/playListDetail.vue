@@ -8,7 +8,7 @@
         <h1>{{data.name}}</h1>
         <div class="description" v-html="contentChange"></div>
         <p class="tags">标签：
-          <span v-for="tag in data.tags">{{tag}}</span>
+          <span v-for="(tag, index) in data.tags" :key="index">{{tag}}</span>
         </p>
       </div>
       <v-mask :data="data.picUrl"></v-mask>

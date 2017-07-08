@@ -44,16 +44,6 @@
   import vMvLoading from '../../components/loading/mv-loading';
   export default {
     name: 'video-player',
-    props: {
-      source: String,
-      type: String,
-      poster: String,
-      name: String
-    },
-    components: {
-      XHeader,
-      vMvLoading
-    },
     data () {
       return {
         isPlay: false,
@@ -73,6 +63,24 @@
           poster: this.poster
         }
       };
+    },
+    props: {
+      source: {
+        type: String,
+        default: ''
+      },
+      type: {
+        type: String,
+        default: ''
+      },
+      poster: {
+        type: String,
+        default: ''
+      },
+      name: {
+        type: String,
+        default: ''
+      }
     },
     mounted () {
       this.$root.$on('change-poster', (val) => {
@@ -217,6 +225,10 @@
           this.$video.webkitRequestFullscreen();
         }
       }
+    },
+    components: {
+      XHeader,
+      vMvLoading
     }
   };
 </script>

@@ -7,13 +7,14 @@
   import vSingleCard from '../../card/searchCard/singleCard';
   export default {
     name: 'v-single-list',
-    components: {
-      vSingleCard
-    },
     props: {
       songs: {
-        type: Array
+        type: Array,
+        default: []
       }
+    },
+    components: {
+      vSingleCard
     }
   };
 </script>

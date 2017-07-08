@@ -28,7 +28,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
   .toast-wrap {
       position: fixed;

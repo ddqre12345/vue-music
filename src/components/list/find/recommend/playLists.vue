@@ -1,7 +1,7 @@
 <template>
   <ul class="playLists-area">
-    <li class="playlist-card-find" v-for="data in playlists" @click="jumpPlayListsDetail(data.id)">
-      <img v-lazy="data.picUrl+ '?param=200y200'" lazy="loading" />
+    <li class="playlist-card-find" v-for="(data, index) in playlists" @click="jumpPlayListsDetail(data.id)" :key="index">
+      <img v-lazy="data.picUrl+ '?param=200y200'" lazy="loading">
       <h2 style="-webkit-box-orient: vertical;">{{data.name}}</h2>
     </li>
   </ul>
@@ -12,7 +12,8 @@
     name: 'v-play-lists',
     props: {
       playlists: {
-          type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {

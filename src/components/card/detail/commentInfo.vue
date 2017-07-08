@@ -1,6 +1,6 @@
 <template>
   <div class="comment-info" @click="goback">
-    <img v-lazy="img + '?param=200y200'" lazy="loading"/>
+    <img v-lazy="img + '?param=200y200'" lazy="loading">
     <div class="detail">
       <p class="title">{{title}}</p>
       <p class="author">{{author}}</p>
@@ -13,18 +13,17 @@
     name: 'video-player',
     props: {
       img: {
-        type: String
+        type: String,
+        default: ''
       },
       title: {
-        type: String
+        type: String,
+        default: '标题'
       },
       author: {
-        type: String
+        type: String,
+        default: '歌手'
       }
-    },
-    data () {
-      return {
-      };
     },
     methods: {
       goback () {
@@ -33,6 +32,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import 'commentInfo.styl';
 </style>

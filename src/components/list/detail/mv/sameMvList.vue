@@ -1,7 +1,7 @@
 <template>
   <ul>
-    <li class="mv-card" v-for="data in list" @click="jumpMvDetail(data.id)">
-      <img v-lazy="data.cover + '?param=200y130'" lazy="loading" class="mv-image"/>
+    <li class="mv-card" v-for="(data, index) in list" @click="jumpMvDetail(data.id)" :key="index">
+      <img v-lazy="data.cover + '?param=200y130'" lazy="loading" class="mv-image">
       <div class="info">
         <p class="name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
         <p class="artistName" style="-webkit-box-orient: vertical;">{{data.artistName}}</p>
@@ -14,7 +14,8 @@
     name: 'same-mv-list',
     props: {
       list: {
-        type: Array
+        type: Array,
+        default: []
       }
     },
     methods: {

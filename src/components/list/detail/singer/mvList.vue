@@ -1,7 +1,7 @@
 <template>
   <ul class="album-list-detail">
-    <li v-for="data in list" class="album-card-detail" @click="jumpMvDetail(data.id)">
-      <img v-lazy="data.imgurl + '?param=200y200'" lazy="loading" class="album-image"/>
+    <li v-for="(data, index) in list" class="album-card-detail" @click="jumpMvDetail(data.id)" :key="index">
+      <img v-lazy="data.imgurl + '?param=200y200'" lazy="loading" class="album-image">
       <div class="album-info">
         <p class="album-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
         <p class="publishTime">{{data.publishTime}}</p>
@@ -15,7 +15,8 @@
     name: 'v-album-list',
     props: {
       list: {
-        type: [Object, Array]
+        type: Array,
+        default: []
       }
     },
     methods: {

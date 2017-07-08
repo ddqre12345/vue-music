@@ -1,6 +1,6 @@
 <template>
   <div class="playlist-card" @click="jumpPlayListsDetail(data.id)">
-    <img v-lazy="coverImage" lazy="loading" class="coverImage"/>
+    <img v-lazy="coverImage" lazy="loading" class="coverImage">
     <div class="playList-info">
       <p class="playList-name" style="-webkit-box-orient: vertical;">{{data.name}}</p>
       <p class="playList-info-other">
@@ -16,7 +16,8 @@
     name: 'v-play-list-card',
     props: {
       data: {
-        type: Object
+        type: Object,
+        default: {}
       }
     },
     methods: {
@@ -38,6 +39,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import 'playlists.styl';
 </style>

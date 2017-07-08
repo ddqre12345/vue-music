@@ -39,15 +39,6 @@
   const imgList = ['/static/banner1.jpg', '/static/banner2.jpg', '/static/banner3.jpg', '/static/banner4.jpg'];
   export default {
     name: 'v-recommend',
-    components: {
-      swiper,
-      swiperSlide,
-      vPlayLists,
-      vActivitysList,
-      vMvList,
-      vNewSongList,
-      vDjProgramList
-    },
     data () {
       return {
         swiperOption: {
@@ -111,9 +102,18 @@
             console.log(response);
           });
       }
+    },
+    components: {
+      swiper,
+      swiperSlide,
+      vPlayLists,
+      vActivitysList,
+      vMvList,
+      vNewSongList,
+      vDjProgramList
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import 'recommend.styl';
 </style>

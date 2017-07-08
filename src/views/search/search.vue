@@ -73,18 +73,6 @@
     'hyukoh', '童话镇', '陈奕迅', '漂洋过海来看你', '许嵩', '成都', '林俊杰'];
   export default {
     name: 'search',
-    components: {
-      Tab,
-      TabItem,
-      Swiper,
-      SwiperItem,
-      vSingleList,
-      vSingerList,
-      vAlbumList,
-      vPlayLists,
-      vUserList,
-      vMvList
-    },
     data () {
       return {
         index: 0,
@@ -203,9 +191,21 @@
             console.log(response);
           });
       }
+    },
+    components: {
+      Tab,
+      TabItem,
+      Swiper,
+      SwiperItem,
+      vSingleList,
+      vSingerList,
+      vAlbumList,
+      vPlayLists,
+      vUserList,
+      vMvList
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     @import "search.styl";
 </style>

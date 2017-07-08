@@ -13,10 +13,12 @@
     name: 'v-hot-single-card',
     props: {
       data: {
-        type: Object
+        type: Object,
+        default: {}
       },
       order: {
-        type: Number
+        type: Number,
+        default: 0
       }
     },
     methods: {
@@ -40,6 +42,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import 'hotSingleCard.styl';
 </style>
