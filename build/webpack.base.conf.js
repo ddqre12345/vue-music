@@ -49,28 +49,19 @@ const webpackConfig = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 10000 , /* 图片大小小于1000字节限制时会自动转成 base64 码引用*/
-                name: '[path][name].[ext]?[hash:6]!./dir/file.png'
-              }
-            },
-            /*对图片进行压缩*/
-            {
-              loader: 'image-webpack-loader',
-              query: {
-                progressive: true,
-                optimizationLevel: 7,
-                interlaced: false,
-                pngquant: {
-                  quality: '65-90',
-                  speed: 4
-                }
-              }
-            }
-        ]
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        }
       }
     ]
   },
