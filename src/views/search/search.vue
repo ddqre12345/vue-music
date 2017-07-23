@@ -1,12 +1,9 @@
 <template lang="html">
     <transition name="fade">
-        <div class="search-page">
-            <div class='header-other'>
+        <div id="search-page">
+            <div class='search-header'>
                 <span @click="goBack" class="back"><i class="back-icon"></i></span>
-                <div class="input">
-                    <input v-model="keywords" @keyup.enter="toSearch(keywords)" type="text" placeholder='搜素音乐、歌手、歌词、用户'>
-                    <i @click="keywords=''" v-show="keywords!==''&&!isShowHot" class="icon-cancel"></i>
-                </div>
+                <input class="search-input" v-model="keywords" @keyup.enter="toSearch(keywords)" type="text" placeholder='搜素音乐、歌手、歌词、用户'>
             </div>
             <div class="hot" v-if="isShowHot">
                 <p>热门搜索</p>
