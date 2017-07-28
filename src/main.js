@@ -4,10 +4,15 @@ import VueRouter from 'vue-router';
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import App from './App';
 import routes from './routers';
+import fastclick from 'fastclick';
+import '@/common/styles/index.styl';
 // import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
 // 注册为全局组件
 Vue.use(VueRouter);
 // error，loading是图片路径, 用require引入
+
+fastclick.attach(document.body);
+
 Vue.use(VueLazyload, {
     error: require('./assets/404.png'),
     loading: require('./assets/loading.jpg'),
@@ -57,10 +62,4 @@ const routerApp = new Vue({
   render: h => h(App)
 }).$mount('#app');
 
-/**
- * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
- */
-// if (!loadFromlLocal('music', 'find', false)) {
-//   router.push('/find');
-// }
 export default routerApp;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view-area">
     <!-- 主界面部分 -->
     <loading :show="loadingShow"></loading>
     <keep-alive>
