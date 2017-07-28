@@ -204,5 +204,6 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+    @import '~common/styles/variable';
     @import "search.styl";
 </style>
