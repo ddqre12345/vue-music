@@ -21,6 +21,7 @@ export default {
       this.$router.push('/search');
     },
     showAsideMenu (flag) {
+      console.log(flag);
       this.$store.commit('showAsideMenu', flag);
     }
   }

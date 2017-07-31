@@ -1,11 +1,10 @@
 <template>
-  <div class="view-area">
+  <div id="app">
     <!-- 主界面部分 -->
     <loading :show="loadingShow"></loading>
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
+      <router-view></router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <player v-show="songList.length > 0 && !showDetail"></player>
   </div>
 </template>
