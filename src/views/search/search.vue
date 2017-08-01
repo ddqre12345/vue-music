@@ -5,14 +5,14 @@
                 <span @click="goBack" class="back"><i class="back-icon"></i></span>
                 <input class="search-input" v-model="keywords" @keyup.enter="toSearch(keywords)" type="text" placeholder='搜素音乐、歌手、歌词、用户'>
             </div>
-            <div class="hot" v-if="isShowHot">
+            <div id="hot-search" v-if="isShowHot">
                 <p>热门搜索</p>
                 <ul class="keywords">
                   <li v-for="item of hotKeywords" v-text="item" @click="toSearch(item)" class="keyword"></li>
                 </ul>
             </div>
             <div v-else class="search-list">
-                <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712'
+                <tab :line-width=2 active-color='#ce3d3a' defaultColor='#666' bar-active-color='#ce3d3a'
                      v-model="index">
                     <tab-item class="vux-center" :selected="type === item" v-for="(item, index) in tabList"
                               @click="type = item" :key="index">{{item}}
@@ -205,5 +205,6 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
     @import '~common/styles/variable';
+    @import '~common/styles/mixin';
     @import "search.styl";
 </style>

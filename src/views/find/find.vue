@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div class="find-page">
-        <tab :line-width=2 active-color='#b72712' defaultColor='#666' bar-active-color='#b72712'
+        <tab :line-width=2 active-color='#ce3d3a' defaultColor='#666' bar-active-color='#ce3d3a'
              v-model="index">
           <tab-item class="vux-center" :selected="type === item" v-for="(item, index) in tabList"
                     @click="type = item" :key="index" style="background-color: #fdfffe;">{{item}}
