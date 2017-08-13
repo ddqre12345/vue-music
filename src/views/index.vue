@@ -17,7 +17,6 @@
   export default {
     computed: {
       isShowAsideMenu() {
-        console.log(this.$store.state.isShowAsideMenu);
         return this.$store.state.isShowAsideMenu;
       }
     },

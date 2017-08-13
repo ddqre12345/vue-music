@@ -3,37 +3,33 @@
     <div class="find-page">
         <tab :line-width=2 active-color='#ce3d3a' defaultColor='#666' bar-active-color='#ce3d3a'
              v-model="index">
-          <tab-item class="vux-center" :selected="type === item" v-for="(item, index) in tabList"
+          <tab-item :selected="type === item" v-for="(item, index) in tabList"
                     @click="type = item" :key="index" style="background-color: #fdfffe;">{{item}}
           </tab-item>
         </tab>
         <swiper v-model="index" height="100%" :show-dots="false" class="swiper-container" style="width:100%;height: 100%;padding-bottom: 90px;background-color: #eef2f1;">
           <swiper-item :key="1">
-            <div class="tab-swiper vux-center">
-              <v-recommend></v-recommend>
-            </div>
+            <v-recommend></v-recommend>
           </swiper-item>
           <swiper-item :key="2">
-            <div class="tab-swiper vux-center">
-              <v-play-lists></v-play-lists>
-            </div>
+            <v-play-lists></v-play-lists>
           </swiper-item>
           <swiper-item :key="3">
-            <div class="tab-swiper vux-center">
-              <v-ranking></v-ranking>
-            </div>
+            <v-ranking></v-ranking>
           </swiper-item>
         </swiper>
     </div>
   </transition>
 </template>
 <script>
+  const list = () => ['个性推荐', '歌单', '排行榜'];
+
   import {Tab, TabItem} from 'vux/src/components/Tab';
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
   import vRecommend from './recommend/recommend';
   import vPlayLists from './playLists/playLists';
   import vRanking from './ranking/ranking';
-  const list = () => ['个性推荐', '歌单', '排行榜'];
+
   export default {
     name: 'find',
     data () {
@@ -55,5 +51,15 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'find.styl';
+  .find-page
+    position fixed
+    width 100%
+    height 100%
+    top 46px
+    bottom 0
+    .vux-swiper
+      height 100%
+      overflow initial
+    .vux-swiper-item
+      overflow-y auto
 </style>

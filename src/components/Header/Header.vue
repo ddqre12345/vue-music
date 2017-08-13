@@ -1,16 +1,16 @@
 <template>
   <div class="g-header">
     <a @click="showAsideMenu(true)" class="item menu">
-      <i class="menu-icon"></i>
+      <i class="icon menu-icon"></i>
     </a>
     <router-link to="/find" class="item music">
-      <i class="music-icon"></i>
+      <i class="icon music-icon"></i>
     </router-link>
     <router-link to="/search" class="item personal">
-      <i class="personal-icon"></i>
+      <i class="icon personal-icon"></i>
     </router-link>
     <router-link to="/search" class="item search">
-      <i class="search-icon"></i>
+      <i class="icon search-icon"></i>
     </router-link>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
   name: 'header',
   methods: {
     showAsideMenu (flag) {
-      console.log(flag);
       this.$store.commit('showAsideMenu', flag);
     }
   }
@@ -39,31 +38,25 @@ export default {
       justify-content space-between
       text-align center
       .item
-        display inline-block
-        flex  1
-        text-align center
-        i
+        flex  1 0 25%
+        .icon
           display inline-block
           width px2rem(60)
           height px2rem(60)
           cursor pointer
+          background-repeat no-repeat
+          background-size cover
         .menu-icon
-          background url(./func.svg) no-repeat
-          background-size: contain
+          background-image url(./func.svg)
         .search-icon
-          background url(./search.svg) no-repeat
-          background-size: contain
+          background-image url(./search.svg)
         .music-icon
-          background url(./music.svg) no-repeat
-          background-size: contain
+          background-image url(./music.svg)
         .personal-icon
-          background url(./personal.svg) no-repeat
-          background-size: contain
+          background-image url(./personal.svg)
       .item.active
         .music-icon
-          background url(./music-active.svg) no-repeat
-          background-size: contain
+          background-image url(./music-active.svg)
         .personal-icon
-          background url(./personal-active.svg) no-repeat
-          background-size: contain
+          background-image url(./personal-active.svg)
 </style>
