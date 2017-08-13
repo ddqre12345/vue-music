@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @touchmove.prevent>
     <!-- 主界面部分 -->
     <loading :show="loadingShow"></loading>
     <keep-alive>

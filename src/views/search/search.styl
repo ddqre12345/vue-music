@@ -4,21 +4,21 @@
   height 100%
   padding-bottom 90px
   .search-header
-    position: relative
-    width: 100%
+    position relative
+    width 100%
     flex-row()
     text-align center
-    padding-top: 5px
-    padding-bottom: 5px
-    background-color: $fill-header
+    padding-top 5px
+    padding-bottom 5px
+    background-color $fill-header
     .search-input
-      flex: 1 0 90%
+      flex 1 0 90%
       height 35px
-      font-size: 14px
-      background-color: $fill-header
-      color: $color-text-placeholder
+      fontSize-micro()
+      background-color $fill-header
+      color $color-text-placeholder
     .back
-      flex: 1 0 10%
+      flex 1 0 10%
       i
         display inline-block
         width 20px
@@ -27,8 +27,8 @@
         bottom 0
         cursor pointer
         background url(../../common/images/back.svg) no-repeat
-        background-size: contain
-  .hot
+        background-size contain
+  #hot-search
     flex 1 0 80%
     padding 10px
     color #6c706f
@@ -63,9 +63,9 @@
       background-color #fff
     .search-area
       background-color: #fff;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
+      width 100%;
+      height 100%;
+      overflow auto;
       ul
         list-style: none
 // 搜索输入框默认提示字体颜色
