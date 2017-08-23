@@ -51,11 +51,12 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  @import "~common/px2rem/px2rem";
   .find-page
     position fixed
     width 100%
     height 100%
-    top 46px
+    top px2rem(92)
     bottom 0
     .vux-swiper
       height 100%

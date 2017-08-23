@@ -9,9 +9,14 @@
   </div>
 </template>
 <script>
-  import player from './components/playerBar/playerBar';
-  import loading from './components/loading/overall-loading';
+  const player = () => ({
+    component: import('components/playerBar/playerBar')
+  });
+  const loading = () => ({
+    component: import('components/loading/overall-loading')
+  });
   import { mapGetters } from 'vuex';
+
   export default {
     name: 'app',
     mounted () {

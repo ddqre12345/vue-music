@@ -59,12 +59,25 @@
   import api from '../../api/index';
   import {Tab, TabItem} from 'vux/src/components/Tab';
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
-  import vSingleList from '../../components/list/search/singleList';
-  import vSingerList from '../../components/list/search/singerList';
-  import vAlbumList from '../../components/list/search/albumList';
-  import vPlayLists from '../../components/list/search/playLists';
-  import vUserList from '../../components/list/search/userList';
-  import vMvList from '../../components/list/search/mvList';
+  const vSingleList = () => ({
+    component: import('components/list/search/singleList')
+  });
+  const vSingerList = () => ({
+    component: import('components/list/search/singerList'),
+    timeout: 3000
+  });
+  const vAlbumList = () => ({
+    component: import('components/list/search/albumList')
+  });
+  const vPlayLists = () => ({
+    component: import('components/list/search/playLists')
+  });
+  const vUserList = () => ({
+    component: import('components/list/search/userList')
+  });
+  const vMvList = () => ({
+    component: import('components/list/search/mvList')
+  });
   const list = () => ['单曲', '歌手', '专辑', '歌单', '用户', 'MV'];
   const hotKeywordsList = () => ['清白之年', '我喜欢上你时的内心活动', '我想和你唱',
     'hyukoh', '童话镇', '陈奕迅', '漂洋过海来看你', '许嵩', '成都', '林俊杰'];

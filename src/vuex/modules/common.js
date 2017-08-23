@@ -10,7 +10,6 @@ const getters = {
 
 const mutations = {
     showAsideMenu(state, flag) {
-      console.log(flag);
       state.isShowAsideMenu = flag;
     },
     update_loading(state, data) {

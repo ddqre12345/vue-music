@@ -5,8 +5,8 @@
       <button-tab-item @on-item-click="selectType()">最热</button-tab-item>
     </button-tab>
     <div class="playLists">
-      <ul>
-        <li v-for="(data, index) in playlists" :key="index">
+      <ul class="item-list">
+        <li class="item" v-for="(data, index) in playlists" :key="index">
           <v-play-list :data="data"></v-play-list>
         </li>
       </ul>
@@ -16,7 +16,7 @@
 <script>
   import api from '../../../api/index';
   import { ButtonTab, ButtonTabItem } from 'vux';
-  import vPlayList from '../../../components/card/findCard/playList/playList';
+  import vPlayList from 'components/card/findCard/playList/playList';
   export default {
     name: 'v-play-lists',
     data () {
@@ -56,5 +56,30 @@
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'playLists.styl';
+  @import '~common/styles/variable';
+  @import "~common/px2rem/px2rem";
+  .playLists-area
+    width 100%
+    height 100%
+    .vux-button-group
+      width 50%
+      margin px2rem(20) auto
+      .vux-button-group-current
+        background $color-redLight
+      .vux-button-tab-item-first
+          &:after
+            border 1px solid $color-redLight
+            color $color-redLight
+      .vux-button-tab-item-last
+          &:after
+            border 1px solid $color-redLight
+    .playLists
+      .item-list
+        display flex
+        flex-direction row
+        justify-content space-between
+        flex-flow row wrap
+        .item
+          padding-top px2rem(20)
+          flex 0 0 49%
 </style>

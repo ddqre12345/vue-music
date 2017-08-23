@@ -12,12 +12,14 @@
 </template>
 <script>
   import vHeader from '../components/header/header';
-  import asideMenu from '../components/aside/aside';
+  const asideMenu = () => ({
+    component: import('components/aside/aside')
+  });
 
   export default {
     computed: {
       isShowAsideMenu() {
-        return this.$store.state.isShowAsideMenu;
+        return this.$store.state.common.isShowAsideMenu;
       }
     },
     components: {

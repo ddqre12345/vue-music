@@ -27,7 +27,7 @@ export default {
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import '~common/styles/variable';
-  @import "../px2rem/px2rem";
+  @import "~common/px2rem/px2rem";
   .g-header
       background-color $color-redLight
       width 100%
