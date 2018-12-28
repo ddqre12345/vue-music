@@ -3,6 +3,9 @@ var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
+var HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -27,15 +30,48 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    // 告诉 Webpack 使用了哪些动态链接库
+    new DllReferencePlugin({
+      context: __dirname,
+      // 描述 libs 动态链接库的文件内容
+      manifest: require('../static/libs.manifest.json'),
+    }),
+    // 将 libs.dll.js 插入HTML里
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: [utils.assetsPath('libs.dll.js')],
+      files: ['index.html'],
+      append: false
+    }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   sourceMap: true
+    // }),
+    new ParallelUglifyPlugin({
+      // 传递给 UglifyJS 的参数
+      uglifyJS: {
+        output: {
+          // 最紧凑的输出
+          beautify: true,
+          // 删除所有的注释
+          comments: true,
+        },
+        compress: {
+          // 在UglifyJs删除没有用到的代码时不输出警告
+          warnings: false,
+          // 删除所有的 `console` 语句，可以兼容ie浏览器
+          drop_console: true,
+          // 内嵌定义了但是只用到一次的变量
+          collapse_vars: true,
+          // 提取出出现多次但是没有定义成变量去引用的静态值
+          reduce_vars: true,
+        }
       },
-      sourceMap: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({

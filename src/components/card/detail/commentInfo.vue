@@ -32,6 +32,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'commentInfo.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'commentInfo.less';
 </style>

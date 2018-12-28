@@ -4,17 +4,17 @@
       <div class="option-area">
         <div class="select-type"  @click='changePlayType()'>
           <span class="loop" v-show="playType === 1">
-            <img src="./list-loop.svg">列表循环（{{songList.length}}）
+            <img src="http://pke6pb19v.bkt.clouddn.com/list-loop.svg">列表循环（{{songList.length}}）
           </span>
           <span class="loop" v-show="playType === 2">
-            <img src="./random-loop.svg">随机播放（{{songList.length}}）
+            <img src="http://pke6pb19v.bkt.clouddn.com/random-loop.svg">随机播放（{{songList.length}}）
           </span>
           <span class="loop" v-show="playType === 3">
-            <img src="./single-loop.svg">单曲循环（{{songList.length}}）
+            <img src="http://pke6pb19v.bkt.clouddn.com/single-loop.svg">单曲循环（{{songList.length}}）
           </span>
         </div>
         <div class="delete" @click='popConfirm()'>
-          <img src="./delete.png">
+          <img src="http://pke6pb19v.bkt.clouddn.com/delete.png">
           清空
         </div>
       </div>
@@ -24,15 +24,13 @@
             <span class="list-name">{{item.name}}</span>
             <span class="list-singer">-{{item.singer}}</span>
           </p>
-          <img src="./remove-item.png" @click="remove(index)">
+          <img src="http://pke6pb19v.bkt.clouddn.com/remove-item.png" @click="remove(index)">
         </div>
       </div>
     </bottom-sheet>
     <div v-transfer-dom style="z-index: 9999999999;position: fixed;">
-      <confirm v-model="showConfirm" theme="android" @on-cancel="onCancel"
-      @on-confirm="onConfirm"
-      @on-show="onShow"
-      @on-hide="onHide">
+      <confirm v-model="showConfirm" theme="android"
+      @on-confirm="onConfirm">
         <p style="text-align:center;font-size:18px;">{{title}}</p>
       </confirm>
     </div>
@@ -41,7 +39,7 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex';
 import { Confirm, TransferDomDirective as TransferDom } from 'vux';
-import bottomSheet from '../../bottomSheet/bottomSheet';
+import bottomSheet from '@/components/bottomSheet/bottomSheet';
 export default {
   name: 'list',
   data () {

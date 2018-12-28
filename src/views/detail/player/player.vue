@@ -57,10 +57,10 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import slider from '../../../components/slider/slider';
-import Toast from '../../../components/toast';
-import BottomSheet from '../../../components/list/common/list';
-import api from '../../../api';
+import slider from '@/components/slider/slider';
+import Toast from '@/components/toast';
+import BottomSheet from '@/components/list/common/list';
+import api from '@/api';
 export default {
   data () {
     return {
@@ -185,6 +185,6 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'player.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'player.less';
 </style>

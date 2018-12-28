@@ -1,11 +1,11 @@
-import api from '../../api';
+import api from '@/api';
 
 const state = {
     audio: {
       'id': 0,
       'name': '歌曲名称',
       'singer': '演唱者',
-      'albumPic': '/static/player-bar.png',
+      'albumPic': 'http://pke6pb19v.bkt.clouddn.com/player-bar.png',
       'location': '',
       'album': ''
     },
@@ -77,7 +77,7 @@ const mutations = {
           'id': 0,
           'name': '歌曲名称',
           'singer': '演唱者',
-          'albumPic': '/static/player-bar.png',
+          'albumPic': 'http://pke6pb19v.bkt.clouddn.com/player-bar.png',
           'location': '',
           'album': ''
         };

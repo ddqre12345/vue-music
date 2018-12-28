@@ -1,8 +1,10 @@
 var path = require('path')
-var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var vuxLoader = require('vux-loader');
+var HappyPack = require('happypack');
+// 构造出共享进程池，进程池中包含5个子进程
+var happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -22,55 +24,39 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
-    }
+    },
+    modules: [resolve('node_modules')]
   },
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
-      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        use: ['happypack/loader?id=vue']
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        }
+        use: ['happypack/loader?id=babel'],
+        include: [resolve('src')]
       }
     ]
   },
-  externals: {
-    'vue': 'Vue',
-    'vue-router': 'VueRouter',
-    'vuex': 'Vuex',
-    'axios': 'axios'
-  }
+
+  plugins: [
+    new HappyPack({
+      id: 'vue',
+      loaders: [{
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      }],
+      threadPool: happyThreadPool
+    }),
+    new HappyPack({
+      id: 'babel',
+      loaders: ['babel-loader'],
+      threadPool: happyThreadPool
+    })
+  ]
 }
 
 module.exports = vuxLoader.merge(webpackConfig, {

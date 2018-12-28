@@ -1,0 +1,71 @@
+@primaryColor = #ce3d3e; // 主色
+.foot {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 998;
+    .player-mini {
+        background-color: rgba(255, 255, 255, .9);
+        color: #333;
+        .mini-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 3px;
+            .music-logo {
+                width: 56px;
+                height: 56px;
+                img {
+                    width: 100%;
+                }
+            }
+            .info {
+                flex: 1 0 50%;
+                padding-left: 10px;
+                .name {
+                    font-size: 14px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    color: #2a2a2a;
+                }
+                .artist {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    color: #858585;
+                    font-size: 12px;
+                }
+            }
+            .mini-option {
+                flex: 1 0 35%;
+                width: 0;
+                display: flex;
+                flex-direction: row;
+                .mini-btn {
+                    width: 38px;
+                    height: 40px;
+                }
+                .player {
+                    background: url("http://pke6pb19v.bkt.clouddn.com/playbar_btn_play.svg") no-repeat center;
+                    background-size: 60%;
+                }
+                .pause {
+                    background: url("http://pke6pb19v.bkt.clouddn.com/playbar_btn_pause.svg") no-repeat center;
+                    background-size: 60%
+                }
+                .player-list {
+                    background: url("http://pke6pb19v.bkt.clouddn.com/playbar_btn_playlist.png") no-repeat left center;
+                    background-size: 100%;
+                }
+                .next {
+                    background: url("http://pke6pb19v.bkt.clouddn.com/playbar_btn_next.png") no-repeat left center;
+                    background-size: 100%;
+                }
+            }
+        }
+    }
+}

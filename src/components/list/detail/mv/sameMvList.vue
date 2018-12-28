@@ -28,6 +28,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'sameMvList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'sameMvList.less';
 </style>

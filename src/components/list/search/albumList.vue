@@ -4,7 +4,7 @@
   </ul>
 </template>
 <script>
-import vAlbumCard from '../../card/searchCard/albumCard';
+import vAlbumCard from '@/components/card/searchCard/albumCard';
   export default {
     name: 'v-album-list',
     components: {
@@ -18,6 +18,6 @@ import vAlbumCard from '../../card/searchCard/albumCard';
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'albumList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'albumList.less';
 </style>

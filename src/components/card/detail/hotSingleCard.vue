@@ -42,6 +42,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'hotSingleCard.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'hotSingleCard.less';
 </style>

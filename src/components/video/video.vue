@@ -11,9 +11,9 @@
           <!--播放/暂停按钮-->
           <div class="player-control-btn" v-show="isControlShow&&!loading">
               <!--暂停图标-->
-              <img src="./timeOut.svg" class="btn" v-show="isPlay" @click="play">
+              <img src="http://pke6pb19v.bkt.clouddn.com/timeOut.svg" class="btn" v-show="isPlay" @click="play">
               <!--播放图标-->
-              <img src="./playing.svg" class="btn" v-show="!isPlay" @click="play">
+              <img src="http://pke6pb19v.bkt.clouddn.com/playing.svg" class="btn" v-show="!isPlay" @click="play">
           </div>
           <!--缓存加载效果-->
           <div class="mv-loading">
@@ -27,7 +27,7 @@
               </div>
               <!--全屏播放按钮-->
               <div class="fullScreen-btn" @click="setFullScreen">
-                  <img src="./fullScreen.svg" alt="fullScreen">
+                  <img src="http://pke6pb19v.bkt.clouddn.com/fullScreen.svg" alt="fullScreen">
               </div>
           </div>
           <div class="video-progress" ref="progress" v-show="isPlayShow">
@@ -41,7 +41,7 @@
 </template>
 <script>
   import { XHeader } from 'vux';
-  import vMvLoading from '../../components/loading/mv-loading';
+  import vMvLoading from '@/components/loading/mv-loading';
   export default {
     name: 'video-player',
     data () {
@@ -232,6 +232,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-    @import 'video.styl';
+<style lang="less" rel="stylesheet/less">
+    @import 'video.less';
 </style>

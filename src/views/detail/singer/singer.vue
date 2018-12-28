@@ -31,13 +31,13 @@
     </transition>
 </template>
 <script>
-  import api from '../../../api';
+  import api from '@/api';
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vSingleList from '../../../components/list/detail/singer/singleList';
-  import vAlbumList from '../../../components/list/detail/singer/albumList';
-  import vMvList from '../../../components/list/detail/singer/mvList';
+  import vSingleList from '@/components/list/detail/singer/singleList';
+  import vAlbumList from '@/components/list/detail/singer/albumList';
+  import vMvList from '@/components/list/detail/singer/mvList';
   const list = () => ['热门50', '专辑', 'MV'];
   export default {
     data () {
@@ -152,6 +152,6 @@
         height: 100%;
     }
 </style>
-<style lang="stylus" rel="stylesheet/stylus">
-    @import "singer.styl";
+<style lang="less" rel="stylesheet/less">
+    @import "singer.less";
 </style>

@@ -8,7 +8,7 @@
   </span>
 </template>
 <script>
-import Popup from '../internal/popup';
+import Popup from '@/components/internal/popup';
 export default {
   name: 'bottom-sheet',
   mixins: [Popup],

@@ -1,0 +1,36 @@
+.playLists-area {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    .vux-button-group {
+        width: 50%;
+        margin: 10px auto;
+        >a.vux-button-group-current {
+            background: #b72712;
+        }
+        >a.vux-button-tab-item-first {
+            &:after {
+                border: 1px solid #b72712;
+                color: #b72712;
+            }
+        }
+        >a.vux-button-tab-item-last {
+            &:after {
+                border: 1px solid #b72712;
+            }
+        }
+    }
+    .playLists {
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-flow: row wrap;
+            list-style: none;
+            li {
+                padding-top: 10px;
+                flex: 0 0 49%;
+            }
+        }
+    }
+}

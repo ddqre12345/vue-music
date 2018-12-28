@@ -13,6 +13,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-@import './overall-loading.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+@import './overall-loading.less';
 </style>

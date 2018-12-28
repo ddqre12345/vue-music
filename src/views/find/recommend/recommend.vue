@@ -29,14 +29,19 @@
   </div>
 </template>
 <script>
-  import api from '../../../api/index';
+  import api from '@/api/index';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
-  import vPlayLists from '../../../components/list/find/recommend/playLists';
-  import vActivitysList from '../../../components/list/find/recommend/activitysList';
-  import vMvList from '../../../components/list/find/recommend/mvList';
-  import vNewSongList from '../../../components/list/find/recommend/newSongList';
-  import vDjProgramList from '../../../components/list/find/recommend/djProgram';
-  const imgList = ['/static/banner1.jpg', '/static/banner2.jpg', '/static/banner3.jpg', '/static/banner4.jpg'];
+  import vPlayLists from '@/components/list/find/recommend/playLists';
+  import vActivitysList from '@/components/list/find/recommend/activitysList';
+  import vMvList from '@/components/list/find/recommend/mvList';
+  import vNewSongList from '@/components/list/find/recommend/newSongList';
+  import vDjProgramList from '@/components/list/find/recommend/djProgram';
+  const imgList = [
+        'http://pke6pb19v.bkt.clouddn.com/banner1.jpg', 
+        'http://pke6pb19v.bkt.clouddn.com/banner2.jpg',
+        'http://pke6pb19v.bkt.clouddn.com/banner3.jpg',
+        'http://pke6pb19v.bkt.clouddn.com/banner4.jpg'
+        ];
   export default {
     name: 'v-recommend',
     data () {
@@ -114,6 +119,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-  @import 'recommend.styl';
+<style lang="less" rel="stylesheet/less">
+  @import 'recommend.less';
 </style>

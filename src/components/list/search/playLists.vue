@@ -14,7 +14,7 @@
   </ul>
 </template>
 <script>
-  import { countHandle } from '../../../common/js/data';
+  import { countHandle } from '@/common/js/data';
   export default {
     name: 'v-play-list-card',
     props: {
@@ -37,6 +37,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'playLists.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'playLists.less';
 </style>

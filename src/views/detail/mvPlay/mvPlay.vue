@@ -36,10 +36,10 @@
   </div>
 </template>
 <script>
-  import api from '../../../api';
-  import videoPlayer from '../../../components/video/video';
-  import sameMvList from '../../../components/list/detail/mv/sameMvList';
-  import commentList from '../../../components/list/detail/comment/commentList';
+  import api from '@/api';
+  import videoPlayer from '@/components/video/video';
+  import sameMvList from '@/components/list/detail/mv/sameMvList';
+  import commentList from '@/components/list/detail/comment/commentList';
   export default {
     name: 'mv',
     data () {
@@ -117,6 +117,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "mvPlay.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "mvPlay.less";
 </style>

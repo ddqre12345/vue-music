@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-  import api from '../../../api/index';
+  import api from '@/api/index';
   import { ButtonTab, ButtonTabItem } from 'vux';
-  import vPlayList from '../../../components/card/findCard/playList/playList';
+  import vPlayList from '@/components/card/findCard/playList/playList';
   export default {
     name: 'v-play-lists',
     data () {
@@ -55,6 +55,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'playLists.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'playLists.less';
 </style>

@@ -43,11 +43,11 @@
   </transition>
 </template>
 <script>
-  import api from '../../../api';
-  import { formatDate } from '../../../common/js/date';
+  import api from '@/api';
+  import { formatDate } from '@/common/js/date';
   import { XHeader } from 'vux';
-  import vPlayAll from '../../../components/playAll/playAll.vue';
-  import vHotSingleCard from '../../../components/card/detail/hotSingleCard';
+  import vPlayAll from '@/components//playAll/playAll.vue';
+  import vHotSingleCard from '@/components/card/detail/hotSingleCard';
   import vAlbumDetail from './albumDetail';
   export default {
     data () {
@@ -170,6 +170,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "album.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "album.less";
 </style>

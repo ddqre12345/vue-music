@@ -17,6 +17,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-  @import 'activitysList.styl';
+<style lang="less" rel="stylesheet/less">
+  @import 'activitysList.less';
 </style>

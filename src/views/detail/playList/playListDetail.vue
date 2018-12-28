@@ -16,7 +16,7 @@
 </template>
 <script>
   import { XHeader } from 'vux';
-  import vMask from '../../../components/mask/mask';
+  import vMask from '@/components/mask/mask';
   export default {
     props: {
       data: {
@@ -44,6 +44,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'playListDetail.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'playListDetail.less';
 </style>

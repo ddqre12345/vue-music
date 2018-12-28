@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'aside',
+  name: 'v-aside',
   data () {
     return {
       isSignIn: false
@@ -27,7 +27,7 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "aside.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "aside.less";
 </style>
 

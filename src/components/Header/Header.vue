@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'header',
+  name: 'v-header',
   methods: {
     toSearch () {
       this.$router.push('/search');
@@ -26,6 +26,6 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "header.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "header.less";
 </style>

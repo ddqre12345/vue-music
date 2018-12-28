@@ -11,8 +11,8 @@
     </transition>
 </template>
 <script>
-  import vHeader from '../components/header/header';
-  import asideMenu from '../components/aside/aside';
+  import vHeader from '@/components/header/header';
+  import asideMenu from '@/components/aside/aside';
 
   export default {
     computed: {
@@ -26,6 +26,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'index.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'index.less';
 </style>

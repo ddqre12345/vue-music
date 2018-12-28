@@ -4,19 +4,19 @@
       <div class="title">官方榜</div>
       <div class="ranking-official-area">
           <div class="surge" @click="jumpRankingDetail(3)">
-              <img src="/static/surge.jpg" alt="surge">
+              <img src="http://pke6pb19v.bkt.clouddn.com/surge.jpg" alt="surge">
               <v-songs-list :data="surgeList"></v-songs-list>
           </div>
           <div class="newSonges" @click="jumpRankingDetail(0)">
-              <img src="/static/newSonges.jpg" alt="newSonges">
+              <img src="http://pke6pb19v.bkt.clouddn.com/newSonges.jpg" alt="newSonges">
               <v-songs-list :data="newSongesList"></v-songs-list>
           </div>
           <div class="original" @click="jumpRankingDetail(2)">
-              <img src="/static/original.jpg" alt="original">
+              <img src="http://pke6pb19v.bkt.clouddn.com/original.jpg" alt="original">
               <v-songs-list :data="originalList"></v-songs-list>
           </div>
           <div class="hot" @click="jumpRankingDetail(1)">
-              <img src="/static/hot.jpg" alt="hot">
+              <img src="http://pke6pb19v.bkt.clouddn.com/hot.jpg" alt="hot">
               <v-songs-list :data="hotList"></v-songs-list>
           </div>
       </div>
@@ -33,10 +33,10 @@
   </transition>
 </template>
 <script>
-  import api from '../../../api/index';
-  import vSongsList from '../../../components/list/find/ranking/songsList';
+  import api from '@/api/index';
+  import vSongsList from '@/components/list/find/ranking/songsList';
   // wRL为全球榜单
-  import wRL from '../../../../static/mock/wRL.json';
+  import wRL from './wRL.json';
   export default {
     name: 'v-ranking',
     data () {
@@ -110,6 +110,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'ranking.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'ranking.less';
 </style>

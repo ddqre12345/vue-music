@@ -59,15 +59,15 @@
 </template>
 
 <script>
-  import api from '../../api/index';
+  import api from '@/api/index';
   import {Tab, TabItem} from 'vux/src/components/Tab';
   import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
-  import vSingleList from '../../components/list/search/singleList';
-  import vSingerList from '../../components/list/search/singerList';
-  import vAlbumList from '../../components/list/search/albumList';
-  import vPlayLists from '../../components/list/search/playLists';
-  import vUserList from '../../components/list/search/userList';
-  import vMvList from '../../components/list/search/mvList';
+  import vSingleList from '@/components/list/search/singleList';
+  import vSingerList from '@/components/list/search/singerList';
+  import vAlbumList from '@/components/list/search/albumList';
+  import vPlayLists from '@/components/list/search/playLists';
+  import vUserList from '@/components/list/search/userList';
+  import vMvList from '@/components/list/search/mvList';
   const list = () => ['单曲', '歌手', '专辑', '歌单', '用户', 'MV'];
   const hotKeywordsList = () => ['清白之年', '我喜欢上你时的内心活动', '我想和你唱',
     'hyukoh', '童话镇', '陈奕迅', '漂洋过海来看你', '许嵩', '成都', '林俊杰'];
@@ -206,6 +206,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import "search.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+    @import "search.less";
 </style>

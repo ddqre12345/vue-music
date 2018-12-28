@@ -14,6 +14,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-  @import 'songsList.styl';
+<style lang="less" rel="stylesheet/less">
+  @import 'songsList.less';
 </style>

@@ -24,6 +24,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import './mv-loading.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import './mv-loading.less';
 </style>

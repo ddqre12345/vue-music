@@ -43,11 +43,11 @@
   </transition>
 </template>
 <script type="text/ecmascript-6">
-  import api from '../../../api';
+  import api from '@/api';
   import { XHeader } from 'vux';
   import { Tab, TabItem } from 'vux/src/components/Tab';
   import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
-  import vPlayListsCard from '../../../components/card/detail/playlists';
+  import vPlayListsCard from '@/components/card/detail/playlists';
   const list = () => ['歌单', '关于TA'];
   export default {
     data () {
@@ -116,6 +116,6 @@
     height: 100%;
   }
 </style>
-<style lang="stylus" rel="stylesheet/stylus">
-  @import "user.styl";
+<style lang="less" rel="stylesheet/less">
+  @import "user.less";
 </style>

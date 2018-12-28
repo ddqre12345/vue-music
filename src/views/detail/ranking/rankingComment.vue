@@ -17,10 +17,10 @@
   </div>
 </template>
 <script>
-  import api from '../../../api';
+  import api from '@/api';
   import { XHeader } from 'vux';
-  import commentList from '../../../components/list/detail/comment/commentList';
-  import commentInfo from '../../../components/card/detail/commentInfo';
+  import commentList from '@/components/list/detail/comment/commentList';
+  import commentInfo from '@/components/card/detail/commentInfo';
   export default {
     name: 'play-lists-comment',
     data () {
@@ -69,6 +69,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "rankingComment.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "rankingComment.less";
 </style>

@@ -4,7 +4,7 @@
   </ul>
 </template>
 <script>
-  import vAlbumCard from '../../../card/detail/albumCard';
+  import vAlbumCard from '@/components/card/detail/albumCard';
   export default {
     name: 'v-album-list',
     props: {

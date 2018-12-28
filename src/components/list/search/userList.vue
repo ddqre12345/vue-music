@@ -31,6 +31,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'userList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'userList.less';
 </style>

@@ -4,7 +4,7 @@
   </ul>
 </template>
 <script>
-  import vSingleCard from '../../card/searchCard/singleCard';
+  import vSingleCard from '@/components/card/searchCard/singleCard';
   export default {
     name: 'v-single-list',
     props: {

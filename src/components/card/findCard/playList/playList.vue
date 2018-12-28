@@ -23,6 +23,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'playList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'playList.less';
 </style>

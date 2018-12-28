@@ -25,6 +25,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'mvList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'mvList.less';
 </style>

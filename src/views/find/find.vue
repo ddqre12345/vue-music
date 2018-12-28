@@ -54,6 +54,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import 'find.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+  @import 'find.less';
 </style>

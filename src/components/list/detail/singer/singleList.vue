@@ -40,6 +40,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-    @import 'singleList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+    @import 'singleList.less';
 </style>

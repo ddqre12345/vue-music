@@ -45,7 +45,7 @@
       width: 40px;
       height: 45px;
       padding: 15px;
-      background url(./playAll.png) no-repeat center
+      background url(http://pke6pb19v.bkt.clouddn.com/playAll.png) no-repeat center
       background-size 70%
     .describe
       color: #2e302f;

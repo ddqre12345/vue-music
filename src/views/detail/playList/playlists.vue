@@ -46,10 +46,10 @@
   </transition>
 </template>
 <script>
-  import api from '../../../api';
+  import api from '@/api';
   import { XHeader } from 'vux';
-  import vPlayAll from '../../../components/playAll/playAll.vue';
-  import vSingleCard from '../../../components/card/detail/singleCard.vue';
+  import vPlayAll from '@/components/playAll/playAll.vue';
+  import vSingleCard from '@/components/card/detail/singleCard.vue';
   import vPlayListDetail from './playListDetail';
   export default {
     data () {
@@ -157,6 +157,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "playlists.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "playlists.less";
 </style>

@@ -26,7 +26,7 @@
   </ul>
 </template>
 <script>
-  import { formatDate } from '../../../../common/js/date';
+  import { formatDate } from '@/common/js/date';
   export default {
     name: 'comment-list',
     props: {
@@ -50,6 +50,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-   @import 'commentList.styl';
+<style lang="less" rel="stylesheet/less" scoped>
+   @import 'commentList.less';
 </style>

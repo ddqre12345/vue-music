@@ -28,8 +28,8 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex';
 import { XCircle } from 'vux';
-import Toast from '../toast';
-import BottomSheet from '../list/common/list';
+import Toast from '@/components/toast';
+import BottomSheet from '@/components/list/common/list';
 export default {
   data () {
     return {
@@ -138,6 +138,6 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-    @import 'playerBar.styl';
+<style lang="less" rel="stylesheet/less">
+    @import 'playerBar.less';
 </style>

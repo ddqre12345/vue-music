@@ -41,11 +41,11 @@
   </transition>
 </template>
 <script>
-  import api from '../../../api';
-  import { countHandle } from '../../../common/js/data';
-  import { formatDate } from '../../../common/js/date';
+  import api from '@/api';
+  import { countHandle } from '@/common/js/data';
+  import { formatDate } from '@/common/js/date';
   import { XHeader } from 'vux';
-  import vSingleList from '../../../components/list/detail/ranking/singleList';
+  import vSingleList from '@/components/list/detail/ranking/singleList';
   export default {
     data () {
       return {
@@ -131,6 +131,6 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "ranking.styl";
+<style lang="less" rel="stylesheet/less" scoped>
+  @import "ranking.less";
 </style>
