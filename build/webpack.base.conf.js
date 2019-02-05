@@ -24,7 +24,8 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      '@': resolve('src')
+      '@': resolve('src'),
+      'vue'  : 'vue/dist/vue.min'
     },
     modules: [resolve('node_modules')]
   },
