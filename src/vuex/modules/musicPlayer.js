@@ -5,7 +5,7 @@ const state = {
       'id': 0,
       'name': '歌曲名称',
       'singer': '演唱者',
-      'albumPic': 'http://pke6pb19v.bkt.clouddn.com/player-bar.png',
+      'albumPic': 'http://pmifpxcu9.bkt.clouddn.com/player-bar.png',
       'location': '',
       'album': ''
     },
@@ -77,7 +77,7 @@ const mutations = {
           'id': 0,
           'name': '歌曲名称',
           'singer': '演唱者',
-          'albumPic': 'http://pke6pb19v.bkt.clouddn.com/player-bar.png',
+          'albumPic': 'http://pmifpxcu9.bkt.clouddn.com/player-bar.png',
           'location': '',
           'album': ''
         };

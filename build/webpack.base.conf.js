@@ -33,8 +33,12 @@ const webpackConfig = {
     rules: [
       {
         test: /\.vue$/,
-        use: ['happypack/loader?id=vue']
+        loader: 'vue-loader'
       },
+      // {
+      //   test: /\.vue$/,
+      //   use: ['happypack/loader?id=vue']
+      // },
       {
         test: /\.js$/,
         use: ['happypack/loader?id=babel'],

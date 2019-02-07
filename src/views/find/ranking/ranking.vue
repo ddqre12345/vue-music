@@ -4,19 +4,19 @@
       <div class="title">官方榜</div>
       <div class="ranking-official-area">
           <div class="surge" @click="jumpRankingDetail(3)">
-              <img src="http://pke6pb19v.bkt.clouddn.com/surge.jpg" alt="surge">
+              <img src="http://pmifpxcu9.bkt.clouddn.com/surge.jpg" alt="surge">
               <v-songs-list :data="surgeList"></v-songs-list>
           </div>
           <div class="newSonges" @click="jumpRankingDetail(0)">
-              <img src="http://pke6pb19v.bkt.clouddn.com/newSonges.jpg" alt="newSonges">
+              <img src="http://pmifpxcu9.bkt.clouddn.com/newSonges.jpg" alt="newSonges">
               <v-songs-list :data="newSongesList"></v-songs-list>
           </div>
           <div class="original" @click="jumpRankingDetail(2)">
-              <img src="http://pke6pb19v.bkt.clouddn.com/original.jpg" alt="original">
+              <img src="http://pmifpxcu9.bkt.clouddn.com/original.jpg" alt="original">
               <v-songs-list :data="originalList"></v-songs-list>
           </div>
           <div class="hot" @click="jumpRankingDetail(1)">
-              <img src="http://pke6pb19v.bkt.clouddn.com/hot.jpg" alt="hot">
+              <img src="http://pmifpxcu9.bkt.clouddn.com/hot.jpg" alt="hot">
               <v-songs-list :data="hotList"></v-songs-list>
           </div>
       </div>

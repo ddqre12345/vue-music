@@ -37,10 +37,10 @@
   import vNewSongList from '@/components/list/find/recommend/newSongList';
   import vDjProgramList from '@/components/list/find/recommend/djProgram';
   const imgList = [
-        'http://pke6pb19v.bkt.clouddn.com/banner1.jpg', 
-        'http://pke6pb19v.bkt.clouddn.com/banner2.jpg',
-        'http://pke6pb19v.bkt.clouddn.com/banner3.jpg',
-        'http://pke6pb19v.bkt.clouddn.com/banner4.jpg'
+        'http://pmifpxcu9.bkt.clouddn.com/banner1.jpg', 
+        'http://pmifpxcu9.bkt.clouddn.com/banner2.jpg',
+        'http://pmifpxcu9.bkt.clouddn.com/banner3.jpg',
+        'http://pmifpxcu9.bkt.clouddn.com/banner4.jpg'
         ];
   export default {
     name: 'v-recommend',

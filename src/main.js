@@ -9,8 +9,8 @@ import routes from './routers';
 Vue.use(VueRouter);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
-    error: 'http://pke6pb19v.bkt.clouddn.com/404.png',
-    loading: 'http://pke6pb19v.bkt.clouddn.com/loading.jpg',
+    error: 'http://pmifpxcu9.bkt.clouddn.com/404.png',
+    loading: 'http://pmifpxcu9.bkt.clouddn.com/loading.jpg',
     attempt: 1
   }
 );
