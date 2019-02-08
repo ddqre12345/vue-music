@@ -28,8 +28,10 @@
   </transition>
 </template>
 <script>
-  import {Tab, TabItem} from 'vux/src/components/Tab';
-  import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
+  import Tab from 'vux/src/components/Tab/Tab';
+  import TabItem from 'vux/src/components/Tab/TabItem';
+  import Swiper from 'vux/src/components/Swiper/Swiper';
+  import SwiperItem from 'vux/src/components/SwiperItem';
   import vRecommend from './recommend/recommend';
   import vPlayLists from './playLists/playLists';
   import vRanking from './ranking/ranking';

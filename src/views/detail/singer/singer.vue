@@ -33,8 +33,10 @@
 <script>
   import api from '../../../api';
   import { XHeader } from 'vux';
-  import { Tab, TabItem } from 'vux/src/components/Tab';
-  import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
+  import Tab from 'vux/src/components/Tab/Tab';
+  import TabItem from 'vux/src/components/Tab/TabItem';
+  import Swiper from 'vux/src/components/Swiper/Swiper';
+  import SwiperItem from 'vux/src/components/SwiperItem';
   import vSingleList from '../../../components/list/detail/singer/singleList';
   import vAlbumList from '../../../components/list/detail/singer/albumList';
   import vMvList from '../../../components/list/detail/singer/mvList';
