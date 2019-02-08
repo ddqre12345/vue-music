@@ -44,11 +44,7 @@
 </template>
 <script type="text/ecmascript-6">
   import api from '../../../api';
-  import { XHeader } from 'vux';
-  import Tab from 'vux/src/components/Tab/Tab';
-  import TabItem from 'vux/src/components/Tab/TabItem';
-  import Swiper from 'vux/src/components/Swiper/Swiper';
-  import SwiperItem from 'vux/src/components/SwiperItem';
+  import { XHeader, Tab, TabItem, Swiper, SwiperItem } from 'vux';
   import vPlayListsCard from '../../../components/card/detail/playlists';
   const list = () => ['歌单', '关于TA'];
   export default {
