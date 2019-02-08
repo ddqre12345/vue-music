@@ -2,7 +2,7 @@
  *  @param {string} date 需要格式化的时间
  *  @param {string} fmt 想要格式化的格式
  */
-exports.formatDate = (date, fmt) => {
+export function formatDate (date, fmt) {
     if (/(y+)/.test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
     }
@@ -24,7 +24,7 @@ exports.formatDate = (date, fmt) => {
 /** 格式化时间，返回年，月，日
  *  @param {string } date 需要格式化的时间
  */
-exports.objectDate = (date) => {
+export function objectDate (date) {
     if (date && typeof date === 'string') {
         date = new Date(date);
         let o = {
@@ -40,7 +40,7 @@ exports.objectDate = (date) => {
 /** 格式化时间，返回时间差，年，月，日
  * @param {string} date 需要格式化的时间
 * */
-exports.timeDiff = (date) => {
+export function timeDiff (date) {
     // 开始时间
     let startTime = date;
     // 结束时间

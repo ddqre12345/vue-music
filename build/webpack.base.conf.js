@@ -1,10 +1,10 @@
 var path = require('path')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-var vuxLoader = require('vux-loader');
-var HappyPack = require('happypack');
+var vuxLoader = require('vux-loader')
+var HappyPack = require('happypack')
 // 构造出共享进程池，进程池中包含5个子进程
-var happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+var happyThreadPool = HappyPack.ThreadPool({ size: 5 })
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -31,14 +31,22 @@ const webpackConfig = {
   },
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
       // {
       //   test: /\.vue$/,
-      //   use: ['happypack/loader?id=vue']
+      //   loader: 'vue-loader',
+      //   options: {
+      //       loaders: {
+      //           scss: [
+      //               'style-loader',
+      //               'css-loader'
+      //           ]
+      //       }
+      //   }
       // },
+      {
+        test: /\.vue$/,
+        use: ['happypack/loader?id=vue']
+      },
       {
         test: /\.js$/,
         use: ['happypack/loader?id=babel'],

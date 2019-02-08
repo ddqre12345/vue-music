@@ -33,23 +33,4 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  #playAll
-    box-sizing border-box
-    display: flex
-    flex-direction:row;
-    align-items: center;
-    border-bottom: 1px solid #e5e9e8;
-    .play-icon
-      box-sizing: border-box;
-      width: 40px;
-      height: 45px;
-      padding: 15px;
-      background url(http://pmifpxcu9.bkt.clouddn.com/playAll.png) no-repeat center
-      background-size 70%
-    .describe
-      color: #2e302f;
-      font-size:14px;
-      .num
-        color:#8c908f;
-</style>
+
