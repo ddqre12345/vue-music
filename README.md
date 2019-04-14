@@ -10,8 +10,8 @@
 
 - [api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)(再次感谢Binaryify不断更新的网易云音乐接口，这也将是这个项目不断拓展下去的坚实依托，看着他的star蹭蹭蹭的往上涨，我必须厚着脸皮说有我一份功劳)
 - [源码地址](https://github.com/ddqre12345/vue-music)
-- [项目预览](http://118.89.226.181:8080)（web端在chrome调试模式下效果更佳）
-- 针对segmenfault类app暂时无法有效预览的问题，建议粘贴 [http://118.89.226.181:8080](http://118.89.226.181:8080) 到手机其他浏览器体验
+- [项目预览](http://192.144.180.20:8080)（web端在chrome调试模式下效果更佳）
+- 针对segmenfault类app暂时无法有效预览的问题，建议粘贴 [http://192.144.180.20:8080](http://192.144.180.20:8080) 到手机其他浏览器体验
 - 项目所提供请求地址希望仅供预览使用，本地开发建议参考[api来源](https://github.com/Binaryify/NeteaseCloudMusicApi)，配置本地服务器代理
 - 这是个连载的故事，预知前事如何，请跳转[网易云音乐v1.0](https://segmentfault.com/a/1190000009339117?_ea=2099626),现在我主要讲的是这个版本的更新内容
 
@@ -65,18 +65,17 @@
 ![歌单排行榜全球版及评论](https://github.com/ddqre12345/ddqre12345.github.io/blob/master/images/img2.gif?raw=true)
 ![点击播放全部,歌曲循环，随机，单曲切换，专辑歌单详情，评论等](https://github.com//ddqre12345/ddqre12345.github.io/blob/master/images/img3.gif?raw=true)
 
-图片就到这里，[more](http://118.89.226.181:8080)
+图片就到这里，[more](http://192.144.180.20:8080)
+
+> v2.2 | 2019.04.15
+  - webpack2.6->3.4
+  - 图片等静态资源从项目中迁移到第三方站点
+  - webpack打包优化（dll + happypack）
+  - 部分样式优化
 
 > v3.0 | 规划ing
 
-我们在更像的路上又前进了几步，主打更快，更优雅的时候到了。
-
-- 新增功能
-	- 新增“我的”及相关功能版块
-	- 添加主题更换功能
-	- 继续根据接口，完善各个版块功能
--  最重要的工作
-	- 重构可能是下一阶段最重要的工作了，如果感兴趣的话可以关注[v3.0版本规划](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)。
+对于关注这个项目的朋友，我要很抱歉的说一声功能性的迭代大概就此打住了，但是，后续会在这个项目实践更多前沿的技术方案，和大伙探讨最优解，好了，暂时就这样。
 
 #### 安装运行（安装运行前请确定已安装node环境）
 
@@ -111,6 +110,6 @@
 
 2.感谢[Binaryify](https://github.com/Binaryify)对接口文档的不断维护与更新。
 
-3.在下个版本前我可能会和大家分享下自定义mv视频播放部分遇到的一些坑及一些webpack打包优化
+3.后续会有一个关于dll + happypack，期望能给你们一些帮助
 
-到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，下阶段项目进展请关注[v3.0小黑板](https://github.com/ddqre12345/vue-music/projects/2)，如果你有什么建议或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言。本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
+到这里，欢迎大家提issue，输出pr，点star，如果喜欢更可以watch，如果你有什么建议或者看到了项目中的那些不足之处你一定要在[小黑板板](https://github.com/ddqre12345/vue-music/projects?query=is%3Aopen)上留言。本项目仅供学习交流使用，切勿用于商业用途，如有侵犯第三方版权问题及时联系我
