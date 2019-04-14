@@ -4,8 +4,11 @@
     <p class="describe">播放全部<span class="num">(共{{data.length}}首)</span></p>
   </div>
 </template>
+
 <script>
-  import { mapMutations } from 'vuex';
+  import {
+    mapMutations
+  } from 'vuex';
   export default {
     name: 'play-all',
     props: {
@@ -20,7 +23,7 @@
         'removeList',
         'setAudioIndex'
       ]),
-      playAll (items) {
+      playAll(items) {
         console.log(items);
         document.getElementById('audioPlay').pause();
         // 通过Vuex改变状态
@@ -33,23 +36,27 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  #playAll
-    box-sizing border-box
-    display: flex
+
+<style lang="less" rel="stylesheet/less" scoped>
+  #playAll {
+    box-sizing: border-box;
+    display: flex;
     flex-direction:row;
     align-items: center;
     border-bottom: 1px solid #e5e9e8;
-    .play-icon
+    .play-icon {
       box-sizing: border-box;
       width: 40px;
       height: 45px;
       padding: 15px;
-      background url(http://pmifpxcu9.bkt.clouddn.com/playAll.png) no-repeat center
-      background-size 70%
-    .describe
+      background: url(https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/playAll.png) no-repeat center background-size 70%;
+    }
+    .describe {
       color: #2e302f;
-      font-size:14px;
-      .num
-        color:#8c908f;
+      font-size: 14px;
+      .num {
+        color: #8c908f;
+      }
+    }
+  }
 </style>

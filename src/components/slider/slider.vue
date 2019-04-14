@@ -1,14 +1,14 @@
 <template>
-<div class="slider" :class="sliderClass" tabindex="0"
-  @focus="handleFocus" @blur="handleBlur" @keydown="handleKeydown"
-  @touchstart="handleTouchStart" @touchend="handleTouchEnd"
-  @touchcancel="handleTouchEnd"  @mousedown="handleMouseDown"
-  @mouseup="handleMouseUp" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-  <input type="hidden" :name="name" :value="inputValue">
-  <div class="slider-track"></div>
-  <div class="slider-fill" :style="fillStyle"></div>
-  <div class="slider-thumb" :style="thumbStyle"></div>
-</div>
+  <div class="slider" :class="sliderClass" tabindex="0"
+    @focus="handleFocus" @blur="handleBlur" @keydown="handleKeydown"
+    @touchstart="handleTouchStart" @touchend="handleTouchEnd"
+    @touchcancel="handleTouchEnd"  @mousedown="handleMouseDown"
+    @mouseup="handleMouseUp" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+    <input type="hidden" :name="name" :value="inputValue">
+    <div class="slider-track"></div>
+    <div class="slider-fill" :style="fillStyle"></div>
+    <div class="slider-thumb" :style="thumbStyle"></div>
+  </div>
 </template>
 <script>
 import keycode from 'keycode';
@@ -239,47 +239,47 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.slider {
-  width: 100%;
-  position: relative;
-  height: 24px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  cursor: default;
-  user-select:none;
-  outline: none;
-}
+  .slider {
+    width: 100%;
+    position: relative;
+    height: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    user-select:none;
+    outline: none;
+  }
 
-.slider-track{
-  position: absolute;
-  height: 2px;
-  left: 0;
-  right: 0;
-  top: 50%;
-  margin-top: -1px;
-  background-color: #bec2c1;
-}
+  .slider-track{
+    position: absolute;
+    height: 2px;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -1px;
+    background-color: #bec2c1;
+  }
 
-.slider-fill{
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  background-color: #e92e35;
-  left: 0;
-  top: 50%;
-  margin-top: -1px;
-}
+  .slider-fill{
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #e92e35;
+    left: 0;
+    top: 50%;
+    margin-top: -1px;
+  }
 
-.slider-thumb {
-  position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  background-color: #e92e35;
-  color: #e92e35;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
+  .slider-thumb {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #e92e35;
+    color: #e92e35;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
 </style>

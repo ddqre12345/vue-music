@@ -20,11 +20,12 @@
         flex-direction: column;
         justify-content: center;
         >div {
+            box-sizing: border-box;
             display: flex;
             flex-direction: row;
             padding: 2px 0;
             img {
-                flex: 1 0 33%;
+                flex: 0 0 33%;
                 height: 130px;
             }
         }
@@ -36,6 +37,7 @@
             justify-content: space-between;
             flex-flow: row wrap;
             list-style: none;
+            margin-bottom: 100px;
             li {
                 padding-top: 10px;
                 flex: 0 0 32%;

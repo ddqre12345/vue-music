@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+  // import 'swiper/dist/css/swiper.css';
   import api from '@/api/index';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   import vPlayLists from '@/components/list/find/recommend/playLists';
@@ -37,10 +38,10 @@
   import vNewSongList from '@/components/list/find/recommend/newSongList';
   import vDjProgramList from '@/components/list/find/recommend/djProgram';
   const imgList = [
-        'http://pmifpxcu9.bkt.clouddn.com/banner1.jpg', 
-        'http://pmifpxcu9.bkt.clouddn.com/banner2.jpg',
-        'http://pmifpxcu9.bkt.clouddn.com/banner3.jpg',
-        'http://pmifpxcu9.bkt.clouddn.com/banner4.jpg'
+        'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/banner1.jpg', 
+        'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/banner2.jpg',
+        'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/banner3.jpg',
+        'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/banner4.jpg'
         ];
   export default {
     name: 'v-recommend',
@@ -119,6 +120,7 @@
     }
   };
 </script>
+
 <style lang="less" rel="stylesheet/less">
   @import 'recommend.less';
 </style>

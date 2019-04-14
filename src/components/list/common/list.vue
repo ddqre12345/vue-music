@@ -4,17 +4,17 @@
       <div class="option-area">
         <div class="select-type"  @click='changePlayType()'>
           <span class="loop" v-show="playType === 1">
-            <img src="http://pmifpxcu9.bkt.clouddn.com/list-loop.svg">列表循环（{{songList.length}}）
+            <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/list-loop.svg">列表循环（{{songList.length}}）
           </span>
           <span class="loop" v-show="playType === 2">
-            <img src="http://pmifpxcu9.bkt.clouddn.com/random-loop.svg">随机播放（{{songList.length}}）
+            <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/random-loop.svg">随机播放（{{songList.length}}）
           </span>
           <span class="loop" v-show="playType === 3">
-            <img src="http://pmifpxcu9.bkt.clouddn.com/single-loop.svg">单曲循环（{{songList.length}}）
+            <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/single-loop.svg">单曲循环（{{songList.length}}）
           </span>
         </div>
         <div class="delete" @click='popConfirm()'>
-          <img src="http://pmifpxcu9.bkt.clouddn.com/delete.png">
+          <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/delete.png">
           清空
         </div>
       </div>
@@ -24,7 +24,7 @@
             <span class="list-name">{{item.name}}</span>
             <span class="list-singer">-{{item.singer}}</span>
           </p>
-          <img src="http://pmifpxcu9.bkt.clouddn.com/remove-item.png" @click="remove(index)">
+          <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/remove-item.png" @click="remove(index)">
         </div>
       </div>
     </bottom-sheet>

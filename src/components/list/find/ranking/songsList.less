@@ -1,5 +1,5 @@
 ul.ranking-songsList {
-    flex: 1 0 67%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -11,8 +11,9 @@ ul.ranking-songsList {
     padding-right: 5px;
     li {
         display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
-        overflow: hidden;
     }
 }

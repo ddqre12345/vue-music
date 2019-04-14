@@ -1,7 +1,7 @@
 {
   "name": "vue-music",
   "version": "2.0.0",
-  "description": "A webapp music player",
+  "description": "A webApp music player",
   "author": "浅滩戏虾 <huting9386@qq.com>",
   "private": true,
   "scripts": {

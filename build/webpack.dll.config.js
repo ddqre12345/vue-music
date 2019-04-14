@@ -5,7 +5,7 @@ module.exports = {
   // JS 执行入口文件
   entry: {
     libs: [
-      'vue/dist/vue.common.js',
+      // 'vue/dist/vue.common.js',
       'vue-router',
       'vuex',
       'axios'

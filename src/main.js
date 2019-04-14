@@ -4,13 +4,18 @@ import VueRouter from 'vue-router';
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import App from './App';
 import routes from './routers';
-// import {loadFromlLocal} from './common/js/store'; // 公共方法：本地缓存
+
+const isDebug_mode = process.env.NODE_ENV !== 'production'
+Vue.config.debug = isDebug_mode
+Vue.config.devtools = isDebug_mode
+Vue.config.productionTip = isDebug_mode
+
 // 注册为全局组件
 Vue.use(VueRouter);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
-    error: 'http://pmifpxcu9.bkt.clouddn.com/404.png',
-    loading: 'http://pmifpxcu9.bkt.clouddn.com/loading.jpg',
+    error: 'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/404.png',
+    loading: 'https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/loading.jpg',
     attempt: 1
   }
 );
@@ -57,10 +62,4 @@ const routerApp = new Vue({
   render: h => h(App)
 }).$mount('#app');
 
-/**
- * loadFromlLocal()是读取本地缓存数据，具体common/js/store.js 查看
- */
-// if (!loadFromlLocal('music', 'find', false)) {
-//   router.push('/find');
-// }
 export default routerApp;

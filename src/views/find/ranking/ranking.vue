@@ -4,19 +4,19 @@
       <div class="title">官方榜</div>
       <div class="ranking-official-area">
           <div class="surge" @click="jumpRankingDetail(3)">
-              <img src="http://pmifpxcu9.bkt.clouddn.com/surge.jpg" alt="surge">
+              <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/surge.jpg" alt="surge">
               <v-songs-list :data="surgeList"></v-songs-list>
           </div>
           <div class="newSonges" @click="jumpRankingDetail(0)">
-              <img src="http://pmifpxcu9.bkt.clouddn.com/newSonges.jpg" alt="newSonges">
+              <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/newSonges.jpg" alt="newSonges">
               <v-songs-list :data="newSongesList"></v-songs-list>
           </div>
           <div class="original" @click="jumpRankingDetail(2)">
-              <img src="http://pmifpxcu9.bkt.clouddn.com/original.jpg" alt="original">
+              <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/original.jpg" alt="original">
               <v-songs-list :data="originalList"></v-songs-list>
           </div>
           <div class="hot" @click="jumpRankingDetail(1)">
-              <img src="http://pmifpxcu9.bkt.clouddn.com/hot.jpg" alt="hot">
+              <img src="https://raw.githubusercontent.com/ddqre12345/ddqre12345.github.io/master/project/vue-music/hot.jpg" alt="hot">
               <v-songs-list :data="hotList"></v-songs-list>
           </div>
       </div>
@@ -52,7 +52,7 @@
         rankingList: wRL.rankingList
       };
     },
-    mounted: function() {
+    created: function() {
       this.getSurgeList();
       this.getNewSongesList();
       this.getOriginalList();
@@ -64,41 +64,53 @@
           path: '/ranking/' + idx
         });
       },
+      
       // 获取飙升榜信息
       getSurgeList() {
+        var self = this;
+
         api.getTopListResource(3).then((response) => {
-          this.surgeInfo = response.data.result;
-          this.surgeList = response.data.result.tracks.slice(0, 3);
+          self.surgeInfo = response.data.playlist;
+          self.surgeList = response.data.playlist.tracks.slice(0, 3);
         })
         .catch((response) => {
           console.log(response);
         });
       },
+
       // 获取新歌榜信息
       getNewSongesList() {
+        var self = this;
+
         api.getTopListResource(0).then((response) => {
-          this.newSongesInfo = response.data.result;
-          this.newSongesList = response.data.result.tracks.slice(0, 3);
+          self.newSongesInfo = response.data.playlist;
+          self.newSongesList = response.data.playlist.tracks.slice(0, 3);
         })
         .catch((response) => {
           console.log(response);
         });
       },
+
       // 获取原创榜信息
       getOriginalList() {
+        var self = this;
+
         api.getTopListResource(2).then((response) => {
-          this.originalInfo = response.data.result;
-          this.originalList = response.data.result.tracks.slice(0, 3);
+          self.originalInfo = response.data.playlist;
+          self.originalList = response.data.playlist.tracks.slice(0, 3);
         })
         .catch((response) => {
           console.log(response);
         });
       },
+
       // 获取热歌榜信息
       getHotList() {
+        var self = this;
+
         api.getTopListResource(1).then((response) => {
-          this.hotInfo = response.data.result;
-          this.hotList = response.data.result.tracks.slice(0, 3);
+          self.hotInfo = response.data.playlist;
+          self.hotList = response.data.playlist.tracks.slice(0, 3);
         })
         .catch((response) => {
           console.log(response);
