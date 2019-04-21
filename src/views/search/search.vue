@@ -60,8 +60,7 @@
 
 <script>
   import api from '@/api/index';
-  import {Tab, TabItem} from 'vux/src/components/Tab';
-  import {Swiper, SwiperItem} from 'vux/src/components/Swiper';
+  import { Tab, TabItem, Swiper, SwiperItem } from 'vux';
   import vSingleList from '@/components/list/search/singleList';
   import vSingerList from '@/components/list/search/singerList';
   import vAlbumList from '@/components/list/search/albumList';

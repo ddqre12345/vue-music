@@ -32,9 +32,7 @@
 </template>
 <script>
   import api from '@/api';
-  import { XHeader } from 'vux';
-  import { Tab, TabItem } from 'vux/src/components/Tab';
-  import { Swiper, SwiperItem } from 'vux/src/components/Swiper';
+  import { XHeader, Tab, TabItem, Swiper, SwiperItem } from 'vux';
   import vSingleList from '@/components/list/detail/singer/singleList';
   import vAlbumList from '@/components/list/detail/singer/albumList';
   import vMvList from '@/components/list/detail/singer/mvList';
